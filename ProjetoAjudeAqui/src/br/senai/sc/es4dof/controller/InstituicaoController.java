@@ -32,8 +32,4 @@ public class InstituicaoController implements IController {
 		return null;
 	}
 	
-	public Entidade getPorRazaoSocial(String razaoSocial) throws Exception {
-		return null;
-	}
-
 }

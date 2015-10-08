@@ -31,9 +31,5 @@ public class UsuarioDAO extends GenericDAO{
 	public Entidade getPorId(int id) throws Exception {
 		return null;
 	}
-	
-	public Entidade getPorLoginEmpresa(String login, Entidade entidade) throws Exception {
-		return null;
-	}
 
 }

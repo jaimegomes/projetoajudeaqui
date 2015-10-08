@@ -15,7 +15,7 @@ public abstract class Entidade {
 	public abstract int getId();
 
 	/**
-	 * Método responsável¡vel por atribuir valor ao id da entidade.
+	 * Método responsávelvel por atribuir valor ao id da entidade.
 	 * 
 	 * @param int id
 	 */

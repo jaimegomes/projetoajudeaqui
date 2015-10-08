@@ -5,12 +5,12 @@ import java.util.Date;
 import br.senai.sc.es4dof.abstracts.Entidade;
 
 /**
- * Classe abstrata Pessoa.
+ * Classe que representa a entidade Voluntario.
  * 
  * @author Jaime Gomes
  *
  */
-public abstract class Voluntario extends Entidade {
+public class Voluntario extends Entidade {
 
 	private int id;
 	private String nome;
@@ -20,6 +20,13 @@ public abstract class Voluntario extends Entidade {
 	private String email;
 	private Date dataNascimento;
 	private Usuario usuario;
+	private char sexo;
+	private String estadoCivil;
+	private String complemento;
+	private String celular;
+	private char atuouVolunt;
+	private Horario horarioDisponivel;
+	private String informacoesComplementares;
 
 	/**
 	 * Construtor padrão.
@@ -38,8 +45,8 @@ public abstract class Voluntario extends Entidade {
 	 * @param dataNascimento
 	 * @param usuario
 	 */
-	public Voluntario(String nome, String telefone, String cpf, String endereco,
-			String email, Date dataNascimento, Usuario usuario) {
+	public Voluntario(String nome, String telefone, String cpf,
+			String endereco, String email, Date dataNascimento, Usuario usuario) {
 		this.nome = nome;
 		this.telefone = telefone;
 		this.cpf = cpf;

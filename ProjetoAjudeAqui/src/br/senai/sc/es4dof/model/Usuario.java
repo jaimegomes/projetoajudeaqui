@@ -3,7 +3,7 @@ package br.senai.sc.es4dof.model;
 import br.senai.sc.es4dof.abstracts.Entidade;
 
 /**
- * Classe que representa a entidade Usuario no banco de dados
+ * Classe que representa a entidade Usuario.
  * 
  * @author Jaime Gomes
  *
@@ -14,7 +14,7 @@ public class Usuario extends Entidade {
 	private String login;
 	private String senha;
 	private String perfil;
-	private Instituicao empresa;
+	private String lembreteSenha;
 
 	/**
 	 * Construtor padrão
@@ -27,12 +27,18 @@ public class Usuario extends Entidade {
 	 * 
 	 * @param login
 	 * @param senha
+	 * @param confirmacaoSenha
+	 * @param perfil
+	 * @param instituicao
+	 * @param lembreteSenha
 	 */
-	public Usuario(String login, String senha, String perfil, Instituicao empresa) {
+	public Usuario(String login, String senha, String perfil,
+			String lembreteSenha) {
+		super();
 		this.login = login;
 		this.senha = senha;
 		this.perfil = perfil;
-		this.empresa = empresa;
+		this.lembreteSenha = lembreteSenha;
 	}
 
 	/**
@@ -41,12 +47,19 @@ public class Usuario extends Entidade {
 	 * @param id
 	 * @param login
 	 * @param senha
+	 * @param confirmacaoSenha
+	 * @param perfil
+	 * @param instituicao
+	 * @param lembreteSenha
 	 */
-	public Usuario(int id, String login, String senha, String perfil) {
+	public Usuario(int id, String login, String senha, String perfil,
+			String lembreteSenha) {
+		super();
 		this.id = id;
 		this.login = login;
 		this.senha = senha;
 		this.perfil = perfil;
+		this.lembreteSenha = lembreteSenha;
 	}
 
 	@Override
@@ -118,18 +131,22 @@ public class Usuario extends Entidade {
 	}
 
 	/**
-	 * @return the empresa
+	 * Método que retorna o lembrete de senha de senha do usuário.
+	 * 
+	 * @return the lembreteSenha
 	 */
-	public Instituicao getEmpresa() {
-		return empresa;
+	public String getLembreteSenha() {
+		return lembreteSenha;
 	}
 
 	/**
-	 * @param empresa
-	 *            the empresa to set
+	 * Método que seta o lembrete de senha do usuário.
+	 * 
+	 * @param lembreteSenha
+	 *            the lembreteSenha to set
 	 */
-	public void setEmpresa(Instituicao empresa) {
-		this.empresa = empresa;
+	public void setLembreteSenha(String lembreteSenha) {
+		this.lembreteSenha = lembreteSenha;
 	}
 
 }
