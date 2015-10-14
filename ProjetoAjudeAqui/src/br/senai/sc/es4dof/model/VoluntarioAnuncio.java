@@ -1,6 +1,6 @@
 package br.senai.sc.es4dof.model;
 
-import br.senai.sc.es4dof.abstracts.Entidade;
+import br.senai.sc.ajudeaqui.abstracts.Entidade;
 
 /**
  * Classe que representa a entidade VoluntarioAnuncio

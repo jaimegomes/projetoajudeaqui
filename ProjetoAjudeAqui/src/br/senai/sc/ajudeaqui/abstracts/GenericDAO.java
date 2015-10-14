@@ -1,4 +1,4 @@
-package br.senai.sc.es4dof.abstracts;
+package br.senai.sc.ajudeaqui.abstracts;
 
 import java.util.List;
 

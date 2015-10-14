@@ -1,8 +1,8 @@
-package br.senai.sc.es4dof.controller;
+package br.senai.sc.ajudeaqui.controller;
 
 import java.util.List;
 
-import br.senai.sc.es4dof.abstracts.Entidade;
+import br.senai.sc.ajudeaqui.abstracts.Entidade;
 import br.senai.sc.es4dof.interfaces.IController;
 
 public class UsuarioController implements IController {

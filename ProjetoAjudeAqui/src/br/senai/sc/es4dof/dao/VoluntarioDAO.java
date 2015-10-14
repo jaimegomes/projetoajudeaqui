@@ -2,8 +2,8 @@ package br.senai.sc.es4dof.dao;
 
 import java.util.List;
 
-import br.senai.sc.es4dof.abstracts.Entidade;
-import br.senai.sc.es4dof.abstracts.GenericDAO;
+import br.senai.sc.ajudeaqui.abstracts.Entidade;
+import br.senai.sc.ajudeaqui.abstracts.GenericDAO;
 
 public class VoluntarioDAO extends GenericDAO {
 

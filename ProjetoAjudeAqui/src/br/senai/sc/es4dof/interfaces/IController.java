@@ -2,7 +2,7 @@ package br.senai.sc.es4dof.interfaces;
 
 import java.util.List;
 
-import br.senai.sc.es4dof.abstracts.Entidade;
+import br.senai.sc.ajudeaqui.abstracts.Entidade;
 
 /**
  * Interface Controller, a classe que estender esta interface deve sobrescrever

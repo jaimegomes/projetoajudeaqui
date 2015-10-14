@@ -1,4 +1,4 @@
-package br.senai.sc.es4dof.conexao;
+package br.senai.sc.ajudeaqui.conexao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

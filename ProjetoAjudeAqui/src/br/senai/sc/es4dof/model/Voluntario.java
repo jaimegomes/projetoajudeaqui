@@ -2,7 +2,7 @@ package br.senai.sc.es4dof.model;
 
 import java.util.Date;
 
-import br.senai.sc.es4dof.abstracts.Entidade;
+import br.senai.sc.ajudeaqui.abstracts.Entidade;
 
 /**
  * Classe que representa a entidade Voluntario.

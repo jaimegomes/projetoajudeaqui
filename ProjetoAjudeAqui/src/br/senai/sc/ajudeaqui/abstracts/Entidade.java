@@ -1,4 +1,4 @@
-package br.senai.sc.es4dof.abstracts;
+package br.senai.sc.ajudeaqui.abstracts;
 
 /**
  * Classe abstrata Entidade, toda classe model deve estender está classe.
