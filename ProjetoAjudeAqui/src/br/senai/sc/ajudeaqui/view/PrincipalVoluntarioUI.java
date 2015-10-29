@@ -28,7 +28,6 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 	private static final long serialVersionUID = 1L;
 	private javax.swing.JTextArea atxtInfoComplementares;
 	private javax.swing.JButton btnAddAreaInteresse;
-	private javax.swing.JButton btnAddExperiencia;
 	private javax.swing.JButton btnAddHorario;
 	private javax.swing.JButton btnHorariosDisponiveis;
 	private javax.swing.JButton btnAreasInteresse;
@@ -38,20 +37,16 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 	private javax.swing.JButton btnPesquisarFiltroVagas1;
 	private javax.swing.JButton btnSalvarDadosPerfil;
 	private javax.swing.JComboBox cmbAreasInteresse;
-	private javax.swing.JComboBox cmbAtuouComoVoluntario;
 	private javax.swing.JComboBox cmbEstadoCivil;
 	private javax.swing.JComboBox cmbHorarioDisponivel;
 	private javax.swing.JComboBox cmbInstituicaoFiltroVagas;
 	private javax.swing.JComboBox cmbSexo;
 	private javax.swing.JComboBox cmbTipoServicoVagas;
-	private JComboBox cmbFuncao;
-	private JDateChooser dateChooserEntrada;
 	private javax.swing.JFormattedTextField jftxtCelular;
 	private javax.swing.JFormattedTextField jftxtEmail;
 	private javax.swing.JFormattedTextField jftxtTelefone;
 	private javax.swing.JFormattedTextField jftxtCpf;
 	private javax.swing.JLabel lblAreaInteresse;
-	private javax.swing.JLabel lblAtuouComoVoluntario;
 	private javax.swing.JLabel lblAvatar;
 	private javax.swing.JLabel lblCelular;
 	private javax.swing.JLabel lblComplemento;
@@ -60,22 +55,18 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 	private javax.swing.JLabel lblDataPublicacaoFiltroVagas;
 	private javax.swing.JLabel lblEmail;
 	private javax.swing.JLabel lblEndereco;
-	private javax.swing.JLabel lblEntrada;
 	private javax.swing.JLabel lblEstadoCivil;
-	private javax.swing.JLabel lblFuncao;
 	private javax.swing.JLabel lblHorarioDisponivel;
 	private javax.swing.JLabel lblInfoComplementares;
-	private javax.swing.JLabel lblInstituicaoExp;
 	private javax.swing.JLabel lblInstituicaoFiltroVagas;
 	private javax.swing.JLabel lblNome;
-	private javax.swing.JLabel lblSaida;
 	private javax.swing.JLabel lblSexo;
 	private javax.swing.JLabel lblTelefone;
 	private javax.swing.JLabel lblTipoServicoVagas;
 	private javax.swing.JLabel lblTituloFiltroVagas;
 	private javax.swing.JTabbedPane menuPrincipalVoluntario;
 	private javax.swing.JPanel panelDadosPessoais;
-	private javax.swing.JPanel panelExperiencias;
+	private javax.swing.JPanel panelInfoComplementares;
 	private javax.swing.JPanel panelFiltroVagas;
 	private javax.swing.JPanel panelPerfil;
 	private javax.swing.JPanel panelVagas;
@@ -84,10 +75,8 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 	private javax.swing.JTable tableVagas;
 	private javax.swing.JTextField txtComplemento;
 	private javax.swing.JTextField txtEndereco;
-	private javax.swing.JTextField txtInstituicao;
 	private javax.swing.JTextField txtNome;
 	private javax.swing.JTextField txtTituloFiltroVagas;
-	private JDateChooser dateChooserSaida;
 	private JDateChooser dateChooserDataNascimento;
 
 	// End of variables declaration
@@ -191,24 +180,16 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 		cmbSexo = new javax.swing.JComboBox();
 		btnHorariosDisponiveis = new javax.swing.JButton();
 		btnAreasInteresse = new javax.swing.JButton();
-		panelExperiencias = new javax.swing.JPanel();
-		lblInstituicaoExp = new javax.swing.JLabel();
+		panelInfoComplementares = new javax.swing.JPanel();
 		scrollPaneInfoComplementares = new javax.swing.JScrollPane();
 		atxtInfoComplementares = new javax.swing.JTextArea();
 		atxtInfoComplementares.setTabSize(6);
-		txtInstituicao = new javax.swing.JTextField();
 		btnAddAreaInteresse = new javax.swing.JButton();
 		lblHorarioDisponivel = new javax.swing.JLabel();
 		btnAddHorario = new javax.swing.JButton();
 		cmbHorarioDisponivel = new javax.swing.JComboBox();
 		lblAreaInteresse = new javax.swing.JLabel();
-		lblFuncao = new javax.swing.JLabel();
-		cmbAtuouComoVoluntario = new javax.swing.JComboBox();
 		lblInfoComplementares = new javax.swing.JLabel();
-		lblAtuouComoVoluntario = new javax.swing.JLabel();
-		btnAddExperiencia = new javax.swing.JButton();
-		lblEntrada = new javax.swing.JLabel();
-		lblSaida = new javax.swing.JLabel();
 		cmbAreasInteresse = new javax.swing.JComboBox();
 		panelVagas = new javax.swing.JPanel();
 		panelFiltroVagas = new javax.swing.JPanel();
@@ -223,9 +204,6 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 		btnPesquisarFiltroVagas1 = new javax.swing.JButton();
 		scrollpaneVagas = new javax.swing.JScrollPane();
 		tableVagas = new javax.swing.JTable();
-		cmbFuncao = new JComboBox();
-		dateChooserEntrada = new JDateChooser();
-		dateChooserSaida = new JDateChooser();
 		dateChooserDataNascimento = new JDateChooser();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -333,7 +311,6 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 				"...", "Masculino", "Feminino" }));
 		
 		dateChooserDataNascimento.setSize(100, 19);
-		dateChooserEntrada.setSize(100, 19);
 
 		javax.swing.GroupLayout panelDadosPessoaisLayout = new javax.swing.GroupLayout(
 				panelDadosPessoais);
@@ -614,20 +591,15 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 										.addGap(24)));
 		panelDadosPessoais.setLayout(panelDadosPessoaisLayout);
 
-		panelExperiencias.setBorder(javax.swing.BorderFactory
-				.createTitledBorder("Experiências"));
-		panelExperiencias.setMaximumSize(new java.awt.Dimension(1197, 233));
-		panelExperiencias.setMinimumSize(new java.awt.Dimension(1197, 233));
-		panelExperiencias.setPreferredSize(new java.awt.Dimension(1197, 233));
-
-		lblInstituicaoExp.setFont(new Font("Dialog", Font.PLAIN, 12)); // NOI18N
-		lblInstituicaoExp.setText("Instituição:");
+		panelInfoComplementares.setBorder(javax.swing.BorderFactory
+				.createTitledBorder("Informações Complementares"));
+		panelInfoComplementares.setMaximumSize(new java.awt.Dimension(1197, 233));
+		panelInfoComplementares.setMinimumSize(new java.awt.Dimension(1197, 233));
+		panelInfoComplementares.setPreferredSize(new java.awt.Dimension(1197, 233));
 
 		atxtInfoComplementares.setColumns(20);
 		atxtInfoComplementares.setRows(5);
 		scrollPaneInfoComplementares.setViewportView(atxtInfoComplementares);
-
-		txtInstituicao.setFont(new Font("Dialog", Font.PLAIN, 12)); // NOI18N
 
 		btnAddAreaInteresse.setIcon(new ImageIcon("img/add_16x16.png")); // NOI18N
 
@@ -642,13 +614,6 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 		lblAreaInteresse.setFont(new Font("Dialog", Font.PLAIN, 12)); // NOI18N
 		lblAreaInteresse.setText("Áreas de Interesse em Ajudar:");
 
-		lblFuncao.setFont(new Font("Dialog", Font.PLAIN, 12)); // NOI18N
-		lblFuncao.setText("Função:");
-
-		cmbAtuouComoVoluntario.setModel(new javax.swing.DefaultComboBoxModel(
-				new String[] { "...", "Sim", "Não" }));
-		cmbAtuouComoVoluntario.setMaximumSize(new java.awt.Dimension(44, 20));
-
 		btnHorariosDisponiveis.setIcon(new ImageIcon("img/agenda_16x16.png")); // NOI18N
 		btnHorariosDisponiveis.setText("Horários Disponíveis");
 
@@ -658,48 +623,15 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 		lblInfoComplementares.setFont(new Font("Dialog", Font.PLAIN, 12)); // NOI18N
 		lblInfoComplementares.setText("Informações Complementares:");
 
-		lblAtuouComoVoluntario.setFont(new Font("Dialog", Font.PLAIN, 12)); // NOI18N
-		lblAtuouComoVoluntario.setText("Já atuou como Voluntário?");
-
-		btnAddExperiencia.setIcon(new ImageIcon("img/add_16x16.png")); // NOI18N
-
-		lblEntrada.setFont(new Font("Dialog", Font.PLAIN, 12)); // NOI18N
-		lblEntrada.setText("Entrada:");
-
-		lblSaida.setFont(new Font("Dialog", Font.PLAIN, 12)); // NOI18N
-		lblSaida.setText("Saída:");
-
 		cmbAreasInteresse.setModel(new javax.swing.DefaultComboBoxModel(
 				new String[] { "..." }));
 
 		javax.swing.GroupLayout panelExperienciasLayout = new javax.swing.GroupLayout(
-				panelExperiencias);
+				panelInfoComplementares);
 		panelExperienciasLayout.setHorizontalGroup(
 			panelExperienciasLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(panelExperienciasLayout.createSequentialGroup()
 					.addGroup(panelExperienciasLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(panelExperienciasLayout.createSequentialGroup()
-							.addComponent(lblAtuouComoVoluntario)
-							.addGap(30)
-							.addComponent(cmbAtuouComoVoluntario, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(lblInstituicaoExp)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtInstituicao, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(lblFuncao)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(cmbFuncao, GroupLayout.PREFERRED_SIZE, 176, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(lblEntrada)
-							.addGap(4)
-							.addComponent(dateChooserEntrada, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(lblSaida)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(dateChooserSaida, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnAddExperiencia, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
 						.addGroup(panelExperienciasLayout.createSequentialGroup()
 							.addComponent(lblHorarioDisponivel)
 							.addGap(71)
@@ -720,26 +652,11 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 							.addComponent(btnAddAreaInteresse, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(btnAreasInteresse)))
-					.addContainerGap(43, Short.MAX_VALUE))
+					.addContainerGap(585, Short.MAX_VALUE))
 		);
 		panelExperienciasLayout.setVerticalGroup(
 			panelExperienciasLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(panelExperienciasLayout.createSequentialGroup()
-					.addGroup(panelExperienciasLayout.createParallelGroup(Alignment.TRAILING)
-						.addGroup(panelExperienciasLayout.createParallelGroup(Alignment.TRAILING, false)
-							.addComponent(lblSaida, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addComponent(btnAddExperiencia, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
-							.addComponent(dateChooserSaida, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addComponent(dateChooserEntrada, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addGroup(panelExperienciasLayout.createParallelGroup(Alignment.BASELINE)
-							.addComponent(lblAtuouComoVoluntario)
-							.addComponent(cmbAtuouComoVoluntario, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
-							.addComponent(txtInstituicao, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
-							.addComponent(lblInstituicaoExp)
-							.addComponent(lblFuncao)
-							.addComponent(cmbFuncao, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addComponent(lblEntrada)))
-					.addGap(7)
 					.addGroup(panelExperienciasLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(cmbHorarioDisponivel, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
 						.addGroup(panelExperienciasLayout.createSequentialGroup()
@@ -759,9 +676,9 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 							.addComponent(cmbAreasInteresse, GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
 							.addComponent(btnAddAreaInteresse, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
 						.addComponent(btnAreasInteresse, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(63, Short.MAX_VALUE))
+					.addContainerGap(81, Short.MAX_VALUE))
 		);
-		panelExperiencias.setLayout(panelExperienciasLayout);
+		panelInfoComplementares.setLayout(panelExperienciasLayout);
 
 		javax.swing.GroupLayout panelPerfilLayout = new javax.swing.GroupLayout(
 				panelPerfil);
@@ -774,9 +691,8 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 							.addComponent(btnSalvarDadosPerfil, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(btnEditarDadosPerfil, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE))
-						.addGroup(panelPerfilLayout.createParallelGroup(Alignment.TRAILING, false)
-							.addComponent(panelDadosPessoais, Alignment.LEADING, 0, 0, Short.MAX_VALUE)
-							.addComponent(panelExperiencias, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1148, Short.MAX_VALUE)))
+						.addComponent(panelInfoComplementares, GroupLayout.PREFERRED_SIZE, 920, GroupLayout.PREFERRED_SIZE)
+						.addComponent(panelDadosPessoais, GroupLayout.PREFERRED_SIZE, 920, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap())
 		);
 		panelPerfilLayout.setVerticalGroup(
@@ -785,12 +701,12 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 					.addGap(8)
 					.addComponent(panelDadosPessoais, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(panelExperiencias, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addComponent(panelInfoComplementares, GroupLayout.PREFERRED_SIZE, 177, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(panelPerfilLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnEditarDadosPerfil, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnSalvarDadosPerfil, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(263, Short.MAX_VALUE))
+					.addContainerGap(319, Short.MAX_VALUE))
 		);
 		panelPerfil.setLayout(panelPerfilLayout);
 
