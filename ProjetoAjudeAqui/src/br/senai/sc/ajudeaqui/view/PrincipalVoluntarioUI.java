@@ -627,7 +627,7 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 		atxtInfoComplementares.setRows(5);
 		scrollPaneInfoComplementares.setViewportView(atxtInfoComplementares);
 
-		txtInstituicao.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+		txtInstituicao.setFont(new Font("Dialog", Font.PLAIN, 12)); // NOI18N
 
 		btnAddAreaInteresse.setIcon(new ImageIcon("img/add_16x16.png")); // NOI18N
 
@@ -769,18 +769,15 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 			panelPerfilLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(panelPerfilLayout.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(panelPerfilLayout.createParallelGroup(Alignment.LEADING)
+					.addGroup(panelPerfilLayout.createParallelGroup(Alignment.TRAILING)
 						.addGroup(panelPerfilLayout.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED, 863, Short.MAX_VALUE)
 							.addComponent(btnSalvarDadosPerfil, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(btnEditarDadosPerfil, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
-							.addGap(176))
-						.addGroup(panelPerfilLayout.createSequentialGroup()
-							.addGroup(panelPerfilLayout.createParallelGroup(Alignment.TRAILING, false)
-								.addComponent(panelDadosPessoais, Alignment.LEADING, 0, 0, Short.MAX_VALUE)
-								.addComponent(panelExperiencias, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1148, Short.MAX_VALUE))
-							.addContainerGap())))
+							.addComponent(btnEditarDadosPerfil, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE))
+						.addGroup(panelPerfilLayout.createParallelGroup(Alignment.TRAILING, false)
+							.addComponent(panelDadosPessoais, Alignment.LEADING, 0, 0, Short.MAX_VALUE)
+							.addComponent(panelExperiencias, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1148, Short.MAX_VALUE)))
+					.addContainerGap())
 		);
 		panelPerfilLayout.setVerticalGroup(
 			panelPerfilLayout.createParallelGroup(Alignment.LEADING)

@@ -7,7 +7,18 @@ package br.senai.sc.ajudeaqui.view;
  */
 public class LoginUI extends javax.swing.JFrame {
 	
+	 // Variables declaration - do not modify 
 	private static final long serialVersionUID = 1L;
+    private javax.swing.JButton btnEntrar;
+    private javax.swing.JButton btnRegistrarse;
+    private javax.swing.JLabel lblBackground;
+    private javax.swing.JLabel lblBemVindo;
+    private javax.swing.JLabel lblErroLogin;
+    private javax.swing.JLabel lblLogin;
+    private javax.swing.JLabel lblSenha;
+    private javax.swing.JPasswordField pwdSenha;
+    private javax.swing.JTextField txtLogin;
+    // End of variables declaration
 
     /**
      * Creates new form LoginView
@@ -29,7 +40,6 @@ public class LoginUI extends javax.swing.JFrame {
         lblBemVindo = new javax.swing.JLabel();
         lblErroLogin = new javax.swing.JLabel();
         btnRegistrarse = new javax.swing.JButton();
-        btnLembrarSenha = new javax.swing.JButton();
         lblBackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -64,7 +74,7 @@ public class LoginUI extends javax.swing.JFrame {
         pwdSenha.setBounds(360, 460, 150, 30);
 
         btnEntrar.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        btnEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ok_16x16.png"))); // NOI18N
+        btnEntrar.setIcon(new javax.swing.ImageIcon(("img/ok_16x16.png"))); // NOI18N
         btnEntrar.setText("Entrar");
         btnEntrar.setBorder(new javax.swing.border.MatteBorder(null));
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
@@ -85,16 +95,12 @@ public class LoginUI extends javax.swing.JFrame {
         getContentPane().add(lblErroLogin);
         lblErroLogin.setBounds(140, 558, 550, 0);
 
-        btnRegistrarse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editar_usuario_16x16.png"))); // NOI18N
+        btnRegistrarse.setIcon(new javax.swing.ImageIcon(("img/editar_usuario_16x16.png"))); // NOI18N
         btnRegistrarse.setText("Registrar-se");
         getContentPane().add(btnRegistrarse);
         btnRegistrarse.setBounds(360, 510, 150, 25);
 
-        btnLembrarSenha.setText("Esqueci a Senha");
-        getContentPane().add(btnLembrarSenha);
-        btnLembrarSenha.setBounds(360, 540, 150, 23);
-
-        lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/background.png"))); // NOI18N
+        lblBackground.setIcon(new javax.swing.ImageIcon(("img/background.png"))); // NOI18N
         getContentPane().add(lblBackground);
         lblBackground.setBounds(0, 0, 810, 610);
 
@@ -116,16 +122,4 @@ public class LoginUI extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify                     
-    private javax.swing.JButton btnEntrar;
-    private javax.swing.JButton btnLembrarSenha;
-    private javax.swing.JButton btnRegistrarse;
-    private javax.swing.JLabel lblBackground;
-    private javax.swing.JLabel lblBemVindo;
-    private javax.swing.JLabel lblErroLogin;
-    private javax.swing.JLabel lblLogin;
-    private javax.swing.JLabel lblSenha;
-    private javax.swing.JPasswordField pwdSenha;
-    private javax.swing.JTextField txtLogin;
-    // End of variables declaration                   
 }

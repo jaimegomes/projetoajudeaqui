@@ -4,8 +4,13 @@
  * and open the template in the editor.
  */
 package br.senai.sc.ajudeaqui.view;
+import java.awt.Dimension;
+
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 /**
  *
@@ -54,7 +59,7 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
         lblSite = new javax.swing.JLabel();
         lblNome = new javax.swing.JLabel();
         txtResponsavel = new javax.swing.JTextField();
-        btnEditarDadosInstituicao1 = new javax.swing.JButton();
+        btnEditarDadosInstituicao = new javax.swing.JButton();
         panelVoluntarios = new javax.swing.JPanel();
         panelFiltroVoluntarios = new javax.swing.JPanel();
         lblNomeFiltroVoluntarios = new javax.swing.JLabel();
@@ -62,7 +67,7 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
         txtNomeFiltroVoluntarios = new javax.swing.JTextField();
         txtEmailFiltroVoluntarios = new javax.swing.JTextField();
         btnPesquisarFiltroVoluntarios = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        lblTipoServicoFiltroVoluntario = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox();
         btnFiltroVoluntarios = new javax.swing.JButton();
         scrollpaneVoluntarios = new javax.swing.JScrollPane();
@@ -76,7 +81,11 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
         txtFiltroTituloAnunciosPublicados = new javax.swing.JTextField();
         btnEditarAnuncio = new javax.swing.JButton();
         btnExcluirAnuncio = new javax.swing.JButton();
-        btnFiltroVoluntarios1 = new javax.swing.JButton();
+        btnGerarRelatorioVoluntarios = new javax.swing.JButton();
+        btnGerarRelatorioVoluntarios.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent arg0) {
+        	}
+        });
         panelCadAnuncio = new javax.swing.JPanel();
         lblTituloCadAnuncio = new javax.swing.JLabel();
         spinnerVagasCadAnuncio = new javax.swing.JSpinner();
@@ -107,7 +116,7 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
 
         panelDadosInstituicao.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados da Instituição"));
 
-        btnSalvarDadosInstituicao.setIcon(new javax.swing.ImageIcon("/img/salvar_16x16.png")); // NOI18N
+        btnSalvarDadosInstituicao.setIcon(new javax.swing.ImageIcon("img/salvar_16x16.png")); // NOI18N
         btnSalvarDadosInstituicao.setText("Salvar");
 
         lblRazaoSocial.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
@@ -141,93 +150,98 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
         lblNome.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         lblNome.setText("Nome:");
 
-        btnEditarDadosInstituicao1.setIcon(new javax.swing.ImageIcon("/img/editar_usuario_16x16.png")); // NOI18N
-        btnEditarDadosInstituicao1.setText("Editar");
+        btnEditarDadosInstituicao.setIcon(new javax.swing.ImageIcon("img/editar_usuario_16x16.png")); // NOI18N
+        btnEditarDadosInstituicao.setText("Editar");
 
         javax.swing.GroupLayout panelDadosInstituicaoLayout = new javax.swing.GroupLayout(panelDadosInstituicao);
-        panelDadosInstituicao.setLayout(panelDadosInstituicaoLayout);
         panelDadosInstituicaoLayout.setHorizontalGroup(
-            panelDadosInstituicaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelDadosInstituicaoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelDadosInstituicaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelDadosInstituicaoLayout.createSequentialGroup()
-                        .addGroup(panelDadosInstituicaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDadosInstituicaoLayout.createSequentialGroup()
-                                .addComponent(btnEditarDadosInstituicao1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnSalvarDadosInstituicao, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblCnpj)
-                            .addComponent(lblEmail)
-                            .addGroup(panelDadosInstituicaoLayout.createSequentialGroup()
-                                .addGroup(panelDadosInstituicaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblNome)
-                                    .addComponent(lblEndereco)
-                                    .addComponent(lblSite)
-                                    .addComponent(lblResponsavel)
-                                    .addComponent(lblTelefone)
-                                    .addComponent(lblRazaoSocial))
-                                .addGap(19, 19, 19)
-                                .addGroup(panelDadosInstituicaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtSite, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtRazaoSocial, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtResponsavel, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(panelDadosInstituicaoLayout.createSequentialGroup()
-                        .addComponent(lblObservacoes)
-                        .addGap(18, 18, 18)
-                        .addComponent(scrollpaneObservacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(371, 371, 371))))
+        	panelDadosInstituicaoLayout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(panelDadosInstituicaoLayout.createSequentialGroup()
+        			.addContainerGap()
+        			.addGroup(panelDadosInstituicaoLayout.createParallelGroup(Alignment.LEADING)
+        				.addGroup(panelDadosInstituicaoLayout.createSequentialGroup()
+        					.addComponent(lblObservacoes)
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addComponent(scrollpaneObservacoes, GroupLayout.PREFERRED_SIZE, 353, GroupLayout.PREFERRED_SIZE))
+        				.addGroup(panelDadosInstituicaoLayout.createParallelGroup(Alignment.TRAILING)
+        					.addGroup(panelDadosInstituicaoLayout.createSequentialGroup()
+        						.addComponent(btnEditarDadosInstituicao, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
+        						.addPreferredGap(ComponentPlacement.UNRELATED)
+        						.addComponent(btnSalvarDadosInstituicao, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE))
+        					.addGroup(panelDadosInstituicaoLayout.createSequentialGroup()
+        						.addGroup(panelDadosInstituicaoLayout.createParallelGroup(Alignment.LEADING)
+        							.addGroup(panelDadosInstituicaoLayout.createParallelGroup(Alignment.TRAILING)
+        								.addGroup(panelDadosInstituicaoLayout.createSequentialGroup()
+        									.addGroup(panelDadosInstituicaoLayout.createParallelGroup(Alignment.LEADING)
+        										.addComponent(lblNome)
+        										.addComponent(lblRazaoSocial))
+        									.addGap(5))
+        								.addGroup(panelDadosInstituicaoLayout.createSequentialGroup()
+        									.addComponent(lblResponsavel)
+        									.addPreferredGap(ComponentPlacement.RELATED)))
+        							.addComponent(lblSite)
+        							.addComponent(lblEndereco)
+        							.addComponent(lblTelefone)
+        							.addComponent(lblEmail)
+        							.addComponent(lblCnpj))
+        						.addGap(4)
+        						.addGroup(panelDadosInstituicaoLayout.createParallelGroup(Alignment.LEADING)
+        							.addComponent(txtNome, GroupLayout.PREFERRED_SIZE, 353, GroupLayout.PREFERRED_SIZE)
+        							.addComponent(txtSite, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE)
+        							.addComponent(txtEndereco, GroupLayout.PREFERRED_SIZE, 353, GroupLayout.PREFERRED_SIZE)
+        							.addComponent(txtTelefone, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)
+        							.addComponent(txtEmail, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE)
+        							.addComponent(txtCnpj, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE)
+        							.addComponent(txtRazaoSocial, GroupLayout.PREFERRED_SIZE, 353, GroupLayout.PREFERRED_SIZE)
+        							.addComponent(txtResponsavel, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE)))))
+        			.addContainerGap(90, Short.MAX_VALUE))
         );
         panelDadosInstituicaoLayout.setVerticalGroup(
-            panelDadosInstituicaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelDadosInstituicaoLayout.createSequentialGroup()
-                .addGroup(panelDadosInstituicaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNome)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelDadosInstituicaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblRazaoSocial)
-                    .addComponent(txtRazaoSocial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelDadosInstituicaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCnpj)
-                    .addComponent(txtCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelDadosInstituicaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblEmail)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelDadosInstituicaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblTelefone))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelDadosInstituicaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblEndereco))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelDadosInstituicaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblSite)
-                    .addComponent(txtSite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelDadosInstituicaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtResponsavel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblResponsavel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelDadosInstituicaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblObservacoes)
-                    .addComponent(scrollpaneObservacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelDadosInstituicaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSalvarDadosInstituicao, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEditarDadosInstituicao1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(54, Short.MAX_VALUE))
+        	panelDadosInstituicaoLayout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(panelDadosInstituicaoLayout.createSequentialGroup()
+        			.addGroup(panelDadosInstituicaoLayout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(lblNome)
+        				.addComponent(txtNome, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addGroup(panelDadosInstituicaoLayout.createParallelGroup(Alignment.TRAILING)
+        				.addGroup(panelDadosInstituicaoLayout.createSequentialGroup()
+        					.addComponent(txtRazaoSocial, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addGroup(panelDadosInstituicaoLayout.createParallelGroup(Alignment.BASELINE)
+        						.addComponent(txtCnpj, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+        						.addComponent(lblCnpj)))
+        				.addComponent(lblRazaoSocial, Alignment.LEADING))
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addGroup(panelDadosInstituicaoLayout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(txtEmail, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(lblEmail))
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addGroup(panelDadosInstituicaoLayout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(txtTelefone, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(lblTelefone))
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addGroup(panelDadosInstituicaoLayout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(txtEndereco, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(lblEndereco))
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addGroup(panelDadosInstituicaoLayout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(txtSite, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(lblSite))
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addGroup(panelDadosInstituicaoLayout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(txtResponsavel, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(lblResponsavel))
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addGroup(panelDadosInstituicaoLayout.createParallelGroup(Alignment.LEADING)
+        				.addComponent(lblObservacoes)
+        				.addComponent(scrollpaneObservacoes, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE))
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addGroup(panelDadosInstituicaoLayout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(btnSalvarDadosInstituicao, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(btnEditarDadosInstituicao, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE))
+        			.addContainerGap(54, Short.MAX_VALUE))
         );
+        panelDadosInstituicao.setLayout(panelDadosInstituicaoLayout);
 
         javax.swing.GroupLayout panelInstituicaoLayout = new javax.swing.GroupLayout(panelInstituicao);
         panelInstituicao.setLayout(panelInstituicaoLayout);
@@ -246,7 +260,7 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
                 .addContainerGap(259, Short.MAX_VALUE))
         );
 
-        menuPrincipalInstituicao.addTab("Instituição", new javax.swing.ImageIcon("/img/home_16x16.png.png"), panelInstituicao); // NOI18N
+        menuPrincipalInstituicao.addTab("Instituição", new javax.swing.ImageIcon("img/home_16x16.png.png"), panelInstituicao); // NOI18N
 
         panelVoluntarios.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         panelVoluntarios.setMaximumSize(new java.awt.Dimension(1110, 700));
@@ -264,63 +278,65 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
         lblEmailFiltroVoluntarios.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         lblEmailFiltroVoluntarios.setText("Email:");
 
-        btnPesquisarFiltroVoluntarios.setIcon(new javax.swing.ImageIcon("/img/lupa_16x16.png")); // NOI18N
+        btnPesquisarFiltroVoluntarios.setIcon(new javax.swing.ImageIcon("img/lupa_16x16.png")); // NOI18N
         btnPesquisarFiltroVoluntarios.setText("Pesquisar");
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jLabel2.setText("Tipo de Serviço:");
+        lblTipoServicoFiltroVoluntario.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        lblTipoServicoFiltroVoluntario.setText("Tipo de Serviço:");
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        btnFiltroVoluntarios.setIcon(new javax.swing.ImageIcon("/img/agenda_16x16.png")); // NOI18N
+        btnFiltroVoluntarios.setIcon(new javax.swing.ImageIcon("img/agenda_16x16.png")); // NOI18N
         btnFiltroVoluntarios.setText("Gerar Relatório");
 
         javax.swing.GroupLayout panelFiltroVoluntariosLayout = new javax.swing.GroupLayout(panelFiltroVoluntarios);
-        panelFiltroVoluntarios.setLayout(panelFiltroVoluntariosLayout);
         panelFiltroVoluntariosLayout.setHorizontalGroup(
-            panelFiltroVoluntariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelFiltroVoluntariosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelFiltroVoluntariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(lblNomeFiltroVoluntarios)
-                    .addComponent(lblEmailFiltroVoluntarios))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelFiltroVoluntariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtNomeFiltroVoluntarios, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtEmailFiltroVoluntarios, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jComboBox2, 0, 258, Short.MAX_VALUE))
-                .addGroup(panelFiltroVoluntariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelFiltroVoluntariosLayout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(btnPesquisarFiltroVoluntarios)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFiltroVoluntariosLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnFiltroVoluntarios)
-                        .addContainerGap())))
+        	panelFiltroVoluntariosLayout.createParallelGroup(Alignment.TRAILING)
+        		.addGroup(panelFiltroVoluntariosLayout.createSequentialGroup()
+        			.addContainerGap()
+        			.addGroup(panelFiltroVoluntariosLayout.createParallelGroup(Alignment.LEADING)
+        				.addComponent(lblTipoServicoFiltroVoluntario)
+        				.addComponent(lblNomeFiltroVoluntarios)
+        				.addComponent(lblEmailFiltroVoluntarios))
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addGroup(panelFiltroVoluntariosLayout.createParallelGroup(Alignment.LEADING, false)
+        				.addComponent(txtNomeFiltroVoluntarios, Alignment.TRAILING)
+        				.addComponent(txtEmailFiltroVoluntarios, Alignment.TRAILING)
+        				.addComponent(jComboBox2, 0, 258, Short.MAX_VALUE))
+        			.addGroup(panelFiltroVoluntariosLayout.createParallelGroup(Alignment.TRAILING)
+        				.addGroup(panelFiltroVoluntariosLayout.createSequentialGroup()
+        					.addGap(28)
+        					.addComponent(btnPesquisarFiltroVoluntarios)
+        					.addContainerGap(719, Short.MAX_VALUE))
+        				.addGroup(panelFiltroVoluntariosLayout.createSequentialGroup()
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addComponent(btnFiltroVoluntarios)
+        					.addContainerGap())))
         );
         panelFiltroVoluntariosLayout.setVerticalGroup(
-            panelFiltroVoluntariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelFiltroVoluntariosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelFiltroVoluntariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelFiltroVoluntariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtNomeFiltroVoluntarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnPesquisarFiltroVoluntarios, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblNomeFiltroVoluntarios))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelFiltroVoluntariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtEmailFiltroVoluntarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblEmailFiltroVoluntarios))
-                .addGap(7, 7, 7)
-                .addGroup(panelFiltroVoluntariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFiltroVoluntariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnFiltroVoluntarios, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        	panelFiltroVoluntariosLayout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(panelFiltroVoluntariosLayout.createSequentialGroup()
+        			.addContainerGap()
+        			.addGroup(panelFiltroVoluntariosLayout.createParallelGroup(Alignment.LEADING)
+        				.addGroup(panelFiltroVoluntariosLayout.createParallelGroup(Alignment.BASELINE)
+        					.addComponent(txtNomeFiltroVoluntarios, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+        					.addComponent(btnPesquisarFiltroVoluntarios, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
+        				.addComponent(lblNomeFiltroVoluntarios))
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addGroup(panelFiltroVoluntariosLayout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(txtEmailFiltroVoluntarios, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(lblEmailFiltroVoluntarios))
+        			.addGap(7)
+        			.addGroup(panelFiltroVoluntariosLayout.createParallelGroup(Alignment.TRAILING)
+        				.addComponent(jComboBox2, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(lblTipoServicoFiltroVoluntario))
+        			.addContainerGap(28, Short.MAX_VALUE))
+        		.addGroup(Alignment.TRAILING, panelFiltroVoluntariosLayout.createSequentialGroup()
+        			.addContainerGap(85, Short.MAX_VALUE)
+        			.addComponent(btnFiltroVoluntarios, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+        			.addContainerGap())
         );
+        panelFiltroVoluntarios.setLayout(panelFiltroVoluntariosLayout);
 
         scrollpaneVoluntarios.setMaximumSize(new java.awt.Dimension(1197, 520));
         scrollpaneVoluntarios.setMinimumSize(new java.awt.Dimension(1197, 520));
@@ -356,27 +372,27 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
         scrollpaneVoluntarios.setViewportView(tableVoluntarios);
 
         javax.swing.GroupLayout panelVoluntariosLayout = new javax.swing.GroupLayout(panelVoluntarios);
-        panelVoluntarios.setLayout(panelVoluntariosLayout);
         panelVoluntariosLayout.setHorizontalGroup(
-            panelVoluntariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelVoluntariosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelVoluntariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(scrollpaneVoluntarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelFiltroVoluntarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(84, Short.MAX_VALUE))
+        	panelVoluntariosLayout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(panelVoluntariosLayout.createSequentialGroup()
+        			.addContainerGap()
+        			.addGroup(panelVoluntariosLayout.createParallelGroup(Alignment.TRAILING)
+        				.addComponent(panelFiltroVoluntarios, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        				.addComponent(scrollpaneVoluntarios, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        			.addContainerGap(84, Short.MAX_VALUE))
         );
         panelVoluntariosLayout.setVerticalGroup(
-            panelVoluntariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelVoluntariosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panelFiltroVoluntarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(scrollpaneVoluntarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45))
+        	panelVoluntariosLayout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(Alignment.TRAILING, panelVoluntariosLayout.createSequentialGroup()
+        			.addContainerGap()
+        			.addComponent(panelFiltroVoluntarios, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE)
+        			.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        			.addComponent(scrollpaneVoluntarios, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        			.addGap(45))
         );
+        panelVoluntarios.setLayout(panelVoluntariosLayout);
 
-        menuPrincipalInstituicao.addTab("Voluntários", new javax.swing.ImageIcon("/img/usuarios_16x16.png"), panelVoluntarios);
+        menuPrincipalInstituicao.addTab("Voluntários", new javax.swing.ImageIcon("img/usuarios_16x16.png"), panelVoluntarios);
 
         panelAnuncio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         panelAnuncio.setMaximumSize(new java.awt.Dimension(1110, 700));
@@ -415,56 +431,60 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
         tableAnunciosPublicados.setRowHeight(30);
         scrollpaneAnunciosPublicados.setViewportView(tableAnunciosPublicados);
 
-        btnPesquisarAnunciosPublicados.setIcon(new javax.swing.ImageIcon("/img/lupa_16x16.png")); // NOI18N
+        btnPesquisarAnunciosPublicados.setIcon(new javax.swing.ImageIcon("img/lupa_16x16.png")); // NOI18N
         btnPesquisarAnunciosPublicados.setText("Pesquisar");
 
         lblFiltroTituloAnunciosPublicados.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         lblFiltroTituloAnunciosPublicados.setText("Título:");
 
-        btnEditarAnuncio.setIcon(new javax.swing.ImageIcon("/img/editar_usuario_16x16.png")); // NOI18N
+        btnEditarAnuncio.setIcon(new javax.swing.ImageIcon("img/editar_usuario_16x16.png")); // NOI18N
         btnEditarAnuncio.setText("Editar");
 
-        btnExcluirAnuncio.setIcon(new javax.swing.ImageIcon("/img/cancelar_16x16.png")); // NOI18N
+        btnExcluirAnuncio.setIcon(new javax.swing.ImageIcon("img/cancelar_16x16.png")); // NOI18N
         btnExcluirAnuncio.setText("Excluir");
 
-        btnFiltroVoluntarios1.setIcon(new javax.swing.ImageIcon("/img/agenda_16x16.png")); // NOI18N
-        btnFiltroVoluntarios1.setText("Gerar Relatório");
+        btnGerarRelatorioVoluntarios.setIcon(new javax.swing.ImageIcon("img/agenda_16x16.png")); // NOI18N
+        btnGerarRelatorioVoluntarios.setText("Gerar Relatório");
 
         javax.swing.GroupLayout panelAnunciosPublicadosLayout = new javax.swing.GroupLayout(panelAnunciosPublicados);
-        panelAnunciosPublicados.setLayout(panelAnunciosPublicadosLayout);
         panelAnunciosPublicadosLayout.setHorizontalGroup(
-            panelAnunciosPublicadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelAnunciosPublicadosLayout.createSequentialGroup()
-                .addComponent(lblFiltroTituloAnunciosPublicados)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtFiltroTituloAnunciosPublicados, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnPesquisarAnunciosPublicados)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnFiltroVoluntarios1)
-                .addGap(18, 18, 18)
-                .addComponent(btnEditarAnuncio, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnExcluirAnuncio, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(scrollpaneAnunciosPublicados, javax.swing.GroupLayout.PREFERRED_SIZE, 1185, Short.MAX_VALUE)
+        	panelAnunciosPublicadosLayout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(panelAnunciosPublicadosLayout.createSequentialGroup()
+        			.addGroup(panelAnunciosPublicadosLayout.createParallelGroup(Alignment.LEADING)
+        				.addGroup(panelAnunciosPublicadosLayout.createSequentialGroup()
+        					.addComponent(lblFiltroTituloAnunciosPublicados)
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addComponent(txtFiltroTituloAnunciosPublicados, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addComponent(btnPesquisarAnunciosPublicados)
+        					.addPreferredGap(ComponentPlacement.RELATED, 555, Short.MAX_VALUE)
+        					.addComponent(btnGerarRelatorioVoluntarios)
+        					.addGap(18)
+        					.addComponent(btnEditarAnuncio, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
+        					.addGap(18)
+        					.addComponent(btnExcluirAnuncio, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE))
+        				.addComponent(scrollpaneAnunciosPublicados, GroupLayout.PREFERRED_SIZE, 1190, Short.MAX_VALUE))
+        			.addContainerGap())
         );
         panelAnunciosPublicadosLayout.setVerticalGroup(
-            panelAnunciosPublicadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAnunciosPublicadosLayout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addGroup(panelAnunciosPublicadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnFiltroVoluntarios1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelAnunciosPublicadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(panelAnunciosPublicadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnEditarAnuncio, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnExcluirAnuncio, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAnunciosPublicadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblFiltroTituloAnunciosPublicados)
-                            .addComponent(txtFiltroTituloAnunciosPublicados, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnPesquisarAnunciosPublicados, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollpaneAnunciosPublicados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        	panelAnunciosPublicadosLayout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(panelAnunciosPublicadosLayout.createSequentialGroup()
+        			.addContainerGap()
+        			.addGroup(panelAnunciosPublicadosLayout.createParallelGroup(Alignment.TRAILING)
+        				.addGroup(panelAnunciosPublicadosLayout.createParallelGroup(Alignment.BASELINE)
+        					.addComponent(lblFiltroTituloAnunciosPublicados)
+        					.addComponent(txtFiltroTituloAnunciosPublicados, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+        					.addComponent(btnPesquisarAnunciosPublicados, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
+        				.addGroup(panelAnunciosPublicadosLayout.createParallelGroup(Alignment.LEADING)
+        					.addComponent(btnGerarRelatorioVoluntarios, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+        					.addGroup(panelAnunciosPublicadosLayout.createParallelGroup(Alignment.BASELINE)
+        						.addComponent(btnEditarAnuncio, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+        						.addComponent(btnExcluirAnuncio, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))))
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addComponent(scrollpaneAnunciosPublicados, GroupLayout.PREFERRED_SIZE, 323, GroupLayout.PREFERRED_SIZE)
+        			.addContainerGap(19, Short.MAX_VALUE))
         );
+        panelAnunciosPublicados.setLayout(panelAnunciosPublicadosLayout);
 
         panelCadAnuncio.setBorder(javax.swing.BorderFactory.createTitledBorder("Cadastro de Anuncios"));
         panelCadAnuncio.setMaximumSize(new java.awt.Dimension(1197, 240));
@@ -481,7 +501,7 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
         atxtDescricaoCadAnuncio.setRows(5);
         scrollpaneDescricaoCadAnuncio.setViewportView(atxtDescricaoCadAnuncio);
 
-        btnSalvarCadAnuncio.setIcon(new javax.swing.ImageIcon("/img/salvar_16x16.png")); // NOI18N
+        btnSalvarCadAnuncio.setIcon(new javax.swing.ImageIcon("img/salvar_16x16.png")); // NOI18N
         btnSalvarCadAnuncio.setText("Salvar");
 
         lblTipoServicoAnuncio.setText("Tipo de Serviço:");
@@ -521,45 +541,45 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panelCadAnuncioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTituloCadAnuncio)
-                    .addComponent(txtTituloCadAnuncio, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTituloCadAnuncio, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelCadAnuncioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cmbTipoServicoAnuncio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbTipoServicoAnuncio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelCadAnuncioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblVagasCadAnuncio)
-                        .addComponent(spinnerVagasCadAnuncio, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(spinnerVagasCadAnuncio, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(lblTipoServicoAnuncio)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelCadAnuncioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblDescricaoCadAnuncio)
                     .addComponent(scrollpaneDescricaoCadAnuncio, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSalvarCadAnuncio, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSalvarCadAnuncio, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40))
         );
 
         javax.swing.GroupLayout panelAnuncioLayout = new javax.swing.GroupLayout(panelAnuncio);
-        panelAnuncio.setLayout(panelAnuncioLayout);
         panelAnuncioLayout.setHorizontalGroup(
-            panelAnuncioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelAnuncioLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelAnuncioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(panelCadAnuncio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelAnunciosPublicados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(84, Short.MAX_VALUE))
+        	panelAnuncioLayout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(panelAnuncioLayout.createSequentialGroup()
+        			.addContainerGap()
+        			.addGroup(panelAnuncioLayout.createParallelGroup(Alignment.TRAILING, false)
+        				.addComponent(panelAnunciosPublicados, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        				.addComponent(panelCadAnuncio, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 1212, Short.MAX_VALUE))
+        			.addContainerGap(69, Short.MAX_VALUE))
         );
         panelAnuncioLayout.setVerticalGroup(
-            panelAnuncioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelAnuncioLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panelCadAnuncio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelAnunciosPublicados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+        	panelAnuncioLayout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(panelAnuncioLayout.createSequentialGroup()
+        			.addContainerGap()
+        			.addComponent(panelCadAnuncio, GroupLayout.PREFERRED_SIZE, 256, GroupLayout.PREFERRED_SIZE)
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addComponent(panelAnunciosPublicados, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        			.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+        panelAnuncio.setLayout(panelAnuncioLayout);
 
-        menuPrincipalInstituicao.addTab("Anúncio", new javax.swing.ImageIcon("/img/aviso_16x16.png"), panelAnuncio); // NOI18N
+        menuPrincipalInstituicao.addTab("Anúncio", new javax.swing.ImageIcon("img/aviso_16x16.png"), panelAnuncio); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -618,17 +638,17 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
     private javax.swing.JTextArea atxtDescricaoCadAnuncio;
     private javax.swing.JTextArea atxtObservacoes;
     private javax.swing.JButton btnEditarAnuncio;
-    private javax.swing.JButton btnEditarDadosInstituicao1;
+    private javax.swing.JButton btnEditarDadosInstituicao;
     private javax.swing.JButton btnExcluirAnuncio;
     private javax.swing.JButton btnFiltroVoluntarios;
-    private javax.swing.JButton btnFiltroVoluntarios1;
+    private javax.swing.JButton btnGerarRelatorioVoluntarios;
     private javax.swing.JButton btnPesquisarAnunciosPublicados;
     private javax.swing.JButton btnPesquisarFiltroVoluntarios;
     private javax.swing.JButton btnSalvarCadAnuncio;
     private javax.swing.JButton btnSalvarDadosInstituicao;
     private javax.swing.JComboBox cmbTipoServicoAnuncio;
     private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel lblTipoServicoFiltroVoluntario;
     private javax.swing.JLabel lblCnpj;
     private javax.swing.JLabel lblDescricaoCadAnuncio;
     private javax.swing.JLabel lblEmail;
