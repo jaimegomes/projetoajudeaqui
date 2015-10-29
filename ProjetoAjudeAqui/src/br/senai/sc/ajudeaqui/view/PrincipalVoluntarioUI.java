@@ -674,366 +674,127 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 
 		javax.swing.GroupLayout panelExperienciasLayout = new javax.swing.GroupLayout(
 				panelExperiencias);
-		panelExperienciasLayout
-				.setHorizontalGroup(panelExperienciasLayout
-						.createParallelGroup(Alignment.LEADING)
-						.addGroup(
-								panelExperienciasLayout
-										.createSequentialGroup()
-										.addGroup(
-												panelExperienciasLayout
-														.createParallelGroup(
-																Alignment.LEADING)
-														.addComponent(
-																lblInfoComplementares)
-														.addComponent(
-																lblHorarioDisponivel)
-														.addComponent(
-																lblAtuouComoVoluntario))
-										.addPreferredGap(
-												ComponentPlacement.RELATED)
-										.addGroup(
-												panelExperienciasLayout
-														.createParallelGroup(
-																Alignment.LEADING)
-														.addComponent(
-																scrollPaneInfoComplementares,
-																GroupLayout.PREFERRED_SIZE,
-																375,
-																GroupLayout.PREFERRED_SIZE)
-														.addGroup(
-																panelExperienciasLayout
-																		.createSequentialGroup()
-																		.addComponent(
-																				cmbAtuouComoVoluntario,
-																				GroupLayout.PREFERRED_SIZE,
-																				62,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addPreferredGap(
-																				ComponentPlacement.UNRELATED)
-																		.addComponent(
-																				lblInstituicaoExp)
-																		.addPreferredGap(
-																				ComponentPlacement.RELATED)
-																		.addComponent(
-																				txtInstituicao,
-																				GroupLayout.PREFERRED_SIZE,
-																				175,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addPreferredGap(
-																				ComponentPlacement.UNRELATED)
-																		.addComponent(
-																				lblFuncao)
-																		.addPreferredGap(
-																				ComponentPlacement.RELATED)
-																		.addComponent(
-																				cmbFuncao,
-																				GroupLayout.PREFERRED_SIZE,
-																				176,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addPreferredGap(
-																				ComponentPlacement.UNRELATED)
-																		.addComponent(
-																				lblEntrada)
-																		.addPreferredGap(
-																				ComponentPlacement.RELATED,
-																				4,
-																				Short.MAX_VALUE)
-																		.addComponent(
-																				dateChooserEntrada,
-																				GroupLayout.PREFERRED_SIZE,
-																				121,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addPreferredGap(
-																				ComponentPlacement.RELATED)
-																		.addComponent(
-																				lblSaida)
-																		.addPreferredGap(
-																				ComponentPlacement.RELATED)
-																		.addComponent(
-																				dateChooserSaida,
-																				GroupLayout.PREFERRED_SIZE,
-																				121,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addPreferredGap(
-																				ComponentPlacement.RELATED)
-																		.addComponent(
-																				btnAddExperiencia,
-																				GroupLayout.PREFERRED_SIZE,
-																				22,
-																				GroupLayout.PREFERRED_SIZE))
-														.addGroup(
-																panelExperienciasLayout
-																		.createSequentialGroup()
-																		.addComponent(
-																				cmbHorarioDisponivel,
-																				GroupLayout.PREFERRED_SIZE,
-																				105,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addPreferredGap(
-																				ComponentPlacement.RELATED)
-																		.addComponent(
-																				btnAddHorario,
-																				GroupLayout.PREFERRED_SIZE,
-																				22,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addPreferredGap(
-																				ComponentPlacement.RELATED)
-																		.addComponent(
-																				btnHorariosDisponiveis)
-																		.addPreferredGap(
-																				ComponentPlacement.RELATED,
-																				649,
-																				Short.MAX_VALUE)))
-										.addContainerGap())
-						.addGroup(
-								panelExperienciasLayout
-										.createSequentialGroup()
-										.addComponent(lblAreaInteresse)
-										.addPreferredGap(
-												ComponentPlacement.UNRELATED)
-										.addComponent(cmbAreasInteresse,
-												GroupLayout.PREFERRED_SIZE,
-												177, GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(
-												ComponentPlacement.RELATED)
-										.addComponent(btnAddAreaInteresse,
-												GroupLayout.PREFERRED_SIZE, 22,
-												GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(
-												ComponentPlacement.RELATED)
-										.addComponent(btnAreasInteresse)
-										.addContainerGap(581, Short.MAX_VALUE)));
-		panelExperienciasLayout
-				.setVerticalGroup(panelExperienciasLayout
-						.createParallelGroup(Alignment.LEADING)
-						.addGroup(
-								panelExperienciasLayout
-										.createSequentialGroup()
-										.addGap(13)
-										.addGroup(
-												panelExperienciasLayout
-														.createParallelGroup(
-																Alignment.LEADING)
-														.addGroup(
-																panelExperienciasLayout
-																		.createSequentialGroup()
-																		.addComponent(
-																				dateChooserEntrada,
-																				GroupLayout.DEFAULT_SIZE,
-																				GroupLayout.DEFAULT_SIZE,
-																				Short.MAX_VALUE)
-																		.addGap(137))
-														.addGroup(
-																panelExperienciasLayout
-																		.createSequentialGroup()
-																		.addGroup(
-																				panelExperienciasLayout
-																						.createParallelGroup(
-																								Alignment.LEADING)
-																						.addGroup(
-																								panelExperienciasLayout
-																										.createParallelGroup(
-																												Alignment.BASELINE)
-																										.addComponent(
-																												txtInstituicao,
-																												GroupLayout.PREFERRED_SIZE,
-																												22,
-																												GroupLayout.PREFERRED_SIZE)
-																										.addComponent(
-																												lblInstituicaoExp)
-																										.addComponent(
-																												lblFuncao)
-																										.addComponent(
-																												cmbFuncao,
-																												GroupLayout.PREFERRED_SIZE,
-																												GroupLayout.DEFAULT_SIZE,
-																												GroupLayout.PREFERRED_SIZE)
-																										.addComponent(
-																												lblEntrada))
-																						.addGroup(
-																								panelExperienciasLayout
-																										.createParallelGroup(
-																												Alignment.BASELINE)
-																										.addComponent(
-																												lblAtuouComoVoluntario)
-																										.addComponent(
-																												cmbAtuouComoVoluntario,
-																												GroupLayout.PREFERRED_SIZE,
-																												22,
-																												GroupLayout.PREFERRED_SIZE))
-																						.addComponent(
-																								btnAddExperiencia,
-																								Alignment.TRAILING,
-																								GroupLayout.PREFERRED_SIZE,
-																								22,
-																								GroupLayout.PREFERRED_SIZE)
-																						.addGroup(
-																								Alignment.TRAILING,
-																								panelExperienciasLayout
-																										.createSequentialGroup()
-																										.addGap(2)
-																										.addGroup(
-																												panelExperienciasLayout
-																														.createParallelGroup(
-																																Alignment.LEADING)
-																														.addComponent(
-																																dateChooserSaida,
-																																GroupLayout.DEFAULT_SIZE,
-																																GroupLayout.DEFAULT_SIZE,
-																																Short.MAX_VALUE)
-																														.addComponent(
-																																lblSaida))))
-																		.addPreferredGap(
-																				ComponentPlacement.RELATED)
-																		.addGroup(
-																				panelExperienciasLayout
-																						.createParallelGroup(
-																								Alignment.LEADING)
-																						.addComponent(
-																								lblHorarioDisponivel,
-																								GroupLayout.PREFERRED_SIZE,
-																								22,
-																								GroupLayout.PREFERRED_SIZE)
-																						.addComponent(
-																								cmbHorarioDisponivel,
-																								GroupLayout.PREFERRED_SIZE,
-																								22,
-																								GroupLayout.PREFERRED_SIZE)
-																						.addGroup(
-																								panelExperienciasLayout
-																										.createSequentialGroup()
-																										.addGap(1)
-																										.addGroup(
-																												panelExperienciasLayout
-																														.createParallelGroup(
-																																Alignment.LEADING)
-																														.addComponent(
-																																btnHorariosDisponiveis,
-																																GroupLayout.PREFERRED_SIZE,
-																																22,
-																																GroupLayout.PREFERRED_SIZE)
-																														.addComponent(
-																																btnAddHorario,
-																																GroupLayout.PREFERRED_SIZE,
-																																22,
-																																GroupLayout.PREFERRED_SIZE))))
-																		.addGap(6)
-																		.addGroup(
-																				panelExperienciasLayout
-																						.createParallelGroup(
-																								Alignment.LEADING)
-																						.addComponent(
-																								lblInfoComplementares)
-																						.addComponent(
-																								scrollPaneInfoComplementares,
-																								GroupLayout.PREFERRED_SIZE,
-																								67,
-																								GroupLayout.PREFERRED_SIZE))
-																		.addGap(11)
-																		.addGroup(
-																				panelExperienciasLayout
-																						.createParallelGroup(
-																								Alignment.TRAILING)
-																						.addComponent(
-																								lblAreaInteresse)
-																						.addGroup(
-																								panelExperienciasLayout
-																										.createParallelGroup(
-																												Alignment.LEADING,
-																												false)
-																										.addComponent(
-																												cmbAreasInteresse,
-																												GroupLayout.DEFAULT_SIZE,
-																												22,
-																												Short.MAX_VALUE)
-																										.addComponent(
-																												btnAddAreaInteresse,
-																												GroupLayout.PREFERRED_SIZE,
-																												22,
-																												GroupLayout.PREFERRED_SIZE))
-																						.addComponent(
-																								btnAreasInteresse,
-																								GroupLayout.PREFERRED_SIZE,
-																								22,
-																								GroupLayout.PREFERRED_SIZE))))
-										.addGap(20)));
+		panelExperienciasLayout.setHorizontalGroup(
+			panelExperienciasLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(panelExperienciasLayout.createSequentialGroup()
+					.addGroup(panelExperienciasLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(panelExperienciasLayout.createSequentialGroup()
+							.addComponent(lblAtuouComoVoluntario)
+							.addGap(30)
+							.addComponent(cmbAtuouComoVoluntario, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(lblInstituicaoExp)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(txtInstituicao, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(lblFuncao)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(cmbFuncao, GroupLayout.PREFERRED_SIZE, 176, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(lblEntrada)
+							.addGap(4)
+							.addComponent(dateChooserEntrada, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lblSaida)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(dateChooserSaida, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnAddExperiencia, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
+						.addGroup(panelExperienciasLayout.createSequentialGroup()
+							.addComponent(lblHorarioDisponivel)
+							.addGap(71)
+							.addComponent(cmbHorarioDisponivel, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnAddHorario, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnHorariosDisponiveis))
+						.addGroup(panelExperienciasLayout.createSequentialGroup()
+							.addComponent(lblInfoComplementares)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(scrollPaneInfoComplementares, GroupLayout.PREFERRED_SIZE, 375, GroupLayout.PREFERRED_SIZE))
+						.addGroup(panelExperienciasLayout.createSequentialGroup()
+							.addComponent(lblAreaInteresse)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(cmbAreasInteresse, GroupLayout.PREFERRED_SIZE, 177, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnAddAreaInteresse, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnAreasInteresse)))
+					.addContainerGap(43, Short.MAX_VALUE))
+		);
+		panelExperienciasLayout.setVerticalGroup(
+			panelExperienciasLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(panelExperienciasLayout.createSequentialGroup()
+					.addGroup(panelExperienciasLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(panelExperienciasLayout.createParallelGroup(Alignment.TRAILING, false)
+							.addComponent(lblSaida, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(btnAddExperiencia, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+							.addComponent(dateChooserSaida, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(dateChooserEntrada, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGroup(panelExperienciasLayout.createParallelGroup(Alignment.BASELINE)
+							.addComponent(lblAtuouComoVoluntario)
+							.addComponent(cmbAtuouComoVoluntario, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+							.addComponent(txtInstituicao, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+							.addComponent(lblInstituicaoExp)
+							.addComponent(lblFuncao)
+							.addComponent(cmbFuncao, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(lblEntrada)))
+					.addGap(7)
+					.addGroup(panelExperienciasLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(cmbHorarioDisponivel, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+						.addGroup(panelExperienciasLayout.createSequentialGroup()
+							.addGap(1)
+							.addGroup(panelExperienciasLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(btnHorariosDisponiveis, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnAddHorario, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)))
+						.addComponent(lblHorarioDisponivel, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(panelExperienciasLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(scrollPaneInfoComplementares, GroupLayout.PREFERRED_SIZE, 67, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblInfoComplementares))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(panelExperienciasLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(lblAreaInteresse)
+						.addGroup(panelExperienciasLayout.createParallelGroup(Alignment.LEADING, false)
+							.addComponent(cmbAreasInteresse, GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+							.addComponent(btnAddAreaInteresse, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
+						.addComponent(btnAreasInteresse, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(63, Short.MAX_VALUE))
+		);
 		panelExperiencias.setLayout(panelExperienciasLayout);
 
 		javax.swing.GroupLayout panelPerfilLayout = new javax.swing.GroupLayout(
 				panelPerfil);
-		panelPerfilLayout
-				.setHorizontalGroup(panelPerfilLayout
-						.createParallelGroup(Alignment.TRAILING)
-						.addGroup(
-								panelPerfilLayout
-										.createSequentialGroup()
-										.addContainerGap()
-										.addGroup(
-												panelPerfilLayout
-														.createParallelGroup(
-																Alignment.TRAILING)
-														.addGroup(
-																panelPerfilLayout
-																		.createSequentialGroup()
-																		.addComponent(
-																				btnSalvarDadosPerfil,
-																				GroupLayout.PREFERRED_SIZE,
-																				116,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addPreferredGap(
-																				ComponentPlacement.UNRELATED)
-																		.addComponent(
-																				btnEditarDadosPerfil,
-																				GroupLayout.PREFERRED_SIZE,
-																				116,
-																				GroupLayout.PREFERRED_SIZE))
-														.addComponent(
-																panelDadosPessoais,
-																Alignment.LEADING,
-																GroupLayout.PREFERRED_SIZE,
-																1063,
-																Short.MAX_VALUE)
-														.addComponent(
-																panelExperiencias,
-																Alignment.LEADING,
-																GroupLayout.PREFERRED_SIZE,
-																1105,
-																GroupLayout.PREFERRED_SIZE))
-										.addGap(176)));
-		panelPerfilLayout
-				.setVerticalGroup(panelPerfilLayout
-						.createParallelGroup(Alignment.LEADING)
-						.addGroup(
-								panelPerfilLayout
-										.createSequentialGroup()
-										.addGap(8)
-										.addComponent(panelDadosPessoais,
-												GroupLayout.PREFERRED_SIZE,
-												GroupLayout.DEFAULT_SIZE,
-												GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(
-												ComponentPlacement.RELATED)
-										.addComponent(panelExperiencias,
-												GroupLayout.PREFERRED_SIZE,
-												213, GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(
-												ComponentPlacement.UNRELATED)
-										.addGroup(
-												panelPerfilLayout
-														.createParallelGroup(
-																Alignment.BASELINE)
-														.addComponent(
-																btnEditarDadosPerfil,
-																GroupLayout.PREFERRED_SIZE,
-																22,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(
-																btnSalvarDadosPerfil,
-																GroupLayout.PREFERRED_SIZE,
-																22,
-																GroupLayout.PREFERRED_SIZE))
-										.addContainerGap(278, Short.MAX_VALUE)));
+		panelPerfilLayout.setHorizontalGroup(
+			panelPerfilLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(panelPerfilLayout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(panelPerfilLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(panelPerfilLayout.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED, 863, Short.MAX_VALUE)
+							.addComponent(btnSalvarDadosPerfil, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(btnEditarDadosPerfil, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
+							.addGap(176))
+						.addGroup(panelPerfilLayout.createSequentialGroup()
+							.addGroup(panelPerfilLayout.createParallelGroup(Alignment.TRAILING, false)
+								.addComponent(panelDadosPessoais, Alignment.LEADING, 0, 0, Short.MAX_VALUE)
+								.addComponent(panelExperiencias, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 1148, Short.MAX_VALUE))
+							.addContainerGap())))
+		);
+		panelPerfilLayout.setVerticalGroup(
+			panelPerfilLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(panelPerfilLayout.createSequentialGroup()
+					.addGap(8)
+					.addComponent(panelDadosPessoais, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(panelExperiencias, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(panelPerfilLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnEditarDadosPerfil, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnSalvarDadosPerfil, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(263, Short.MAX_VALUE))
+		);
 		panelPerfil.setLayout(panelPerfilLayout);
 
 		menuPrincipalVoluntario.addTab("Perfil", new ImageIcon(
@@ -1082,24 +843,24 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 				.addGroup(panelFiltroVagasLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(panelFiltroVagasLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(panelFiltroVagasLayout.createSequentialGroup()
-							.addGroup(panelFiltroVagasLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblTituloFiltroVagas)
-								.addComponent(lblDataPublicacaoFiltroVagas)
-								.addComponent(lblInstituicaoFiltroVagas))
-							.addGap(4)
-							.addGroup(panelFiltroVagasLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(panelFiltroVagasLayout.createSequentialGroup()
-									.addGroup(panelFiltroVagasLayout.createParallelGroup(Alignment.TRAILING)
-										.addComponent(cmbTipoServicoVagas, GroupLayout.PREFERRED_SIZE, 258, GroupLayout.PREFERRED_SIZE)
-										.addGroup(panelFiltroVagasLayout.createParallelGroup(Alignment.LEADING, false)
-											.addComponent(cmbInstituicaoFiltroVagas, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-											.addComponent(txtTituloFiltroVagas, GroupLayout.PREFERRED_SIZE, 258, GroupLayout.PREFERRED_SIZE)))
-									.addGap(18)
-									.addComponent(btnPesquisarFiltroVagas))
-								.addComponent(dateChooserDataPublicacaoFiltroVagas, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE)))
+						.addComponent(lblTituloFiltroVagas)
+						.addComponent(lblDataPublicacaoFiltroVagas)
+						.addComponent(lblInstituicaoFiltroVagas)
 						.addComponent(lblTipoServicoVagas))
-					.addPreferredGap(ComponentPlacement.RELATED, 608, Short.MAX_VALUE)
+					.addGap(4)
+					.addGroup(panelFiltroVagasLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(panelFiltroVagasLayout.createSequentialGroup()
+							.addGroup(panelFiltroVagasLayout.createParallelGroup(Alignment.TRAILING)
+								.addComponent(cmbTipoServicoVagas, GroupLayout.PREFERRED_SIZE, 258, GroupLayout.PREFERRED_SIZE)
+								.addGroup(panelFiltroVagasLayout.createParallelGroup(Alignment.LEADING, false)
+									.addComponent(cmbInstituicaoFiltroVagas, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addComponent(txtTituloFiltroVagas, GroupLayout.PREFERRED_SIZE, 258, GroupLayout.PREFERRED_SIZE)))
+							.addGap(18)
+							.addComponent(btnPesquisarFiltroVagas))
+						.addComponent(dateChooserDataPublicacaoFiltroVagas, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(723, Short.MAX_VALUE))
+				.addGroup(Alignment.TRAILING, panelFiltroVagasLayout.createSequentialGroup()
+					.addContainerGap(1070, Short.MAX_VALUE)
 					.addComponent(btnPesquisarFiltroVagas1)
 					.addContainerGap())
 		);
@@ -1120,14 +881,13 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 						.addComponent(lblDataPublicacaoFiltroVagas)
 						.addComponent(dateChooserDataPublicacaoFiltroVagas, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(panelFiltroVagasLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(cmbTipoServicoVagas, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+					.addGroup(panelFiltroVagasLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(cmbTipoServicoVagas, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblTipoServicoVagas))
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 				.addGroup(panelFiltroVagasLayout.createSequentialGroup()
-					.addContainerGap(95, Short.MAX_VALUE)
-					.addComponent(btnPesquisarFiltroVagas1, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
+					.addContainerGap(118, Short.MAX_VALUE)
+					.addComponent(btnPesquisarFiltroVagas1, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
 		);
 		panelFiltroVagas.setLayout(panelFiltroVagasLayout);
 
@@ -1159,52 +919,25 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 
 		javax.swing.GroupLayout panelVagasLayout = new javax.swing.GroupLayout(
 				panelVagas);
+		panelVagasLayout.setHorizontalGroup(
+			panelVagasLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(panelVagasLayout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(panelVagasLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(panelFiltroVagas, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(scrollpaneVagas, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(84, Short.MAX_VALUE))
+		);
+		panelVagasLayout.setVerticalGroup(
+			panelVagasLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(panelVagasLayout.createSequentialGroup()
+					.addGap(9)
+					.addComponent(panelFiltroVagas, GroupLayout.PREFERRED_SIZE, 163, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(scrollpaneVagas, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(0))
+		);
 		panelVagas.setLayout(panelVagasLayout);
-		panelVagasLayout
-				.setHorizontalGroup(panelVagasLayout
-						.createParallelGroup(
-								javax.swing.GroupLayout.Alignment.LEADING)
-						.addGroup(
-								panelVagasLayout
-										.createSequentialGroup()
-										.addContainerGap()
-										.addGroup(
-												panelVagasLayout
-														.createParallelGroup(
-																javax.swing.GroupLayout.Alignment.LEADING,
-																false)
-														.addComponent(
-																scrollpaneVagas,
-																javax.swing.GroupLayout.DEFAULT_SIZE,
-																javax.swing.GroupLayout.DEFAULT_SIZE,
-																Short.MAX_VALUE)
-														.addComponent(
-																panelFiltroVagas,
-																javax.swing.GroupLayout.DEFAULT_SIZE,
-																javax.swing.GroupLayout.DEFAULT_SIZE,
-																Short.MAX_VALUE))
-										.addContainerGap(82, Short.MAX_VALUE)));
-		panelVagasLayout
-				.setVerticalGroup(panelVagasLayout
-						.createParallelGroup(
-								javax.swing.GroupLayout.Alignment.LEADING)
-						.addGroup(
-								panelVagasLayout
-										.createSequentialGroup()
-										.addGap(9, 9, 9)
-										.addComponent(
-												panelFiltroVagas,
-												javax.swing.GroupLayout.PREFERRED_SIZE,
-												javax.swing.GroupLayout.DEFAULT_SIZE,
-												javax.swing.GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(
-												javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-										.addComponent(
-												scrollpaneVagas,
-												javax.swing.GroupLayout.PREFERRED_SIZE,
-												javax.swing.GroupLayout.DEFAULT_SIZE,
-												javax.swing.GroupLayout.PREFERRED_SIZE)
-										.addGap(0, 0, 0)));
 
 		menuPrincipalVoluntario.addTab("Vagas", new ImageIcon(
 				("img/lupa_16x16.png")), panelVagas);

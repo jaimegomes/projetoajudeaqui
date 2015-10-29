@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package br.senai.sc.ajudeaqui.view;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.GroupLayout;
 
 /**
  *
@@ -65,24 +67,6 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
         btnFiltroVoluntarios = new javax.swing.JButton();
         scrollpaneVoluntarios = new javax.swing.JScrollPane();
         tableVoluntarios = new javax.swing.JTable();
-        panelAviso = new javax.swing.JPanel();
-        panelCadAviso = new javax.swing.JPanel();
-        lblTituloCadAviso = new javax.swing.JLabel();
-        txtTituloCadAviso = new javax.swing.JTextField();
-        lblDescricaoCadAviso = new javax.swing.JLabel();
-        scrollpaneDescricaoCadAviso = new javax.swing.JScrollPane();
-        atxtDescricaoCadAviso = new javax.swing.JTextArea();
-        btnSalvarAvisoCadAviso = new javax.swing.JButton();
-        lblTipoServicoAviso = new javax.swing.JLabel();
-        cmbTipoServicoAviso = new javax.swing.JComboBox();
-        panelAvisosPublicados = new javax.swing.JPanel();
-        scrollpaneAvisosPublicados = new javax.swing.JScrollPane();
-        tableAvisosPublicados = new javax.swing.JTable();
-        lblFiltroTituloAvisosPublicados = new javax.swing.JLabel();
-        txtFiltroTituloAvisosPublicados = new javax.swing.JTextField();
-        btnPesquisarAvisosPublicados = new javax.swing.JButton();
-        btnEditarAviso = new javax.swing.JButton();
-        btnExcluirAviso = new javax.swing.JButton();
         panelAnuncio = new javax.swing.JPanel();
         panelAnunciosPublicados = new javax.swing.JPanel();
         scrollpaneAnunciosPublicados = new javax.swing.JScrollPane();
@@ -123,7 +107,7 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
 
         panelDadosInstituicao.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados da Instituição"));
 
-        btnSalvarDadosInstituicao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/salvar_16x16.png"))); // NOI18N
+        btnSalvarDadosInstituicao.setIcon(new javax.swing.ImageIcon("/img/salvar_16x16.png")); // NOI18N
         btnSalvarDadosInstituicao.setText("Salvar");
 
         lblRazaoSocial.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
@@ -157,7 +141,7 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
         lblNome.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         lblNome.setText("Nome:");
 
-        btnEditarDadosInstituicao1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editar_usuario_16x16.png"))); // NOI18N
+        btnEditarDadosInstituicao1.setIcon(new javax.swing.ImageIcon("/img/editar_usuario_16x16.png")); // NOI18N
         btnEditarDadosInstituicao1.setText("Editar");
 
         javax.swing.GroupLayout panelDadosInstituicaoLayout = new javax.swing.GroupLayout(panelDadosInstituicao);
@@ -262,7 +246,7 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
                 .addContainerGap(259, Short.MAX_VALUE))
         );
 
-        menuPrincipalInstituicao.addTab("Instituição", new javax.swing.ImageIcon(getClass().getResource("/img/home_16x16.png.png")), panelInstituicao); // NOI18N
+        menuPrincipalInstituicao.addTab("Instituição", new javax.swing.ImageIcon("/img/home_16x16.png.png"), panelInstituicao); // NOI18N
 
         panelVoluntarios.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         panelVoluntarios.setMaximumSize(new java.awt.Dimension(1110, 700));
@@ -280,7 +264,7 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
         lblEmailFiltroVoluntarios.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         lblEmailFiltroVoluntarios.setText("Email:");
 
-        btnPesquisarFiltroVoluntarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lupa_16x16.png"))); // NOI18N
+        btnPesquisarFiltroVoluntarios.setIcon(new javax.swing.ImageIcon("/img/lupa_16x16.png")); // NOI18N
         btnPesquisarFiltroVoluntarios.setText("Pesquisar");
 
         jLabel2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
@@ -288,7 +272,7 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        btnFiltroVoluntarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/agenda_16x16.png"))); // NOI18N
+        btnFiltroVoluntarios.setIcon(new javax.swing.ImageIcon("/img/agenda_16x16.png")); // NOI18N
         btnFiltroVoluntarios.setText("Gerar Relatório");
 
         javax.swing.GroupLayout panelFiltroVoluntariosLayout = new javax.swing.GroupLayout(panelFiltroVoluntarios);
@@ -392,172 +376,7 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
                 .addGap(45, 45, 45))
         );
 
-        menuPrincipalInstituicao.addTab("Voluntários", new javax.swing.ImageIcon(getClass().getResource("/img/usuarios_16x16.png")), panelVoluntarios); // NOI18N
-
-        panelAviso.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        panelAviso.setMaximumSize(new java.awt.Dimension(1110, 700));
-        panelAviso.setMinimumSize(new java.awt.Dimension(1110, 700));
-        panelAviso.setPreferredSize(new java.awt.Dimension(1110, 700));
-
-        panelCadAviso.setBorder(javax.swing.BorderFactory.createTitledBorder("Cadastro de Avisos"));
-        panelCadAviso.setMaximumSize(new java.awt.Dimension(1197, 222));
-        panelCadAviso.setMinimumSize(new java.awt.Dimension(1197, 222));
-        panelCadAviso.setPreferredSize(new java.awt.Dimension(1197, 222));
-
-        lblTituloCadAviso.setText("Título:");
-
-        lblDescricaoCadAviso.setText("Descrição:");
-
-        atxtDescricaoCadAviso.setColumns(20);
-        atxtDescricaoCadAviso.setRows(5);
-        scrollpaneDescricaoCadAviso.setViewportView(atxtDescricaoCadAviso);
-
-        btnSalvarAvisoCadAviso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/salvar_16x16.png"))); // NOI18N
-        btnSalvarAvisoCadAviso.setText("Salvar");
-
-        lblTipoServicoAviso.setText("Tipo de Serviço:");
-
-        cmbTipoServicoAviso.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        javax.swing.GroupLayout panelCadAvisoLayout = new javax.swing.GroupLayout(panelCadAviso);
-        panelCadAviso.setLayout(panelCadAvisoLayout);
-        panelCadAvisoLayout.setHorizontalGroup(
-            panelCadAvisoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelCadAvisoLayout.createSequentialGroup()
-                .addGroup(panelCadAvisoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelCadAvisoLayout.createSequentialGroup()
-                        .addComponent(lblTituloCadAviso)
-                        .addGap(51, 51, 51)
-                        .addComponent(txtTituloCadAviso, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelCadAvisoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnSalvarAvisoCadAviso, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(panelCadAvisoLayout.createSequentialGroup()
-                            .addGroup(panelCadAvisoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCadAvisoLayout.createSequentialGroup()
-                                    .addComponent(lblTipoServicoAviso)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                                .addGroup(panelCadAvisoLayout.createSequentialGroup()
-                                    .addComponent(lblDescricaoCadAviso)
-                                    .addGap(31, 31, 31)))
-                            .addGroup(panelCadAvisoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(scrollpaneDescricaoCadAviso, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cmbTipoServicoAviso, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        panelCadAvisoLayout.setVerticalGroup(
-            panelCadAvisoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelCadAvisoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelCadAvisoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTituloCadAviso)
-                    .addComponent(txtTituloCadAviso, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelCadAvisoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cmbTipoServicoAviso, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblTipoServicoAviso))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelCadAvisoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblDescricaoCadAviso)
-                    .addComponent(scrollpaneDescricaoCadAviso, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSalvarAvisoCadAviso, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        panelAvisosPublicados.setBorder(javax.swing.BorderFactory.createTitledBorder("Avisos Publicados"));
-        panelAvisosPublicados.setMaximumSize(new java.awt.Dimension(1197, 417));
-        panelAvisosPublicados.setMinimumSize(new java.awt.Dimension(1197, 417));
-
-        scrollpaneAvisosPublicados.setMaximumSize(new java.awt.Dimension(1197, 367));
-        scrollpaneAvisosPublicados.setMinimumSize(new java.awt.Dimension(1197, 367));
-        scrollpaneAvisosPublicados.setPreferredSize(new java.awt.Dimension(1197, 367));
-
-        tableAvisosPublicados.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tableAvisosPublicados.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Título", "Descrição", "Data Publicação"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        tableAvisosPublicados.setMaximumSize(new java.awt.Dimension(1197, 367));
-        tableAvisosPublicados.setMinimumSize(new java.awt.Dimension(1197, 367));
-        tableAvisosPublicados.setPreferredSize(new java.awt.Dimension(1197, 367));
-        tableAvisosPublicados.setRowHeight(30);
-        scrollpaneAvisosPublicados.setViewportView(tableAvisosPublicados);
-
-        lblFiltroTituloAvisosPublicados.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        lblFiltroTituloAvisosPublicados.setText("Título:");
-
-        btnPesquisarAvisosPublicados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lupa_16x16.png"))); // NOI18N
-        btnPesquisarAvisosPublicados.setText("Pesquisar");
-
-        btnEditarAviso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editar_usuario_16x16.png"))); // NOI18N
-        btnEditarAviso.setText("Editar");
-
-        btnExcluirAviso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar_16x16.png"))); // NOI18N
-        btnExcluirAviso.setText("Excluir");
-
-        javax.swing.GroupLayout panelAvisosPublicadosLayout = new javax.swing.GroupLayout(panelAvisosPublicados);
-        panelAvisosPublicados.setLayout(panelAvisosPublicadosLayout);
-        panelAvisosPublicadosLayout.setHorizontalGroup(
-            panelAvisosPublicadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelAvisosPublicadosLayout.createSequentialGroup()
-                .addComponent(lblFiltroTituloAvisosPublicados)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtFiltroTituloAvisosPublicados, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnPesquisarAvisosPublicados)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnEditarAviso, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnExcluirAviso, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(scrollpaneAvisosPublicados, javax.swing.GroupLayout.PREFERRED_SIZE, 1187, Short.MAX_VALUE)
-        );
-        panelAvisosPublicadosLayout.setVerticalGroup(
-            panelAvisosPublicadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAvisosPublicadosLayout.createSequentialGroup()
-                .addGap(7, 7, 7)
-                .addGroup(panelAvisosPublicadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblFiltroTituloAvisosPublicados)
-                    .addComponent(txtFiltroTituloAvisosPublicados, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPesquisarAvisosPublicados, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEditarAviso, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnExcluirAviso, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollpaneAvisosPublicados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout panelAvisoLayout = new javax.swing.GroupLayout(panelAviso);
-        panelAviso.setLayout(panelAvisoLayout);
-        panelAvisoLayout.setHorizontalGroup(
-            panelAvisoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelAvisoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelAvisoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(panelAvisosPublicados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelCadAviso, javax.swing.GroupLayout.DEFAULT_SIZE, 1199, Short.MAX_VALUE))
-                .addContainerGap(82, Short.MAX_VALUE))
-        );
-        panelAvisoLayout.setVerticalGroup(
-            panelAvisoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelAvisoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panelCadAviso, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelAvisosPublicados, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
-        );
-
-        menuPrincipalInstituicao.addTab("Aviso", new javax.swing.ImageIcon(getClass().getResource("/img/journal_16x16.png")), panelAviso); // NOI18N
+        menuPrincipalInstituicao.addTab("Voluntários", new javax.swing.ImageIcon("/img/usuarios_16x16.png"), panelVoluntarios);
 
         panelAnuncio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         panelAnuncio.setMaximumSize(new java.awt.Dimension(1110, 700));
@@ -596,19 +415,19 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
         tableAnunciosPublicados.setRowHeight(30);
         scrollpaneAnunciosPublicados.setViewportView(tableAnunciosPublicados);
 
-        btnPesquisarAnunciosPublicados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lupa_16x16.png"))); // NOI18N
+        btnPesquisarAnunciosPublicados.setIcon(new javax.swing.ImageIcon("/img/lupa_16x16.png")); // NOI18N
         btnPesquisarAnunciosPublicados.setText("Pesquisar");
 
         lblFiltroTituloAnunciosPublicados.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         lblFiltroTituloAnunciosPublicados.setText("Título:");
 
-        btnEditarAnuncio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editar_usuario_16x16.png"))); // NOI18N
+        btnEditarAnuncio.setIcon(new javax.swing.ImageIcon("/img/editar_usuario_16x16.png")); // NOI18N
         btnEditarAnuncio.setText("Editar");
 
-        btnExcluirAnuncio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar_16x16.png"))); // NOI18N
+        btnExcluirAnuncio.setIcon(new javax.swing.ImageIcon("/img/cancelar_16x16.png")); // NOI18N
         btnExcluirAnuncio.setText("Excluir");
 
-        btnFiltroVoluntarios1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/agenda_16x16.png"))); // NOI18N
+        btnFiltroVoluntarios1.setIcon(new javax.swing.ImageIcon("/img/agenda_16x16.png")); // NOI18N
         btnFiltroVoluntarios1.setText("Gerar Relatório");
 
         javax.swing.GroupLayout panelAnunciosPublicadosLayout = new javax.swing.GroupLayout(panelAnunciosPublicados);
@@ -662,7 +481,7 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
         atxtDescricaoCadAnuncio.setRows(5);
         scrollpaneDescricaoCadAnuncio.setViewportView(atxtDescricaoCadAnuncio);
 
-        btnSalvarCadAnuncio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/salvar_16x16.png"))); // NOI18N
+        btnSalvarCadAnuncio.setIcon(new javax.swing.ImageIcon("/img/salvar_16x16.png")); // NOI18N
         btnSalvarCadAnuncio.setText("Salvar");
 
         lblTipoServicoAnuncio.setText("Tipo de Serviço:");
@@ -740,7 +559,7 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
-        menuPrincipalInstituicao.addTab("Anúncio", new javax.swing.ImageIcon(getClass().getResource("/img/aviso_16x16.png")), panelAnuncio); // NOI18N
+        menuPrincipalInstituicao.addTab("Anúncio", new javax.swing.ImageIcon("/img/aviso_16x16.png"), panelAnuncio); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -797,33 +616,25 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify                     
     private javax.swing.JTextArea atxtDescricaoCadAnuncio;
-    private javax.swing.JTextArea atxtDescricaoCadAviso;
     private javax.swing.JTextArea atxtObservacoes;
     private javax.swing.JButton btnEditarAnuncio;
-    private javax.swing.JButton btnEditarAviso;
     private javax.swing.JButton btnEditarDadosInstituicao1;
     private javax.swing.JButton btnExcluirAnuncio;
-    private javax.swing.JButton btnExcluirAviso;
     private javax.swing.JButton btnFiltroVoluntarios;
     private javax.swing.JButton btnFiltroVoluntarios1;
     private javax.swing.JButton btnPesquisarAnunciosPublicados;
-    private javax.swing.JButton btnPesquisarAvisosPublicados;
     private javax.swing.JButton btnPesquisarFiltroVoluntarios;
-    private javax.swing.JButton btnSalvarAvisoCadAviso;
     private javax.swing.JButton btnSalvarCadAnuncio;
     private javax.swing.JButton btnSalvarDadosInstituicao;
     private javax.swing.JComboBox cmbTipoServicoAnuncio;
-    private javax.swing.JComboBox cmbTipoServicoAviso;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblCnpj;
     private javax.swing.JLabel lblDescricaoCadAnuncio;
-    private javax.swing.JLabel lblDescricaoCadAviso;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblEmailFiltroVoluntarios;
     private javax.swing.JLabel lblEndereco;
     private javax.swing.JLabel lblFiltroTituloAnunciosPublicados;
-    private javax.swing.JLabel lblFiltroTituloAvisosPublicados;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblNomeFiltroVoluntarios;
     private javax.swing.JLabel lblObservacoes;
@@ -832,37 +643,28 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
     private javax.swing.JLabel lblSite;
     private javax.swing.JLabel lblTelefone;
     private javax.swing.JLabel lblTipoServicoAnuncio;
-    private javax.swing.JLabel lblTipoServicoAviso;
     private javax.swing.JLabel lblTituloCadAnuncio;
-    private javax.swing.JLabel lblTituloCadAviso;
     private javax.swing.JLabel lblVagasCadAnuncio;
     private javax.swing.JTabbedPane menuPrincipalInstituicao;
     private javax.swing.JPanel panelAnuncio;
     private javax.swing.JPanel panelAnunciosPublicados;
-    private javax.swing.JPanel panelAviso;
-    private javax.swing.JPanel panelAvisosPublicados;
     private javax.swing.JPanel panelCadAnuncio;
-    private javax.swing.JPanel panelCadAviso;
     private javax.swing.JPanel panelDadosInstituicao;
     private javax.swing.JPanel panelFiltroVoluntarios;
     private javax.swing.JPanel panelInstituicao;
     private javax.swing.JPanel panelVoluntarios;
     private javax.swing.JScrollPane scrollpaneAnunciosPublicados;
-    private javax.swing.JScrollPane scrollpaneAvisosPublicados;
     private javax.swing.JScrollPane scrollpaneDescricaoCadAnuncio;
-    private javax.swing.JScrollPane scrollpaneDescricaoCadAviso;
     private javax.swing.JScrollPane scrollpaneObservacoes;
     private javax.swing.JScrollPane scrollpaneVoluntarios;
     private javax.swing.JSpinner spinnerVagasCadAnuncio;
     private javax.swing.JTable tableAnunciosPublicados;
-    private javax.swing.JTable tableAvisosPublicados;
     private javax.swing.JTable tableVoluntarios;
     private javax.swing.JTextField txtCnpj;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtEmailFiltroVoluntarios;
     private javax.swing.JTextField txtEndereco;
     private javax.swing.JTextField txtFiltroTituloAnunciosPublicados;
-    private javax.swing.JTextField txtFiltroTituloAvisosPublicados;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtNomeFiltroVoluntarios;
     private javax.swing.JTextField txtRazaoSocial;
@@ -870,6 +672,5 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
     private javax.swing.JTextField txtSite;
     private javax.swing.JTextField txtTelefone;
     private javax.swing.JTextField txtTituloCadAnuncio;
-    private javax.swing.JTextField txtTituloCadAviso;
     // End of variables declaration                   
 }
