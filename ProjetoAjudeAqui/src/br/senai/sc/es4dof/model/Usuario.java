@@ -14,7 +14,6 @@ public class Usuario extends Entidade {
 	private String login;
 	private String senha;
 	private String perfil;
-	private String lembreteSenha;
 
 	/**
 	 * Construtor padrão
@@ -27,18 +26,13 @@ public class Usuario extends Entidade {
 	 * 
 	 * @param login
 	 * @param senha
-	 * @param confirmacaoSenha
 	 * @param perfil
-	 * @param instituicao
-	 * @param lembreteSenha
 	 */
-	public Usuario(String login, String senha, String perfil,
-			String lembreteSenha) {
+	public Usuario(String login, String senha, String perfil) {
 		super();
 		this.login = login;
 		this.senha = senha;
 		this.perfil = perfil;
-		this.lembreteSenha = lembreteSenha;
 	}
 
 	/**
@@ -47,19 +41,14 @@ public class Usuario extends Entidade {
 	 * @param id
 	 * @param login
 	 * @param senha
-	 * @param confirmacaoSenha
 	 * @param perfil
-	 * @param instituicao
-	 * @param lembreteSenha
 	 */
-	public Usuario(int id, String login, String senha, String perfil,
-			String lembreteSenha) {
+	public Usuario(int id, String login, String senha, String perfil) {
 		super();
 		this.id = id;
 		this.login = login;
 		this.senha = senha;
 		this.perfil = perfil;
-		this.lembreteSenha = lembreteSenha;
 	}
 
 	@Override
@@ -128,25 +117,6 @@ public class Usuario extends Entidade {
 	 */
 	public void setPerfil(String perfil) {
 		this.perfil = perfil;
-	}
-
-	/**
-	 * Método que retorna o lembrete de senha de senha do usuário.
-	 * 
-	 * @return the lembreteSenha
-	 */
-	public String getLembreteSenha() {
-		return lembreteSenha;
-	}
-
-	/**
-	 * Método que seta o lembrete de senha do usuário.
-	 * 
-	 * @param lembreteSenha
-	 *            the lembreteSenha to set
-	 */
-	public void setLembreteSenha(String lembreteSenha) {
-		this.lembreteSenha = lembreteSenha;
 	}
 
 }
