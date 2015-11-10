@@ -84,6 +84,47 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
 	private InstituicaoController controller = new InstituicaoController();
 
 	/**
+	 * @param args
+	 *            the command line arguments
+	 */
+	public static void main(String args[]) {
+
+		try {
+			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
+					.getInstalledLookAndFeels()) {
+				if ("Nimbus".equals(info.getName())) {
+					javax.swing.UIManager.setLookAndFeel(info.getClassName());
+					break;
+				}
+			}
+		} catch (ClassNotFoundException ex) {
+			java.util.logging.Logger.getLogger(
+					PrincipalInstituicaoUI.class.getName()).log(
+					java.util.logging.Level.SEVERE, null, ex);
+		} catch (InstantiationException ex) {
+			java.util.logging.Logger.getLogger(
+					PrincipalInstituicaoUI.class.getName()).log(
+					java.util.logging.Level.SEVERE, null, ex);
+		} catch (IllegalAccessException ex) {
+			java.util.logging.Logger.getLogger(
+					PrincipalInstituicaoUI.class.getName()).log(
+					java.util.logging.Level.SEVERE, null, ex);
+		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+			java.util.logging.Logger.getLogger(
+					PrincipalInstituicaoUI.class.getName()).log(
+					java.util.logging.Level.SEVERE, null, ex);
+		}
+
+		/* Create and display the form */
+		java.awt.EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				new PrincipalInstituicaoUI(null).setVisible(true);
+			}
+		});
+
+	}
+
+	/**
 	 * Creates new form PrincipalInstituicaoUI
 	 */
 	public PrincipalInstituicaoUI(Usuario usuario) {
@@ -219,6 +260,9 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
 				"img/editar_usuario_16x16.png")); // NOI18N
 		btnEditarDadosInstituicao.setText("Editar");
 
+		/**
+		 * Cria a entidade Instituição a partir do usuário logado
+		 */
 		Instituicao inst = null;
 		try {
 			inst = (Instituicao) controller.getPorIdUsuario(usuario.getId());
@@ -226,17 +270,42 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
 			e.printStackTrace();
 		}
 
+		/**
+		 * No caso sempre vai ser diferente de nulo pois ao criar o usuário e
+		 * escolher o perfil de instituição ele já cria um registro na tabela
+		 * instituição.
+		 * 
+		 * Verifica todos os campos, caso sejam diferentes de nulo ele preenche
+		 * os dados da instituição.
+		 */
 		if (inst != null) {
 
-			txtNome.setText(inst.getNome());
-			txtCnpj.setText(inst.getCnpj());
-			txtEmail.setText(inst.getEmail());
-			txtEndereco.setText(inst.getEndereco());
-			txtRazaoSocial.setText(inst.getRazaoSocial());
-			txtSite.setText(inst.getSite());
-			txtTelefone.setText(inst.getTelefone());
-			txtResponsavel.setText(inst.getResponsavel());
-			atxtObservacoes.setText(inst.getObservacoes());
+			if (inst.getNome() != null)
+				txtNome.setText(inst.getNome());
+
+			if (inst.getCnpj() != null)
+				txtCnpj.setText(inst.getCnpj());
+
+			if (inst.getEmail() != null)
+				txtEmail.setText(inst.getEmail());
+
+			if (inst.getEndereco() != null)
+				txtEndereco.setText(inst.getEndereco());
+
+			if (inst.getRazaoSocial() != null)
+				txtRazaoSocial.setText(inst.getRazaoSocial());
+
+			if (inst.getSite() != null)
+				txtSite.setText(inst.getSite());
+
+			if (inst.getTelefone() != null)
+				txtTelefone.setText(inst.getTelefone());
+
+			if (inst.getTelefone() != null)
+				txtResponsavel.setText(inst.getResponsavel());
+
+			if (inst.getObservacoes() != null)
+				atxtObservacoes.setText(inst.getObservacoes());
 
 		}
 
@@ -1177,58 +1246,16 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
 		menuPrincipalInstituicao.getAccessibleContext().setAccessibleName("");
 
 		pack();
-	}// </editor-fold>
-
-	/**
-	 * @param args
-	 *            the command line arguments
-	 */
-	public static void main(String args[]) {
-		/* Set the Nimbus look and feel */
-		// <editor-fold defaultstate="collapsed"
-		// desc=" Look and feel setting code (optional) ">
-		/*
-		 * If Nimbus (introduced in Java SE 6) is not available, stay with the
-		 * default look and feel. For details see
-		 * http://download.oracle.com/javase
-		 * /tutorial/uiswing/lookandfeel/plaf.html
-		 */
-		try {
-			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
-					.getInstalledLookAndFeels()) {
-				if ("Nimbus".equals(info.getName())) {
-					javax.swing.UIManager.setLookAndFeel(info.getClassName());
-					break;
-				}
-			}
-		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(
-					PrincipalInstituicaoUI.class.getName()).log(
-					java.util.logging.Level.SEVERE, null, ex);
-		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(
-					PrincipalInstituicaoUI.class.getName()).log(
-					java.util.logging.Level.SEVERE, null, ex);
-		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(
-					PrincipalInstituicaoUI.class.getName()).log(
-					java.util.logging.Level.SEVERE, null, ex);
-		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(
-					PrincipalInstituicaoUI.class.getName()).log(
-					java.util.logging.Level.SEVERE, null, ex);
-		}
-		// </editor-fold>
-
-		/* Create and display the form */
-		java.awt.EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				new PrincipalInstituicaoUI(null).setVisible(true);
-			}
-		});
-
 	}
 
+	/**
+	 * Método utilizado pelos botões de salvar e editar da tela de perfil da
+	 * instituição
+	 * 
+	 * @param instituicao
+	 * @param usuario
+	 * @throws Exception
+	 */
 	public void salvarEditarAction(Instituicao instituicao, Usuario usuario)
 			throws Exception {
 

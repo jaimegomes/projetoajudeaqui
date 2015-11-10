@@ -5,17 +5,18 @@
  */
 package br.senai.sc.ajudeaqui.view;
 
-import javax.swing.ImageIcon;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.GroupLayout;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Font;
-import javax.swing.JComboBox;
 import java.awt.Dimension;
-import datechooser.beans.DateChooserCombo;
-import com.toedter.components.JSpinField;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
+import javax.swing.LayoutStyle.ComponentPlacement;
+
+import br.senai.sc.es4dof.model.Usuario;
+
 import com.toedter.calendar.JDateChooser;
 
 /**
@@ -86,15 +87,7 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 	 *            the command line arguments
 	 */
 	public static void main(String args[]) {
-		/* Set the Nimbus look and feel */
-		// <editor-fold defaultstate="collapsed"
-		// desc=" Look and feel setting code (optional) ">
-		/*
-		 * If Nimbus (introduced in Java SE 6) is not available, stay with the
-		 * default look and feel. For details see
-		 * http://download.oracle.com/javase
-		 * /tutorial/uiswing/lookandfeel/plaf.html
-		 */
+		
 		try {
 			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
 					.getInstalledLookAndFeels()) {
@@ -120,13 +113,11 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 					PrincipalVoluntarioUI.class.getName()).log(
 					java.util.logging.Level.SEVERE, null, ex);
 		}
-		// </editor-fold>
-		// </editor-fold>
 
 		/* Create and display the form */
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				new PrincipalVoluntarioUI().setVisible(true);
+				new PrincipalVoluntarioUI(null).setVisible(true);
 			}
 		});
 	}
@@ -134,8 +125,8 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 	/**
 	 * Creates new form PrincipalUI
 	 */
-	public PrincipalVoluntarioUI() {
-		initComponents();
+	public PrincipalVoluntarioUI(Usuario usuario) {
+		initComponents(usuario);
 	}
 
 	/**
@@ -145,7 +136,7 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 	 */
 	@SuppressWarnings("unchecked")
 	// <editor-fold defaultstate="collapsed" desc="Generated Code">
-	private void initComponents() {
+	private void initComponents(Usuario usuario) {
 
 		menuPrincipalVoluntario = new javax.swing.JTabbedPane();
 		panelPerfil = new javax.swing.JPanel();
@@ -179,6 +170,10 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 		lblSexo = new javax.swing.JLabel();
 		cmbSexo = new javax.swing.JComboBox();
 		btnHorariosDisponiveis = new javax.swing.JButton();
+		btnHorariosDisponiveis.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnAreasInteresse = new javax.swing.JButton();
 		panelInfoComplementares = new javax.swing.JPanel();
 		scrollPaneInfoComplementares = new javax.swing.JScrollPane();
@@ -631,52 +626,49 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 		panelExperienciasLayout.setHorizontalGroup(
 			panelExperienciasLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(panelExperienciasLayout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(panelExperienciasLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblHorarioDisponivel)
+						.addComponent(lblInfoComplementares)
+						.addComponent(lblAreaInteresse))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(panelExperienciasLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(panelExperienciasLayout.createSequentialGroup()
-							.addComponent(lblHorarioDisponivel)
-							.addGap(71)
-							.addComponent(cmbHorarioDisponivel, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnAddHorario, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnHorariosDisponiveis))
-						.addGroup(panelExperienciasLayout.createSequentialGroup()
-							.addComponent(lblInfoComplementares)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(scrollPaneInfoComplementares, GroupLayout.PREFERRED_SIZE, 375, GroupLayout.PREFERRED_SIZE))
-						.addGroup(panelExperienciasLayout.createSequentialGroup()
-							.addComponent(lblAreaInteresse)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(cmbAreasInteresse, GroupLayout.PREFERRED_SIZE, 177, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(cmbAreasInteresse, GroupLayout.PREFERRED_SIZE, 190, GroupLayout.PREFERRED_SIZE)
+							.addGap(12)
 							.addComponent(btnAddAreaInteresse, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnAreasInteresse)))
-					.addContainerGap(585, Short.MAX_VALUE))
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(btnAreasInteresse))
+						.addComponent(scrollPaneInfoComplementares, GroupLayout.PREFERRED_SIZE, 375, GroupLayout.PREFERRED_SIZE)
+						.addGroup(panelExperienciasLayout.createSequentialGroup()
+							.addComponent(cmbHorarioDisponivel, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(btnAddHorario, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(btnHorariosDisponiveis)))
+					.addContainerGap(284, Short.MAX_VALUE))
 		);
 		panelExperienciasLayout.setVerticalGroup(
 			panelExperienciasLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(panelExperienciasLayout.createSequentialGroup()
 					.addGroup(panelExperienciasLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(cmbHorarioDisponivel, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
-						.addGroup(panelExperienciasLayout.createSequentialGroup()
-							.addGap(1)
-							.addGroup(panelExperienciasLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(btnHorariosDisponiveis, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnAddHorario, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)))
-						.addComponent(lblHorarioDisponivel, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
+						.addGroup(panelExperienciasLayout.createParallelGroup(Alignment.BASELINE)
+							.addComponent(lblHorarioDisponivel, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+							.addComponent(cmbHorarioDisponivel, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
+						.addComponent(btnAddHorario, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnHorariosDisponiveis, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(panelExperienciasLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(scrollPaneInfoComplementares, GroupLayout.PREFERRED_SIZE, 67, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblInfoComplementares))
-					.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(lblInfoComplementares)
+						.addComponent(scrollPaneInfoComplementares, GroupLayout.PREFERRED_SIZE, 67, GroupLayout.PREFERRED_SIZE))
+					.addGap(12)
 					.addGroup(panelExperienciasLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(lblAreaInteresse)
-						.addGroup(panelExperienciasLayout.createParallelGroup(Alignment.LEADING, false)
-							.addComponent(cmbAreasInteresse, GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
-							.addComponent(btnAddAreaInteresse, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
+						.addComponent(btnAddAreaInteresse, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+						.addGroup(panelExperienciasLayout.createParallelGroup(Alignment.BASELINE)
+							.addComponent(lblAreaInteresse)
+							.addComponent(cmbAreasInteresse, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
 						.addComponent(btnAreasInteresse, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(81, Short.MAX_VALUE))
+					.addContainerGap(17, Short.MAX_VALUE))
 		);
 		panelInfoComplementares.setLayout(panelExperienciasLayout);
 
@@ -686,13 +678,13 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 			panelPerfilLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(panelPerfilLayout.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(panelPerfilLayout.createParallelGroup(Alignment.TRAILING)
+					.addGroup(panelPerfilLayout.createParallelGroup(Alignment.TRAILING, false)
+						.addComponent(panelInfoComplementares, 0, 0, Short.MAX_VALUE)
 						.addGroup(panelPerfilLayout.createSequentialGroup()
 							.addComponent(btnSalvarDadosPerfil, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(btnEditarDadosPerfil, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE))
-						.addComponent(panelInfoComplementares, GroupLayout.PREFERRED_SIZE, 920, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panelDadosPessoais, GroupLayout.PREFERRED_SIZE, 920, GroupLayout.PREFERRED_SIZE))
+						.addComponent(panelDadosPessoais, GroupLayout.PREFERRED_SIZE, 935, Short.MAX_VALUE))
 					.addContainerGap())
 		);
 		panelPerfilLayout.setVerticalGroup(
@@ -706,7 +698,7 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 					.addGroup(panelPerfilLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnEditarDadosPerfil, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnSalvarDadosPerfil, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(319, Short.MAX_VALUE))
+					.addContainerGap(320, Short.MAX_VALUE))
 		);
 		panelPerfil.setLayout(panelPerfilLayout);
 

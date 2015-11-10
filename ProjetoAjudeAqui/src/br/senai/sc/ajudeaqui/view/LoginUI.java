@@ -25,6 +25,7 @@ public class LoginUI extends javax.swing.JFrame {
 	private javax.swing.JLabel lblSenha;
 	private javax.swing.JPasswordField pwdSenha;
 	private javax.swing.JTextField txtLogin;
+
 	// End of variables declaration
 
 	/**
@@ -138,18 +139,20 @@ public class LoginUI extends javax.swing.JFrame {
 					.getText());
 
 			if (usuario == null) {
-				JOptionPane.showMessageDialog(null, "Login incorreto.");
+				JOptionPane.showMessageDialog(null, "Login não encontrado.");
+				txtLogin.setText("");
 
 			} else {
 				if (usuario.getSenha().equals(senha)) {
 					if (usuario.getPerfil().equals("Voluntário")) {
 						dispose();
-						PrincipalVoluntarioUI principal = new PrincipalVoluntarioUI();
+						PrincipalVoluntarioUI principal = new PrincipalVoluntarioUI(
+								usuario);
 						principal.setVisible(true);
 					} else {
 						dispose();
 						PrincipalInstituicaoUI principal = new PrincipalInstituicaoUI(
-								null);
+								usuario);
 						principal.setVisible(true);
 					}
 				} else {
