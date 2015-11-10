@@ -25,8 +25,8 @@ public class Conexao {
 
 			// Conexão MySQLWorkbench
 			 Class.forName("com.mysql.jdbc.Driver");
-			 String url = "jdbc:mysql://localhost:3306/jagbeer";
-			 con = DriverManager.getConnection(url, "root","2905");
+			 String url = "jdbc:mysql://localhost:3306/ajudeaqui";
+			 con = DriverManager.getConnection(url, "root","");
 			 con.setAutoCommit(false);
 
 		} catch (ClassNotFoundException e) {

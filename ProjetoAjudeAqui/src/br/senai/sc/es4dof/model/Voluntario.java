@@ -20,12 +20,10 @@ public class Voluntario extends Entidade {
 	private String email;
 	private Date dataNascimento;
 	private Usuario usuario;
-	private char sexo;
+	private String sexo;
 	private String estadoCivil;
 	private String complemento;
 	private String celular;
-	private char atuouVolunt;
-	private Horario horarioDisponivel;
 	private String informacoesComplementares;
 
 	/**
@@ -44,9 +42,17 @@ public class Voluntario extends Entidade {
 	 * @param email
 	 * @param dataNascimento
 	 * @param usuario
+	 * @param sexo
+	 * @param estadoCivil
+	 * @param complemento
+	 * @param celular
+	 * @param atuouVolunt
+	 * @param horarioDisponivel
+	 * @param informacoesComplementares
 	 */
-	public Voluntario(String nome, String telefone, String cpf,
-			String endereco, String email, Date dataNascimento, Usuario usuario) {
+	public Voluntario(String nome, String telefone, String cpf, String endereco, String email, Date dataNascimento,
+			Usuario usuario, String sexo, String estadoCivil, String complemento, String celular, 
+			 String informacoesComplementares) {
 		this.nome = nome;
 		this.telefone = telefone;
 		this.cpf = cpf;
@@ -54,6 +60,11 @@ public class Voluntario extends Entidade {
 		this.email = email;
 		this.dataNascimento = dataNascimento;
 		this.usuario = usuario;
+		this.sexo = sexo;
+		this.estadoCivil = estadoCivil;
+		this.complemento = complemento;
+		this.celular = celular;
+		this.informacoesComplementares = informacoesComplementares;
 	}
 
 	/**
@@ -67,9 +78,15 @@ public class Voluntario extends Entidade {
 	 * @param email
 	 * @param dataNascimento
 	 * @param usuario
+	 * @param sexo
+	 * @param estadoCivil
+	 * @param complemento
+	 * @param celular
+	 * @param informacoesComplementares
 	 */
-	public Voluntario(int id, String nome, String telefone, String cpf,
-			String endereco, String email, Date dataNascimento, Usuario usuario) {
+	public Voluntario(int id, String nome, String telefone, String cpf, String endereco, String email,
+			Date dataNascimento, Usuario usuario, String sexo, String estadoCivil, String complemento, String celular,
+			 String informacoesComplementares) {
 		this.id = id;
 		this.nome = nome;
 		this.telefone = telefone;
@@ -78,6 +95,11 @@ public class Voluntario extends Entidade {
 		this.email = email;
 		this.dataNascimento = dataNascimento;
 		this.usuario = usuario;
+		this.sexo = sexo;
+		this.estadoCivil = estadoCivil;
+		this.complemento = complemento;
+		this.celular = celular;
+		this.informacoesComplementares = informacoesComplementares;
 	}
 
 	@Override
@@ -224,5 +246,82 @@ public class Voluntario extends Entidade {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+
+	/**
+	 * @return the sexo
+	 */
+	public String getSexo() {
+		return sexo;
+	}
+
+	/**
+	 * @param sexo
+	 *            the sexo to set
+	 */
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+
+	/**
+	 * @return the estadoCivil
+	 */
+	public String getEstadoCivil() {
+		return estadoCivil;
+	}
+
+	/**
+	 * @param estadoCivil
+	 *            the estadoCivil to set
+	 */
+	public void setEstadoCivil(String estadoCivil) {
+		this.estadoCivil = estadoCivil;
+	}
+
+	/**
+	 * @return the complemento
+	 */
+	public String getComplemento() {
+		return complemento;
+	}
+
+	/**
+	 * @param complemento
+	 *            the complemento to set
+	 */
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+
+	/**
+	 * @return the celular
+	 */
+	public String getCelular() {
+		return celular;
+	}
+
+	/**
+	 * @param celular
+	 *            the celular to set
+	 */
+	public void setCelular(String celular) {
+		this.celular = celular;
+	}
+
+	/**
+	 * @return the informacoesComplementares
+	 */
+	public String getInformacoesComplementares() {
+		return informacoesComplementares;
+	}
+
+	/**
+	 * @param informacoesComplementares
+	 *            the informacoesComplementares to set
+	 */
+	public void setInformacoesComplementares(String informacoesComplementares) {
+		this.informacoesComplementares = informacoesComplementares;
+	}
+	
+	
 
 }

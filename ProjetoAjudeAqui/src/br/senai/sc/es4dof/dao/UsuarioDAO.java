@@ -36,7 +36,7 @@ public class UsuarioDAO extends GenericDAO {
 			pstmt.close();
 
 		} catch (SQLException se) {
-			System.out.println("[UsuarioDAO] - Erro ao salvar Cliente.\n"
+			System.out.println("[UsuarioDAO] - Erro ao salvar usuário.\n"
 					+ se.getMessage());
 			con.rollback();
 
@@ -92,7 +92,7 @@ public class UsuarioDAO extends GenericDAO {
 	public Entidade getPorLogin(String login) throws Exception {
 		con = Conexao.getConnection();
 
-		String sql = "SELECT u.id, u.login, u.senha, u.perfil FROM usuario u WHERE id=?";
+		String sql = "SELECT u.id, u.login, u.senha, u.perfil FROM usuario u WHERE login LIKE ?";
 		try {
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, login);
