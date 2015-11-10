@@ -20,6 +20,7 @@ public class Instituicao extends Entidade {
 	private String site;
 	private String responsavel;
 	private String observacoes;
+	private Usuario usuario;
 
 	/**
 	 * Construtor padrão.
@@ -39,11 +40,11 @@ public class Instituicao extends Entidade {
 	 * @param site
 	 * @param responsavel
 	 * @param observacoes
+	 * @param idUsuario
 	 */
 	public Instituicao(String razaoSocial, String cnpj, String nome,
 			String email, String telefone, String endereco, String site,
-			String responsavel, String observacoes) {
-		super();
+			String responsavel, String observacoes, Usuario usuario) {
 		this.razaoSocial = razaoSocial;
 		this.cnpj = cnpj;
 		this.nome = nome;
@@ -53,6 +54,39 @@ public class Instituicao extends Entidade {
 		this.site = site;
 		this.responsavel = responsavel;
 		this.observacoes = observacoes;
+		this.usuario = usuario;
+	}
+
+	/**
+	 * Construtor com todos os atributos.
+	 * 
+	 * @param id
+	 * @param razaoSocial
+	 * @param cnpj
+	 * @param nome
+	 * @param email
+	 * @param telefone
+	 * @param endereco
+	 * @param site
+	 * @param responsavel
+	 * @param observacoes
+	 * @param idUsuario
+	 */
+	public Instituicao(int id, String razaoSocial, String cnpj, String nome,
+			String email, String telefone, String endereco, String site,
+			String responsavel, String observacoes, Usuario usuario) {
+		super();
+		this.id = id;
+		this.razaoSocial = razaoSocial;
+		this.cnpj = cnpj;
+		this.nome = nome;
+		this.email = email;
+		this.telefone = telefone;
+		this.endereco = endereco;
+		this.site = site;
+		this.responsavel = responsavel;
+		this.observacoes = observacoes;
+		this.usuario = usuario;
 	}
 
 	@Override
@@ -236,6 +270,21 @@ public class Instituicao extends Entidade {
 	 */
 	public void setObservacoes(String observacoes) {
 		this.observacoes = observacoes;
+	}
+
+	/**
+	 * @return the usuario
+	 */
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	/**
+	 * @param usuario
+	 *            the usuario to set
+	 */
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 }

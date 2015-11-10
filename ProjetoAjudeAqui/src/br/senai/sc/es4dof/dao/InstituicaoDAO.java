@@ -25,31 +25,31 @@ public class InstituicaoDAO extends GenericDAO {
 
 		con = Conexao.getConnection();
 
-		String sql = "INSERT INTO instituicao (razaoSocial, nome, email, telefone, endereco, cnpj, site, responsavel, observacoes, idUsuario) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO instituicao (razaoSocial, nome, email, telefone, endereco, cnpj, site, responsavel, observacoes, idUsuario) VALUES (?,?,?,?,?,?,?,?,?,?)";
 		try {
 
 			instituicao = (Instituicao) entidade;
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, instituicao.getNome());
-			pstmt.setString(2, instituicao.getSexo());
-			pstmt.setString(3, instituicao.getCpf());
-			pstmt.setDate(4, new java.sql.Date(instituicao.getDataNascimento().getTime()));
-			pstmt.setString(5, instituicao.getEstadoCivil());
-			pstmt.setString(6, instituicao.getEndereco());
-			pstmt.setString(7, instituicao.getComplemento());
-			pstmt.setString(8, instituicao.getTelefone());
-			pstmt.setString(9, instituicao.getCelular());
-			pstmt.setString(10, instituicao.getEmail());
-			pstmt.setString(11, instituicao.getInformacoesComplementares());
-			pstmt.setInt(12, instituicao.getUsuario().getId());
+			pstmt.setString(1, instituicao.getRazaoSocial());
+			pstmt.setString(2, instituicao.getNome());
+			pstmt.setString(3, instituicao.getEmail());
+			pstmt.setString(4, instituicao.getTelefone());
+			pstmt.setString(5, instituicao.getEndereco());
+			pstmt.setString(6, instituicao.getCnpj());
+			pstmt.setString(7, instituicao.getSite());
+			pstmt.setString(8, instituicao.getResponsavel());
+			pstmt.setString(9, instituicao.getObservacoes());
+			pstmt.setInt(10, instituicao.getUsuario().getId());
 
 			pstmt.execute();
 			con.commit();
 			pstmt.close();
 
 		} catch (SQLException se) {
-			System.out.println("[instituicaoDAO] - Erro ao salvar voluntário.\n" + se.getMessage());
+			System.out
+					.println("[InstituicaoDAO] - Erro ao salvar instituição.\n"
+							+ se.getMessage());
 			con.rollback();
 
 		} finally {
@@ -77,7 +77,9 @@ public class InstituicaoDAO extends GenericDAO {
 
 		} catch (SQLException e) {
 			con.rollback();
-			System.out.println("[instituicaoDAO] - Erro ao excluir voluntário.\n" + e.getMessage());
+			System.out
+					.println("[InstituicaoDAO] - Erro ao excluir voluntário.\n"
+							+ e.getMessage());
 		} finally {
 			con.close();
 		}
@@ -89,24 +91,22 @@ public class InstituicaoDAO extends GenericDAO {
 
 		con = Conexao.getConnection();
 
-		String sql = "UPDATE instituicao SET nome = ?, sexo = ?, cpf = ?, dataNasc = ?, estadoCivil = ?, endereco = ?, complemento = ?, telefone = ?, celular = ?, email = ?, informacoesComplementares = ?, idUsuario = ?";
+		String sql = "UPDATE instituicao SET razaoSocial = ?, nome = ?, email = ?, telefone = ?, endereco = ?, cnpj = ?, site = ?, responsavel = ?, observacoes = ?, idUsuario = ?";
 		try {
 
 			instituicao = (Instituicao) entidade;
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, instituicao.getNome());
-			pstmt.setString(2, instituicao.getSexo());
-			pstmt.setString(3, instituicao.getCpf());
-			pstmt.setDate(4, new java.sql.Date(instituicao.getDataNascimento().getTime()));
-			pstmt.setString(5, instituicao.getEstadoCivil());
-			pstmt.setString(6, instituicao.getEndereco());
-			pstmt.setString(7, instituicao.getComplemento());
-			pstmt.setString(8, instituicao.getTelefone());
-			pstmt.setString(9, instituicao.getCelular());
-			pstmt.setString(10, instituicao.getEmail());
-			pstmt.setString(11, instituicao.getInformacoesComplementares());
-			pstmt.setInt(12, instituicao.getUsuario().getId());
+			pstmt.setString(1, instituicao.getRazaoSocial());
+			pstmt.setString(2, instituicao.getNome());
+			pstmt.setString(3, instituicao.getEmail());
+			pstmt.setString(4, instituicao.getTelefone());
+			pstmt.setString(5, instituicao.getEndereco());
+			pstmt.setString(6, instituicao.getCnpj());
+			pstmt.setString(7, instituicao.getSite());
+			pstmt.setString(8, instituicao.getResponsavel());
+			pstmt.setString(9, instituicao.getObservacoes());
+			pstmt.setInt(10, instituicao.getUsuario().getId());
 
 			pstmt.execute();
 			con.commit();
@@ -114,7 +114,9 @@ public class InstituicaoDAO extends GenericDAO {
 
 		} catch (SQLException e) {
 			con.rollback();
-			System.out.println("[instituicaoDAO] - Erro ao editar voluntário.\n" + e.getMessage());
+			System.out
+					.println("[InstituicaoDAO] - Erro ao editar voluntário.\n"
+							+ e.getMessage());
 		} finally {
 			con.close();
 		}
@@ -138,13 +140,19 @@ public class InstituicaoDAO extends GenericDAO {
 
 				try {
 					usuDAO = new UsuarioDAO();
-					usuario = (Usuario) usuDAO.getPorId(result.getInt("idUsuario"));
+					usuario = (Usuario) usuDAO.getPorId(result
+							.getInt("idUsuario"));
 
-					instituicao = new Instituicao(result.getInt("id"), result.getString("nome"),
-							result.getString("telefone"), result.getString("cpf"), result.getString("endereco"),
-							result.getString("email"), result.getDate("dataNasc"), usuario, result.getString("sexo"),
-							result.getString("estadoCivil"), result.getString("complemento"),
-							result.getString("celular"), result.getString("informacoesComplementares"));
+					instituicao = new Instituicao(result.getInt("id"),
+							result.getString("razaoSocial"),
+							result.getString("nome"),
+							result.getString("email"),
+							result.getString("telefone"),
+							result.getString("endereco"),
+							result.getString("cnpj"), result.getString("site"),
+							result.getString("responsavel"),
+							result.getString("observacoes"), usuario);
+
 					listainstituicaos.add(instituicao);
 
 				} catch (Exception e) {
@@ -157,7 +165,9 @@ public class InstituicaoDAO extends GenericDAO {
 
 		} catch (SQLException e) {
 			con.rollback();
-			System.out.println("[instituicaoDAO] - Erro ao listar instituicaos.\n" + e.getMessage());
+			System.out
+					.println("[InstituicaoDAO] - Erro ao listar instituicões.\n"
+							+ e.getMessage());
 
 		} finally {
 			con.close();
@@ -171,7 +181,7 @@ public class InstituicaoDAO extends GenericDAO {
 
 		con = Conexao.getConnection();
 
-		String sql = "SELECT v.id, v.nome, v.telefone, v.cpf, v.endereco, v.email, v.dataNasc, v.idUsuario, v.sexo, v.estadoCivil, v.complemento, v.celular, v.informacoesComplementares FROM instituicao v WHERE id=?";
+		String sql = "SELECT i.id, i.razaoSocial, i.nome, i.email, i.telefone, i.endereco, i.cnpj, i.site, i.responsavel, i.observacoes, i.idUsuario FROM instituicao i WHERE id=?";
 		try {
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, id);
@@ -183,17 +193,68 @@ public class InstituicaoDAO extends GenericDAO {
 				usuDAO = new UsuarioDAO();
 				usuario = (Usuario) usuDAO.getPorId(result.getInt("idUsuario"));
 
-				instituicao = new Instituicao(result.getInt("id"), result.getString("nome"),
-						result.getString("telefone"), result.getString("cpf"), result.getString("endereco"),
-						result.getString("email"), result.getDate("dataNasc"), usuario, result.getString("sexo"),
-						result.getString("estadoCivil"), result.getString("complemento"), result.getString("celular"),
-						result.getString("informacoesComplementares"));
+				instituicao = new Instituicao(result.getInt("id"),
+						result.getString("razaoSocial"),
+						result.getString("nome"), result.getString("email"),
+						result.getString("telefone"),
+						result.getString("endereco"), result.getString("cnpj"),
+						result.getString("site"),
+						result.getString("responsavel"),
+						result.getString("observacoes"), usuario);
 			}
 			result.close();
 			pstmt.close();
 
 		} catch (SQLException se) {
-			System.out.println("[instituicaoDAO] - Erro ao pegar instituicao por ID.\n" + se.getMessage());
+			System.out
+					.println("[InstituicaoDAO] - Erro ao pegar instituicao por ID.\n"
+							+ se.getMessage());
+		} finally {
+			con.close();
+		}
+
+		return instituicao;
+	}
+
+	/**
+	 * Método que retorna a instituição de acordo com o id do usuário passado
+	 * como parâmetro.
+	 * 
+	 * @param idUsuario
+	 * @return instituicao
+	 * @throws Exception
+	 */
+	public Entidade getPorIdUsuario(int idUsuario) throws Exception {
+		con = Conexao.getConnection();
+
+		String sql = "SELECT i.id, i.razaoSocial, i.nome, i.email, i.telefone, i.endereco, i.cnpj, i.site, i.responsavel, i.observacoes, i.idUsuario FROM instituicao i WHERE idUsuario=?";
+		try {
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, idUsuario);
+
+			ResultSet result = pstmt.executeQuery();
+
+			while (result.next()) {
+
+				usuDAO = new UsuarioDAO();
+				usuario = (Usuario) usuDAO.getPorId(result.getInt("idUsuario"));
+
+				instituicao = new Instituicao(result.getInt("id"),
+						result.getString("razaoSocial"),
+						result.getString("nome"), result.getString("email"),
+						result.getString("telefone"),
+						result.getString("endereco"), result.getString("cnpj"),
+						result.getString("site"),
+						result.getString("responsavel"),
+						result.getString("observacoes"), usuario);
+			}
+			result.close();
+			pstmt.close();
+
+		} catch (SQLException se) {
+			System.out
+					.println("[InstituicaoDAO] - Erro ao pegar instituicao por ID do usuario.\n"
+							+ se.getMessage());
 		} finally {
 			con.close();
 		}

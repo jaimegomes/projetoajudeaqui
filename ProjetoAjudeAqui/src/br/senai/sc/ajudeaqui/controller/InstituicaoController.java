@@ -31,5 +31,9 @@ public class InstituicaoController implements IController {
 	public Entidade getPorId(int id) throws Exception {
 		return null;
 	}
+	
+	public Entidade getPorIdUsuario(int idUsuario) throws Exception {
+		return null;
+	}
 
 }
