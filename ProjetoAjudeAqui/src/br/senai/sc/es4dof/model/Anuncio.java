@@ -17,8 +17,9 @@ public class Anuncio extends Entidade {
 	private String descricao;
 	private int qtdVagas;
 	private Date dataPublicacao;
-	private Funcao tipoServico;
-	private String situacao;
+	private Funcao funcao;
+	private String status;
+	private Instituicao instituicao;
 
 	/**
 	 * Construtor padrao
@@ -34,18 +35,20 @@ public class Anuncio extends Entidade {
 	 * @param descricao
 	 * @param qtdVagas
 	 * @param dataPublicacao
-	 * @param tipoServico
-	 * @param situacao
+	 * @param funcao
+	 * @param status
+	 * @param instituicao
 	 */
 	public Anuncio(String titulo, String descricao, int qtdVagas,
-			Date dataPublicacao, Funcao tipoServico, String situacao) {
+			Date dataPublicacao, Funcao funcao, String status, Instituicao instituicao) {
 		super();
 		this.titulo = titulo;
 		this.descricao = descricao;
 		this.qtdVagas = qtdVagas;
 		this.dataPublicacao = dataPublicacao;
-		this.tipoServico = tipoServico;
-		this.situacao = situacao;
+		this.funcao = funcao;
+		this.status = status;
+		this.instituicao = instituicao;
 	}
 
 	/**
@@ -56,19 +59,21 @@ public class Anuncio extends Entidade {
 	 * @param descricao
 	 * @param qtdVagas
 	 * @param dataPublicacao
-	 * @param tipoServico
-	 * @param situacao
+	 * @param funcao
+	 * @param status
+	 * @param instituicao
 	 */
 	public Anuncio(int id, String titulo, String descricao, int qtdVagas,
-			Date dataPublicacao, Funcao tipoServico, String situacao) {
+			Date dataPublicacao, Funcao funcao, String status, Instituicao instituicao) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
 		this.descricao = descricao;
 		this.qtdVagas = qtdVagas;
 		this.dataPublicacao = dataPublicacao;
-		this.tipoServico = tipoServico;
-		this.situacao = situacao;
+		this.funcao = funcao;
+		this.status = status;
+		this.instituicao = instituicao;
 	}
 
 	@Override
@@ -143,33 +148,49 @@ public class Anuncio extends Entidade {
 	}
 
 	/**
-	 * @return the tipoServico
+	 * @return the funcao
 	 */
-	public Funcao getTipoServico() {
-		return tipoServico;
+	public Funcao getFuncao() {
+		return funcao;
 	}
 
 	/**
-	 * @param tipoServico
-	 *            the tipoServico to set
+	 * @param funcao
+	 *            the funcao to set
 	 */
-	public void setTipoServico(Funcao tipoServico) {
-		this.tipoServico = tipoServico;
+	public void setFuncao(Funcao funcao) {
+		this.funcao = funcao;
 	}
 
 	/**
-	 * @return the situacao
+	 * @return the status
 	 */
-	public String getSituacao() {
-		return situacao;
+	public String getStatus() {
+		return status;
 	}
 
 	/**
-	 * @param situacao
-	 *            the situacao to set
+	 * @param status
+	 *            the status to set
 	 */
-	public void setSituacao(String situacao) {
-		this.situacao = situacao;
+	public void setStatus(String status) {
+		this.status = status;
 	}
+
+	/**
+	 * @return the instituicao
+	 */
+	public Instituicao getInstituicao() {
+		return instituicao;
+	}
+
+	/**
+	 * @param instituicao the instituicao to set
+	 */
+	public void setInstituicao(Instituicao instituicao) {
+		this.instituicao = instituicao;
+	}
+	
+	
 
 }
