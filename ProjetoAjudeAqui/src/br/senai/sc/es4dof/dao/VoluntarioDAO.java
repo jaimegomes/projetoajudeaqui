@@ -17,8 +17,8 @@ public class VoluntarioDAO extends GenericDAO {
 
 	private Connection con = null;
 	private Voluntario voluntario = null;
-	private UsuarioDAO usuDAO = null;
 	private Usuario usuario = null;
+	private UsuarioDAO usuarioDAO = null;
 
 	@Override
 	public void salvar(Entidade entidade) throws Exception {
@@ -89,7 +89,7 @@ public class VoluntarioDAO extends GenericDAO {
 
 		con = Conexao.getConnection();
 
-		String sql = "UPDATE voluntario SET nome = ?, sexo = ?, cpf = ?, dataNasc = ?, estadoCivil = ?, endereco = ?, complemento = ?, telefone = ?, celular = ?, email = ?, informacoesComplementares = ?, idUsuario = ?";
+		String sql = "UPDATE voluntario SET nome = ?, sexo = ?, cpf = ?, dataNasc = ?, estadoCivil = ?, endereco = ?, complemento = ?, telefone = ?, celular = ?, email = ?, informacoesComplementares = ?, idUsuario = ? WHERE id = ?";
 		try {
 
 			voluntario = (Voluntario) entidade;
@@ -107,6 +107,7 @@ public class VoluntarioDAO extends GenericDAO {
 			pstmt.setString(10, voluntario.getEmail());
 			pstmt.setString(11, voluntario.getInformacoesComplementares());
 			pstmt.setInt(12, voluntario.getUsuario().getId());
+			pstmt.setInt(13, voluntario.getId());
 
 			pstmt.execute();
 			con.commit();
@@ -125,6 +126,7 @@ public class VoluntarioDAO extends GenericDAO {
 	public List<Entidade> listar() throws Exception {
 
 		con = Conexao.getConnection();
+		usuarioDAO = new UsuarioDAO();
 
 		List<Entidade> listaVoluntarios = new ArrayList<Entidade>();
 		String sql = "SELECT * FROM voluntario";
@@ -137,8 +139,7 @@ public class VoluntarioDAO extends GenericDAO {
 			while (result.next()) {
 
 				try {
-					usuDAO = new UsuarioDAO();
-					usuario = (Usuario) usuDAO.getPorId(result.getInt("idUsuario"));
+					usuario = (Usuario) usuarioDAO.getPorId(result.getInt("idUsuario"));
 
 					voluntario = new Voluntario(result.getInt("id"), result.getString("nome"),
 							result.getString("telefone"), result.getString("cpf"), result.getString("endereco"),
@@ -170,6 +171,7 @@ public class VoluntarioDAO extends GenericDAO {
 	public Entidade getPorId(int id) throws Exception {
 
 		con = Conexao.getConnection();
+		usuarioDAO = new UsuarioDAO();
 
 		String sql = "SELECT v.id, v.nome, v.telefone, v.cpf, v.endereco, v.email, v.dataNasc, v.idUsuario, v.sexo, v.estadoCivil, v.complemento, v.celular, v.informacoesComplementares FROM voluntario v WHERE id=?";
 		try {
@@ -180,8 +182,7 @@ public class VoluntarioDAO extends GenericDAO {
 
 			while (result.next()) {
 
-				usuDAO = new UsuarioDAO();
-				usuario = (Usuario) usuDAO.getPorId(result.getInt("idUsuario"));
+				usuario = (Usuario) usuarioDAO.getPorId(result.getInt("idUsuario"));
 
 				voluntario = new Voluntario(result.getInt("id"), result.getString("nome"), result.getString("telefone"),
 						result.getString("cpf"), result.getString("endereco"), result.getString("email"),

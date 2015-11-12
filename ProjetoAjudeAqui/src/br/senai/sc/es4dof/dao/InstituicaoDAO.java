@@ -47,9 +47,7 @@ public class InstituicaoDAO extends GenericDAO {
 			pstmt.close();
 
 		} catch (SQLException se) {
-			System.out
-					.println("[InstituicaoDAO] - Erro ao salvar instituição.\n"
-							+ se.getMessage());
+			System.out.println("[InstituicaoDAO] - Erro ao salvar instituição.\n" + se.getMessage());
 			con.rollback();
 
 		} finally {
@@ -77,9 +75,7 @@ public class InstituicaoDAO extends GenericDAO {
 
 		} catch (SQLException e) {
 			con.rollback();
-			System.out
-					.println("[InstituicaoDAO] - Erro ao excluir voluntário.\n"
-							+ e.getMessage());
+			System.out.println("[InstituicaoDAO] - Erro ao excluir instituição.\n" + e.getMessage());
 		} finally {
 			con.close();
 		}
@@ -91,7 +87,7 @@ public class InstituicaoDAO extends GenericDAO {
 
 		con = Conexao.getConnection();
 
-		String sql = "UPDATE instituicao SET razaoSocial = ?, nome = ?, email = ?, telefone = ?, endereco = ?, cnpj = ?, site = ?, responsavel = ?, observacoes = ?, idUsuario = ?";
+		String sql = "UPDATE instituicao SET razaoSocial = ?, nome = ?, email = ?, telefone = ?, endereco = ?, cnpj = ?, site = ?, responsavel = ?, observacoes = ?, idUsuario = ? WHERE id = ?";
 		try {
 
 			instituicao = (Instituicao) entidade;
@@ -107,6 +103,7 @@ public class InstituicaoDAO extends GenericDAO {
 			pstmt.setString(8, instituicao.getResponsavel());
 			pstmt.setString(9, instituicao.getObservacoes());
 			pstmt.setInt(10, instituicao.getUsuario().getId());
+			pstmt.setInt(11, instituicao.getId());
 
 			pstmt.execute();
 			con.commit();
@@ -114,9 +111,7 @@ public class InstituicaoDAO extends GenericDAO {
 
 		} catch (SQLException e) {
 			con.rollback();
-			System.out
-					.println("[InstituicaoDAO] - Erro ao editar voluntário.\n"
-							+ e.getMessage());
+			System.out.println("[InstituicaoDAO] - Erro ao editar instituição.\n" + e.getMessage());
 		} finally {
 			con.close();
 		}
@@ -127,6 +122,7 @@ public class InstituicaoDAO extends GenericDAO {
 	public List<Entidade> listar() throws Exception {
 
 		con = Conexao.getConnection();
+		usuDAO = new UsuarioDAO();
 
 		List<Entidade> listainstituicaos = new ArrayList<Entidade>();
 		String sql = "SELECT * FROM instituicao";
@@ -139,19 +135,13 @@ public class InstituicaoDAO extends GenericDAO {
 			while (result.next()) {
 
 				try {
-					usuDAO = new UsuarioDAO();
-					usuario = (Usuario) usuDAO.getPorId(result
-							.getInt("idUsuario"));
 
-					instituicao = new Instituicao(result.getInt("id"),
-							result.getString("razaoSocial"),
-							result.getString("nome"),
-							result.getString("email"),
-							result.getString("telefone"),
-							result.getString("endereco"),
-							result.getString("cnpj"), result.getString("site"),
-							result.getString("responsavel"),
-							result.getString("observacoes"), usuario);
+					usuario = (Usuario) usuDAO.getPorId(result.getInt("idUsuario"));
+
+					instituicao = new Instituicao(result.getInt("id"), result.getString("razaoSocial"),
+							result.getString("nome"), result.getString("email"), result.getString("telefone"),
+							result.getString("endereco"), result.getString("cnpj"), result.getString("site"),
+							result.getString("responsavel"), result.getString("observacoes"), usuario);
 
 					listainstituicaos.add(instituicao);
 
@@ -165,9 +155,7 @@ public class InstituicaoDAO extends GenericDAO {
 
 		} catch (SQLException e) {
 			con.rollback();
-			System.out
-					.println("[InstituicaoDAO] - Erro ao listar instituicões.\n"
-							+ e.getMessage());
+			System.out.println("[InstituicaoDAO] - Erro ao listar instituicões.\n" + e.getMessage());
 
 		} finally {
 			con.close();
@@ -180,6 +168,7 @@ public class InstituicaoDAO extends GenericDAO {
 	public Entidade getPorId(int id) throws Exception {
 
 		con = Conexao.getConnection();
+		usuDAO = new UsuarioDAO();
 
 		String sql = "SELECT i.id, i.razaoSocial, i.nome, i.email, i.telefone, i.endereco, i.cnpj, i.site, i.responsavel, i.observacoes, i.idUsuario FROM instituicao i WHERE id=?";
 		try {
@@ -190,25 +179,18 @@ public class InstituicaoDAO extends GenericDAO {
 
 			while (result.next()) {
 
-				usuDAO = new UsuarioDAO();
 				usuario = (Usuario) usuDAO.getPorId(result.getInt("idUsuario"));
 
-				instituicao = new Instituicao(result.getInt("id"),
-						result.getString("razaoSocial"),
-						result.getString("nome"), result.getString("email"),
-						result.getString("telefone"),
-						result.getString("endereco"), result.getString("cnpj"),
-						result.getString("site"),
-						result.getString("responsavel"),
-						result.getString("observacoes"), usuario);
+				instituicao = new Instituicao(result.getInt("id"), result.getString("razaoSocial"),
+						result.getString("nome"), result.getString("email"), result.getString("telefone"),
+						result.getString("endereco"), result.getString("cnpj"), result.getString("site"),
+						result.getString("responsavel"), result.getString("observacoes"), usuario);
 			}
 			result.close();
 			pstmt.close();
 
 		} catch (SQLException se) {
-			System.out
-					.println("[InstituicaoDAO] - Erro ao pegar instituicao por ID.\n"
-							+ se.getMessage());
+			System.out.println("[InstituicaoDAO] - Erro ao pegar instituicao por ID.\n" + se.getMessage());
 		} finally {
 			con.close();
 		}
@@ -239,22 +221,16 @@ public class InstituicaoDAO extends GenericDAO {
 				usuDAO = new UsuarioDAO();
 				usuario = (Usuario) usuDAO.getPorId(result.getInt("idUsuario"));
 
-				instituicao = new Instituicao(result.getInt("id"),
-						result.getString("razaoSocial"),
-						result.getString("nome"), result.getString("email"),
-						result.getString("telefone"),
-						result.getString("endereco"), result.getString("cnpj"),
-						result.getString("site"),
-						result.getString("responsavel"),
-						result.getString("observacoes"), usuario);
+				instituicao = new Instituicao(result.getInt("id"), result.getString("razaoSocial"),
+						result.getString("nome"), result.getString("email"), result.getString("telefone"),
+						result.getString("endereco"), result.getString("cnpj"), result.getString("site"),
+						result.getString("responsavel"), result.getString("observacoes"), usuario);
 			}
 			result.close();
 			pstmt.close();
 
 		} catch (SQLException se) {
-			System.out
-					.println("[InstituicaoDAO] - Erro ao pegar instituicao por ID do usuario.\n"
-							+ se.getMessage());
+			System.out.println("[InstituicaoDAO] - Erro ao pegar instituicao por ID do usuario.\n" + se.getMessage());
 		} finally {
 			con.close();
 		}

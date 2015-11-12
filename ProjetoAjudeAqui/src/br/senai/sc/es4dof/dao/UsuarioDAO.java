@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import br.senai.sc.ajudeaqui.abstracts.Entidade;
@@ -36,8 +37,7 @@ public class UsuarioDAO extends GenericDAO {
 			pstmt.close();
 
 		} catch (SQLException se) {
-			System.out.println("[UsuarioDAO] - Erro ao salvar usuário.\n"
-					+ se.getMessage());
+			System.out.println("[UsuarioDAO] - Erro ao salvar usuário.\n" + se.getMessage());
 			con.rollback();
 
 		} finally {
@@ -48,16 +48,97 @@ public class UsuarioDAO extends GenericDAO {
 	@Override
 	public void excluir(Entidade entidade) throws Exception {
 
+		con = Conexao.getConnection();
+
+		String sql = "DELETE FROM usuario WHERE id=?";
+		try {
+
+			usuario = (Usuario) entidade;
+
+			PreparedStatement pstm = con.prepareStatement(sql);
+			pstm.setInt(1, usuario.getId());
+
+			pstm.execute();
+			con.commit();
+			pstm.close();
+
+		} catch (SQLException e) {
+			con.rollback();
+			System.out.println("[UsuarioDAO] - Erro ao excluir usuario.\n" + e.getMessage());
+		} finally {
+			con.close();
+		}
+
 	}
 
 	@Override
 	public void editar(Entidade entidade) throws Exception {
 
+		con = Conexao.getConnection();
+
+		String sql = "UPDATE usuario SET login = ?, senha = ?, perfil = ? WHERE id = ?";
+		try {
+
+			usuario = (Usuario) entidade;
+
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, usuario.getLogin());
+			pstmt.setString(2, usuario.getSenha());
+			pstmt.setString(3, usuario.getPerfil());
+			pstmt.setInt(4, usuario.getId());
+
+			pstmt.execute();
+			con.commit();
+			pstmt.close();
+
+		} catch (SQLException e) {
+			con.rollback();
+			System.out.println("[UsuarioDAO] - Erro ao editar usuario.\n" + e.getMessage());
+		} finally {
+			con.close();
+		}
+
 	}
 
 	@Override
 	public List<Entidade> listar() throws Exception {
-		return null;
+
+		con = Conexao.getConnection();
+
+		List<Entidade> listaUsuarios = new ArrayList<Entidade>();
+		String sql = "SELECT * FROM usuario";
+		try {
+
+			PreparedStatement pstm = con.prepareStatement(sql);
+
+			ResultSet result = pstm.executeQuery();
+
+			while (result.next()) {
+
+				try {
+
+					usuario = new Usuario(result.getInt("id"), result.getString("login"), result.getString("senha"),
+							result.getString("perfil"));
+
+					listaUsuarios.add(usuario);
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+			}
+
+			pstm.close();
+
+		} catch (SQLException e) {
+			con.rollback();
+			System.out.println("[UsuarioDAO] - Erro ao listar usuarios.\n" + e.getMessage());
+
+		} finally {
+			con.close();
+		}
+		return listaUsuarios;
+
 	}
 
 	@Override
@@ -72,16 +153,14 @@ public class UsuarioDAO extends GenericDAO {
 			ResultSet result = pstmt.executeQuery();
 
 			while (result.next()) {
-				usuario = new Usuario(result.getInt("id"),
-						result.getString("login"), result.getString("senha"),
+				usuario = new Usuario(result.getInt("id"), result.getString("login"), result.getString("senha"),
 						result.getString("perfil"));
 			}
 			result.close();
 			pstmt.close();
 
 		} catch (SQLException se) {
-			System.out.println("[UsuarioDAO] - Erro ao pegar Usuário por ID.\n"
-					+ se.getMessage());
+			System.out.println("[UsuarioDAO] - Erro ao pegar Usuário por ID.\n" + se.getMessage());
 		} finally {
 			con.close();
 		}
@@ -100,17 +179,14 @@ public class UsuarioDAO extends GenericDAO {
 			ResultSet result = pstmt.executeQuery();
 
 			while (result.next()) {
-				usuario = new Usuario(result.getInt("id"),
-						result.getString("login"), result.getString("senha"),
+				usuario = new Usuario(result.getInt("id"), result.getString("login"), result.getString("senha"),
 						result.getString("perfil"));
 			}
 			result.close();
 			pstmt.close();
 
 		} catch (SQLException se) {
-			System.out
-					.println("[UsuarioDAO] - Erro ao pegar Usuário por Login.\n"
-							+ se.getMessage());
+			System.out.println("[UsuarioDAO] - Erro ao pegar Usuário por Login.\n" + se.getMessage());
 		} finally {
 			con.close();
 		}

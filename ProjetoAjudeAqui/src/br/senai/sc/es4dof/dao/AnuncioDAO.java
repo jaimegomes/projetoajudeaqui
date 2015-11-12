@@ -37,8 +37,7 @@ public class AnuncioDAO extends GenericDAO {
 			pstmt.setString(1, anuncio.getTitulo());
 			pstmt.setString(2, anuncio.getDescricao());
 			pstmt.setInt(3, anuncio.getQtdVagas());
-			pstmt.setDate(4, new java.sql.Date(anuncio.getDataPublicacao()
-					.getTime()));
+			pstmt.setDate(4, new java.sql.Date(anuncio.getDataPublicacao().getTime()));
 			pstmt.setInt(5, anuncio.getFuncao().getId());
 			pstmt.setString(6, anuncio.getStatus());
 			pstmt.setInt(7, anuncio.getInstituicao().getId());
@@ -48,8 +47,7 @@ public class AnuncioDAO extends GenericDAO {
 			pstmt.close();
 
 		} catch (SQLException se) {
-			System.out.println("[AnuncioDAO] - Erro ao salvar anuncio.\n"
-					+ se.getMessage());
+			System.out.println("[AnuncioDAO] - Erro ao salvar anuncio.\n" + se.getMessage());
 			con.rollback();
 
 		} finally {
@@ -77,8 +75,7 @@ public class AnuncioDAO extends GenericDAO {
 
 		} catch (SQLException e) {
 			con.rollback();
-			System.out.println("[AnuncioDAO] - Erro ao excluir anuncio.\n"
-					+ e.getMessage());
+			System.out.println("[AnuncioDAO] - Erro ao excluir anuncio.\n" + e.getMessage());
 		} finally {
 			con.close();
 		}
@@ -90,7 +87,7 @@ public class AnuncioDAO extends GenericDAO {
 
 		con = Conexao.getConnection();
 
-		String sql = "UPDATE anuncio SET titulo = ?, descricao = ?, qtdVagas = ?, dataPublicacao = ?, idFuncao = ?, status = ?, idInstituicao = ?";
+		String sql = "UPDATE anuncio SET titulo = ?, descricao = ?, qtdVagas = ?, dataPublicacao = ?, idFuncao = ?, status = ?, idInstituicao = ? WHERE id = ?";
 		try {
 
 			anuncio = (Anuncio) entidade;
@@ -99,11 +96,11 @@ public class AnuncioDAO extends GenericDAO {
 			pstmt.setString(1, anuncio.getTitulo());
 			pstmt.setString(2, anuncio.getDescricao());
 			pstmt.setInt(3, anuncio.getQtdVagas());
-			pstmt.setDate(4, new java.sql.Date(anuncio.getDataPublicacao()
-					.getTime()));
+			pstmt.setDate(4, new java.sql.Date(anuncio.getDataPublicacao().getTime()));
 			pstmt.setInt(5, anuncio.getFuncao().getId());
 			pstmt.setString(6, anuncio.getStatus());
 			pstmt.setInt(7, anuncio.getInstituicao().getId());
+			pstmt.setInt(8, anuncio.getId());
 
 			pstmt.execute();
 			con.commit();
@@ -111,8 +108,7 @@ public class AnuncioDAO extends GenericDAO {
 
 		} catch (SQLException e) {
 			con.rollback();
-			System.out.println("[AnuncioDAO] - Erro ao editar anuncio.\n"
-					+ e.getMessage());
+			System.out.println("[AnuncioDAO] - Erro ao editar anuncio.\n" + e.getMessage());
 		} finally {
 			con.close();
 		}
@@ -136,19 +132,14 @@ public class AnuncioDAO extends GenericDAO {
 
 				try {
 					funDAO = new FuncaoDAO();
-					funcao = (Funcao) funDAO
-							.getPorId(result.getInt("idFuncao"));
+					funcao = (Funcao) funDAO.getPorId(result.getInt("idFuncao"));
 
 					instDAO = new InstituicaoDAO();
-					instituicao = (Instituicao) instDAO.getPorId(result
-							.getInt("idInstituicao"));
+					instituicao = (Instituicao) instDAO.getPorId(result.getInt("idInstituicao"));
 
-					anuncio = new Anuncio(result.getInt("id"),
-							result.getString("titulo"),
-							result.getString("descricao"),
-							result.getInt("qtdVagas"),
-							result.getDate("dataPublicacao"), funcao,
-							result.getString("status"), instituicao);
+					anuncio = new Anuncio(result.getInt("id"), result.getString("titulo"),
+							result.getString("descricao"), result.getInt("qtdVagas"), result.getDate("dataPublicacao"),
+							funcao, result.getString("status"), instituicao);
 
 					listaAnuncios.add(anuncio);
 
@@ -162,8 +153,7 @@ public class AnuncioDAO extends GenericDAO {
 
 		} catch (SQLException e) {
 			con.rollback();
-			System.out.println("[AnuncioDAO] - Erro ao listar anuncios.\n"
-					+ e.getMessage());
+			System.out.println("[AnuncioDAO] - Erro ao listar anuncios.\n" + e.getMessage());
 
 		} finally {
 			con.close();
@@ -177,7 +167,7 @@ public class AnuncioDAO extends GenericDAO {
 
 		con = Conexao.getConnection();
 
-		String sql = "SELECT a.titulo, a.descricao, a.qtdVagas, a.dataPublicacao, a.idFuncao, a.status, a.idInstituicao FROM anuncio a WHERE id=?";
+		String sql = "SELECT a.id, a.titulo, a.descricao, a.qtdVagas, a.dataPublicacao, a.idFuncao, a.status, a.idInstituicao FROM anuncio a WHERE id=?";
 		try {
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, id);
@@ -190,22 +180,17 @@ public class AnuncioDAO extends GenericDAO {
 				funcao = (Funcao) funDAO.getPorId(result.getInt("idFuncao"));
 
 				instDAO = new InstituicaoDAO();
-				instituicao = (Instituicao) instDAO.getPorId(result
-						.getInt("idInstituicao"));
+				instituicao = (Instituicao) instDAO.getPorId(result.getInt("idInstituicao"));
 
-				anuncio = new Anuncio(result.getInt("id"),
-						result.getString("titulo"),
-						result.getString("descricao"),
-						result.getInt("qtdVagas"),
-						result.getDate("dataPublicacao"), funcao,
-						result.getString("status"), instituicao);
+				anuncio = new Anuncio(result.getInt("id"), result.getString("titulo"), result.getString("descricao"),
+						result.getInt("qtdVagas"), result.getDate("dataPublicacao"), funcao, result.getString("status"),
+						instituicao);
 			}
 			result.close();
 			pstmt.close();
 
 		} catch (SQLException se) {
-			System.out.println("[AnuncioDAO] - Erro ao pegar anuncio por ID.\n"
-					+ se.getMessage());
+			System.out.println("[AnuncioDAO] - Erro ao pegar anuncio por ID.\n" + se.getMessage());
 		} finally {
 			con.close();
 		}
@@ -224,7 +209,7 @@ public class AnuncioDAO extends GenericDAO {
 	public Entidade getPorIdInstituicao(int idInstituicao) throws Exception {
 		con = Conexao.getConnection();
 
-		String sql = "SELECT a.titulo, a.descricao, a.qtdVagas, a.dataPublicacao, a.idFuncao, a.status, a.idInstituicao FROM anuncio a WHERE idInstituicao=?";
+		String sql = "SELECT a.id, a.titulo, a.descricao, a.qtdVagas, a.dataPublicacao, a.idFuncao, a.status, a.idInstituicao FROM anuncio a WHERE idInstituicao=?";
 		try {
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, idInstituicao);
@@ -237,23 +222,17 @@ public class AnuncioDAO extends GenericDAO {
 				funcao = (Funcao) funDAO.getPorId(result.getInt("idFuncao"));
 
 				instDAO = new InstituicaoDAO();
-				instituicao = (Instituicao) instDAO.getPorId(result
-						.getInt("idInstituicao"));
+				instituicao = (Instituicao) instDAO.getPorId(result.getInt("idInstituicao"));
 
-				anuncio = new Anuncio(result.getInt("id"),
-						result.getString("titulo"),
-						result.getString("descricao"),
-						result.getInt("qtdVagas"),
-						result.getDate("dataPublicacao"), funcao,
-						result.getString("status"), instituicao);
+				anuncio = new Anuncio(result.getInt("id"), result.getString("titulo"), result.getString("descricao"),
+						result.getInt("qtdVagas"), result.getDate("dataPublicacao"), funcao, result.getString("status"),
+						instituicao);
 			}
 			result.close();
 			pstmt.close();
 
 		} catch (SQLException se) {
-			System.out
-					.println("[AnuncioDAO] - Erro ao pegar anuncio por ID da instituição.\n"
-							+ se.getMessage());
+			System.out.println("[AnuncioDAO] - Erro ao pegar anuncio por ID da instituição.\n" + se.getMessage());
 		} finally {
 			con.close();
 		}
