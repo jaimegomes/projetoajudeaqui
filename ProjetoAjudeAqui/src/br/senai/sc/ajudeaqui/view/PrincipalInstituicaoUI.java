@@ -311,292 +311,106 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
 
 		javax.swing.GroupLayout panelDadosInstituicaoLayout = new javax.swing.GroupLayout(
 				panelDadosInstituicao);
-		panelDadosInstituicaoLayout
-				.setHorizontalGroup(panelDadosInstituicaoLayout
-						.createParallelGroup(Alignment.LEADING)
-						.addGroup(
-								panelDadosInstituicaoLayout
-										.createSequentialGroup()
-										.addContainerGap()
-										.addGroup(
-												panelDadosInstituicaoLayout
-														.createParallelGroup(
-																Alignment.TRAILING)
-														.addGroup(
-																panelDadosInstituicaoLayout
-																		.createSequentialGroup()
-																		.addComponent(
-																				btnEditarDadosInstituicao,
-																				GroupLayout.PREFERRED_SIZE,
-																				116,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addPreferredGap(
-																				ComponentPlacement.UNRELATED)
-																		.addComponent(
-																				btnSalvarDadosInstituicao,
-																				GroupLayout.PREFERRED_SIZE,
-																				116,
-																				GroupLayout.PREFERRED_SIZE))
-														.addGroup(
-																panelDadosInstituicaoLayout
-																		.createSequentialGroup()
-																		.addGroup(
-																				panelDadosInstituicaoLayout
-																						.createParallelGroup(
-																								Alignment.LEADING)
-																						.addGroup(
-																								panelDadosInstituicaoLayout
-																										.createSequentialGroup()
-																										.addGroup(
-																												panelDadosInstituicaoLayout
-																														.createParallelGroup(
-																																Alignment.LEADING)
-																														.addComponent(
-																																lblNome)
-																														.addComponent(
-																																lblRazaoSocial))
-																										.addGap(5))
-																						.addComponent(
-																								lblSite)
-																						.addComponent(
-																								lblEndereco)
-																						.addComponent(
-																								lblTelefone)
-																						.addComponent(
-																								lblEmail)
-																						.addComponent(
-																								lblCnpj)
-																						.addComponent(
-																								lblObservacoes)
-																						.addComponent(
-																								lblResponsavel))
-																		.addGap(8)
-																		.addGroup(
-																				panelDadosInstituicaoLayout
-																						.createParallelGroup(
-																								Alignment.LEADING)
-																						.addGroup(
-																								Alignment.TRAILING,
-																								panelDadosInstituicaoLayout
-																										.createParallelGroup(
-																												Alignment.LEADING)
-																										.addComponent(
-																												txtNome,
-																												GroupLayout.PREFERRED_SIZE,
-																												353,
-																												GroupLayout.PREFERRED_SIZE)
-																										.addComponent(
-																												txtSite,
-																												GroupLayout.PREFERRED_SIZE,
-																												230,
-																												GroupLayout.PREFERRED_SIZE)
-																										.addComponent(
-																												txtEndereco,
-																												GroupLayout.PREFERRED_SIZE,
-																												353,
-																												GroupLayout.PREFERRED_SIZE)
-																										.addComponent(
-																												txtTelefone,
-																												GroupLayout.PREFERRED_SIZE,
-																												139,
-																												GroupLayout.PREFERRED_SIZE)
-																										.addComponent(
-																												txtEmail,
-																												GroupLayout.PREFERRED_SIZE,
-																												230,
-																												GroupLayout.PREFERRED_SIZE)
-																										.addComponent(
-																												txtCnpj,
-																												GroupLayout.PREFERRED_SIZE,
-																												141,
-																												GroupLayout.PREFERRED_SIZE)
-																										.addComponent(
-																												txtRazaoSocial,
-																												GroupLayout.PREFERRED_SIZE,
-																												353,
-																												GroupLayout.PREFERRED_SIZE)
-																										.addComponent(
-																												txtResponsavel,
-																												GroupLayout.PREFERRED_SIZE,
-																												230,
-																												GroupLayout.PREFERRED_SIZE))
-																						.addComponent(
-																								scrollpaneObservacoes,
-																								Alignment.TRAILING,
-																								GroupLayout.PREFERRED_SIZE,
-																								353,
-																								GroupLayout.PREFERRED_SIZE))))
-										.addContainerGap(86, Short.MAX_VALUE)));
-		panelDadosInstituicaoLayout
-				.setVerticalGroup(panelDadosInstituicaoLayout
-						.createParallelGroup(Alignment.LEADING)
-						.addGroup(
-								panelDadosInstituicaoLayout
-										.createSequentialGroup()
-										.addGroup(
-												panelDadosInstituicaoLayout
-														.createParallelGroup(
-																Alignment.BASELINE)
-														.addComponent(lblNome)
-														.addComponent(
-																txtNome,
-																GroupLayout.PREFERRED_SIZE,
-																22,
-																GroupLayout.PREFERRED_SIZE))
-										.addPreferredGap(
-												ComponentPlacement.RELATED)
-										.addGroup(
-												panelDadosInstituicaoLayout
-														.createParallelGroup(
-																Alignment.TRAILING)
-														.addGroup(
-																panelDadosInstituicaoLayout
-																		.createSequentialGroup()
-																		.addComponent(
-																				txtRazaoSocial,
-																				GroupLayout.PREFERRED_SIZE,
-																				22,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addPreferredGap(
-																				ComponentPlacement.RELATED)
-																		.addGroup(
-																				panelDadosInstituicaoLayout
-																						.createParallelGroup(
-																								Alignment.BASELINE)
-																						.addComponent(
-																								txtCnpj,
-																								GroupLayout.PREFERRED_SIZE,
-																								22,
-																								GroupLayout.PREFERRED_SIZE)
-																						.addComponent(
-																								lblCnpj)))
-														.addComponent(
-																lblRazaoSocial,
-																Alignment.LEADING))
-										.addPreferredGap(
-												ComponentPlacement.RELATED)
-										.addGroup(
-												panelDadosInstituicaoLayout
-														.createParallelGroup(
-																Alignment.BASELINE)
-														.addComponent(
-																txtEmail,
-																GroupLayout.PREFERRED_SIZE,
-																22,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(lblEmail))
-										.addPreferredGap(
-												ComponentPlacement.RELATED)
-										.addGroup(
-												panelDadosInstituicaoLayout
-														.createParallelGroup(
-																Alignment.BASELINE)
-														.addComponent(
-																txtTelefone,
-																GroupLayout.PREFERRED_SIZE,
-																22,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(
-																lblTelefone))
-										.addPreferredGap(
-												ComponentPlacement.RELATED)
-										.addGroup(
-												panelDadosInstituicaoLayout
-														.createParallelGroup(
-																Alignment.BASELINE)
-														.addComponent(
-																txtEndereco,
-																GroupLayout.PREFERRED_SIZE,
-																22,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(
-																lblEndereco))
-										.addPreferredGap(
-												ComponentPlacement.RELATED)
-										.addGroup(
-												panelDadosInstituicaoLayout
-														.createParallelGroup(
-																Alignment.BASELINE)
-														.addComponent(
-																txtSite,
-																GroupLayout.PREFERRED_SIZE,
-																22,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(lblSite))
-										.addPreferredGap(
-												ComponentPlacement.UNRELATED)
-										.addGroup(
-												panelDadosInstituicaoLayout
-														.createParallelGroup(
-																Alignment.LEADING)
-														.addGroup(
-																panelDadosInstituicaoLayout
-																		.createSequentialGroup()
-																		.addComponent(
-																				txtResponsavel,
-																				GroupLayout.PREFERRED_SIZE,
-																				22,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addPreferredGap(
-																				ComponentPlacement.RELATED)
-																		.addComponent(
-																				scrollpaneObservacoes,
-																				GroupLayout.PREFERRED_SIZE,
-																				127,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addPreferredGap(
-																				ComponentPlacement.RELATED)
-																		.addGroup(
-																				panelDadosInstituicaoLayout
-																						.createParallelGroup(
-																								Alignment.BASELINE)
-																						.addComponent(
-																								btnSalvarDadosInstituicao,
-																								GroupLayout.PREFERRED_SIZE,
-																								19,
-																								GroupLayout.PREFERRED_SIZE)
-																						.addComponent(
-																								btnEditarDadosInstituicao,
-																								GroupLayout.PREFERRED_SIZE,
-																								19,
-																								GroupLayout.PREFERRED_SIZE)))
-														.addGroup(
-																panelDadosInstituicaoLayout
-																		.createSequentialGroup()
-																		.addComponent(
-																				lblResponsavel)
-																		.addPreferredGap(
-																				ComponentPlacement.RELATED)
-																		.addComponent(
-																				lblObservacoes)))
-										.addContainerGap(54, Short.MAX_VALUE)));
+		panelDadosInstituicaoLayout.setHorizontalGroup(
+			panelDadosInstituicaoLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(panelDadosInstituicaoLayout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(panelDadosInstituicaoLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(panelDadosInstituicaoLayout.createParallelGroup(Alignment.TRAILING)
+							.addGroup(panelDadosInstituicaoLayout.createSequentialGroup()
+								.addComponent(btnEditarDadosInstituicao, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.UNRELATED)
+								.addComponent(btnSalvarDadosInstituicao, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE))
+							.addGroup(panelDadosInstituicaoLayout.createSequentialGroup()
+								.addGroup(panelDadosInstituicaoLayout.createParallelGroup(Alignment.LEADING)
+									.addComponent(lblNome)
+									.addComponent(lblRazaoSocial)
+									.addComponent(lblSite)
+									.addComponent(lblEndereco)
+									.addComponent(lblTelefone)
+									.addComponent(lblEmail)
+									.addComponent(lblCnpj)
+									.addComponent(lblObservacoes))
+								.addPreferredGap(ComponentPlacement.UNRELATED)
+								.addGroup(panelDadosInstituicaoLayout.createParallelGroup(Alignment.LEADING)
+									.addComponent(scrollpaneObservacoes, GroupLayout.PREFERRED_SIZE, 353, GroupLayout.PREFERRED_SIZE)
+									.addComponent(txtNome, GroupLayout.PREFERRED_SIZE, 353, GroupLayout.PREFERRED_SIZE)
+									.addComponent(txtSite, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE)
+									.addComponent(txtEndereco, GroupLayout.PREFERRED_SIZE, 353, GroupLayout.PREFERRED_SIZE)
+									.addComponent(txtTelefone, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)
+									.addComponent(txtEmail, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE)
+									.addComponent(txtCnpj, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE)
+									.addComponent(txtRazaoSocial, GroupLayout.PREFERRED_SIZE, 353, GroupLayout.PREFERRED_SIZE)
+									.addComponent(txtResponsavel, GroupLayout.PREFERRED_SIZE, 242, GroupLayout.PREFERRED_SIZE))))
+						.addComponent(lblResponsavel))
+					.addContainerGap(67, Short.MAX_VALUE))
+		);
+		panelDadosInstituicaoLayout.setVerticalGroup(
+			panelDadosInstituicaoLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(panelDadosInstituicaoLayout.createSequentialGroup()
+					.addGroup(panelDadosInstituicaoLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblNome)
+						.addComponent(txtNome, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(panelDadosInstituicaoLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(panelDadosInstituicaoLayout.createSequentialGroup()
+							.addComponent(txtRazaoSocial, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(panelDadosInstituicaoLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(txtCnpj, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblCnpj)))
+						.addComponent(lblRazaoSocial, Alignment.LEADING))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(panelDadosInstituicaoLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(txtEmail, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblEmail))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(panelDadosInstituicaoLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(txtTelefone, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblTelefone))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(panelDadosInstituicaoLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(txtEndereco, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblEndereco))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(panelDadosInstituicaoLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(txtSite, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblSite))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(panelDadosInstituicaoLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblResponsavel)
+						.addComponent(txtResponsavel, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(panelDadosInstituicaoLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(panelDadosInstituicaoLayout.createSequentialGroup()
+							.addGap(145)
+							.addGroup(panelDadosInstituicaoLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(btnSalvarDadosInstituicao, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnEditarDadosInstituicao, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)))
+						.addGroup(panelDadosInstituicaoLayout.createParallelGroup(Alignment.BASELINE)
+							.addComponent(lblObservacoes)
+							.addComponent(scrollpaneObservacoes, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(246, Short.MAX_VALUE))
+		);
 		panelDadosInstituicao.setLayout(panelDadosInstituicaoLayout);
 
 		javax.swing.GroupLayout panelInstituicaoLayout = new javax.swing.GroupLayout(
 				panelInstituicao);
+		panelInstituicaoLayout.setHorizontalGroup(
+			panelInstituicaoLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(panelInstituicaoLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(panelDadosInstituicao, GroupLayout.PREFERRED_SIZE, 545, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(734, Short.MAX_VALUE))
+		);
+		panelInstituicaoLayout.setVerticalGroup(
+			panelInstituicaoLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(panelInstituicaoLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(panelDadosInstituicao, GroupLayout.PREFERRED_SIZE, 439, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(223, Short.MAX_VALUE))
+		);
 		panelInstituicao.setLayout(panelInstituicaoLayout);
-		panelInstituicaoLayout.setHorizontalGroup(panelInstituicaoLayout
-				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(
-						panelInstituicaoLayout
-								.createSequentialGroup()
-								.addContainerGap()
-								.addComponent(panelDadosInstituicao,
-										javax.swing.GroupLayout.PREFERRED_SIZE,
-										545,
-										javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addContainerGap(734, Short.MAX_VALUE)));
-		panelInstituicaoLayout.setVerticalGroup(panelInstituicaoLayout
-				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(
-						panelInstituicaoLayout
-								.createSequentialGroup()
-								.addContainerGap()
-								.addComponent(panelDadosInstituicao,
-										javax.swing.GroupLayout.PREFERRED_SIZE,
-										javax.swing.GroupLayout.DEFAULT_SIZE,
-										javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addContainerGap(259, Short.MAX_VALUE)));
 
 		menuPrincipalInstituicao.addTab("Instituição",
 				new javax.swing.ImageIcon("img/home_16x16.png.png"),

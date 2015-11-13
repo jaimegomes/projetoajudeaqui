@@ -40,7 +40,8 @@ public class Anuncio extends Entidade {
 	 * @param instituicao
 	 */
 	public Anuncio(String titulo, String descricao, int qtdVagas,
-			Date dataPublicacao, Funcao funcao, String status, Instituicao instituicao) {
+			Date dataPublicacao, Funcao funcao, String status,
+			Instituicao instituicao) {
 		super();
 		this.titulo = titulo;
 		this.descricao = descricao;
@@ -64,7 +65,8 @@ public class Anuncio extends Entidade {
 	 * @param instituicao
 	 */
 	public Anuncio(int id, String titulo, String descricao, int qtdVagas,
-			Date dataPublicacao, Funcao funcao, String status, Instituicao instituicao) {
+			Date dataPublicacao, Funcao funcao, String status,
+			Instituicao instituicao) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
@@ -185,12 +187,11 @@ public class Anuncio extends Entidade {
 	}
 
 	/**
-	 * @param instituicao the instituicao to set
+	 * @param instituicao
+	 *            the instituicao to set
 	 */
 	public void setInstituicao(Instituicao instituicao) {
 		this.instituicao = instituicao;
 	}
-	
-	
 
 }
