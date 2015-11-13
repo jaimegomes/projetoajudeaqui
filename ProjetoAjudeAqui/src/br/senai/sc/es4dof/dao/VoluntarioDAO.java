@@ -34,7 +34,8 @@ public class VoluntarioDAO extends GenericDAO {
 			pstmt.setString(1, voluntario.getNome());
 			pstmt.setString(2, voluntario.getSexo());
 			pstmt.setString(3, voluntario.getCpf());
-			pstmt.setDate(4, new java.sql.Date(voluntario.getDataNascimento().getTime()));
+			pstmt.setDate(4, new java.sql.Date(voluntario.getDataNascimento()
+					.getTime()));
 			pstmt.setString(5, voluntario.getEstadoCivil());
 			pstmt.setString(6, voluntario.getEndereco());
 			pstmt.setString(7, voluntario.getComplemento());
@@ -49,7 +50,8 @@ public class VoluntarioDAO extends GenericDAO {
 			pstmt.close();
 
 		} catch (SQLException se) {
-			System.out.println("[VoluntarioDAO] - Erro ao salvar voluntário.\n" + se.getMessage());
+			System.out.println("[VoluntarioDAO] - Erro ao salvar voluntário.\n"
+					+ se.getMessage());
 			con.rollback();
 
 		} finally {
@@ -77,7 +79,9 @@ public class VoluntarioDAO extends GenericDAO {
 
 		} catch (SQLException e) {
 			con.rollback();
-			System.out.println("[VoluntarioDAO] - Erro ao excluir voluntário.\n" + e.getMessage());
+			System.out
+					.println("[VoluntarioDAO] - Erro ao excluir voluntário.\n"
+							+ e.getMessage());
 		} finally {
 			con.close();
 		}
@@ -98,7 +102,8 @@ public class VoluntarioDAO extends GenericDAO {
 			pstmt.setString(1, voluntario.getNome());
 			pstmt.setString(2, voluntario.getSexo());
 			pstmt.setString(3, voluntario.getCpf());
-			pstmt.setDate(4, new java.sql.Date(voluntario.getDataNascimento().getTime()));
+			pstmt.setDate(4, new java.sql.Date(voluntario.getDataNascimento()
+					.getTime()));
 			pstmt.setString(5, voluntario.getEstadoCivil());
 			pstmt.setString(6, voluntario.getEndereco());
 			pstmt.setString(7, voluntario.getComplemento());
@@ -115,7 +120,8 @@ public class VoluntarioDAO extends GenericDAO {
 
 		} catch (SQLException e) {
 			con.rollback();
-			System.out.println("[VoluntarioDAO] - Erro ao editar voluntário.\n" + e.getMessage());
+			System.out.println("[VoluntarioDAO] - Erro ao editar voluntário.\n"
+					+ e.getMessage());
 		} finally {
 			con.close();
 		}
@@ -129,7 +135,7 @@ public class VoluntarioDAO extends GenericDAO {
 		usuarioDAO = new UsuarioDAO();
 
 		List<Entidade> listaVoluntarios = new ArrayList<Entidade>();
-		String sql = "SELECT * FROM voluntario";
+		String sql = "SELECT v.id, v.nome, v.telefone, v.cpf, v.endereco, v.email, v.dataNasc, v.idUsuario, v.sexo, v.estadoCivil, v.complemento, v.celular, v.informacoesComplementares FROM voluntario v";
 		try {
 
 			PreparedStatement pstm = con.prepareStatement(sql);
@@ -139,13 +145,22 @@ public class VoluntarioDAO extends GenericDAO {
 			while (result.next()) {
 
 				try {
-					usuario = (Usuario) usuarioDAO.getPorId(result.getInt("idUsuario"));
+					usuario = (Usuario) usuarioDAO.getPorId(result
+							.getInt("idUsuario"));
 
-					voluntario = new Voluntario(result.getInt("id"), result.getString("nome"),
-							result.getString("telefone"), result.getString("cpf"), result.getString("endereco"),
-							result.getString("email"), result.getDate("dataNasc"), usuario, result.getString("sexo"),
-							result.getString("estadoCivil"), result.getString("complemento"),
-							result.getString("celular"), result.getString("informacoesComplementares"));
+					voluntario = new Voluntario(result.getInt("id"),
+							result.getString("nome"),
+							result.getString("telefone"),
+							result.getString("cpf"),
+							result.getString("endereco"),
+							result.getString("email"),
+							result.getDate("dataNasc"), usuario,
+							result.getString("sexo"),
+							result.getString("estadoCivil"),
+							result.getString("complemento"),
+							result.getString("celular"),
+							result.getString("informacoesComplementares"));
+
 					listaVoluntarios.add(voluntario);
 
 				} catch (Exception e) {
@@ -158,7 +173,9 @@ public class VoluntarioDAO extends GenericDAO {
 
 		} catch (SQLException e) {
 			con.rollback();
-			System.out.println("[VoluntarioDAO] - Erro ao listar voluntarios.\n" + e.getMessage());
+			System.out
+					.println("[VoluntarioDAO] - Erro ao listar voluntarios.\n"
+							+ e.getMessage());
 
 		} finally {
 			con.close();
@@ -182,19 +199,26 @@ public class VoluntarioDAO extends GenericDAO {
 
 			while (result.next()) {
 
-				usuario = (Usuario) usuarioDAO.getPorId(result.getInt("idUsuario"));
+				usuario = (Usuario) usuarioDAO.getPorId(result
+						.getInt("idUsuario"));
 
-				voluntario = new Voluntario(result.getInt("id"), result.getString("nome"), result.getString("telefone"),
-						result.getString("cpf"), result.getString("endereco"), result.getString("email"),
-						result.getDate("dataNasc"), usuario, result.getString("sexo"), result.getString("estadoCivil"),
-						result.getString("complemento"), result.getString("celular"),
+				voluntario = new Voluntario(result.getInt("id"),
+						result.getString("nome"), result.getString("telefone"),
+						result.getString("cpf"), result.getString("endereco"),
+						result.getString("email"), result.getDate("dataNasc"),
+						usuario, result.getString("sexo"),
+						result.getString("estadoCivil"),
+						result.getString("complemento"),
+						result.getString("celular"),
 						result.getString("informacoesComplementares"));
 			}
 			result.close();
 			pstmt.close();
 
 		} catch (SQLException se) {
-			System.out.println("[VoluntarioDAO] - Erro ao pegar voluntario por ID.\n" + se.getMessage());
+			System.out
+					.println("[VoluntarioDAO] - Erro ao pegar voluntario por ID.\n"
+							+ se.getMessage());
 		} finally {
 			con.close();
 		}

@@ -106,7 +106,7 @@ public class UsuarioDAO extends GenericDAO {
 		con = Conexao.getConnection();
 
 		List<Entidade> listaUsuarios = new ArrayList<Entidade>();
-		String sql = "SELECT * FROM usuario";
+		String sql = "SELECT u.id, u.login, u.senha, u.perfil FROM usuario u";
 		try {
 
 			PreparedStatement pstm = con.prepareStatement(sql);
