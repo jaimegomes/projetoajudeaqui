@@ -35,6 +35,16 @@ public class LoginUI extends javax.swing.JFrame {
 		initComponents();
 	}
 
+	public static void main(String args[]) {
+
+		/* Create and display the form */
+		java.awt.EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				new LoginUI().setVisible(true);
+			}
+		});
+	}
+
 	private void initComponents() {
 
 		lblLogin = new javax.swing.JLabel();
@@ -64,8 +74,7 @@ public class LoginUI extends javax.swing.JFrame {
 		lblLogin.setBounds(260, 410, 110, 32);
 
 		txtLogin.setFont(new java.awt.Font("Dialog", 2, 18)); // NOI18N
-		txtLogin.setBorder(new javax.swing.border.LineBorder(
-				new java.awt.Color(0, 0, 0), 1, true));
+		txtLogin.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 		getContentPane().add(txtLogin);
 		txtLogin.setBounds(360, 410, 150, 30);
 
@@ -75,8 +84,7 @@ public class LoginUI extends javax.swing.JFrame {
 		lblSenha.setBounds(260, 460, 110, 32);
 
 		pwdSenha.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
-		pwdSenha.setBorder(new javax.swing.border.LineBorder(
-				new java.awt.Color(0, 0, 0), 1, true));
+		pwdSenha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 		getContentPane().add(pwdSenha);
 		pwdSenha.setBounds(360, 460, 150, 30);
 
@@ -93,8 +101,7 @@ public class LoginUI extends javax.swing.JFrame {
 		btnEntrar.setBounds(520, 460, 120, 30);
 
 		lblBemVindo.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-		lblBemVindo
-				.setText("Seja Bem Vindo ao Portal do Voluntário :: Ajude Aqui :: ");
+		lblBemVindo.setText("Seja Bem Vindo ao Portal do Voluntário :: Ajude Aqui :: ");
 		getContentPane().add(lblBemVindo);
 		lblBemVindo.setBounds(110, 360, 660, 50);
 
@@ -103,8 +110,7 @@ public class LoginUI extends javax.swing.JFrame {
 		getContentPane().add(lblErroLogin);
 		lblErroLogin.setBounds(140, 558, 550, 0);
 
-		btnRegistrarse.setIcon(new javax.swing.ImageIcon(
-				("img/editar_usuario_16x16.png"))); // NOI18N
+		btnRegistrarse.setIcon(new javax.swing.ImageIcon(("img/editar_usuario_16x16.png"))); // NOI18N
 		btnRegistrarse.setText("Registrar-se");
 		getContentPane().add(btnRegistrarse);
 		btnRegistrarse.setBounds(360, 510, 150, 25);
@@ -121,13 +127,12 @@ public class LoginUI extends javax.swing.JFrame {
 			}
 		});
 
-		lblBackground
-				.setIcon(new javax.swing.ImageIcon(("img/background.png"))); // NOI18N
+		lblBackground.setIcon(new javax.swing.ImageIcon(("img/background.png"))); // NOI18N
 		getContentPane().add(lblBackground);
 		lblBackground.setBounds(0, 0, 810, 610);
 
 		pack();
-	}// </editor-fold>
+	}
 
 	private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {
 		UsuarioController controller = new UsuarioController();
@@ -135,24 +140,22 @@ public class LoginUI extends javax.swing.JFrame {
 		String senha = new String(pwdSenha.getPassword());
 
 		try {
-			Usuario usuario = (Usuario) controller.getPorLogin(txtLogin
-					.getText());
+			Usuario usuario = (Usuario) controller.getPorLogin(txtLogin.getText());
 
 			if (usuario == null) {
 				JOptionPane.showMessageDialog(null, "Login não encontrado.");
 				txtLogin.setText("");
+				pwdSenha.setText("");
 
 			} else {
 				if (usuario.getSenha().equals(senha)) {
 					if (usuario.getPerfil().equals("Voluntário")) {
 						dispose();
-						PrincipalVoluntarioUI principal = new PrincipalVoluntarioUI(
-								usuario);
+						PrincipalVoluntarioUI principal = new PrincipalVoluntarioUI(usuario);
 						principal.setVisible(true);
 					} else {
 						dispose();
-						PrincipalInstituicaoUI principal = new PrincipalInstituicaoUI(
-								usuario);
+						PrincipalInstituicaoUI principal = new PrincipalInstituicaoUI(usuario);
 						principal.setVisible(true);
 					}
 				} else {
@@ -165,16 +168,6 @@ public class LoginUI extends javax.swing.JFrame {
 			e.printStackTrace();
 		}
 
-	}
-
-	public static void main(String args[]) {
-
-		/* Create and display the form */
-		java.awt.EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				new LoginUI().setVisible(true);
-			}
-		});
 	}
 
 }
