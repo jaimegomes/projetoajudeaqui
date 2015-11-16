@@ -45,5 +45,11 @@ public class VoluntarioController implements IController {
 		volDAO = new VoluntarioDAO();
 		return volDAO.getPorId(id);
 	}
+	
+	public Entidade getPorIdUsuario(int id) throws Exception {
+
+		volDAO = new VoluntarioDAO();
+		return volDAO.getPorIdUsuario(id);
+	}
 
 }

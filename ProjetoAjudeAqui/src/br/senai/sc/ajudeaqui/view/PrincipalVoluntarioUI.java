@@ -85,6 +85,7 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 	private javax.swing.JTextField txtNome;
 	private javax.swing.JTextField txtTituloFiltroVagas;
 	private JDateChooser dateChooserDataNascimento;
+	private VoluntarioController controller = new VoluntarioController();
 
 	// End of variables declaration
 
@@ -209,13 +210,14 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 		cmbEstadoCivil.setEnabled(false);
 		dateChooserDataNascimento.setEnabled(false);
 		cmbSexo.setEnabled(false);
-		
+
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		setTitle(":: Sistema doVoluntário Ajude Aqui ::");
 		setBounds(new java.awt.Rectangle(0, 0, 0, 0));
 		setMaximumSize(new java.awt.Dimension(1300, 700));
 		setMinimumSize(new java.awt.Dimension(1300, 700));
 		setName("frameVoluntario"); // NOI18N
+		getContentPane().setBackground(Color.black);
 
 		menuPrincipalVoluntario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 		menuPrincipalVoluntario.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
@@ -670,8 +672,79 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 				menuPrincipalVoluntario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
 				javax.swing.GroupLayout.PREFERRED_SIZE));
 
-		menuPrincipalVoluntario.getAccessibleContext().setAccessibleName("");
+		/**
+		 * Cria a entidade Voluntário a partir do usuário logado
+		 */
+		Voluntario vol = null;
+		try {
+			vol = (Voluntario) controller.getPorIdUsuario(usuario.getId());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
+		/**
+		 * No caso sempre vai ser diferente de nulo pois ao criar o usuário e
+		 * escolher o perfil de instituição ele já cria um registro na tabela
+		 * instituição.
+		 * 
+		 * Verifica todos os campos, caso sejam diferentes de nulo ele preenche
+		 * os dados do voluntário.
+		 */
+		if (vol != null) {
+
+			if (vol.getNome() != null)
+				txtNome.setText(vol.getNome());
+
+			if (vol.getTelefone() != null)
+				jftxtTelefone.setText(vol.getTelefone());
+
+			if (vol.getCpf() != null)
+				jftxtCpf.setText(vol.getCpf());
+
+			if (vol.getEndereco() != null)
+				txtEndereco.setText(vol.getEndereco());
+
+			if (vol.getEmail() != null)
+				jftxtEmail.setText(vol.getEmail());
+
+			if (vol.getDataNascimento() != null)
+				dateChooserDataPublicacaoFiltroVagas.setDate(vol.getDataNascimento());
+
+			if (vol.getSexo() != null) {
+
+				if (vol.getSexo().equals("Masculino")) {
+					cmbSexo.setSelectedIndex(1);
+
+				} else if (vol.getSexo().equals("Feminino")) {
+					cmbSexo.setSelectedIndex(2);
+				}
+
+			}
+
+			if (vol.getEstadoCivil() != null) {
+
+				if (vol.getEstadoCivil().equals("Solteiro")) {
+					cmbSexo.setSelectedIndex(1);
+
+				} else if (vol.getEstadoCivil().equals("Casado")) {
+					cmbSexo.setSelectedIndex(2);
+
+				} else if (vol.getEstadoCivil().equals("Outro")) {
+					cmbSexo.setSelectedIndex(3);
+				}
+
+			}
+
+			if (vol.getComplemento() != null)
+				txtComplemento.setText(vol.getComplemento());
+
+			if (vol.getCelular() != null)
+				jftxtCelular.setText(vol.getCelular());
+
+			if (vol.getInformacoesComplementares() != null)
+				atxtInfoComplementares.setText(vol.getInformacoesComplementares());
+
+		}
 		pack();
 	}
 
