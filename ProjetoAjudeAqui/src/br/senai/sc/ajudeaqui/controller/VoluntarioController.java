@@ -8,7 +8,7 @@ import br.senai.sc.ajudeaqui.interfaces.IController;
 
 public class VoluntarioController implements IController {
 
-	VoluntarioDAO volDAO;
+	private VoluntarioDAO volDAO = null;
 
 	@Override
 	public void salvar(Entidade entidade) throws Exception {
