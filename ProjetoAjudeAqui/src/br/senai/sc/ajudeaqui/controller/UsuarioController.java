@@ -9,11 +9,13 @@ import br.senai.sc.es4dof.model.Usuario;
 
 public class UsuarioController implements IController {
 
-	UsuarioDAO dao = new UsuarioDAO();
+	UsuarioDAO dao;
 	Usuario usuario = null;
 
 	@Override
 	public void salvar(Entidade entidade) throws Exception {
+
+		dao = new UsuarioDAO();
 		usuario = (Usuario) entidade;
 
 		if (usuario == null)
@@ -35,28 +37,36 @@ public class UsuarioController implements IController {
 	@Override
 	public void excluir(Entidade entidade) throws Exception {
 
+		dao = new UsuarioDAO();
+		dao.excluir(entidade);
+
 	}
 
 	@Override
 	public void editar(Entidade entidade) throws Exception {
 
+		dao = new UsuarioDAO();
+		dao.editar(entidade);
 	}
 
 	@Override
 	public List<Entidade> listar() throws Exception {
-		return null;
+
+		dao = new UsuarioDAO();
+		return dao.listar();
 	}
 
 	@Override
 	public Entidade getPorId(int id) throws Exception {
-		return null;
+
+		dao = new UsuarioDAO();
+		return dao.getPorId(id);
 	}
-	
+
 	public Entidade getPorLogin(String login) throws Exception {
-		
-		Usuario usuario = (Usuario) dao.getPorLogin(login);
-		
-		return usuario;
+
+		dao = new UsuarioDAO();
+		return dao.getPorLogin(login);
 	}
 
 }

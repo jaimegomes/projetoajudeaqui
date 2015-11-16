@@ -5,6 +5,7 @@
  */
 package br.senai.sc.ajudeaqui.view;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -208,7 +209,7 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 		cmbEstadoCivil.setEnabled(false);
 		dateChooserDataNascimento.setEnabled(false);
 		cmbSexo.setEnabled(false);
-
+		
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		setTitle(":: Sistema doVoluntário Ajude Aqui ::");
 		setBounds(new java.awt.Rectangle(0, 0, 0, 0));

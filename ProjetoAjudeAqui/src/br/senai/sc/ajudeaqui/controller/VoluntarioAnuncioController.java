@@ -3,38 +3,48 @@ package br.senai.sc.ajudeaqui.controller;
 import java.util.List;
 
 import br.senai.sc.ajudeaqui.abstracts.Entidade;
+import br.senai.sc.es4dof.dao.VoluntarioAnuncioDAO;
 import br.senai.sc.es4dof.interfaces.IController;
 
 public class VoluntarioAnuncioController implements IController {
 
+	VoluntarioAnuncioDAO dao;
+
 	@Override
 	public void salvar(Entidade entidade) throws Exception {
-		// TODO Auto-generated method stub
+
+		dao = new VoluntarioAnuncioDAO();
+		dao.salvar(entidade);
 
 	}
 
 	@Override
 	public void excluir(Entidade entidade) throws Exception {
-		// TODO Auto-generated method stub
 
+		dao = new VoluntarioAnuncioDAO();
+		dao.excluir(entidade);
 	}
 
 	@Override
 	public void editar(Entidade entidade) throws Exception {
-		// TODO Auto-generated method stub
+
+		dao = new VoluntarioAnuncioDAO();
+		dao.editar(entidade);
 
 	}
 
 	@Override
 	public List<Entidade> listar() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+
+		dao = new VoluntarioAnuncioDAO();
+		return dao.listar();
 	}
 
 	@Override
 	public Entidade getPorId(int id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+
+		dao = new VoluntarioAnuncioDAO();
+		return dao.getPorId(id);
 	}
 
 }
