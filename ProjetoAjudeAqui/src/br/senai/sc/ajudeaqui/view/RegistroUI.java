@@ -133,7 +133,11 @@ public class RegistroUI extends javax.swing.JInternalFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				registrar();
+				try {
+					registrar();
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, e1.getMessage());
+				}
 
 			}
 		});
@@ -166,44 +170,48 @@ public class RegistroUI extends javax.swing.JInternalFrame {
 		pack();
 	}
 
-	private void registrar() {
+	private void registrar() throws Exception {
 		UsuarioController controller = new UsuarioController();
 		Usuario user = null;
 		String senha = null;
 		String confirmacaoSenha = null;
 
-		String perfil = "";
+		if (controller.getPorLogin(txtLogin.getText()) == null) {
+			String perfil = "";
 
-		if (!pwdSenha.getPassword().equals(null) && !pwdSenha.getPassword().equals("")) {
-			senha = new String(pwdSenha.getPassword());
-		}
-
-		if (!pwdConfirmarSenha.getPassword().equals(null) && !pwdConfirmarSenha.getPassword().equals("")) {
-			confirmacaoSenha = new String(pwdConfirmarSenha.getPassword());
-		}
-
-		if (cmbPerfil.getSelectedIndex() == 1) {
-			perfil = "Voluntário";
-		} else if (cmbPerfil.getSelectedIndex() == 2) {
-			perfil = "Instituição";
-		}
-
-		if (senha.equals(confirmacaoSenha)) {
-			user = new Usuario(txtLogin.getText(), senha, perfil);
-
-			try {
-				controller.salvar(user);
-				dispose();
-				JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso.");
-			} catch (Exception e) {
-				e.printStackTrace();
-				JOptionPane.showMessageDialog(null, "Erro ao registrar usuário. \n" + e.getMessage());
+			if (!pwdSenha.getPassword().equals(null) && !pwdSenha.getPassword().equals("")) {
+				senha = new String(pwdSenha.getPassword());
 			}
 
+			if (!pwdConfirmarSenha.getPassword().equals(null) && !pwdConfirmarSenha.getPassword().equals("")) {
+				confirmacaoSenha = new String(pwdConfirmarSenha.getPassword());
+			}
+
+			if (cmbPerfil.getSelectedIndex() == 1) {
+				perfil = "Voluntário";
+			} else if (cmbPerfil.getSelectedIndex() == 2) {
+				perfil = "Instituição";
+			}
+
+			if (senha.equals(confirmacaoSenha)) {
+				user = new Usuario(txtLogin.getText(), senha, perfil);
+
+				try {
+					controller.salvar(user);
+					dispose();
+					JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso.");
+				} catch (Exception e) {
+					e.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Erro ao registrar usuário. \n" + e.getMessage());
+				}
+
+			} else {
+				JOptionPane.showMessageDialog(null, "Os campos senha e confirmar senha devem ser iguais.");
+				pwdSenha.setText(null);
+				pwdConfirmarSenha.setText(null);
+			}
 		} else {
-			JOptionPane.showMessageDialog(null, "Os campos senha e confirmar senha devem ser iguais.");
-			pwdSenha.setText(null);
-			pwdConfirmarSenha.setText(null);
+			throw new Exception("Erro ao registrar usuário, login já existe.");
 		}
 
 	}

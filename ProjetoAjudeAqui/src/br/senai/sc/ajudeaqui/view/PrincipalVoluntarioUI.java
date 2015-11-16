@@ -23,7 +23,6 @@ import com.toedter.calendar.JDateChooser;
 import br.senai.sc.ajudeaqui.controller.VoluntarioController;
 import br.senai.sc.ajudeaqui.model.Usuario;
 import br.senai.sc.ajudeaqui.model.Voluntario;
-import br.senai.sc.ajudeaqui.utils.StringUtils;
 
 /**
  *
@@ -85,6 +84,7 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 	private javax.swing.JTextField txtNome;
 	private javax.swing.JTextField txtTituloFiltroVagas;
 	private JDateChooser dateChooserDataNascimento;
+	private JDateChooser dateChooserDataPublicacaoFiltroVagas;
 	private VoluntarioController controller = new VoluntarioController();
 
 	// End of variables declaration
@@ -192,6 +192,7 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 		scrollpaneVagas = new javax.swing.JScrollPane();
 		tableVagas = new javax.swing.JTable();
 		dateChooserDataNascimento = new JDateChooser();
+		dateChooserDataPublicacaoFiltroVagas = new JDateChooser();
 
 		// desabilitando os campos
 		cmbEstadoCivil.setEnabled(false);
@@ -565,7 +566,7 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 		btnPesquisarFiltroVagas1.setIcon(new ImageIcon("img/agenda_16x16.png")); // NOI18N
 		btnPesquisarFiltroVagas1.setText("Gerar Relatório");
 
-		JDateChooser dateChooserDataPublicacaoFiltroVagas = new JDateChooser();
+		dateChooserDataPublicacaoFiltroVagas = new JDateChooser();
 
 		javax.swing.GroupLayout panelFiltroVagasLayout = new javax.swing.GroupLayout(panelFiltroVagas);
 		panelFiltroVagasLayout.setHorizontalGroup(panelFiltroVagasLayout.createParallelGroup(Alignment.LEADING)
@@ -708,7 +709,7 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 				jftxtEmail.setText(vol.getEmail());
 
 			if (vol.getDataNascimento() != null)
-				dateChooserDataPublicacaoFiltroVagas.setDate(vol.getDataNascimento());
+				dateChooserDataNascimento.setDate(vol.getDataNascimento());
 
 			if (vol.getSexo() != null) {
 
@@ -723,14 +724,14 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 
 			if (vol.getEstadoCivil() != null) {
 
-				if (vol.getEstadoCivil().equals("Solteiro")) {
-					cmbSexo.setSelectedIndex(1);
+				if (vol.getEstadoCivil().equals("Casado")) {
+					cmbEstadoCivil.setSelectedIndex(1);
 
-				} else if (vol.getEstadoCivil().equals("Casado")) {
-					cmbSexo.setSelectedIndex(2);
+				} else if (vol.getEstadoCivil().equals("Solteiro")) {
+					cmbEstadoCivil.setSelectedIndex(2);
 
 				} else if (vol.getEstadoCivil().equals("Outro")) {
-					cmbSexo.setSelectedIndex(3);
+					cmbEstadoCivil.setSelectedIndex(3);
 				}
 
 			}
@@ -772,13 +773,14 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 		}
 
 		try {
+			
 			Voluntario voluntario = new Voluntario(txtNome.getText(), jftxtTelefone.getText(), jftxtCpf.getText(),
-					txtEndereco.getText(), jftxtEmail.getText(),
-					StringUtils.getInstance().parseStringToDate(dateChooserDataNascimento.getDateFormatString()), user,
-					sexo, estadoCivil, txtComplemento.getText(), jftxtCelular.getText(),
-					atxtInfoComplementares.getText());
+					txtEndereco.getText(), jftxtEmail.getText(), dateChooserDataNascimento.getDate(), user, sexo,
+					estadoCivil, txtComplemento.getText(), jftxtCelular.getText(), atxtInfoComplementares.getText());
 
-			controller.salvar(voluntario);
+			controller.editar(voluntario);
+
+			JOptionPane.showMessageDialog(null, "Voluntário editado com sucesso.");
 
 		} catch (ParseException e) {
 			JOptionPane.showMessageDialog(null, "Erro ao salvar dados.");
