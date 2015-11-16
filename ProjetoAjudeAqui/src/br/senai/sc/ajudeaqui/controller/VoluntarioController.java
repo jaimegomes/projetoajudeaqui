@@ -3,8 +3,8 @@ package br.senai.sc.ajudeaqui.controller;
 import java.util.List;
 
 import br.senai.sc.ajudeaqui.abstracts.Entidade;
-import br.senai.sc.es4dof.dao.VoluntarioDAO;
-import br.senai.sc.es4dof.interfaces.IController;
+import br.senai.sc.ajudeaqui.dao.VoluntarioDAO;
+import br.senai.sc.ajudeaqui.interfaces.IController;
 
 public class VoluntarioController implements IController {
 

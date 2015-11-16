@@ -1,4 +1,4 @@
-package br.senai.sc.es4dof.dao;
+package br.senai.sc.ajudeaqui.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,26 +10,26 @@ import java.util.List;
 import br.senai.sc.ajudeaqui.abstracts.Entidade;
 import br.senai.sc.ajudeaqui.abstracts.GenericDAO;
 import br.senai.sc.ajudeaqui.conexao.Conexao;
-import br.senai.sc.es4dof.model.VoluntarioAnuncio;
+import br.senai.sc.ajudeaqui.model.FuncaoVoluntario;
 
-public class VoluntarioAnuncioDAO extends GenericDAO {
+public class FuncaoVoluntarioDAO extends GenericDAO {
 
 	private Connection con = null;
-	private VoluntarioAnuncio voluntarioAnuncio = null;
+	private FuncaoVoluntario funcaoVoluntario = null;
 
 	@Override
 	public void salvar(Entidade entidade) throws Exception {
 
 		con = Conexao.getConnection();
 
-		String sql = "INSERT INTO voluntarioAnuncio (idVoluntario, idAnuncio) VALUES (?,?)";
+		String sql = "INSERT INTO funcaoVoluntario (idFuncao, idVoluntario) VALUES (?,?)";
 		try {
 
-			voluntarioAnuncio = (VoluntarioAnuncio) entidade;
+			funcaoVoluntario = (FuncaoVoluntario) entidade;
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, voluntarioAnuncio.getIdVoluntario());
-			pstmt.setInt(2, voluntarioAnuncio.getIdAnuncio());
+			pstmt.setInt(1, funcaoVoluntario.getIdFuncao());
+			pstmt.setInt(2, funcaoVoluntario.getIdVoluntario());
 
 			pstmt.execute();
 			con.commit();
@@ -37,7 +37,7 @@ public class VoluntarioAnuncioDAO extends GenericDAO {
 
 		} catch (SQLException se) {
 			System.out
-					.println("[VoluntarioAnuncioDAO] - Erro ao salvar VoluntarioAnuncio.\n"
+					.println("[FuncaoVoluntarioDAO] - Erro ao salvar FuncaoVoluntario.\n"
 							+ se.getMessage());
 			con.rollback();
 
@@ -52,13 +52,13 @@ public class VoluntarioAnuncioDAO extends GenericDAO {
 
 		con = Conexao.getConnection();
 
-		String sql = "DELETE FROM VoluntarioAnuncio WHERE id=?";
+		String sql = "DELETE FROM FuncaoVoluntario WHERE id=?";
 		try {
 
-			voluntarioAnuncio = (VoluntarioAnuncio) entidade;
+			funcaoVoluntario = (FuncaoVoluntario) entidade;
 
 			PreparedStatement pstm = con.prepareStatement(sql);
-			pstm.setInt(1, voluntarioAnuncio.getId());
+			pstm.setInt(1, funcaoVoluntario.getId());
 
 			pstm.execute();
 			con.commit();
@@ -67,7 +67,7 @@ public class VoluntarioAnuncioDAO extends GenericDAO {
 		} catch (SQLException e) {
 			con.rollback();
 			System.out
-					.println("[VoluntarioAnuncioDAO] - Erro ao excluir VoluntarioAnuncio.\n"
+					.println("[FuncaoVoluntarioDAO] - Erro ao excluir FuncaoVoluntario.\n"
 							+ e.getMessage());
 		} finally {
 			con.close();
@@ -80,15 +80,15 @@ public class VoluntarioAnuncioDAO extends GenericDAO {
 
 		con = Conexao.getConnection();
 
-		String sql = "UPDATE voluntarioAnuncio SET idAnuncio = ?, idVoluntario = ? WHERE id = ?";
+		String sql = "UPDATE funcaoVoluntario SET idFuncao = ?, idVoluntario = ? WHERE id = ?";
 		try {
 
-			voluntarioAnuncio = (VoluntarioAnuncio) entidade;
+			funcaoVoluntario = (FuncaoVoluntario) entidade;
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, voluntarioAnuncio.getIdAnuncio());
-			pstmt.setInt(2, voluntarioAnuncio.getIdVoluntario());
-			pstmt.setInt(3, voluntarioAnuncio.getId());
+			pstmt.setInt(1, funcaoVoluntario.getIdFuncao());
+			pstmt.setInt(2, funcaoVoluntario.getIdVoluntario());
+			pstmt.setInt(3, funcaoVoluntario.getId());
 
 			pstmt.execute();
 			con.commit();
@@ -97,7 +97,7 @@ public class VoluntarioAnuncioDAO extends GenericDAO {
 		} catch (SQLException e) {
 			con.rollback();
 			System.out
-					.println("[VoluntarioAnuncioDAO] - Erro ao editar VoluntarioAnuncio.\n"
+					.println("[FuncaoVoluntarioDAO] - Erro ao editar FuncaoVoluntario.\n"
 							+ e.getMessage());
 		} finally {
 			con.close();
@@ -110,8 +110,8 @@ public class VoluntarioAnuncioDAO extends GenericDAO {
 
 		con = Conexao.getConnection();
 
-		List<Entidade> listaVoluntarioAnuncio = new ArrayList<Entidade>();
-		String sql = "SELECT va.id, va.idVoluntario, va.idAnuncio FROM voluntarioAnuncio va";
+		List<Entidade> listaFuncaoVoluntario = new ArrayList<Entidade>();
+		String sql = "SELECT fv.id, fv.idFuncao, fv.idVoluntario FROM funcaoVoluntario fv";
 		try {
 
 			PreparedStatement pstm = con.prepareStatement(sql);
@@ -122,11 +122,11 @@ public class VoluntarioAnuncioDAO extends GenericDAO {
 
 				try {
 
-					voluntarioAnuncio = new VoluntarioAnuncio(
-							result.getInt("id"), result.getInt("idVoluntario"),
-							result.getInt("idAnuncio"));
+					funcaoVoluntario = new FuncaoVoluntario(
+							result.getInt("id"), result.getInt("idFuncao"),
+							result.getInt("idVoluntario"));
 
-					listaVoluntarioAnuncio.add(voluntarioAnuncio);
+					listaFuncaoVoluntario.add(funcaoVoluntario);
 
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -139,13 +139,13 @@ public class VoluntarioAnuncioDAO extends GenericDAO {
 		} catch (SQLException e) {
 			con.rollback();
 			System.out
-					.println("[VoluntarioAnuncioDAO] - Erro ao listar VoluntarioAnuncio.\n"
+					.println("[FuncaoVoluntarioDAO] - Erro ao listar FuncaoVoluntario.\n"
 							+ e.getMessage());
 
 		} finally {
 			con.close();
 		}
-		return listaVoluntarioAnuncio;
+		return listaFuncaoVoluntario;
 
 	}
 
@@ -153,7 +153,7 @@ public class VoluntarioAnuncioDAO extends GenericDAO {
 	public Entidade getPorId(int id) throws Exception {
 		con = Conexao.getConnection();
 
-		String sql = "SELECT va.id, va.idAnuncio, va.idVoluntario FROM voluntarioAnuncio va WHERE id=?";
+		String sql = "SELECT fv.id, fv.idFuncao, fv.idVoluntario FROM funcaoVoluntario fv WHERE id=?";
 		try {
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, id);
@@ -162,22 +162,22 @@ public class VoluntarioAnuncioDAO extends GenericDAO {
 
 			while (result.next()) {
 
-				voluntarioAnuncio = new VoluntarioAnuncio(result.getInt("id"),
-						result.getInt("idVoluntario"),
-						result.getInt("idAnuncio"));
+				funcaoVoluntario = new FuncaoVoluntario(result.getInt("id"),
+						result.getInt("idFuncao"),
+						result.getInt("idVoluntario"));
 			}
 			result.close();
 			pstmt.close();
 
 		} catch (SQLException se) {
 			System.out
-					.println("[VoluntarioAnuncioDAO] - Erro ao pegar VoluntarioAnuncio por ID.\n"
+					.println("[FuncaoVoluntarioDAO] - Erro ao pegar FuncaoVoluntario por ID.\n"
 							+ se.getMessage());
 		} finally {
 			con.close();
 		}
 
-		return voluntarioAnuncio;
+		return funcaoVoluntario;
 	}
 
 }

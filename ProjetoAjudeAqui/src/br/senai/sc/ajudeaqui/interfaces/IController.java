@@ -1,4 +1,4 @@
-package br.senai.sc.es4dof.interfaces;
+package br.senai.sc.ajudeaqui.interfaces;
 
 import java.util.List;
 

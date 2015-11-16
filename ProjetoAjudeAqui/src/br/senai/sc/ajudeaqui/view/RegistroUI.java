@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import br.senai.sc.ajudeaqui.controller.UsuarioController;
-import br.senai.sc.es4dof.model.Usuario;
+import br.senai.sc.ajudeaqui.model.Usuario;
 
 /**
  *

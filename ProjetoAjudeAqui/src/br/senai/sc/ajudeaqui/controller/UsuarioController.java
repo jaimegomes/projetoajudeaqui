@@ -3,9 +3,9 @@ package br.senai.sc.ajudeaqui.controller;
 import java.util.List;
 
 import br.senai.sc.ajudeaqui.abstracts.Entidade;
-import br.senai.sc.es4dof.dao.UsuarioDAO;
-import br.senai.sc.es4dof.interfaces.IController;
-import br.senai.sc.es4dof.model.Usuario;
+import br.senai.sc.ajudeaqui.dao.UsuarioDAO;
+import br.senai.sc.ajudeaqui.interfaces.IController;
+import br.senai.sc.ajudeaqui.model.Usuario;
 
 public class UsuarioController implements IController {
 

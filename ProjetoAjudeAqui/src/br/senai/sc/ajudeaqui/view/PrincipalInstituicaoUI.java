@@ -10,9 +10,9 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import br.senai.sc.ajudeaqui.controller.InstituicaoController;
-import br.senai.sc.es4dof.dao.InstituicaoDAO;
-import br.senai.sc.es4dof.model.Instituicao;
-import br.senai.sc.es4dof.model.Usuario;
+import br.senai.sc.ajudeaqui.dao.InstituicaoDAO;
+import br.senai.sc.ajudeaqui.model.Instituicao;
+import br.senai.sc.ajudeaqui.model.Usuario;
 
 /**
  *

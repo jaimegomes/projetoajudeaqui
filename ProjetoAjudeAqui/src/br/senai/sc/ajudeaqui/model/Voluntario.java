@@ -1,4 +1,4 @@
-package br.senai.sc.es4dof.model;
+package br.senai.sc.ajudeaqui.model;
 
 import java.util.Date;
 

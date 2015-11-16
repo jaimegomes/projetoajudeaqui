@@ -1,15 +1,15 @@
-package br.senai.sc.es4dof.test;
+package br.senai.sc.ajudeaqui.test;
 
 import java.util.Date;
 import java.util.List;
 
 import br.senai.sc.ajudeaqui.abstracts.Entidade;
-import br.senai.sc.es4dof.dao.AnuncioDAO;
-import br.senai.sc.es4dof.dao.FuncaoDAO;
-import br.senai.sc.es4dof.dao.InstituicaoDAO;
-import br.senai.sc.es4dof.model.Anuncio;
-import br.senai.sc.es4dof.model.Funcao;
-import br.senai.sc.es4dof.model.Instituicao;
+import br.senai.sc.ajudeaqui.dao.AnuncioDAO;
+import br.senai.sc.ajudeaqui.dao.FuncaoDAO;
+import br.senai.sc.ajudeaqui.dao.InstituicaoDAO;
+import br.senai.sc.ajudeaqui.model.Anuncio;
+import br.senai.sc.ajudeaqui.model.Funcao;
+import br.senai.sc.ajudeaqui.model.Instituicao;
 
 public class TestAnuncioDAO {
 

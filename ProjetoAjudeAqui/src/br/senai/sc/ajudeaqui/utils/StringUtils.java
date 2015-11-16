@@ -1,4 +1,4 @@
-package br.senai.sc.es4dof.utils;
+package br.senai.sc.ajudeaqui.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

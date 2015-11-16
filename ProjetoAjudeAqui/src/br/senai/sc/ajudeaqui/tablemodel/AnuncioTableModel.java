@@ -7,8 +7,8 @@ import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 import br.senai.sc.ajudeaqui.abstracts.Entidade;
-import br.senai.sc.es4dof.model.Anuncio;
-import br.senai.sc.es4dof.utils.StringUtils;
+import br.senai.sc.ajudeaqui.model.Anuncio;
+import br.senai.sc.ajudeaqui.utils.StringUtils;
 
 public class AnuncioTableModel extends AbstractTableModel {
 

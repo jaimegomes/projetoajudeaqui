@@ -1,4 +1,4 @@
-package br.senai.sc.es4dof.dao;
+package br.senai.sc.ajudeaqui.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,8 +10,8 @@ import java.util.List;
 import br.senai.sc.ajudeaqui.abstracts.Entidade;
 import br.senai.sc.ajudeaqui.abstracts.GenericDAO;
 import br.senai.sc.ajudeaqui.conexao.Conexao;
-import br.senai.sc.es4dof.model.Instituicao;
-import br.senai.sc.es4dof.model.Usuario;
+import br.senai.sc.ajudeaqui.model.Instituicao;
+import br.senai.sc.ajudeaqui.model.Usuario;
 
 public class InstituicaoDAO extends GenericDAO {
 

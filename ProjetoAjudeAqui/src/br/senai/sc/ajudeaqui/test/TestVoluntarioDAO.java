@@ -1,13 +1,13 @@
-package br.senai.sc.es4dof.test;
+package br.senai.sc.ajudeaqui.test;
 
 import java.util.List;
 
 import br.senai.sc.ajudeaqui.abstracts.Entidade;
-import br.senai.sc.es4dof.dao.UsuarioDAO;
-import br.senai.sc.es4dof.dao.VoluntarioDAO;
-import br.senai.sc.es4dof.model.Usuario;
-import br.senai.sc.es4dof.model.Voluntario;
-import br.senai.sc.es4dof.utils.StringUtils;
+import br.senai.sc.ajudeaqui.dao.UsuarioDAO;
+import br.senai.sc.ajudeaqui.dao.VoluntarioDAO;
+import br.senai.sc.ajudeaqui.model.Usuario;
+import br.senai.sc.ajudeaqui.model.Voluntario;
+import br.senai.sc.ajudeaqui.utils.StringUtils;
 
 /**
  * DAO OK

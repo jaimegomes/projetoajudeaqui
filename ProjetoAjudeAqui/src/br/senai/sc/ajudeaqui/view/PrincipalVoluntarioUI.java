@@ -21,9 +21,9 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import com.toedter.calendar.JDateChooser;
 
 import br.senai.sc.ajudeaqui.controller.VoluntarioController;
-import br.senai.sc.es4dof.model.Usuario;
-import br.senai.sc.es4dof.model.Voluntario;
-import br.senai.sc.es4dof.utils.StringUtils;
+import br.senai.sc.ajudeaqui.model.Usuario;
+import br.senai.sc.ajudeaqui.model.Voluntario;
+import br.senai.sc.ajudeaqui.utils.StringUtils;
 
 /**
  *
