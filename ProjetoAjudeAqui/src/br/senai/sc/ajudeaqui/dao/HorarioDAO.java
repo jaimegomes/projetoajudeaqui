@@ -35,8 +35,7 @@ public class HorarioDAO extends GenericDAO {
 			pstmt.close();
 
 		} catch (SQLException se) {
-			System.out.println("[HorarioDAO] - Erro ao salvar Horario.\n"
-					+ se.getMessage());
+			System.out.println("[HorarioDAO] - Erro ao salvar Horario.\n" + se.getMessage());
 			con.rollback();
 
 		} finally {
@@ -64,8 +63,7 @@ public class HorarioDAO extends GenericDAO {
 
 		} catch (SQLException e) {
 			con.rollback();
-			System.out.println("[HorarioDAO] - Erro ao excluir Horario.\n"
-					+ e.getMessage());
+			System.out.println("[HorarioDAO] - Erro ao excluir Horario.\n" + e.getMessage());
 		} finally {
 			con.close();
 		}
@@ -92,8 +90,7 @@ public class HorarioDAO extends GenericDAO {
 
 		} catch (SQLException e) {
 			con.rollback();
-			System.out.println("[HorarioDAO] - Erro ao editar Horario.\n"
-					+ e.getMessage());
+			System.out.println("[HorarioDAO] - Erro ao editar Horario.\n" + e.getMessage());
 		} finally {
 			con.close();
 		}
@@ -117,8 +114,7 @@ public class HorarioDAO extends GenericDAO {
 
 				try {
 
-					horario = new Horario(result.getInt("id"),
-							result.getString("horario"));
+					horario = new Horario(result.getInt("id"), result.getString("horario"));
 
 					listaHorario.add(horario);
 
@@ -132,8 +128,7 @@ public class HorarioDAO extends GenericDAO {
 
 		} catch (SQLException e) {
 			con.rollback();
-			System.out.println("[HorarioDAO] - Erro ao listar Horario.\n"
-					+ e.getMessage());
+			System.out.println("[HorarioDAO] - Erro ao listar Horario.\n" + e.getMessage());
 
 		} finally {
 			con.close();
@@ -155,15 +150,40 @@ public class HorarioDAO extends GenericDAO {
 
 			while (result.next()) {
 
-				horario = new Horario(result.getInt("id"),
-						result.getString("horario"));
+				horario = new Horario(result.getInt("id"), result.getString("horario"));
 			}
 			result.close();
 			pstmt.close();
 
 		} catch (SQLException se) {
-			System.out.println("[HorarioDAO] - Erro ao pegar Horario por ID.\n"
-					+ se.getMessage());
+			System.out.println("[HorarioDAO] - Erro ao pegar Horario por ID.\n" + se.getMessage());
+		} finally {
+			con.close();
+		}
+
+		return horario;
+	}
+
+	public Entidade getPoHorario(String hor) throws SQLException {
+
+		con = Conexao.getConnection();
+
+		String sql = "SELECT h.id, h.horario FROM horario h WHERE horario=?";
+		try {
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, hor);
+
+			ResultSet result = pstmt.executeQuery();
+
+			while (result.next()) {
+
+				horario = new Horario(result.getInt("id"), result.getString("horario"));
+			}
+			result.close();
+			pstmt.close();
+
+		} catch (SQLException se) {
+			System.out.println("[HorarioDAO] - Erro ao pegar Horario por horario.\n" + se.getMessage());
 		} finally {
 			con.close();
 		}

@@ -10,35 +10,37 @@ import java.util.List;
 import br.senai.sc.ajudeaqui.abstracts.Entidade;
 import br.senai.sc.ajudeaqui.abstracts.GenericDAO;
 import br.senai.sc.ajudeaqui.conexao.Conexao;
+import br.senai.sc.ajudeaqui.model.Horario;
 import br.senai.sc.ajudeaqui.model.HorarioVoluntario;
+import br.senai.sc.ajudeaqui.model.Voluntario;
 
 public class HorarioVoluntarioDAO extends GenericDAO {
 
 	private Connection con = null;
-	private HorarioVoluntario horarioVoluntario = null;
+	private HorarioVoluntario voluntarioHorario = null;
+	private HorarioDAO horarioDAO = null;
+	private VoluntarioDAO voluntarioDAO = null;
 
 	@Override
 	public void salvar(Entidade entidade) throws Exception {
 
 		con = Conexao.getConnection();
 
-		String sql = "INSERT INTO horarioVoluntario (idHorario, idVoluntario) VALUES (?,?)";
+		String sql = "INSERT INTO voluntarioHorario (idHorario, idVoluntario) VALUES (?,?)";
 		try {
 
-			horarioVoluntario = (HorarioVoluntario) entidade;
+			voluntarioHorario = (HorarioVoluntario) entidade;
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, horarioVoluntario.getIdHorario());
-			pstmt.setInt(2, horarioVoluntario.getIdVoluntario());
+			pstmt.setInt(1, voluntarioHorario.getHorario().getId());
+			pstmt.setInt(2, voluntarioHorario.getVoluntario().getId());
 
 			pstmt.execute();
 			con.commit();
 			pstmt.close();
 
 		} catch (SQLException se) {
-			System.out
-					.println("[HorarioVoluntarioDAO] - Erro ao salvar HorarioVoluntario.\n"
-							+ se.getMessage());
+			System.out.println("[HorarioVoluntarioDAO] - Erro ao salvar HorarioVoluntario.\n" + se.getMessage());
 			con.rollback();
 
 		} finally {
@@ -52,13 +54,13 @@ public class HorarioVoluntarioDAO extends GenericDAO {
 
 		con = Conexao.getConnection();
 
-		String sql = "DELETE FROM horarioVoluntario WHERE id=?";
+		String sql = "DELETE FROM voluntarioHorario WHERE id=?";
 		try {
 
-			horarioVoluntario = (HorarioVoluntario) entidade;
+			voluntarioHorario = (HorarioVoluntario) entidade;
 
 			PreparedStatement pstm = con.prepareStatement(sql);
-			pstm.setInt(1, horarioVoluntario.getId());
+			pstm.setInt(1, voluntarioHorario.getId());
 
 			pstm.execute();
 			con.commit();
@@ -66,9 +68,7 @@ public class HorarioVoluntarioDAO extends GenericDAO {
 
 		} catch (SQLException e) {
 			con.rollback();
-			System.out
-					.println("[HorarioVoluntarioDAO] - Erro ao excluir HorarioVoluntario.\n"
-							+ e.getMessage());
+			System.out.println("[HorarioVoluntarioDAO] - Erro ao excluir HorarioVoluntario.\n" + e.getMessage());
 		} finally {
 			con.close();
 		}
@@ -80,15 +80,15 @@ public class HorarioVoluntarioDAO extends GenericDAO {
 
 		con = Conexao.getConnection();
 
-		String sql = "UPDATE horarioVoluntario SET idHorario = ?, idVoluntario = ? WHERE id = ?";
+		String sql = "UPDATE voluntarioHorario SET idHorario = ?, idVoluntario = ? WHERE id = ?";
 		try {
 
-			horarioVoluntario = (HorarioVoluntario) entidade;
+			voluntarioHorario = (HorarioVoluntario) entidade;
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, horarioVoluntario.getIdHorario());
-			pstmt.setInt(2, horarioVoluntario.getIdVoluntario());
-			pstmt.setInt(3, horarioVoluntario.getId());
+			pstmt.setInt(1, voluntarioHorario.getHorario().getId());
+			pstmt.setInt(2, voluntarioHorario.getVoluntario().getId());
+			pstmt.setInt(3, voluntarioHorario.getId());
 
 			pstmt.execute();
 			con.commit();
@@ -96,9 +96,7 @@ public class HorarioVoluntarioDAO extends GenericDAO {
 
 		} catch (SQLException e) {
 			con.rollback();
-			System.out
-					.println("[HorarioVoluntarioDAO] - Erro ao editar HorarioVoluntario.\n"
-							+ e.getMessage());
+			System.out.println("[HorarioVoluntarioDAO] - Erro ao editar HorarioVoluntario.\n" + e.getMessage());
 		} finally {
 			con.close();
 		}
@@ -111,7 +109,7 @@ public class HorarioVoluntarioDAO extends GenericDAO {
 		con = Conexao.getConnection();
 
 		List<Entidade> listaHorarioVoluntario = new ArrayList<Entidade>();
-		String sql = "SELECT hv.id, hv.idHorario, hv.idVoluntario FROM horarioVoluntario hv";
+		String sql = "SELECT hv.id, hv.idHorario, hv.idVoluntario FROM voluntarioHorario hv";
 		try {
 
 			PreparedStatement pstm = con.prepareStatement(sql);
@@ -122,11 +120,11 @@ public class HorarioVoluntarioDAO extends GenericDAO {
 
 				try {
 
-					horarioVoluntario = new HorarioVoluntario(
-							result.getInt("id"), result.getInt("idHorario"),
-							result.getInt("idVoluntario"));
+					Horario horario = (Horario) horarioDAO.getPorId(result.getInt("idHorario"));
+					Voluntario voluntario = (Voluntario) voluntarioDAO.getPorId(result.getInt("idVoluntario"));
+					voluntarioHorario = new HorarioVoluntario(result.getInt("id"), horario, voluntario);
 
-					listaHorarioVoluntario.add(horarioVoluntario);
+					listaHorarioVoluntario.add(voluntarioHorario);
 
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -138,9 +136,7 @@ public class HorarioVoluntarioDAO extends GenericDAO {
 
 		} catch (SQLException e) {
 			con.rollback();
-			System.out
-					.println("[HorarioVoluntarioDAO] - Erro ao listar HorarioVoluntario.\n"
-							+ e.getMessage());
+			System.out.println("[HorarioVoluntarioDAO] - Erro ao listar HorarioVoluntario.\n" + e.getMessage());
 
 		} finally {
 			con.close();
@@ -153,7 +149,7 @@ public class HorarioVoluntarioDAO extends GenericDAO {
 	public Entidade getPorId(int id) throws Exception {
 		con = Conexao.getConnection();
 
-		String sql = "SELECT hv.id, hv.idHorario, hv.idVoluntario FROM horarioVoluntario hv WHERE id=?";
+		String sql = "SELECT hv.id, hv.idHorario, hv.idVoluntario FROM voluntarioHorario hv WHERE id=?";
 		try {
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, id);
@@ -162,22 +158,82 @@ public class HorarioVoluntarioDAO extends GenericDAO {
 
 			while (result.next()) {
 
-				horarioVoluntario = new HorarioVoluntario(result.getInt("id"),
-						result.getInt("idHorario"),
-						result.getInt("idVoluntario"));
+				Horario horario = (Horario) horarioDAO.getPorId(result.getInt("idHorario"));
+				Voluntario voluntario = (Voluntario) voluntarioDAO.getPorId(result.getInt("idVoluntario"));
+				voluntarioHorario = new HorarioVoluntario(result.getInt("id"), horario, voluntario);
 			}
 			result.close();
 			pstmt.close();
 
 		} catch (SQLException se) {
-			System.out
-					.println("[HorarioVoluntarioDAO] - Erro ao pegar HorarioVoluntario por ID.\n"
-							+ se.getMessage());
+			System.out.println("[HorarioVoluntarioDAO] - Erro ao pegar HorarioVoluntario por ID.\n" + se.getMessage());
 		} finally {
 			con.close();
 		}
 
-		return horarioVoluntario;
+		return voluntarioHorario;
+	}
+
+	public List<Entidade> getPorIdVoluntario(int idVoluntario) throws Exception {
+		con = Conexao.getConnection();
+
+		List<Entidade> list = null;
+
+		String sql = "SELECT hv.id, hv.idHorario, hv.idVoluntario FROM voluntarioHorario hv WHERE idVoluntario=?";
+		try {
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, idVoluntario);
+
+			ResultSet result = pstmt.executeQuery();
+
+			while (result.next()) {
+
+				list = new ArrayList<>();
+				Horario horario = (Horario) horarioDAO.getPorId(result.getInt("idHorario"));
+				Voluntario voluntario = (Voluntario) voluntarioDAO.getPorId(result.getInt("idVoluntario"));
+				voluntarioHorario = new HorarioVoluntario(result.getInt("id"), horario, voluntario);
+
+				list.add(voluntarioHorario);
+			}
+			result.close();
+			pstmt.close();
+
+		} catch (SQLException se) {
+			System.out.println("[HorarioVoluntarioDAO] - Erro ao pegar HorarioVoluntario por ID do Voluntário.\n"
+					+ se.getMessage());
+		} finally {
+			con.close();
+		}
+
+		return list;
+	}
+
+	public boolean getPorIdHorarioVoluntario(int idHorario, int idVoluntario) throws Exception {
+		con = Conexao.getConnection();
+
+		String sql = "SELECT hv.id, hv.idHorario, hv.idVoluntario FROM voluntarioHorario hv WHERE idVoluntario=? AND idHorario=?";
+		try {
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, idVoluntario);
+			pstmt.setInt(2, idHorario);
+
+			ResultSet result = pstmt.executeQuery();
+
+			while (result.next()) {
+
+				return true;
+			}
+			result.close();
+			pstmt.close();
+
+		} catch (SQLException se) {
+			System.out.println("[HorarioVoluntarioDAO] - Erro ao pegar HorarioVoluntario por ID do Voluntário.\n"
+					+ se.getMessage());
+		} finally {
+			con.close();
+		}
+
+		return false;
 	}
 
 }

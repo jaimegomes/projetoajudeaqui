@@ -169,4 +169,30 @@ public class FuncaoDAO extends GenericDAO {
 		return funcao;
 	}
 
+	public Entidade getPorFuncao(String nomeFuncao) throws Exception {
+		con = Conexao.getConnection();
+
+		String sql = "SELECT f.id, f.funcao FROM funcao f WHERE funcao=?";
+		try {
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, nomeFuncao);
+
+			ResultSet result = pstmt.executeQuery();
+
+			while (result.next()) {
+
+				funcao = new Funcao(result.getInt("id"), result.getString("funcao"));
+			}
+			result.close();
+			pstmt.close();
+
+		} catch (SQLException se) {
+			System.out.println("[FuncaoDAO] - Erro ao pegar função pelo nome.\n" + se.getMessage());
+		} finally {
+			con.close();
+		}
+
+		return funcao;
+	}
+
 }

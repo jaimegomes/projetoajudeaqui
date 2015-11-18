@@ -8,7 +8,7 @@ import br.senai.sc.ajudeaqui.interfaces.IController;
 
 public class FuncaoVoluntarioController implements IController {
 
-	FuncaoVoluntarioDAO dao;
+	private FuncaoVoluntarioDAO dao;
 
 	@Override
 	public void salvar(Entidade entidade) throws Exception {
@@ -46,6 +46,18 @@ public class FuncaoVoluntarioController implements IController {
 
 		dao = new FuncaoVoluntarioDAO();
 		return dao.getPorId(id);
+	}
+	
+	public boolean getPorIdFuncaoVoluntario(int idFuncao, int idVoluntario) throws Exception {
+		
+		dao = new FuncaoVoluntarioDAO();
+		return dao.getPorIdFuncaoVoluntario(idFuncao, idVoluntario);
+	}
+	
+	public List<Entidade> getListPorIdVoluntario(int idVoluntario) throws Exception {
+		
+		dao = new FuncaoVoluntarioDAO();
+		return dao.getListPorIdVoluntario(idVoluntario);
 	}
 
 }

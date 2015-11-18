@@ -26,13 +26,13 @@ public class TestVoluntarioDAO {
 		Voluntario vol = (Voluntario) volDAO.getPorId(1);
 		
 		System.out.println(vol.getNome());
-
+		
 //		Voluntario voluntario = new Voluntario("Jaime", "234-5678", "009.688.179-80", "Rua x",
 //				"jaimegomes.bjj@gmail.com", StringUtils.getInstance().parseStringToDate("24/10/1987"), usu, "M",
 //				"Casado", "xxx", "9840-0757", "gente fina");
 
-		volDAO.editar(vol);
-//		controller.editar(vol);
+//		volDAO.editar(vol);
+		controller.editar(vol);
 		//
 		// Voluntario voluntario2 = new Voluntario("Jurema", "234-5678",
 		// "123.456.789-10", "Rua x", "jurema@gmail.com",

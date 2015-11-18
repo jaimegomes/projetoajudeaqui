@@ -36,9 +36,7 @@ public class FuncaoVoluntarioDAO extends GenericDAO {
 			pstmt.close();
 
 		} catch (SQLException se) {
-			System.out
-					.println("[FuncaoVoluntarioDAO] - Erro ao salvar FuncaoVoluntario.\n"
-							+ se.getMessage());
+			System.out.println("[FuncaoVoluntarioDAO] - Erro ao salvar FuncaoVoluntario.\n" + se.getMessage());
 			con.rollback();
 
 		} finally {
@@ -66,9 +64,7 @@ public class FuncaoVoluntarioDAO extends GenericDAO {
 
 		} catch (SQLException e) {
 			con.rollback();
-			System.out
-					.println("[FuncaoVoluntarioDAO] - Erro ao excluir FuncaoVoluntario.\n"
-							+ e.getMessage());
+			System.out.println("[FuncaoVoluntarioDAO] - Erro ao excluir FuncaoVoluntario.\n" + e.getMessage());
 		} finally {
 			con.close();
 		}
@@ -96,9 +92,7 @@ public class FuncaoVoluntarioDAO extends GenericDAO {
 
 		} catch (SQLException e) {
 			con.rollback();
-			System.out
-					.println("[FuncaoVoluntarioDAO] - Erro ao editar FuncaoVoluntario.\n"
-							+ e.getMessage());
+			System.out.println("[FuncaoVoluntarioDAO] - Erro ao editar FuncaoVoluntario.\n" + e.getMessage());
 		} finally {
 			con.close();
 		}
@@ -122,8 +116,7 @@ public class FuncaoVoluntarioDAO extends GenericDAO {
 
 				try {
 
-					funcaoVoluntario = new FuncaoVoluntario(
-							result.getInt("id"), result.getInt("idFuncao"),
+					funcaoVoluntario = new FuncaoVoluntario(result.getInt("id"), result.getInt("idFuncao"),
 							result.getInt("idVoluntario"));
 
 					listaFuncaoVoluntario.add(funcaoVoluntario);
@@ -138,9 +131,7 @@ public class FuncaoVoluntarioDAO extends GenericDAO {
 
 		} catch (SQLException e) {
 			con.rollback();
-			System.out
-					.println("[FuncaoVoluntarioDAO] - Erro ao listar FuncaoVoluntario.\n"
-							+ e.getMessage());
+			System.out.println("[FuncaoVoluntarioDAO] - Erro ao listar FuncaoVoluntario.\n" + e.getMessage());
 
 		} finally {
 			con.close();
@@ -162,22 +153,82 @@ public class FuncaoVoluntarioDAO extends GenericDAO {
 
 			while (result.next()) {
 
-				funcaoVoluntario = new FuncaoVoluntario(result.getInt("id"),
-						result.getInt("idFuncao"),
+				funcaoVoluntario = new FuncaoVoluntario(result.getInt("id"), result.getInt("idFuncao"),
 						result.getInt("idVoluntario"));
 			}
 			result.close();
 			pstmt.close();
 
 		} catch (SQLException se) {
-			System.out
-					.println("[FuncaoVoluntarioDAO] - Erro ao pegar FuncaoVoluntario por ID.\n"
-							+ se.getMessage());
+			System.out.println("[FuncaoVoluntarioDAO] - Erro ao pegar FuncaoVoluntario por ID.\n" + se.getMessage());
 		} finally {
 			con.close();
 		}
 
 		return funcaoVoluntario;
+	}
+
+	public boolean getPorIdFuncaoVoluntario(int idFuncao, int idVoluntario) throws SQLException {
+		con = Conexao.getConnection();
+
+		String sql = "SELECT fv.id, fv.idFuncao, fv.idVoluntario FROM funcaoVoluntario fv WHERE idFuncao=? AND idVoluntario=?";
+		try {
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, idFuncao);
+			pstmt.setInt(2, idVoluntario);
+
+			ResultSet result = pstmt.executeQuery();
+
+			while (result.next()) {
+
+				return true;
+			}
+			result.close();
+			pstmt.close();
+
+		} catch (SQLException se) {
+			System.out.println(
+					"[FuncaoVoluntarioDAO] - Erro ao pegar FuncaoVoluntario por ID da função e do voluntário.\n"
+							+ se.getMessage());
+		} finally {
+			con.close();
+		}
+
+		return false;
+	}
+
+	public List<Entidade> getListPorIdVoluntario(int idVoluntario) throws SQLException {
+		con = Conexao.getConnection();
+
+		List<Entidade> list = null;
+
+		String sql = "SELECT fv.id, fv.idFuncao, fv.idVoluntario FROM funcaoVoluntario fv WHERE idVoluntario=?";
+		try {
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, idVoluntario);
+
+			ResultSet result = pstmt.executeQuery();
+
+			while (result.next()) {
+
+				list = new ArrayList<>();
+				funcaoVoluntario = new FuncaoVoluntario(result.getInt("id"), result.getInt("idFuncao"),
+						result.getInt("idVoluntario"));
+
+				list.add(funcaoVoluntario);
+			}
+			result.close();
+			pstmt.close();
+
+		} catch (SQLException se) {
+			System.out.println(
+					"[FuncaoVoluntarioDAO] - Erro ao pegar FuncaoVoluntario por ID da função e do voluntário.\n"
+							+ se.getMessage());
+		} finally {
+			con.close();
+		}
+
+		return list;
 	}
 
 }

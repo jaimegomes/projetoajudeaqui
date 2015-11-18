@@ -11,69 +11,64 @@ import br.senai.sc.ajudeaqui.abstracts.Entidade;
 public class HorarioVoluntario extends Entidade {
 
 	private int id;
-	private int idHorario;
-	private int idVoluntario;
+	private Horario horario;
+	private Voluntario voluntario;
 
 	public HorarioVoluntario() {
 		super();
 	}
 
-	public HorarioVoluntario(int idHorario, int idVoluntario) {
+	public HorarioVoluntario(Horario horario, Voluntario voluntario) {
 		super();
-		this.idHorario = idHorario;
-		this.idVoluntario = idVoluntario;
+		this.horario = horario;
+		this.voluntario = voluntario;
 	}
 
-	public HorarioVoluntario(int id, int idHorario, int idVoluntario) {
+	public HorarioVoluntario(int id, Horario horario, Voluntario voluntario) {
 		super();
 		this.id = id;
-		this.idHorario = idHorario;
-		this.idVoluntario = idVoluntario;
+		this.horario = horario;
+		this.voluntario = voluntario;
 	}
 
-	/**
-	 * @return the id
-	 */
+	@Override
 	public int getId() {
 		return id;
 	}
 
-	/**
-	 * @param id
-	 *            the id to set
-	 */
+	@Override
 	public void setId(int id) {
 		this.id = id;
 	}
 
 	/**
-	 * @return the idHorario
+	 * @return the horario
 	 */
-	public int getIdHorario() {
-		return idHorario;
+	public Horario getHorario() {
+		return horario;
 	}
 
 	/**
-	 * @param idHorario
-	 *            the idHorario to set
+	 * @param horario
+	 *            the horario to set
 	 */
-	public void setIdHorario(int idHorario) {
-		this.idHorario = idHorario;
+	public void setHorario(Horario horario) {
+		this.horario = horario;
 	}
 
 	/**
-	 * @return the idVoluntario
+	 * @return the voluntario
 	 */
-	public int getIdVoluntario() {
-		return idVoluntario;
+	public Voluntario getVoluntario() {
+		return voluntario;
 	}
 
 	/**
-	 * @param idVoluntario
-	 *            the idVoluntario to set
+	 * @param voluntario
+	 *            the voluntario to set
 	 */
-	public void setIdVoluntario(int idVoluntario) {
-		this.idVoluntario = idVoluntario;
+	public void setVoluntario(Voluntario voluntario) {
+		this.voluntario = voluntario;
 	}
 
 }

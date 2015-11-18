@@ -11,6 +11,8 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -20,7 +22,16 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import com.toedter.calendar.JDateChooser;
 
+import br.senai.sc.ajudeaqui.abstracts.Entidade;
+import br.senai.sc.ajudeaqui.controller.FuncaoController;
+import br.senai.sc.ajudeaqui.controller.FuncaoVoluntarioController;
+import br.senai.sc.ajudeaqui.controller.HorarioController;
+import br.senai.sc.ajudeaqui.controller.HorarioVoluntarioController;
 import br.senai.sc.ajudeaqui.controller.VoluntarioController;
+import br.senai.sc.ajudeaqui.model.Funcao;
+import br.senai.sc.ajudeaqui.model.FuncaoVoluntario;
+import br.senai.sc.ajudeaqui.model.Horario;
+import br.senai.sc.ajudeaqui.model.HorarioVoluntario;
 import br.senai.sc.ajudeaqui.model.Usuario;
 import br.senai.sc.ajudeaqui.model.Voluntario;
 
@@ -85,7 +96,10 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 	private javax.swing.JTextField txtTituloFiltroVagas;
 	private JDateChooser dateChooserDataNascimento;
 	private JDateChooser dateChooserDataPublicacaoFiltroVagas;
-	private VoluntarioController controller = new VoluntarioController();
+	private VoluntarioController voluntarioController = new VoluntarioController();
+	private FuncaoController funcaoController = new FuncaoController();
+	private List<String> listHorarios;
+	private List<String> listAreasInteresse;
 
 	// End of variables declaration
 
@@ -213,7 +227,7 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 		cmbSexo.setEnabled(false);
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-		setTitle(":: Sistema doVoluntário Ajude Aqui ::");
+		setTitle(":: Sistema do Voluntário Ajude Aqui ::");
 		setBounds(new java.awt.Rectangle(0, 0, 0, 0));
 		setMaximumSize(new java.awt.Dimension(1300, 700));
 		setMinimumSize(new java.awt.Dimension(1300, 700));
@@ -268,6 +282,9 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 				cmbEstadoCivil.setEnabled(true);
 				dateChooserDataNascimento.setEnabled(true);
 				cmbSexo.setEnabled(true);
+
+				listHorarios = new ArrayList<>();
+				listAreasInteresse = new ArrayList<>();
 
 			}
 		});
@@ -429,28 +446,110 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 		scrollPaneInfoComplementares.setViewportView(atxtInfoComplementares);
 
 		btnAddAreaInteresse.setIcon(new ImageIcon("img/add_16x16.png")); // NOI18N
+		btnAddAreaInteresse.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				listAreasInteresse.add(cmbAreasInteresse.getSelectedItem() + "");
+				cmbAreasInteresse.setSelectedIndex(0);
+
+			}
+		});
 
 		lblHorarioDisponivel.setFont(new Font("Dialog", Font.PLAIN, 12)); // NOI18N
 		lblHorarioDisponivel.setText("Horário Disponível:");
 
 		btnAddHorario.setIcon(new ImageIcon("img/add_16x16.png")); // NOI18N
+		btnAddHorario.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				listHorarios.add(cmbHorarioDisponivel.getSelectedItem() + "");
+				cmbHorarioDisponivel.setSelectedIndex(0);
+
+			}
+		});
 
 		cmbHorarioDisponivel.setModel(
 				new javax.swing.DefaultComboBoxModel(new String[] { "", "Matutino", "Vespertino", "Noturno" }));
 
 		lblAreaInteresse.setFont(new Font("Dialog", Font.PLAIN, 12)); // NOI18N
-		lblAreaInteresse.setText("Áreas de Interesse em Ajudar:");
+		lblAreaInteresse.setText("Área de Interesse em Ajudar:");
 
 		btnHorariosDisponiveis.setIcon(new ImageIcon("img/agenda_16x16.png")); // NOI18N
 		btnHorariosDisponiveis.setText("Horários Disponíveis");
+		btnHorariosDisponiveis.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				String horarios = "Horários Disponíveis\n\n";
+
+				try {
+					
+					Voluntario vol = (Voluntario) voluntarioController.getPorIdUsuario(usuario.getId());
+					HorarioVoluntarioController horarioVolController = new HorarioVoluntarioController();
+					
+					List<Entidade> list = horarioVolController.getPorIdVoluntario(vol.getId());
+
+					JOptionPane.showMessageDialog(null, horarios);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+
+				listHorarios.add(cmbHorarioDisponivel.getSelectedItem() + "");
+
+			}
+		});
 
 		btnAreasInteresse.setIcon(new ImageIcon("img/agenda_16x16.png")); // NOI18N
-		btnAreasInteresse.setText("Áreas de Interesse");
+		btnAreasInteresse.setText("Área de Interesse");
+		btnAreasInteresse.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String funcoes = "Áreas de Interesse em Ajudar\n\n";
+
+				try {
+					Voluntario vol = (Voluntario) voluntarioController.getPorIdUsuario(usuario.getId());
+					FuncaoVoluntarioController funcaoVolController = new FuncaoVoluntarioController();
+					
+					List<Entidade> list = funcaoVolController.getListPorIdVoluntario(vol.getId());
+					
+					for(Entidade ent: list) {
+						
+						FuncaoVoluntario funcaoVoluntario = (FuncaoVoluntario) ent;
+						Funcao funcao = (Funcao) funcaoController.getPorId(funcaoVoluntario.getIdFuncao());
+						
+						funcoes += funcao.getFuncao()+"\n";
+					}
+					
+					JOptionPane.showMessageDialog(null, funcoes);
+
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+
+				listHorarios.add(cmbHorarioDisponivel.getSelectedItem() + "");
+
+			}
+		});
 
 		lblInfoComplementares.setFont(new Font("Dialog", Font.PLAIN, 12)); // NOI18N
 		lblInfoComplementares.setText("Informações Complementares:");
 
-		cmbAreasInteresse.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "..." }));
+		cmbAreasInteresse.addItem("");
+
+		try {
+			for (Entidade ent : funcaoController.listar()) {
+				Funcao funcao = (Funcao) ent;
+
+				cmbAreasInteresse.addItem(funcao.getFuncao());
+
+			}
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
 
 		javax.swing.GroupLayout panelExperienciasLayout = new javax.swing.GroupLayout(panelInfoComplementares);
 		panelExperienciasLayout.setHorizontalGroup(panelExperienciasLayout.createParallelGroup(Alignment.LEADING)
@@ -546,7 +645,7 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 		panelFiltroVagas.setPreferredSize(new java.awt.Dimension(1197, 150));
 
 		lblTituloFiltroVagas.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-		lblTituloFiltroVagas.setText("Título:");
+		lblTituloFiltroVagas.setText("Tï¿½tulo:");
 
 		lblInstituicaoFiltroVagas.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
 		lblInstituicaoFiltroVagas.setText("Instituição:");
@@ -678,7 +777,7 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 		 */
 		Voluntario vol = null;
 		try {
-			vol = (Voluntario) controller.getPorIdUsuario(usuario.getId());
+			vol = (Voluntario) voluntarioController.getPorIdUsuario(usuario.getId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -689,7 +788,7 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 		 * instituição.
 		 * 
 		 * Verifica todos os campos, caso sejam diferentes de nulo ele preenche
-		 * os dados do voluntário.
+		 * os dados do voluntï¿½rio.
 		 */
 		if (vol != null) {
 
@@ -751,7 +850,7 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 
 	private void btnSalvarAction(Usuario user) {
 
-		VoluntarioController controller = new VoluntarioController();
+		VoluntarioController volController = new VoluntarioController();
 
 		String sexo = "";
 		String estadoCivil = "";
@@ -773,12 +872,60 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 		}
 
 		try {
-			
-			Voluntario voluntario = new Voluntario(txtNome.getText(), jftxtTelefone.getText(), jftxtCpf.getText(),
-					txtEndereco.getText(), jftxtEmail.getText(), dateChooserDataNascimento.getDate(), user, sexo,
-					estadoCivil, txtComplemento.getText(), jftxtCelular.getText(), atxtInfoComplementares.getText());
 
-			controller.editar(voluntario);
+			Voluntario voluntario = (Voluntario) volController.getPorIdUsuario(user.getId());
+			voluntario.setNome(txtNome.getText());
+			voluntario.setTelefone(jftxtTelefone.getText());
+			voluntario.setCpf(jftxtCpf.getText());
+			voluntario.setEndereco(txtEndereco.getText());
+			voluntario.setEmail(jftxtEmail.getText());
+			voluntario.setDataNascimento(dateChooserDataNascimento.getDate());
+			voluntario.setUsuario(user);
+			voluntario.setSexo(sexo);
+			voluntario.setEstadoCivil(estadoCivil);
+			voluntario.setComplemento(txtComplemento.getText());
+			voluntario.setCelular(jftxtCelular.getText());
+			voluntario.setInformacoesComplementares(atxtInfoComplementares.getText());
+
+			volController.editar(voluntario);
+
+			if (listHorarios != null) {
+
+				HorarioVoluntarioController horarioVolController = new HorarioVoluntarioController();
+				HorarioController horarioController = new HorarioController();
+
+				for (int i = 0; i < listHorarios.size(); i++) {
+
+					Horario horario = (Horario) horarioController.getPorHorario(listHorarios.get(i));
+
+					// se não existir na lista adiciona
+					if (!horarioVolController.getPorIdHorarioVoluntario(horario.getId(), voluntario.getId())) {
+						HorarioVoluntario horarioVoluntario = new HorarioVoluntario(horario, voluntario);
+
+						horarioVolController.salvar(horarioVoluntario);
+					}
+				}
+
+			}
+
+			if (listAreasInteresse != null) {
+
+				FuncaoController funcaoController = new FuncaoController();
+				FuncaoVoluntarioController funcaoVolController = new FuncaoVoluntarioController();
+
+				for (int i = 0; i < listAreasInteresse.size(); i++) {
+
+					Funcao funcao = (Funcao) funcaoController.getPorFuncao(listAreasInteresse.get(i));
+
+					// se não existir na lista adiciona
+					if (!funcaoVolController.getPorIdFuncaoVoluntario(funcao.getId(), voluntario.getId())) {
+						FuncaoVoluntario funcaoVoluntario = new FuncaoVoluntario(funcao.getId(), voluntario.getId());
+
+						funcaoVolController.salvar(funcaoVoluntario);
+					}
+				}
+
+			}
 
 			JOptionPane.showMessageDialog(null, "Voluntário editado com sucesso.");
 
