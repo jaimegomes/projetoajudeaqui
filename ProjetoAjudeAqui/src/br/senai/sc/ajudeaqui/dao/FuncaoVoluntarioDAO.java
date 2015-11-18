@@ -10,12 +10,17 @@ import java.util.List;
 import br.senai.sc.ajudeaqui.abstracts.Entidade;
 import br.senai.sc.ajudeaqui.abstracts.GenericDAO;
 import br.senai.sc.ajudeaqui.conexao.Conexao;
+import br.senai.sc.ajudeaqui.controller.FuncaoController;
+import br.senai.sc.ajudeaqui.model.Funcao;
 import br.senai.sc.ajudeaqui.model.FuncaoVoluntario;
+import br.senai.sc.ajudeaqui.model.Voluntario;
 
 public class FuncaoVoluntarioDAO extends GenericDAO {
 
 	private Connection con = null;
-	private FuncaoVoluntario funcaoVoluntario = null;
+	private FuncaoVoluntario funcaoVoluntario;
+	private FuncaoController funcaoDAO;
+	private VoluntarioDAO voluntarioDAO;
 
 	@Override
 	public void salvar(Entidade entidade) throws Exception {
@@ -28,8 +33,8 @@ public class FuncaoVoluntarioDAO extends GenericDAO {
 			funcaoVoluntario = (FuncaoVoluntario) entidade;
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, funcaoVoluntario.getIdFuncao());
-			pstmt.setInt(2, funcaoVoluntario.getIdVoluntario());
+			pstmt.setInt(1, funcaoVoluntario.getFuncao().getId());
+			pstmt.setInt(2, funcaoVoluntario.getVoluntario().getId());
 
 			pstmt.execute();
 			con.commit();
@@ -82,8 +87,8 @@ public class FuncaoVoluntarioDAO extends GenericDAO {
 			funcaoVoluntario = (FuncaoVoluntario) entidade;
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, funcaoVoluntario.getIdFuncao());
-			pstmt.setInt(2, funcaoVoluntario.getIdVoluntario());
+			pstmt.setInt(1, funcaoVoluntario.getFuncao().getId());
+			pstmt.setInt(2, funcaoVoluntario.getVoluntario().getId());
 			pstmt.setInt(3, funcaoVoluntario.getId());
 
 			pstmt.execute();
@@ -103,8 +108,10 @@ public class FuncaoVoluntarioDAO extends GenericDAO {
 	public List<Entidade> listar() throws Exception {
 
 		con = Conexao.getConnection();
-
+		funcaoDAO = new FuncaoController();
+		voluntarioDAO = new VoluntarioDAO();
 		List<Entidade> listaFuncaoVoluntario = new ArrayList<Entidade>();
+
 		String sql = "SELECT fv.id, fv.idFuncao, fv.idVoluntario FROM funcaoVoluntario fv";
 		try {
 
@@ -116,8 +123,10 @@ public class FuncaoVoluntarioDAO extends GenericDAO {
 
 				try {
 
-					funcaoVoluntario = new FuncaoVoluntario(result.getInt("id"), result.getInt("idFuncao"),
-							result.getInt("idVoluntario"));
+					Funcao funcao = (Funcao) funcaoDAO.getPorId(result.getInt("idFuncao"));
+					Voluntario voluntario = (Voluntario) voluntarioDAO.getPorId(result.getInt("idVoluntario"));
+
+					funcaoVoluntario = new FuncaoVoluntario(result.getInt("id"), funcao, voluntario);
 
 					listaFuncaoVoluntario.add(funcaoVoluntario);
 
@@ -142,7 +151,10 @@ public class FuncaoVoluntarioDAO extends GenericDAO {
 
 	@Override
 	public Entidade getPorId(int id) throws Exception {
+
 		con = Conexao.getConnection();
+		funcaoDAO = new FuncaoController();
+		voluntarioDAO = new VoluntarioDAO();
 
 		String sql = "SELECT fv.id, fv.idFuncao, fv.idVoluntario FROM funcaoVoluntario fv WHERE id=?";
 		try {
@@ -153,8 +165,10 @@ public class FuncaoVoluntarioDAO extends GenericDAO {
 
 			while (result.next()) {
 
-				funcaoVoluntario = new FuncaoVoluntario(result.getInt("id"), result.getInt("idFuncao"),
-						result.getInt("idVoluntario"));
+				Funcao funcao = (Funcao) funcaoDAO.getPorId(result.getInt("idFuncao"));
+				Voluntario voluntario = (Voluntario) voluntarioDAO.getPorId(result.getInt("idVoluntario"));
+
+				funcaoVoluntario = new FuncaoVoluntario(result.getInt("id"), funcao, voluntario);
 			}
 			result.close();
 			pstmt.close();
@@ -197,10 +211,12 @@ public class FuncaoVoluntarioDAO extends GenericDAO {
 		return false;
 	}
 
-	public List<Entidade> getListPorIdVoluntario(int idVoluntario) throws SQLException {
+	public List<Entidade> getListPorIdVoluntario(int idVoluntario) throws Exception {
 		con = Conexao.getConnection();
 
-		List<Entidade> list = null;
+		List<Entidade> list = new ArrayList<>();
+		funcaoDAO = new FuncaoController();
+		voluntarioDAO = new VoluntarioDAO();
 
 		String sql = "SELECT fv.id, fv.idFuncao, fv.idVoluntario FROM funcaoVoluntario fv WHERE idVoluntario=?";
 		try {
@@ -211,9 +227,10 @@ public class FuncaoVoluntarioDAO extends GenericDAO {
 
 			while (result.next()) {
 
-				list = new ArrayList<>();
-				funcaoVoluntario = new FuncaoVoluntario(result.getInt("id"), result.getInt("idFuncao"),
-						result.getInt("idVoluntario"));
+				Funcao funcao = (Funcao) voluntarioDAO.getPorId(result.getInt("idFuncao"));
+				Voluntario voluntario = (Voluntario) voluntarioDAO.getPorId(result.getInt("idVoluntario"));
+
+				funcaoVoluntario = new FuncaoVoluntario(result.getInt("id"), funcao, voluntario);
 
 				list.add(funcaoVoluntario);
 			}

@@ -5,64 +5,77 @@ import br.senai.sc.ajudeaqui.abstracts.Entidade;
 public class FuncaoVoluntario extends Entidade {
 
 	private int id;
-	private int idFuncao;
-	private int idVoluntario;
+	private Funcao funcao;
+	private Voluntario voluntario;
 
 	public FuncaoVoluntario() {
 		super();
 	}
 
-	public FuncaoVoluntario(int idFuncao, int idVoluntario) {
+	/**
+	 * 
+	 * @param funcao
+	 * @param voluntario
+	 */
+	public FuncaoVoluntario(Funcao funcao, Voluntario voluntario) {
 		super();
-		this.idFuncao = idFuncao;
-		this.idVoluntario = idVoluntario;
+		this.funcao = funcao;
+		this.voluntario = voluntario;
 	}
 
-	public FuncaoVoluntario(int id, int idFuncao, int idVoluntario) {
+	/**
+	 * @param id
+	 * @param funcao
+	 * @param voluntario
+	 */
+	public FuncaoVoluntario(int id, Funcao funcao, Voluntario voluntario) {
 		super();
 		this.id = id;
-		this.idFuncao = idFuncao;
-		this.idVoluntario = idVoluntario;
+		this.funcao = funcao;
+		this.voluntario = voluntario;
 	}
 
-	@Override
+	/**
+	 * @return the id
+	 */
 	public int getId() {
 		return id;
 	}
 
-	@Override
+	/**
+	 * @param id the id to set
+	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 
 	/**
-	 * @return the idFuncao
+	 * @return the funcao
 	 */
-	public int getIdFuncao() {
-		return idFuncao;
+	public Funcao getFuncao() {
+		return funcao;
 	}
 
 	/**
-	 * @param idFuncao
-	 *            the idFuncao to set
+	 * @param funcao the funcao to set
 	 */
-	public void setIdFuncao(int idFuncao) {
-		this.idFuncao = idFuncao;
+	public void setFuncao(Funcao funcao) {
+		this.funcao = funcao;
 	}
 
 	/**
-	 * @return the idVoluntario
+	 * @return the voluntario
 	 */
-	public int getIdVoluntario() {
-		return idVoluntario;
+	public Voluntario getVoluntario() {
+		return voluntario;
 	}
 
 	/**
-	 * @param idVoluntario
-	 *            the idVoluntario to set
+	 * @param voluntario the voluntario to set
 	 */
-	public void setIdVoluntario(int idVoluntario) {
-		this.idVoluntario = idVoluntario;
+	public void setVoluntario(Voluntario voluntario) {
+		this.voluntario = voluntario;
 	}
+
 
 }

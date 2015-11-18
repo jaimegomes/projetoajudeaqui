@@ -143,28 +143,29 @@ public class RegistroUI extends javax.swing.JInternalFrame {
 		});
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-		layout.setHorizontalGroup(layout.createParallelGroup(Alignment.LEADING)
-				.addGroup(layout.createSequentialGroup().addGroup(layout.createParallelGroup(Alignment.LEADING)
-						.addGroup(layout.createSequentialGroup().addContainerGap().addComponent(panelFormCadastro,
-								GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-						.addGroup(Alignment.TRAILING,
-								layout.createSequentialGroup().addGap(53)
-										.addComponent(btnCadastrar, GroupLayout.PREFERRED_SIZE, 137,
-												GroupLayout.PREFERRED_SIZE)
-										.addGap(18).addComponent(btnCancelar, GroupLayout.DEFAULT_SIZE,
-												GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-						.addContainerGap()));
+		layout.setHorizontalGroup(
+			layout.createParallelGroup(Alignment.LEADING)
+				.addGroup(layout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(panelFormCadastro, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addGroup(Alignment.LEADING, layout.createSequentialGroup()
+							.addComponent(btnCadastrar, GroupLayout.PREFERRED_SIZE, 137, GroupLayout.PREFERRED_SIZE)
+							.addGap(10)
+							.addComponent(btnCancelar, GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)))
+					.addContainerGap())
+		);
 		layout.setVerticalGroup(
-				layout.createParallelGroup(Alignment.LEADING)
-						.addGroup(layout.createSequentialGroup().addContainerGap()
-								.addComponent(panelFormCadastro, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-										.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 19,
-												GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnCadastrar, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE))
-				.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+			layout.createParallelGroup(Alignment.LEADING)
+				.addGroup(layout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(panelFormCadastro, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnCadastrar, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(41, Short.MAX_VALUE))
+		);
 		getContentPane().setLayout(layout);
 
 		pack();

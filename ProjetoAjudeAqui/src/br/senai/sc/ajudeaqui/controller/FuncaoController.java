@@ -8,7 +8,7 @@ import br.senai.sc.ajudeaqui.interfaces.IController;
 
 public class FuncaoController implements IController {
 
-	private FuncaoDAO dao = null;
+	private FuncaoDAO dao;
 
 	@Override
 	public void salvar(Entidade entidade) throws Exception {

@@ -8,7 +8,7 @@ import br.senai.sc.ajudeaqui.interfaces.IController;
 
 public class VoluntarioController implements IController {
 
-	private VoluntarioDAO volDAO = null;
+	private VoluntarioDAO volDAO;
 
 	@Override
 	public void salvar(Entidade entidade) throws Exception {
@@ -45,7 +45,7 @@ public class VoluntarioController implements IController {
 		volDAO = new VoluntarioDAO();
 		return volDAO.getPorId(id);
 	}
-	
+
 	public Entidade getPorIdUsuario(int id) throws Exception {
 
 		volDAO = new VoluntarioDAO();

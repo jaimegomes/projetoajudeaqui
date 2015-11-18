@@ -8,7 +8,7 @@ import br.senai.sc.ajudeaqui.interfaces.IController;
 
 public class HorarioVoluntarioController implements IController {
 
-	HorarioVoluntarioDAO dao;
+	private HorarioVoluntarioDAO dao;
 
 	@Override
 	public void salvar(Entidade entidade) throws Exception {
@@ -58,6 +58,12 @@ public class HorarioVoluntarioController implements IController {
 		
 		dao = new HorarioVoluntarioDAO();
 		return dao.getPorIdVoluntario(idVoluntario);
+	}
+
+	public List<Entidade> getListPorIdVoluntario(int idVoluntario) throws Exception {
+		
+		dao = new HorarioVoluntarioDAO();
+		return dao.getListPorIdVoluntario(idVoluntario);
 	}
 
 }

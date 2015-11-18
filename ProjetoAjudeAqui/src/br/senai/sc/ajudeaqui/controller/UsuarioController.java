@@ -9,8 +9,8 @@ import br.senai.sc.ajudeaqui.model.Usuario;
 
 public class UsuarioController implements IController {
 
-	UsuarioDAO dao;
-	Usuario usuario = null;
+	private UsuarioDAO dao;
+	private Usuario usuario;
 
 	@Override
 	public void salvar(Entidade entidade) throws Exception {

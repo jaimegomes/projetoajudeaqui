@@ -9,7 +9,7 @@ import br.senai.sc.ajudeaqui.model.Anuncio;
 
 public class AnuncioController implements IController {
 
-	Anuncio anuncio = null;
+	Anuncio anuncio;
 	AnuncioDAO dao;
 
 	@Override

@@ -8,7 +8,7 @@ import br.senai.sc.ajudeaqui.interfaces.IController;
 
 public class InstituicaoController implements IController {
 
-	InstituicaoDAO dao;
+	private InstituicaoDAO dao;
 
 	@Override
 	public void salvar(Entidade entidade) throws Exception {

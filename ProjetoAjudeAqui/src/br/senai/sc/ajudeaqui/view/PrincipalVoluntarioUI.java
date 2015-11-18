@@ -96,11 +96,11 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 	private javax.swing.JTextField txtTituloFiltroVagas;
 	private JDateChooser dateChooserDataNascimento;
 	private JDateChooser dateChooserDataPublicacaoFiltroVagas;
-	private VoluntarioController voluntarioController = new VoluntarioController();
-	private FuncaoController funcaoController = new FuncaoController();
 	private List<String> listHorarios;
 	private List<String> listAreasInteresse;
 
+	private VoluntarioController voluntarioController = new VoluntarioController();
+	private FuncaoController funcaoController = new FuncaoController();
 	// End of variables declaration
 
 	/**
@@ -486,19 +486,25 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 				String horarios = "Horários Disponíveis\n\n";
 
 				try {
-					
+
 					Voluntario vol = (Voluntario) voluntarioController.getPorIdUsuario(usuario.getId());
 					HorarioVoluntarioController horarioVolController = new HorarioVoluntarioController();
-					
-					List<Entidade> list = horarioVolController.getPorIdVoluntario(vol.getId());
+
+					List<Entidade> list = horarioVolController.getListPorIdVoluntario(vol.getId());
+
+					for (Entidade ent : list) {
+
+						FuncaoVoluntario funcaoVoluntario = (FuncaoVoluntario) ent;
+						Funcao funcao = (Funcao) funcaoController.getPorId(funcaoVoluntario.getFuncao().getId());
+
+						horarios += funcao.getFuncao() + "\n";
+					}
 
 					JOptionPane.showMessageDialog(null, horarios);
+
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-
-				listHorarios.add(cmbHorarioDisponivel.getSelectedItem() + "");
-
 			}
 		});
 
@@ -511,26 +517,25 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 				String funcoes = "Áreas de Interesse em Ajudar\n\n";
 
 				try {
+
 					Voluntario vol = (Voluntario) voluntarioController.getPorIdUsuario(usuario.getId());
 					FuncaoVoluntarioController funcaoVolController = new FuncaoVoluntarioController();
-					
+
 					List<Entidade> list = funcaoVolController.getListPorIdVoluntario(vol.getId());
-					
-					for(Entidade ent: list) {
-						
+
+					for (Entidade ent : list) {
+
 						FuncaoVoluntario funcaoVoluntario = (FuncaoVoluntario) ent;
-						Funcao funcao = (Funcao) funcaoController.getPorId(funcaoVoluntario.getIdFuncao());
-						
-						funcoes += funcao.getFuncao()+"\n";
+						Funcao funcao = (Funcao) funcaoController.getPorId(funcaoVoluntario.getFuncao().getId());
+
+						funcoes += funcao.getFuncao() + "\n";
 					}
-					
+
 					JOptionPane.showMessageDialog(null, funcoes);
 
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-
-				listHorarios.add(cmbHorarioDisponivel.getSelectedItem() + "");
 
 			}
 		});
@@ -724,20 +729,7 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 		scrollpaneVagas.setMinimumSize(new java.awt.Dimension(1197, 480));
 		scrollpaneVagas.setPreferredSize(new java.awt.Dimension(1197, 480));
 
-		tableVagas.setModel(new javax.swing.table.DefaultTableModel(new Object[][] {
-
-		}, new String[] { "Instituição", "Título", "Descrição" }) {
-			Class[] types = new Class[] { java.lang.String.class, java.lang.String.class, java.lang.String.class };
-			boolean[] canEdit = new boolean[] { false, false, false };
-
-			public Class getColumnClass(int columnIndex) {
-				return types[columnIndex];
-			}
-
-			public boolean isCellEditable(int rowIndex, int columnIndex) {
-				return canEdit[columnIndex];
-			}
-		});
+		// tableVagas.setModel(null);
 		tableVagas.setAutoscrolls(false);
 		tableVagas.setMaximumSize(new java.awt.Dimension(1197, 480));
 		tableVagas.setMinimumSize(new java.awt.Dimension(1197, 480));
@@ -850,8 +842,6 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 
 	private void btnSalvarAction(Usuario user) {
 
-		VoluntarioController volController = new VoluntarioController();
-
 		String sexo = "";
 		String estadoCivil = "";
 
@@ -873,7 +863,7 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 
 		try {
 
-			Voluntario voluntario = (Voluntario) volController.getPorIdUsuario(user.getId());
+			Voluntario voluntario = (Voluntario) voluntarioController.getPorIdUsuario(user.getId());
 			voluntario.setNome(txtNome.getText());
 			voluntario.setTelefone(jftxtTelefone.getText());
 			voluntario.setCpf(jftxtCpf.getText());
@@ -887,7 +877,7 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 			voluntario.setCelular(jftxtCelular.getText());
 			voluntario.setInformacoesComplementares(atxtInfoComplementares.getText());
 
-			volController.editar(voluntario);
+			voluntarioController.editar(voluntario);
 
 			if (listHorarios != null) {
 
@@ -910,16 +900,17 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 
 			if (listAreasInteresse != null) {
 
-				FuncaoController funcaoController = new FuncaoController();
 				FuncaoVoluntarioController funcaoVolController = new FuncaoVoluntarioController();
 
 				for (int i = 0; i < listAreasInteresse.size(); i++) {
+
+					System.out.println(listAreasInteresse.get(i));
 
 					Funcao funcao = (Funcao) funcaoController.getPorFuncao(listAreasInteresse.get(i));
 
 					// se não existir na lista adiciona
 					if (!funcaoVolController.getPorIdFuncaoVoluntario(funcao.getId(), voluntario.getId())) {
-						FuncaoVoluntario funcaoVoluntario = new FuncaoVoluntario(funcao.getId(), voluntario.getId());
+						FuncaoVoluntario funcaoVoluntario = new FuncaoVoluntario(funcao, voluntario);
 
 						funcaoVolController.salvar(funcaoVoluntario);
 					}
