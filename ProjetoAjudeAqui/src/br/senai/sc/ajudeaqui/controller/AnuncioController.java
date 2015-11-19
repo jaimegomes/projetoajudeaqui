@@ -82,12 +82,10 @@ public class AnuncioController implements IController {
 		return dao.getPorId(id);
 	}
 
-	public Entidade pesquisarAnuncio(String titulo, Instituicao instituicao,
-			Date dataPublicacao, Funcao tipoServico) throws Exception {
+	public List<Entidade> pesquisarAnuncio(String sql) throws Exception {
 
 		dao = new AnuncioDAO();
-		return dao.pesquisarAnuncio(titulo, instituicao, dataPublicacao,
-				tipoServico);
+		return dao.pesquisarAnuncio(sql);
 
 	}
 

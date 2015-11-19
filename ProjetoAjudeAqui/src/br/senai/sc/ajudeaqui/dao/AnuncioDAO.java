@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import br.senai.sc.ajudeaqui.abstracts.Entidade;
@@ -263,35 +262,19 @@ public class AnuncioDAO extends GenericDAO {
 		return anuncio;
 	}
 
-	public Entidade pesquisarAnuncio(String titulo, Instituicao instituicao,
-			Date dataPublicacao, Funcao tipoServico) throws Exception {
+	public List<Entidade> pesquisarAnuncio(String sql) throws Exception {
 		con = Conexao.getConnection();
 
-		StringBuilder sql = new StringBuilder();
+		List<Entidade> listAnuncios = new ArrayList<Entidade>();
+
+		PreparedStatement pstmt = null;
 		try {
-			sql.append("SELECT a.id, a.titulo, a.descricao, a.qtdVagas, a.dataPublicacao, a.idFuncao, a.status, a.idInstituicao FROM anuncio a");
-			
-			if(instituicao !=null) {
-					sql.append( " WHERE idInstituicao=?");
-					
-			}
-			
-			if(titulo != null) {
-				sql.append( " WHERE titulo=?");
-			}
-			PreparedStatement pstmt = con.prepareStatement(sql.toString());
-			pstmt.setInt(1, instituicao.getId());
+
+			pstmt = con.prepareStatement(sql.toString());
 
 			ResultSet result = pstmt.executeQuery();
 
 			while (result.next()) {
-
-//				funDAO = new FuncaoDAO();
-//				funcao = (Funcao) funDAO.getPorId(result.getInt("idFuncao"));
-//
-//				instDAO = new InstituicaoDAO();
-//				instituicao = (Instituicao) instDAO.getPorId(result
-//						.getInt("idInstituicao"));
 
 				anuncio = new Anuncio(result.getInt("id"),
 						result.getString("titulo"),
@@ -299,6 +282,8 @@ public class AnuncioDAO extends GenericDAO {
 						result.getInt("qtdVagas"),
 						result.getDate("dataPublicacao"), funcao,
 						result.getString("status"), instituicao);
+
+				listAnuncios.add(anuncio);
 			}
 			result.close();
 			pstmt.close();
@@ -311,7 +296,7 @@ public class AnuncioDAO extends GenericDAO {
 			con.close();
 		}
 
-		return anuncio;
+		return listAnuncios;
 	}
 
 }

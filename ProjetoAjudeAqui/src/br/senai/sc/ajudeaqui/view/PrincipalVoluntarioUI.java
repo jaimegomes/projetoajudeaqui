@@ -29,6 +29,7 @@ import br.senai.sc.ajudeaqui.controller.HorarioController;
 import br.senai.sc.ajudeaqui.controller.HorarioVoluntarioController;
 import br.senai.sc.ajudeaqui.controller.InstituicaoController;
 import br.senai.sc.ajudeaqui.controller.VoluntarioController;
+import br.senai.sc.ajudeaqui.model.Anuncio;
 import br.senai.sc.ajudeaqui.model.Funcao;
 import br.senai.sc.ajudeaqui.model.FuncaoVoluntario;
 import br.senai.sc.ajudeaqui.model.Horario;
@@ -1493,13 +1494,31 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 		}
 	}
 
-	private void btnPesquisarAction(String titulo, Instituicao instituicao,
-			Date dataPublicacao, Funcao tipoServico) throws Exception {
+	private List<Entidade> btnPesquisarAction(String titulo,
+			Instituicao instituicao, Date dataPublicacao, Funcao tipoServico)
+			throws Exception {
 
 		AnuncioController anuncioController = new AnuncioController();
+		StringBuilder sql = new StringBuilder();
 
-		anuncioController.pesquisarAnuncio(titulo, instituicao, dataPublicacao,
-				tipoServico);
+		sql.append("SELECT a.id, a.titulo, a.descricao, a.qtdVagas, a.dataPublicacao, a.idFuncao, a.status, a.idInstituicao FROM anuncio a WHERE ");
+
+		if (instituicao != null)
+			sql.append(" idInstituicao= " + instituicao.getId());
+
+		if (titulo != null)
+			sql.append(" AND titulo= " + titulo);
+
+		if (dataPublicacao != null)
+			sql.append(" AND dataPublicacao= " + dataPublicacao);
+
+		if (tipoServico != null)
+			sql.append(" AND idFuncao= " + tipoServico.getId());
+
+		List<Entidade> listAnuncios = anuncioController.pesquisarAnuncio(sql
+				.toString());
+		
+		return listAnuncios;
 
 	}
 
