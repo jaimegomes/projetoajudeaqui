@@ -9,8 +9,10 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import br.senai.sc.ajudeaqui.controller.InstituicaoController;
 import br.senai.sc.ajudeaqui.controller.UsuarioController;
 import br.senai.sc.ajudeaqui.controller.VoluntarioController;
+import br.senai.sc.ajudeaqui.model.Instituicao;
 import br.senai.sc.ajudeaqui.model.Usuario;
 import br.senai.sc.ajudeaqui.model.Voluntario;
 
@@ -197,16 +199,31 @@ public class RegistroUI extends javax.swing.JInternalFrame {
 			}
 
 			if (senha.equals(confirmacaoSenha)) {
+
 				user = new Usuario(txtLogin.getText(), senha, perfil);
-				Voluntario voluntario = new Voluntario();
-				VoluntarioController volController = new VoluntarioController();
+				controller.salvar(user);
 
-				try {
-					controller.salvar(user);
+				Usuario usu = (Usuario) controller.getPorLogin(txtLogin.getText());
 
-					Usuario usu = (Usuario) controller.getPorLogin(txtLogin.getText());
+				if (perfil.equals("Voluntário")) {
+
+					Voluntario voluntario = new Voluntario();
+					VoluntarioController volController = new VoluntarioController();
+
 					voluntario.setUsuario(usu);
 					volController.salvar(voluntario);
+
+				} else if (perfil.equals("Instituição")) {
+
+					Instituicao instituicao = new Instituicao();
+					InstituicaoController instituicaoController = new InstituicaoController();
+
+					instituicao.setUsuario(usu);
+					instituicaoController.salvar(instituicao);
+
+				}
+
+				try {
 
 					dispose();
 					JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso.");

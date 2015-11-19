@@ -25,7 +25,6 @@ public class LoginUI extends javax.swing.JFrame {
 	private javax.swing.JLabel lblSenha;
 	private javax.swing.JPasswordField pwdSenha;
 	private javax.swing.JTextField txtLogin;
-
 	// End of variables declaration
 
 	/**

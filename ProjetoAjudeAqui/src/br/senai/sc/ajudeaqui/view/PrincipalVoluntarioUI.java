@@ -21,6 +21,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import com.toedter.calendar.JDateChooser;
+
 import br.senai.sc.ajudeaqui.abstracts.Entidade;
 import br.senai.sc.ajudeaqui.controller.AnuncioController;
 import br.senai.sc.ajudeaqui.controller.FuncaoController;
@@ -36,13 +38,13 @@ import br.senai.sc.ajudeaqui.model.HorarioVoluntario;
 import br.senai.sc.ajudeaqui.model.Instituicao;
 import br.senai.sc.ajudeaqui.model.Usuario;
 import br.senai.sc.ajudeaqui.model.Voluntario;
-
-import com.toedter.calendar.JDateChooser;
+import br.senai.sc.ajudeaqui.tablemodel.AnuncioTableModel;
 
 /**
  *
  * @author Jaime Gomes
  */
+@SuppressWarnings("rawtypes")
 public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 
 	// Variables declaration - do not modify
@@ -117,29 +119,24 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 	public static void main(String args[]) {
 
 		try {
-			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
-					.getInstalledLookAndFeels()) {
+			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
 				if ("Nimbus".equals(info.getName())) {
 					javax.swing.UIManager.setLookAndFeel(info.getClassName());
 					break;
 				}
 			}
 		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(
-					PrincipalVoluntarioUI.class.getName()).log(
-					java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(PrincipalVoluntarioUI.class.getName())
+					.log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(
-					PrincipalVoluntarioUI.class.getName()).log(
-					java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(PrincipalVoluntarioUI.class.getName())
+					.log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(
-					PrincipalVoluntarioUI.class.getName()).log(
-					java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(PrincipalVoluntarioUI.class.getName())
+					.log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(
-					PrincipalVoluntarioUI.class.getName()).log(
-					java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(PrincipalVoluntarioUI.class.getName())
+					.log(java.util.logging.Level.SEVERE, null, ex);
 		}
 
 		/* Create and display the form */
@@ -220,23 +217,7 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 		dateChooserDataNascimento = new JDateChooser();
 		dateChooserDataPublicacaoFiltroVagas = new JDateChooser();
 
-		// desabilitando os campos
-		cmbEstadoCivil.setEnabled(false);
-		cmbSexo.setEnabled(false);
-		dateChooserDataNascimento.setEnabled(false);
-		cmbHorarioDisponivel.setEnabled(false);
-		cmbAreasInteresse.setEnabled(false);
-		jftxtCpf.setEnabled(false);
-		jftxtCelular.setEnabled(false);
-		jftxtTelefone.setEnabled(false);
-		txtEndereco.setEnabled(false);
-		jftxtEmail.setEnabled(false);
-		txtNome.setEnabled(false);
-		atxtInfoComplementares.setEnabled(false);
-		txtComplemento.setEnabled(false);
-		cmbEstadoCivil.setEnabled(false);
-		dateChooserDataNascimento.setEnabled(false);
-		cmbSexo.setEnabled(false);
+		desabilitarCampos();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		setTitle(":: Sistema do Voluntário Ajude Aqui ::");
@@ -246,19 +227,13 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 		setName("frameVoluntario"); // NOI18N
 		getContentPane().setBackground(Color.black);
 
-		menuPrincipalVoluntario.setBorder(javax.swing.BorderFactory
-				.createLineBorder(new java.awt.Color(0, 0, 0)));
-		menuPrincipalVoluntario
-				.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
-		menuPrincipalVoluntario
-				.setMaximumSize(new java.awt.Dimension(1300, 750));
-		menuPrincipalVoluntario
-				.setMinimumSize(new java.awt.Dimension(1300, 750));
-		menuPrincipalVoluntario.setPreferredSize(new java.awt.Dimension(1300,
-				750));
+		menuPrincipalVoluntario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+		menuPrincipalVoluntario.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
+		menuPrincipalVoluntario.setMaximumSize(new java.awt.Dimension(1300, 750));
+		menuPrincipalVoluntario.setMinimumSize(new java.awt.Dimension(1300, 750));
+		menuPrincipalVoluntario.setPreferredSize(new java.awt.Dimension(1300, 750));
 
-		panelPerfil.setBorder(new javax.swing.border.LineBorder(
-				new java.awt.Color(0, 0, 0), 1, true));
+		panelPerfil.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 		panelPerfil.setMaximumSize(new Dimension(1110, 730));
 		panelPerfil.setMinimumSize(new Dimension(1110, 730));
 		panelPerfil.setName(""); // NOI18N
@@ -277,8 +252,7 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 
 		});
 
-		btnEditarDadosPerfil.setIcon(new ImageIcon(
-				"img/editar_usuario_16x16.png")); // NOI18N
+		btnEditarDadosPerfil.setIcon(new ImageIcon("img/editar_usuario_16x16.png")); // NOI18N
 		btnEditarDadosPerfil.setText("Editar");
 		btnEditarDadosPerfil.addActionListener(new ActionListener() {
 
@@ -298,7 +272,6 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 				txtNome.setEnabled(true);
 				atxtInfoComplementares.setEnabled(true);
 				txtComplemento.setEnabled(true);
-				cmbEstadoCivil.setEnabled(true);
 				dateChooserDataNascimento.setEnabled(true);
 				cmbSexo.setEnabled(true);
 
@@ -308,8 +281,7 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 			}
 		});
 
-		panelDadosPessoais.setBorder(javax.swing.BorderFactory
-				.createTitledBorder("Dados Pessoais"));
+		panelDadosPessoais.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados Pessoais"));
 		panelDadosPessoais.setMaximumSize(new java.awt.Dimension(1197, 180));
 		panelDadosPessoais.setMinimumSize(new java.awt.Dimension(1197, 180));
 		panelDadosPessoais.setName(""); // NOI18N
@@ -339,8 +311,8 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 		lblEstadoCivil.setFont(new Font("Dialog", Font.PLAIN, 12)); // NOI18N
 		lblEstadoCivil.setText("Estado Civil:");
 
-		cmbEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel(
-				new String[] { "", "Casado", "Solteiro", "Outro" }));
+		cmbEstadoCivil
+				.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Casado", "Solteiro", "Outro" }));
 
 		jftxtTelefone.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
@@ -356,298 +328,110 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 		lblSexo.setFont(new Font("Dialog", Font.PLAIN, 12)); // NOI18N
 		lblSexo.setText("Sexo:");
 
-		cmbSexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
-				"", "Masculino", "Feminino" }));
+		cmbSexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Masculino", "Feminino" }));
 
 		dateChooserDataNascimento.setSize(100, 19);
 
-		javax.swing.GroupLayout panelDadosPessoaisLayout = new javax.swing.GroupLayout(
-				panelDadosPessoais);
-		panelDadosPessoaisLayout
-				.setHorizontalGroup(panelDadosPessoaisLayout
-						.createParallelGroup(Alignment.LEADING)
-						.addGroup(
-								panelDadosPessoaisLayout
-										.createSequentialGroup()
-										.addContainerGap()
-										.addGroup(
-												panelDadosPessoaisLayout
-														.createParallelGroup(
-																Alignment.LEADING)
-														.addComponent(
-																btnFoto,
-																GroupLayout.DEFAULT_SIZE,
-																122,
-																Short.MAX_VALUE)
-														.addComponent(
-																lblAvatar,
-																GroupLayout.PREFERRED_SIZE,
-																122,
-																GroupLayout.PREFERRED_SIZE))
-										.addPreferredGap(
-												ComponentPlacement.UNRELATED)
-										.addGroup(
-												panelDadosPessoaisLayout
-														.createParallelGroup(
-																Alignment.LEADING)
-														.addComponent(
-																lblDataNascimento)
-														.addComponent(lblCpf)
-														.addComponent(
-																lblEndereco)
-														.addComponent(lblNome)
-														.addComponent(
-																lblEstadoCivil))
-										.addPreferredGap(
-												ComponentPlacement.RELATED)
-										.addGroup(
-												panelDadosPessoaisLayout
-														.createParallelGroup(
-																Alignment.LEADING)
-														.addGroup(
-																panelDadosPessoaisLayout
-																		.createSequentialGroup()
-																		.addGap(1)
-																		.addGroup(
-																				panelDadosPessoaisLayout
-																						.createParallelGroup(
-																								Alignment.LEADING,
-																								false)
-																						.addComponent(
-																								txtEndereco,
-																								GroupLayout.DEFAULT_SIZE,
-																								291,
-																								Short.MAX_VALUE)
-																						.addComponent(
-																								jftxtCpf,
-																								GroupLayout.PREFERRED_SIZE,
-																								129,
-																								GroupLayout.PREFERRED_SIZE)
-																						.addComponent(
-																								txtNome)))
-														.addGroup(
-																panelDadosPessoaisLayout
-																		.createParallelGroup(
-																				Alignment.TRAILING,
-																				false)
-																		.addComponent(
-																				dateChooserDataNascimento,
-																				Alignment.LEADING,
-																				GroupLayout.DEFAULT_SIZE,
-																				GroupLayout.DEFAULT_SIZE,
-																				Short.MAX_VALUE)
-																		.addComponent(
-																				cmbEstadoCivil,
-																				Alignment.LEADING,
-																				0,
-																				130,
-																				Short.MAX_VALUE)))
-										.addGap(10)
-										.addGroup(
-												panelDadosPessoaisLayout
-														.createParallelGroup(
-																Alignment.LEADING)
-														.addComponent(
-																lblComplemento)
-														.addComponent(
-																lblTelefone)
-														.addComponent(lblSexo)
-														.addComponent(lblEmail)
-														.addComponent(
-																lblCelular))
-										.addGap(6)
-										.addGroup(
-												panelDadosPessoaisLayout
-														.createParallelGroup(
-																Alignment.LEADING)
-														.addComponent(
-																jftxtTelefone,
-																GroupLayout.PREFERRED_SIZE,
-																110,
+		javax.swing.GroupLayout panelDadosPessoaisLayout = new javax.swing.GroupLayout(panelDadosPessoais);
+		panelDadosPessoaisLayout.setHorizontalGroup(panelDadosPessoaisLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(panelDadosPessoaisLayout.createSequentialGroup().addContainerGap()
+						.addGroup(panelDadosPessoaisLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(btnFoto, GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+								.addComponent(lblAvatar, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE))
+						.addPreferredGap(ComponentPlacement.UNRELATED)
+						.addGroup(panelDadosPessoaisLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblDataNascimento).addComponent(lblCpf).addComponent(lblEndereco)
+								.addComponent(lblNome).addComponent(lblEstadoCivil))
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addGroup(panelDadosPessoaisLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(panelDadosPessoaisLayout.createSequentialGroup().addGap(1)
+										.addGroup(panelDadosPessoaisLayout.createParallelGroup(Alignment.LEADING, false)
+												.addComponent(txtEndereco, GroupLayout.DEFAULT_SIZE, 291,
+														Short.MAX_VALUE)
+												.addComponent(jftxtCpf, GroupLayout.PREFERRED_SIZE, 129,
+														GroupLayout.PREFERRED_SIZE)
+												.addComponent(txtNome)))
+								.addGroup(panelDadosPessoaisLayout.createParallelGroup(Alignment.TRAILING, false)
+										.addComponent(dateChooserDataNascimento, Alignment.LEADING,
+												GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(cmbEstadoCivil, Alignment.LEADING, 0, 130, Short.MAX_VALUE)))
+						.addGap(10)
+						.addGroup(panelDadosPessoaisLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblComplemento).addComponent(lblTelefone).addComponent(lblSexo)
+								.addComponent(lblEmail).addComponent(lblCelular))
+						.addGap(6)
+						.addGroup(panelDadosPessoaisLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(jftxtTelefone, GroupLayout.PREFERRED_SIZE, 110,
+										GroupLayout.PREFERRED_SIZE)
+								.addComponent(cmbSexo, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE)
+								.addComponent(jftxtEmail, GroupLayout.PREFERRED_SIZE, 247, GroupLayout.PREFERRED_SIZE)
+								.addComponent(txtComplemento, GroupLayout.PREFERRED_SIZE, 116,
+										GroupLayout.PREFERRED_SIZE)
+								.addComponent(jftxtCelular, GroupLayout.PREFERRED_SIZE, 110,
+										GroupLayout.PREFERRED_SIZE))
+						.addGap(303)));
+		panelDadosPessoaisLayout.setVerticalGroup(panelDadosPessoaisLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(panelDadosPessoaisLayout.createSequentialGroup()
+						.addGroup(panelDadosPessoaisLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(panelDadosPessoaisLayout.createSequentialGroup().addComponent(lblAvatar)
+										.addPreferredGap(ComponentPlacement.RELATED).addComponent(btnFoto))
+						.addGroup(panelDadosPessoaisLayout.createSequentialGroup().addGroup(panelDadosPessoaisLayout
+								.createParallelGroup(Alignment.LEADING)
+								.addGroup(panelDadosPessoaisLayout.createSequentialGroup()
+										.addComponent(jftxtTelefone, GroupLayout.PREFERRED_SIZE, 22,
+												GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addGroup(panelDadosPessoaisLayout.createParallelGroup(Alignment.BASELINE)
+												.addComponent(jftxtCelular, GroupLayout.PREFERRED_SIZE, 22,
+														GroupLayout.PREFERRED_SIZE)
+												.addComponent(lblCelular))
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addGroup(panelDadosPessoaisLayout.createParallelGroup(Alignment.BASELINE)
+												.addComponent(jftxtEmail, GroupLayout.PREFERRED_SIZE, 22,
+														GroupLayout.PREFERRED_SIZE)
+												.addComponent(lblEmail))
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addGroup(panelDadosPessoaisLayout.createParallelGroup(Alignment.BASELINE)
+												.addComponent(cmbSexo, GroupLayout.PREFERRED_SIZE, 22,
+														GroupLayout.PREFERRED_SIZE)
+												.addComponent(lblSexo)))
+								.addGroup(panelDadosPessoaisLayout.createSequentialGroup()
+										.addGroup(panelDadosPessoaisLayout.createParallelGroup(Alignment.LEADING)
+												.addComponent(lblNome)
+												.addGroup(panelDadosPessoaisLayout
+														.createParallelGroup(Alignment.BASELINE)
+														.addComponent(txtNome, GroupLayout.PREFERRED_SIZE, 22,
 																GroupLayout.PREFERRED_SIZE)
-														.addComponent(
-																cmbSexo,
-																GroupLayout.PREFERRED_SIZE,
-																105,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(
-																jftxtEmail,
-																GroupLayout.PREFERRED_SIZE,
-																247,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(
-																txtComplemento,
-																GroupLayout.PREFERRED_SIZE,
-																116,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(
-																jftxtCelular,
-																GroupLayout.PREFERRED_SIZE,
-																110,
-																GroupLayout.PREFERRED_SIZE))
-										.addGap(303)));
-		panelDadosPessoaisLayout
-				.setVerticalGroup(panelDadosPessoaisLayout
-						.createParallelGroup(Alignment.LEADING)
-						.addGroup(
-								panelDadosPessoaisLayout
-										.createSequentialGroup()
-										.addGroup(
-												panelDadosPessoaisLayout
-														.createParallelGroup(
-																Alignment.LEADING)
-														.addGroup(
-																panelDadosPessoaisLayout
-																		.createSequentialGroup()
-																		.addComponent(
-																				lblAvatar)
-																		.addPreferredGap(
-																				ComponentPlacement.RELATED)
-																		.addComponent(
-																				btnFoto))
-														.addGroup(
-																panelDadosPessoaisLayout
-																		.createSequentialGroup()
-																		.addGroup(
-																				panelDadosPessoaisLayout
-																						.createParallelGroup(
-																								Alignment.LEADING)
-																						.addGroup(
-																								panelDadosPessoaisLayout
-																										.createSequentialGroup()
-																										.addComponent(
-																												jftxtTelefone,
-																												GroupLayout.PREFERRED_SIZE,
-																												22,
-																												GroupLayout.PREFERRED_SIZE)
-																										.addPreferredGap(
-																												ComponentPlacement.RELATED)
-																										.addGroup(
-																												panelDadosPessoaisLayout
-																														.createParallelGroup(
-																																Alignment.BASELINE)
-																														.addComponent(
-																																jftxtCelular,
-																																GroupLayout.PREFERRED_SIZE,
-																																22,
-																																GroupLayout.PREFERRED_SIZE)
-																														.addComponent(
-																																lblCelular))
-																										.addPreferredGap(
-																												ComponentPlacement.RELATED)
-																										.addGroup(
-																												panelDadosPessoaisLayout
-																														.createParallelGroup(
-																																Alignment.BASELINE)
-																														.addComponent(
-																																jftxtEmail,
-																																GroupLayout.PREFERRED_SIZE,
-																																22,
-																																GroupLayout.PREFERRED_SIZE)
-																														.addComponent(
-																																lblEmail))
-																										.addPreferredGap(
-																												ComponentPlacement.RELATED)
-																										.addGroup(
-																												panelDadosPessoaisLayout
-																														.createParallelGroup(
-																																Alignment.BASELINE)
-																														.addComponent(
-																																cmbSexo,
-																																GroupLayout.PREFERRED_SIZE,
-																																22,
-																																GroupLayout.PREFERRED_SIZE)
-																														.addComponent(
-																																lblSexo)))
-																						.addGroup(
-																								panelDadosPessoaisLayout
-																										.createSequentialGroup()
-																										.addGroup(
-																												panelDadosPessoaisLayout
-																														.createParallelGroup(
-																																Alignment.LEADING)
-																														.addComponent(
-																																lblNome)
-																														.addGroup(
-																																panelDadosPessoaisLayout
-																																		.createParallelGroup(
-																																				Alignment.BASELINE)
-																																		.addComponent(
-																																				txtNome,
-																																				GroupLayout.PREFERRED_SIZE,
-																																				22,
-																																				GroupLayout.PREFERRED_SIZE)
-																																		.addComponent(
-																																				lblTelefone)))
-																										.addPreferredGap(
-																												ComponentPlacement.RELATED)
-																										.addGroup(
-																												panelDadosPessoaisLayout
-																														.createParallelGroup(
-																																Alignment.TRAILING)
-																														.addComponent(
-																																jftxtCpf,
-																																GroupLayout.PREFERRED_SIZE,
-																																22,
-																																GroupLayout.PREFERRED_SIZE)
-																														.addComponent(
-																																lblCpf))
-																										.addGap(7)
-																										.addGroup(
-																												panelDadosPessoaisLayout
-																														.createParallelGroup(
-																																Alignment.TRAILING)
-																														.addComponent(
-																																lblDataNascimento)
-																														.addComponent(
-																																dateChooserDataNascimento,
-																																GroupLayout.PREFERRED_SIZE,
-																																GroupLayout.DEFAULT_SIZE,
-																																GroupLayout.PREFERRED_SIZE))
-																										.addPreferredGap(
-																												ComponentPlacement.RELATED)
-																										.addGroup(
-																												panelDadosPessoaisLayout
-																														.createParallelGroup(
-																																Alignment.BASELINE)
-																														.addComponent(
-																																cmbEstadoCivil,
-																																GroupLayout.PREFERRED_SIZE,
-																																22,
-																																GroupLayout.PREFERRED_SIZE)
-																														.addComponent(
-																																lblEstadoCivil))))
-																		.addPreferredGap(
-																				ComponentPlacement.RELATED)
-																		.addGroup(
-																				panelDadosPessoaisLayout
-																						.createParallelGroup(
-																								Alignment.BASELINE)
-																						.addComponent(
-																								txtEndereco,
-																								GroupLayout.PREFERRED_SIZE,
-																								22,
-																								GroupLayout.PREFERRED_SIZE)
-																						.addComponent(
-																								txtComplemento,
-																								GroupLayout.PREFERRED_SIZE,
-																								22,
-																								GroupLayout.PREFERRED_SIZE)
-																						.addComponent(
-																								lblComplemento)
-																						.addComponent(
-																								lblEndereco))))
-										.addGap(24)));
+														.addComponent(lblTelefone)))
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addGroup(panelDadosPessoaisLayout.createParallelGroup(Alignment.TRAILING)
+												.addComponent(jftxtCpf, GroupLayout.PREFERRED_SIZE, 22,
+														GroupLayout.PREFERRED_SIZE)
+												.addComponent(lblCpf))
+										.addGap(7)
+										.addGroup(panelDadosPessoaisLayout.createParallelGroup(Alignment.TRAILING)
+												.addComponent(lblDataNascimento).addComponent(dateChooserDataNascimento,
+														GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+														GroupLayout.PREFERRED_SIZE))
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addGroup(panelDadosPessoaisLayout.createParallelGroup(Alignment.BASELINE)
+												.addComponent(cmbEstadoCivil, GroupLayout.PREFERRED_SIZE, 22,
+														GroupLayout.PREFERRED_SIZE)
+												.addComponent(lblEstadoCivil))))
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addGroup(panelDadosPessoaisLayout.createParallelGroup(Alignment.BASELINE)
+										.addComponent(txtEndereco, GroupLayout.PREFERRED_SIZE, 22,
+												GroupLayout.PREFERRED_SIZE)
+										.addComponent(txtComplemento, GroupLayout.PREFERRED_SIZE, 22,
+												GroupLayout.PREFERRED_SIZE)
+										.addComponent(lblComplemento).addComponent(lblEndereco))))
+						.addGap(24)));
 		panelDadosPessoais.setLayout(panelDadosPessoaisLayout);
 
-		panelInfoComplementares.setBorder(javax.swing.BorderFactory
-				.createTitledBorder("Informações Complementares"));
-		panelInfoComplementares
-				.setMaximumSize(new java.awt.Dimension(1197, 233));
-		panelInfoComplementares
-				.setMinimumSize(new java.awt.Dimension(1197, 233));
-		panelInfoComplementares.setPreferredSize(new java.awt.Dimension(1197,
-				233));
+		panelInfoComplementares.setBorder(javax.swing.BorderFactory.createTitledBorder("Informações Complementares"));
+		panelInfoComplementares.setMaximumSize(new java.awt.Dimension(1197, 233));
+		panelInfoComplementares.setMinimumSize(new java.awt.Dimension(1197, 233));
+		panelInfoComplementares.setPreferredSize(new java.awt.Dimension(1197, 233));
 
 		atxtInfoComplementares.setColumns(20);
 		atxtInfoComplementares.setRows(5);
@@ -678,8 +462,8 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 			}
 		});
 
-		cmbHorarioDisponivel.setModel(new javax.swing.DefaultComboBoxModel(
-				new String[] { "", "Matutino", "Vespertino", "Noturno" }));
+		cmbHorarioDisponivel.setModel(
+				new javax.swing.DefaultComboBoxModel(new String[] { "", "Matutino", "Vespertino", "Noturno" }));
 
 		lblAreaInteresse.setFont(new Font("Dialog", Font.PLAIN, 12)); // NOI18N
 		lblAreaInteresse.setText("Área de Interesse em Ajudar:");
@@ -695,20 +479,16 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 
 				try {
 
-					Voluntario vol = (Voluntario) voluntarioController
-							.getPorIdUsuario(usuario.getId());
+					Voluntario vol = (Voluntario) voluntarioController.getPorIdUsuario(usuario.getId());
 					horarioVolController = new HorarioVoluntarioController();
 					horarioController = new HorarioController();
 
-					List<Entidade> list = horarioVolController
-							.getListPorIdVoluntario(vol.getId());
+					List<Entidade> list = horarioVolController.getListPorIdVoluntario(vol.getId());
 
 					for (Entidade ent : list) {
 
 						HorarioVoluntario horarioVoluntario = (HorarioVoluntario) ent;
-						Horario horario = (Horario) horarioController
-								.getPorId(horarioVoluntario.getHorario()
-										.getId());
+						Horario horario = (Horario) horarioController.getPorId(horarioVoluntario.getHorario().getId());
 
 						horarios += horario.getHorario() + "\n";
 					}
@@ -731,18 +511,15 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 
 				try {
 
-					Voluntario vol = (Voluntario) voluntarioController
-							.getPorIdUsuario(usuario.getId());
+					Voluntario vol = (Voluntario) voluntarioController.getPorIdUsuario(usuario.getId());
 					FuncaoVoluntarioController funcaoVolController = new FuncaoVoluntarioController();
 
-					List<Entidade> list = funcaoVolController
-							.getListPorIdVoluntario(vol.getId());
+					List<Entidade> list = funcaoVolController.getListPorIdVoluntario(vol.getId());
 
 					for (Entidade ent : list) {
 
 						FuncaoVoluntario funcaoVoluntario = (FuncaoVoluntario) ent;
-						Funcao funcao = (Funcao) funcaoController
-								.getPorId(funcaoVoluntario.getFuncao().getId());
+						Funcao funcao = (Funcao) funcaoController.getPorId(funcaoVoluntario.getFuncao().getId());
 
 						funcoes += funcao.getFuncao() + "\n";
 					}
@@ -772,235 +549,95 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 			e1.printStackTrace();
 		}
 
-		javax.swing.GroupLayout panelExperienciasLayout = new javax.swing.GroupLayout(
-				panelInfoComplementares);
-		panelExperienciasLayout
-				.setHorizontalGroup(panelExperienciasLayout
-						.createParallelGroup(Alignment.LEADING)
-						.addGroup(
-								panelExperienciasLayout
-										.createSequentialGroup()
-										.addContainerGap()
-										.addGroup(
-												panelExperienciasLayout
-														.createParallelGroup(
-																Alignment.LEADING)
-														.addComponent(
-																lblHorarioDisponivel)
-														.addComponent(
-																lblInfoComplementares)
-														.addComponent(
-																lblAreaInteresse))
-										.addPreferredGap(
-												ComponentPlacement.UNRELATED)
-										.addGroup(
-												panelExperienciasLayout
-														.createParallelGroup(
-																Alignment.LEADING)
-														.addGroup(
-																panelExperienciasLayout
-																		.createSequentialGroup()
-																		.addComponent(
-																				cmbAreasInteresse,
-																				GroupLayout.PREFERRED_SIZE,
-																				190,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addGap(12)
-																		.addComponent(
-																				btnAddAreaInteresse,
-																				GroupLayout.PREFERRED_SIZE,
-																				22,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addPreferredGap(
-																				ComponentPlacement.UNRELATED)
-																		.addComponent(
-																				btnAreasInteresse))
-														.addComponent(
-																scrollPaneInfoComplementares,
-																GroupLayout.PREFERRED_SIZE,
-																375,
-																GroupLayout.PREFERRED_SIZE)
-														.addGroup(
-																panelExperienciasLayout
-																		.createSequentialGroup()
-																		.addComponent(
-																				cmbHorarioDisponivel,
-																				GroupLayout.PREFERRED_SIZE,
-																				141,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addPreferredGap(
-																				ComponentPlacement.UNRELATED)
-																		.addComponent(
-																				btnAddHorario,
-																				GroupLayout.PREFERRED_SIZE,
-																				22,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addPreferredGap(
-																				ComponentPlacement.UNRELATED)
-																		.addComponent(
-																				btnHorariosDisponiveis)))
-										.addContainerGap(284, Short.MAX_VALUE)));
-		panelExperienciasLayout
-				.setVerticalGroup(panelExperienciasLayout
-						.createParallelGroup(Alignment.LEADING)
-						.addGroup(
-								panelExperienciasLayout
-										.createSequentialGroup()
-										.addGroup(
-												panelExperienciasLayout
-														.createParallelGroup(
-																Alignment.LEADING)
-														.addGroup(
-																panelExperienciasLayout
-																		.createParallelGroup(
-																				Alignment.BASELINE)
-																		.addComponent(
-																				lblHorarioDisponivel,
-																				GroupLayout.PREFERRED_SIZE,
-																				22,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addComponent(
-																				cmbHorarioDisponivel,
-																				GroupLayout.PREFERRED_SIZE,
-																				22,
-																				GroupLayout.PREFERRED_SIZE))
-														.addComponent(
-																btnAddHorario,
-																GroupLayout.PREFERRED_SIZE,
-																22,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(
-																btnHorariosDisponiveis,
-																GroupLayout.PREFERRED_SIZE,
-																22,
-																GroupLayout.PREFERRED_SIZE))
-										.addPreferredGap(
-												ComponentPlacement.UNRELATED)
-										.addGroup(
-												panelExperienciasLayout
-														.createParallelGroup(
-																Alignment.LEADING)
-														.addComponent(
-																lblInfoComplementares)
-														.addComponent(
-																scrollPaneInfoComplementares,
-																GroupLayout.PREFERRED_SIZE,
-																67,
-																GroupLayout.PREFERRED_SIZE))
+		javax.swing.GroupLayout panelExperienciasLayout = new javax.swing.GroupLayout(panelInfoComplementares);
+		panelExperienciasLayout.setHorizontalGroup(panelExperienciasLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(panelExperienciasLayout.createSequentialGroup().addContainerGap()
+						.addGroup(panelExperienciasLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblHorarioDisponivel).addComponent(lblInfoComplementares)
+								.addComponent(lblAreaInteresse))
+						.addPreferredGap(ComponentPlacement.UNRELATED)
+						.addGroup(panelExperienciasLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(panelExperienciasLayout.createSequentialGroup()
+										.addComponent(cmbAreasInteresse, GroupLayout.PREFERRED_SIZE, 190,
+												GroupLayout.PREFERRED_SIZE)
 										.addGap(12)
-										.addGroup(
-												panelExperienciasLayout
-														.createParallelGroup(
-																Alignment.TRAILING)
-														.addComponent(
-																btnAddAreaInteresse,
-																GroupLayout.PREFERRED_SIZE,
-																22,
-																GroupLayout.PREFERRED_SIZE)
-														.addGroup(
-																panelExperienciasLayout
-																		.createParallelGroup(
-																				Alignment.BASELINE)
-																		.addComponent(
-																				lblAreaInteresse)
-																		.addComponent(
-																				cmbAreasInteresse,
-																				GroupLayout.PREFERRED_SIZE,
-																				22,
-																				GroupLayout.PREFERRED_SIZE))
-														.addComponent(
-																btnAreasInteresse,
-																GroupLayout.PREFERRED_SIZE,
-																22,
-																GroupLayout.PREFERRED_SIZE))
-										.addContainerGap(17, Short.MAX_VALUE)));
+										.addComponent(btnAddAreaInteresse, GroupLayout.PREFERRED_SIZE, 22,
+												GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(btnAreasInteresse))
+								.addComponent(scrollPaneInfoComplementares, GroupLayout.PREFERRED_SIZE, 375,
+										GroupLayout.PREFERRED_SIZE)
+								.addGroup(panelExperienciasLayout.createSequentialGroup()
+										.addComponent(cmbHorarioDisponivel, GroupLayout.PREFERRED_SIZE, 141,
+												GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.UNRELATED)
+										.addComponent(btnAddHorario, GroupLayout.PREFERRED_SIZE, 22,
+												GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.UNRELATED)
+										.addComponent(btnHorariosDisponiveis)))
+						.addContainerGap(284, Short.MAX_VALUE)));
+		panelExperienciasLayout.setVerticalGroup(panelExperienciasLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(panelExperienciasLayout.createSequentialGroup()
+						.addGroup(panelExperienciasLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(panelExperienciasLayout.createParallelGroup(Alignment.BASELINE)
+										.addComponent(lblHorarioDisponivel, GroupLayout.PREFERRED_SIZE, 22,
+												GroupLayout.PREFERRED_SIZE)
+										.addComponent(cmbHorarioDisponivel, GroupLayout.PREFERRED_SIZE, 22,
+												GroupLayout.PREFERRED_SIZE))
+						.addComponent(btnAddHorario, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnHorariosDisponiveis, GroupLayout.PREFERRED_SIZE, 22,
+								GroupLayout.PREFERRED_SIZE))
+						.addPreferredGap(ComponentPlacement.UNRELATED)
+						.addGroup(panelExperienciasLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblInfoComplementares).addComponent(scrollPaneInfoComplementares,
+										GroupLayout.PREFERRED_SIZE, 67, GroupLayout.PREFERRED_SIZE))
+						.addGap(12)
+						.addGroup(panelExperienciasLayout.createParallelGroup(Alignment.TRAILING)
+								.addComponent(btnAddAreaInteresse, GroupLayout.PREFERRED_SIZE, 22,
+										GroupLayout.PREFERRED_SIZE)
+								.addGroup(panelExperienciasLayout.createParallelGroup(Alignment.BASELINE)
+										.addComponent(lblAreaInteresse).addComponent(cmbAreasInteresse,
+												GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
+								.addComponent(btnAreasInteresse, GroupLayout.PREFERRED_SIZE, 22,
+										GroupLayout.PREFERRED_SIZE))
+						.addContainerGap(17, Short.MAX_VALUE)));
 		panelInfoComplementares.setLayout(panelExperienciasLayout);
 
-		javax.swing.GroupLayout panelPerfilLayout = new javax.swing.GroupLayout(
-				panelPerfil);
-		panelPerfilLayout
-				.setHorizontalGroup(panelPerfilLayout
-						.createParallelGroup(Alignment.LEADING)
-						.addGroup(
-								panelPerfilLayout
-										.createSequentialGroup()
-										.addContainerGap()
-										.addGroup(
-												panelPerfilLayout
-														.createParallelGroup(
-																Alignment.TRAILING,
-																false)
-														.addComponent(
-																panelInfoComplementares,
-																0, 0,
-																Short.MAX_VALUE)
-														.addGroup(
-																panelPerfilLayout
-																		.createSequentialGroup()
-																		.addComponent(
-																				btnSalvarDadosPerfil,
-																				GroupLayout.PREFERRED_SIZE,
-																				116,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addPreferredGap(
-																				ComponentPlacement.UNRELATED)
-																		.addComponent(
-																				btnEditarDadosPerfil,
-																				GroupLayout.PREFERRED_SIZE,
-																				116,
-																				GroupLayout.PREFERRED_SIZE))
-														.addComponent(
-																panelDadosPessoais,
-																GroupLayout.PREFERRED_SIZE,
-																935,
-																Short.MAX_VALUE))
-										.addContainerGap()));
-		panelPerfilLayout
-				.setVerticalGroup(panelPerfilLayout
-						.createParallelGroup(Alignment.LEADING)
-						.addGroup(
-								panelPerfilLayout
-										.createSequentialGroup()
-										.addGap(8)
-										.addComponent(panelDadosPessoais,
-												GroupLayout.PREFERRED_SIZE,
-												GroupLayout.DEFAULT_SIZE,
-												GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(
-												ComponentPlacement.RELATED)
-										.addComponent(panelInfoComplementares,
-												GroupLayout.PREFERRED_SIZE,
-												177, GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(
-												ComponentPlacement.RELATED)
-										.addGroup(
-												panelPerfilLayout
-														.createParallelGroup(
-																Alignment.BASELINE)
-														.addComponent(
-																btnEditarDadosPerfil,
-																GroupLayout.PREFERRED_SIZE,
-																22,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(
-																btnSalvarDadosPerfil,
-																GroupLayout.PREFERRED_SIZE,
-																22,
-																GroupLayout.PREFERRED_SIZE))
-										.addContainerGap(320, Short.MAX_VALUE)));
+		javax.swing.GroupLayout panelPerfilLayout = new javax.swing.GroupLayout(panelPerfil);
+		panelPerfilLayout.setHorizontalGroup(panelPerfilLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(panelPerfilLayout.createSequentialGroup().addContainerGap().addGroup(panelPerfilLayout
+						.createParallelGroup(Alignment.TRAILING, false)
+						.addComponent(panelInfoComplementares, 0, 0, Short.MAX_VALUE)
+						.addGroup(panelPerfilLayout.createSequentialGroup()
+								.addComponent(btnSalvarDadosPerfil, GroupLayout.PREFERRED_SIZE, 116,
+										GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(btnEditarDadosPerfil,
+										GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE))
+						.addComponent(panelDadosPessoais, GroupLayout.PREFERRED_SIZE, 935, Short.MAX_VALUE))
+						.addContainerGap()));
+		panelPerfilLayout.setVerticalGroup(panelPerfilLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(panelPerfilLayout.createSequentialGroup().addGap(8)
+						.addComponent(panelDadosPessoais, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+								GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(panelInfoComplementares, GroupLayout.PREFERRED_SIZE, 177,
+								GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addGroup(panelPerfilLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(btnEditarDadosPerfil, GroupLayout.PREFERRED_SIZE, 22,
+										GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnSalvarDadosPerfil, GroupLayout.PREFERRED_SIZE, 22,
+										GroupLayout.PREFERRED_SIZE))
+						.addContainerGap(320, Short.MAX_VALUE)));
 		panelPerfil.setLayout(panelPerfilLayout);
 
-		menuPrincipalVoluntario.addTab("Perfil", new ImageIcon(
-				"img/usuario_16x16.png"), panelPerfil); // NOI18N
+		menuPrincipalVoluntario.addTab("Perfil", new ImageIcon("img/usuario_16x16.png"), panelPerfil); // NOI18N
 
-		panelVagas.setBorder(new javax.swing.border.LineBorder(
-				new java.awt.Color(0, 0, 0), 1, true));
+		panelVagas.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 		panelVagas.setMaximumSize(new java.awt.Dimension(1110, 700));
 		panelVagas.setMinimumSize(new java.awt.Dimension(1110, 700));
 		panelVagas.setPreferredSize(new java.awt.Dimension(1110, 700));
 
-		panelFiltroVagas.setBorder(javax.swing.BorderFactory
-				.createTitledBorder("Filtro de Pesquisa"));
+		panelFiltroVagas.setBorder(javax.swing.BorderFactory.createTitledBorder("Filtro de Pesquisa"));
 		panelFiltroVagas.setMaximumSize(new java.awt.Dimension(1197, 150));
 		panelFiltroVagas.setMinimumSize(new java.awt.Dimension(1197, 150));
 		panelFiltroVagas.setPreferredSize(new java.awt.Dimension(1197, 150));
@@ -1011,8 +648,7 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 		lblInstituicaoFiltroVagas.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
 		lblInstituicaoFiltroVagas.setText("Instituição:");
 
-		lblDataPublicacaoFiltroVagas
-				.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+		lblDataPublicacaoFiltroVagas.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
 		lblDataPublicacaoFiltroVagas.setText("Data Publicação:");
 
 		btnPesquisarFiltroVagas.setIcon(new ImageIcon("img/lupa_16x16.png")); // NOI18N
@@ -1024,29 +660,21 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 
 				InstituicaoController instController = new InstituicaoController();
 				Instituicao instituicao = null;
-				try {
-					instituicao = (Instituicao) instController.getPorNome(
-							cmbInstituicaoFiltroVagas.getSelectedItem() + "",
-							usuario);
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
-
 				Funcao tipoServico = null;
-				try {
-					tipoServico = (Funcao) funcaoController
-							.getPorFuncao(cmbTipoServicoVagas.getSelectedItem()
-									+ "");
-				} catch (Exception e1) {
-					e1.printStackTrace();
-
-				}
+				List<Entidade> list = null;
 
 				try {
-					btnPesquisarAction(txtTituloFiltroVagas.getText(),
-							instituicao,
-							dateChooserDataPublicacaoFiltroVagas.getDate(),
-							tipoServico);
+					instituicao = (Instituicao) instController
+							.getPorNome(cmbInstituicaoFiltroVagas.getSelectedItem() + "", usuario);
+
+					tipoServico = (Funcao) funcaoController.getPorFuncao(cmbTipoServicoVagas.getSelectedItem() + "");
+
+					list = btnPesquisarAction(txtTituloFiltroVagas.getText(), instituicao,
+							dateChooserDataPublicacaoFiltroVagas.getDate(), tipoServico);
+
+					if (list != null)
+						tableVagas.setModel(new AnuncioTableModel(list));
+
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
@@ -1076,145 +704,55 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 
 		dateChooserDataPublicacaoFiltroVagas = new JDateChooser();
 
-		javax.swing.GroupLayout panelFiltroVagasLayout = new javax.swing.GroupLayout(
-				panelFiltroVagas);
-		panelFiltroVagasLayout
-				.setHorizontalGroup(panelFiltroVagasLayout
-						.createParallelGroup(Alignment.LEADING)
-						.addGroup(
-								panelFiltroVagasLayout
-										.createSequentialGroup()
-										.addContainerGap()
-										.addGroup(
-												panelFiltroVagasLayout
-														.createParallelGroup(
-																Alignment.LEADING)
-														.addComponent(
-																lblTituloFiltroVagas)
-														.addComponent(
-																lblDataPublicacaoFiltroVagas)
-														.addComponent(
-																lblInstituicaoFiltroVagas)
-														.addComponent(
-																lblTipoServicoVagas))
-										.addGap(4)
-										.addGroup(
-												panelFiltroVagasLayout
-														.createParallelGroup(
-																Alignment.LEADING)
-														.addGroup(
-																panelFiltroVagasLayout
-																		.createSequentialGroup()
-																		.addGroup(
-																				panelFiltroVagasLayout
-																						.createParallelGroup(
-																								Alignment.TRAILING)
-																						.addComponent(
-																								cmbTipoServicoVagas,
-																								GroupLayout.PREFERRED_SIZE,
-																								258,
-																								GroupLayout.PREFERRED_SIZE)
-																						.addGroup(
-																								panelFiltroVagasLayout
-																										.createParallelGroup(
-																												Alignment.LEADING,
-																												false)
-																										.addComponent(
-																												cmbInstituicaoFiltroVagas,
-																												0,
-																												GroupLayout.DEFAULT_SIZE,
-																												Short.MAX_VALUE)
-																										.addComponent(
-																												txtTituloFiltroVagas,
-																												GroupLayout.PREFERRED_SIZE,
-																												258,
-																												GroupLayout.PREFERRED_SIZE)))
-																		.addGap(18)
-																		.addComponent(
-																				btnPesquisarFiltroVagas))
-														.addComponent(
-																dateChooserDataPublicacaoFiltroVagas,
-																GroupLayout.PREFERRED_SIZE,
-																136,
-																GroupLayout.PREFERRED_SIZE))
-										.addContainerGap(723, Short.MAX_VALUE))
-						.addGroup(
-								Alignment.TRAILING,
-								panelFiltroVagasLayout.createSequentialGroup()
-										.addContainerGap(1070, Short.MAX_VALUE)
-										.addComponent(btnGerarRelatorio)
-										.addContainerGap()));
-		panelFiltroVagasLayout
-				.setVerticalGroup(panelFiltroVagasLayout
-						.createParallelGroup(Alignment.TRAILING)
-						.addGroup(
-								panelFiltroVagasLayout
-										.createSequentialGroup()
-										.addContainerGap()
-										.addGroup(
-												panelFiltroVagasLayout
-														.createParallelGroup(
-																Alignment.BASELINE)
-														.addComponent(
-																lblTituloFiltroVagas)
-														.addComponent(
-																txtTituloFiltroVagas,
-																GroupLayout.PREFERRED_SIZE,
-																22,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(
-																btnPesquisarFiltroVagas,
-																GroupLayout.PREFERRED_SIZE,
-																22,
-																GroupLayout.PREFERRED_SIZE))
-										.addPreferredGap(
-												ComponentPlacement.RELATED)
-										.addGroup(
-												panelFiltroVagasLayout
-														.createParallelGroup(
-																Alignment.BASELINE)
-														.addComponent(
-																cmbInstituicaoFiltroVagas,
-																GroupLayout.PREFERRED_SIZE,
-																22,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(
-																lblInstituicaoFiltroVagas))
-										.addGap(8)
-										.addGroup(
-												panelFiltroVagasLayout
-														.createParallelGroup(
-																Alignment.TRAILING)
-														.addComponent(
-																lblDataPublicacaoFiltroVagas)
-														.addComponent(
-																dateChooserDataPublicacaoFiltroVagas,
-																GroupLayout.PREFERRED_SIZE,
-																GroupLayout.DEFAULT_SIZE,
-																GroupLayout.PREFERRED_SIZE))
-										.addPreferredGap(
-												ComponentPlacement.RELATED)
-										.addGroup(
-												panelFiltroVagasLayout
-														.createParallelGroup(
-																Alignment.BASELINE)
-														.addComponent(
-																cmbTipoServicoVagas,
-																GroupLayout.PREFERRED_SIZE,
-																22,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(
-																lblTipoServicoVagas))
-										.addContainerGap(
-												GroupLayout.DEFAULT_SIZE,
-												Short.MAX_VALUE))
-						.addGroup(
-								panelFiltroVagasLayout
-										.createSequentialGroup()
-										.addContainerGap(118, Short.MAX_VALUE)
-										.addComponent(btnGerarRelatorio,
-												GroupLayout.PREFERRED_SIZE, 22,
-												GroupLayout.PREFERRED_SIZE)));
+		javax.swing.GroupLayout panelFiltroVagasLayout = new javax.swing.GroupLayout(panelFiltroVagas);
+		panelFiltroVagasLayout.setHorizontalGroup(panelFiltroVagasLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(panelFiltroVagasLayout.createSequentialGroup().addContainerGap()
+						.addGroup(panelFiltroVagasLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblTituloFiltroVagas).addComponent(lblDataPublicacaoFiltroVagas)
+								.addComponent(lblInstituicaoFiltroVagas).addComponent(lblTipoServicoVagas))
+						.addGap(4)
+						.addGroup(panelFiltroVagasLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(panelFiltroVagasLayout.createSequentialGroup()
+										.addGroup(panelFiltroVagasLayout.createParallelGroup(Alignment.TRAILING)
+												.addComponent(cmbTipoServicoVagas, GroupLayout.PREFERRED_SIZE, 258,
+														GroupLayout.PREFERRED_SIZE)
+										.addGroup(panelFiltroVagasLayout.createParallelGroup(Alignment.LEADING, false)
+												.addComponent(cmbInstituicaoFiltroVagas, 0, GroupLayout.DEFAULT_SIZE,
+														Short.MAX_VALUE)
+												.addComponent(txtTituloFiltroVagas, GroupLayout.PREFERRED_SIZE, 258,
+														GroupLayout.PREFERRED_SIZE)))
+										.addGap(18).addComponent(btnPesquisarFiltroVagas))
+								.addComponent(dateChooserDataPublicacaoFiltroVagas, GroupLayout.PREFERRED_SIZE, 136,
+										GroupLayout.PREFERRED_SIZE))
+						.addContainerGap(723, Short.MAX_VALUE))
+				.addGroup(Alignment.TRAILING, panelFiltroVagasLayout.createSequentialGroup()
+						.addContainerGap(1070, Short.MAX_VALUE).addComponent(btnGerarRelatorio).addContainerGap()));
+		panelFiltroVagasLayout.setVerticalGroup(panelFiltroVagasLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(panelFiltroVagasLayout.createSequentialGroup().addContainerGap()
+						.addGroup(panelFiltroVagasLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblTituloFiltroVagas)
+								.addComponent(txtTituloFiltroVagas, GroupLayout.PREFERRED_SIZE, 22,
+										GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnPesquisarFiltroVagas, GroupLayout.PREFERRED_SIZE, 22,
+										GroupLayout.PREFERRED_SIZE))
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addGroup(panelFiltroVagasLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(cmbInstituicaoFiltroVagas, GroupLayout.PREFERRED_SIZE, 22,
+										GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblInstituicaoFiltroVagas))
+						.addGap(8)
+						.addGroup(panelFiltroVagasLayout.createParallelGroup(Alignment.TRAILING)
+								.addComponent(lblDataPublicacaoFiltroVagas)
+								.addComponent(dateChooserDataPublicacaoFiltroVagas, GroupLayout.PREFERRED_SIZE,
+										GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addGroup(panelFiltroVagasLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(cmbTipoServicoVagas, GroupLayout.PREFERRED_SIZE, 22,
+										GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblTipoServicoVagas))
+						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+				.addGroup(panelFiltroVagasLayout.createSequentialGroup().addContainerGap(118, Short.MAX_VALUE)
+						.addComponent(btnGerarRelatorio, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)));
 		panelFiltroVagas.setLayout(panelFiltroVagasLayout);
 
 		scrollpaneVagas.setMaximumSize(new java.awt.Dimension(1197, 480));
@@ -1228,61 +766,32 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 		tableVagas.setPreferredSize(new java.awt.Dimension(1197, 480));
 		scrollpaneVagas.setViewportView(tableVagas);
 
-		javax.swing.GroupLayout panelVagasLayout = new javax.swing.GroupLayout(
-				panelVagas);
-		panelVagasLayout
-				.setHorizontalGroup(panelVagasLayout
-						.createParallelGroup(Alignment.LEADING)
-						.addGroup(
-								panelVagasLayout
-										.createSequentialGroup()
-										.addContainerGap()
-										.addGroup(
-												panelVagasLayout
-														.createParallelGroup(
-																Alignment.TRAILING)
-														.addComponent(
-																panelFiltroVagas,
-																Alignment.LEADING,
-																GroupLayout.DEFAULT_SIZE,
-																GroupLayout.DEFAULT_SIZE,
-																Short.MAX_VALUE)
-														.addComponent(
-																scrollpaneVagas,
-																Alignment.LEADING,
-																GroupLayout.PREFERRED_SIZE,
-																GroupLayout.DEFAULT_SIZE,
-																GroupLayout.PREFERRED_SIZE))
-										.addContainerGap(84, Short.MAX_VALUE)));
-		panelVagasLayout.setVerticalGroup(panelVagasLayout.createParallelGroup(
-				Alignment.LEADING).addGroup(
-				panelVagasLayout
-						.createSequentialGroup()
-						.addGap(9)
-						.addComponent(panelFiltroVagas,
-								GroupLayout.PREFERRED_SIZE, 163,
-								GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(scrollpaneVagas,
-								GroupLayout.PREFERRED_SIZE,
-								GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE).addGap(0)));
+		javax.swing.GroupLayout panelVagasLayout = new javax.swing.GroupLayout(panelVagas);
+		panelVagasLayout.setHorizontalGroup(panelVagasLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(panelVagasLayout.createSequentialGroup().addContainerGap()
+						.addGroup(panelVagasLayout.createParallelGroup(Alignment.TRAILING)
+								.addComponent(panelFiltroVagas, Alignment.LEADING, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(scrollpaneVagas, Alignment.LEADING, GroupLayout.PREFERRED_SIZE,
+										GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addContainerGap(84, Short.MAX_VALUE)));
+		panelVagasLayout.setVerticalGroup(panelVagasLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(panelVagasLayout.createSequentialGroup().addGap(9)
+						.addComponent(panelFiltroVagas, GroupLayout.PREFERRED_SIZE, 163, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED).addComponent(scrollpaneVagas,
+								GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addGap(0)));
 		panelVagas.setLayout(panelVagasLayout);
 
-		menuPrincipalVoluntario.addTab("Vagas", new ImageIcon(
-				("img/lupa_16x16.png")), panelVagas);
+		menuPrincipalVoluntario.addTab("Vagas", new ImageIcon(("img/lupa_16x16.png")), panelVagas);
 
-		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(
-				getContentPane());
+		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(layout.createParallelGroup(
-				javax.swing.GroupLayout.Alignment.LEADING).addComponent(
-				menuPrincipalVoluntario, javax.swing.GroupLayout.DEFAULT_SIZE,
-				javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
-		layout.setVerticalGroup(layout.createParallelGroup(
-				javax.swing.GroupLayout.Alignment.LEADING).addComponent(
-				menuPrincipalVoluntario, javax.swing.GroupLayout.DEFAULT_SIZE,
-				javax.swing.GroupLayout.DEFAULT_SIZE,
+		layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(
+				menuPrincipalVoluntario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+				Short.MAX_VALUE));
+		layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(
+				menuPrincipalVoluntario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
 				javax.swing.GroupLayout.PREFERRED_SIZE));
 
 		/**
@@ -1290,8 +799,7 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 		 */
 		Voluntario vol = null;
 		try {
-			vol = (Voluntario) voluntarioController.getPorIdUsuario(usuario
-					.getId());
+			vol = (Voluntario) voluntarioController.getPorIdUsuario(usuario.getId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -1352,8 +860,7 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 				jftxtCelular.setText(vol.getCelular());
 
 			if (vol.getInformacoesComplementares() != null)
-				atxtInfoComplementares.setText(vol
-						.getInformacoesComplementares());
+				atxtInfoComplementares.setText(vol.getInformacoesComplementares());
 
 		}
 		pack();
@@ -1367,8 +874,7 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 
 		try {
 
-			Voluntario voluntario = (Voluntario) voluntarioController
-					.getPorIdUsuario(user.getId());
+			Voluntario voluntario = (Voluntario) voluntarioController.getPorIdUsuario(user.getId());
 
 			editVoluntario(user, voluntario);
 
@@ -1376,8 +882,7 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 
 			saveFuncaoVoluntario(voluntario, listAreasInteresse);
 
-			JOptionPane.showMessageDialog(null,
-					"Voluntário editado com sucesso.");
+			JOptionPane.showMessageDialog(null, "Voluntário editado com sucesso.");
 
 		} catch (ParseException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
@@ -1396,8 +901,7 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 	 * @param voluntario
 	 * @throws Exception
 	 */
-	private void editVoluntario(Usuario user, Voluntario voluntario)
-			throws Exception {
+	private void editVoluntario(Usuario user, Voluntario voluntario) throws Exception {
 
 		String sexo = "";
 		String estadoCivil = "";
@@ -1429,32 +933,51 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 		voluntario.setEstadoCivil(estadoCivil);
 		voluntario.setComplemento(txtComplemento.getText());
 		voluntario.setCelular(jftxtCelular.getText());
-		voluntario.setInformacoesComplementares(atxtInfoComplementares
-				.getText());
+		voluntario.setInformacoesComplementares(atxtInfoComplementares.getText());
 
 		voluntarioController.editar(voluntario);
+
+		desabilitarCampos();
+	}
+
+	/**
+	 * 
+	 */
+	private void desabilitarCampos() {
+		// desabilitando os campos
+		cmbEstadoCivil.setEnabled(false);
+		cmbSexo.setEnabled(false);
+		dateChooserDataNascimento.setEnabled(false);
+		cmbHorarioDisponivel.setEnabled(false);
+		cmbAreasInteresse.setEnabled(false);
+		jftxtCpf.setEnabled(false);
+		jftxtCelular.setEnabled(false);
+		jftxtTelefone.setEnabled(false);
+		txtEndereco.setEnabled(false);
+		jftxtEmail.setEnabled(false);
+		txtNome.setEnabled(false);
+		atxtInfoComplementares.setEnabled(false);
+		txtComplemento.setEnabled(false);
+		dateChooserDataNascimento.setEnabled(false);
+		cmbSexo.setEnabled(false);
 	}
 
 	/**
 	 * @param voluntario
 	 * @throws Exception
 	 */
-	private void saveFuncaoVoluntario(Voluntario voluntario,
-			List<String> listaFuncoes) throws Exception {
+	private void saveFuncaoVoluntario(Voluntario voluntario, List<String> listaFuncoes) throws Exception {
 		if (listaFuncoes != null) {
 
 			FuncaoVoluntarioController funcaoVolController = new FuncaoVoluntarioController();
 
 			for (int i = 0; i < listaFuncoes.size(); i++) {
 
-				Funcao funcao = (Funcao) funcaoController
-						.getPorFuncao(listaFuncoes.get(i));
+				Funcao funcao = (Funcao) funcaoController.getPorFuncao(listaFuncoes.get(i));
 
 				// se não existir na lista adiciona
-				if (!funcaoVolController.getPorIdFuncaoVoluntario(
-						funcao.getId(), voluntario.getId())) {
-					FuncaoVoluntario funcaoVoluntario = new FuncaoVoluntario(
-							funcao, voluntario);
+				if (!funcaoVolController.getPorIdFuncaoVoluntario(funcao.getId(), voluntario.getId())) {
+					FuncaoVoluntario funcaoVoluntario = new FuncaoVoluntario(funcao, voluntario);
 
 					funcaoVolController.salvar(funcaoVoluntario);
 				}
@@ -1467,8 +990,7 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 	 * @param voluntario
 	 * @throws Exception
 	 */
-	private void saveHorarioVoluntario(Voluntario voluntario,
-			List<String> listaHorarios) throws Exception {
+	private void saveHorarioVoluntario(Voluntario voluntario, List<String> listaHorarios) throws Exception {
 
 		if (listaHorarios != null) {
 
@@ -1477,14 +999,11 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 
 			for (int i = 0; i < listaHorarios.size(); i++) {
 
-				Horario horario = (Horario) horarioController
-						.getPorHorario(listaHorarios.get(i));
+				Horario horario = (Horario) horarioController.getPorHorario(listaHorarios.get(i));
 
 				// se não existir na lista adiciona
-				if (!horarioVolController.getPorIdHorarioVoluntario(
-						horario.getId(), voluntario.getId())) {
-					HorarioVoluntario horarioVoluntario = new HorarioVoluntario(
-							horario, voluntario);
+				if (!horarioVolController.getPorIdHorarioVoluntario(horario.getId(), voluntario.getId())) {
+					HorarioVoluntario horarioVoluntario = new HorarioVoluntario(horario, voluntario);
 
 					horarioVolController.salvar(horarioVoluntario);
 				}
@@ -1502,41 +1021,49 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 	 * @return listAnuncios
 	 * @throws Exception
 	 */
-	private List<Entidade> btnPesquisarAction(String titulo,
-			Instituicao instituicao, Date dataPublicacao, Funcao tipoServico)
-			throws Exception {
+	private List<Entidade> btnPesquisarAction(String titulo, Instituicao instituicao, Date dataPublicacao,
+			Funcao tipoServico) throws Exception {
 
 		AnuncioController anuncioController = new AnuncioController();
 		StringBuilder sql = new StringBuilder();
 
-		sql.append("SELECT a.id, a.titulo, a.descricao, a.qtdVagas, a.dataPublicacao, a.idFuncao, a.status, a.idInstituicao FROM anuncio a WHERE ");
+		if (titulo == null && instituicao == null && dataPublicacao == null) {
+			sql.append(
+					"SELECT a.id, a.titulo, a.descricao, a.qtdVagas, a.dataPublicacao, a.idFuncao, a.status, a.idInstituicao FROM anuncio a");
 
-		if (instituicao != null)
-			sql.append(" idInstituicao= " + instituicao.getId());
+		} else {
+			sql.append(
+					"SELECT a.id, a.titulo, a.descricao, a.qtdVagas, a.dataPublicacao, a.idFuncao, a.status, a.idInstituicao FROM anuncio a WHERE ");
 
-		if (titulo != null) {
-			if (instituicao != null) {
-				sql.append(" AND");
-			}
-			sql.append(" titulo= " + titulo);
-		}
+			if (instituicao != null)
+				sql.append(" idInstituicao= '" + instituicao.getId() + "'");
 
-		if (dataPublicacao != null) {
 			if (titulo != null) {
-				sql.append(" AND");
+				if (instituicao != null) {
+					sql.append(" AND");
+				}
+				sql.append(" titulo= '" + titulo + "'");
 			}
-			sql.append(" dataPublicacao= " + dataPublicacao);
-		}
 
-		if (tipoServico != null) {
 			if (dataPublicacao != null) {
-				sql.append(" AND");
+				if (titulo != null) {
+					sql.append(" AND");
+				}
+				sql.append(" dataPublicacao= '" + dataPublicacao + "'");
 			}
-			sql.append(" idFuncao= " + tipoServico.getId());
+
+			if (tipoServico != null) {
+				if (dataPublicacao != null) {
+					sql.append(" AND");
+				}
+
+				sql.append(" idFuncao= '" + tipoServico.getId() + "'");
+			}
+
+			System.out.println("PrincipalVoluntario\nSQL BTN PESQUISA: " + sql.toString());
 		}
 
-		List<Entidade> listAnuncios = anuncioController.pesquisarAnuncio(sql
-				.toString());
+		List<Entidade> listAnuncios = anuncioController.pesquisarAnuncio(sql.toString());
 
 		return listAnuncios;
 

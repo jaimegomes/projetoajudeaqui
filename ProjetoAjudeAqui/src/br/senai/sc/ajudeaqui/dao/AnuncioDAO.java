@@ -290,7 +290,7 @@ public class AnuncioDAO extends GenericDAO {
 
 		} catch (SQLException se) {
 			System.out
-					.println("[AnuncioDAO] - Erro ao pegar anuncio por ID da instituição.\n"
+					.println("[AnuncioDAO] - Erro ao pesquisar anuncio.\n"
 							+ se.getMessage());
 		} finally {
 			con.close();

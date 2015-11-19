@@ -249,4 +249,38 @@ public class VoluntarioDAO extends GenericDAO {
 		return voluntario;
 	}
 
+	public List<Entidade> pesquisarVoluntario(String sql) throws Exception {
+		con = Conexao.getConnection();
+
+		List<Entidade> listVoluntarios = new ArrayList<Entidade>();
+
+		PreparedStatement pstmt = null;
+		try {
+
+			pstmt = con.prepareStatement(sql.toString());
+
+			ResultSet result = pstmt.executeQuery();
+
+			while (result.next()) {
+
+				voluntario = new Voluntario(result.getInt("id"), result.getString("nome"), result.getString("telefone"),
+						result.getString("cpf"), result.getString("endereco"), result.getString("email"),
+						result.getDate("dataNasc"), usuario, result.getString("sexo"), result.getString("estadoCivil"),
+						result.getString("complemento"), result.getString("celular"),
+						result.getString("informacoesComplementares"));
+
+				listVoluntarios.add(voluntario);
+			}
+			result.close();
+			pstmt.close();
+
+		} catch (SQLException se) {
+			System.out.println("[VoluntarioDAO] - Erro ao pesquisar voluntário.\n" + se.getMessage());
+		} finally {
+			con.close();
+		}
+
+		return listVoluntarios;
+	}
+
 }

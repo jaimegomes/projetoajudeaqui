@@ -52,4 +52,11 @@ public class VoluntarioController implements IController {
 		return volDAO.getPorIdUsuario(id);
 	}
 
+	public List<Entidade> pesquisarVoluntario(String sql) throws Exception {
+
+		volDAO = new VoluntarioDAO();
+		return volDAO.pesquisarVoluntario(sql);
+
+	}
+
 }
