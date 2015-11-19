@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.GroupLayout;
@@ -51,7 +52,7 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 	private javax.swing.JButton btnEditarDadosPerfil;
 	private javax.swing.JButton btnFoto;
 	private javax.swing.JButton btnPesquisarFiltroVagas;
-	private javax.swing.JButton btnPesquisarFiltroVagas1;
+	private javax.swing.JButton btnGerarRelatorio;
 	private javax.swing.JButton btnSalvarDadosPerfil;
 	private javax.swing.JComboBox cmbAreasInteresse;
 	private javax.swing.JComboBox cmbEstadoCivil;
@@ -101,6 +102,8 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 
 	private VoluntarioController voluntarioController = new VoluntarioController();
 	private FuncaoController funcaoController = new FuncaoController();
+	private HorarioController horarioController;
+	private HorarioVoluntarioController horarioVolController;
 	// End of variables declaration
 
 	/**
@@ -202,7 +205,7 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 		btnPesquisarFiltroVagas = new javax.swing.JButton();
 		lblTipoServicoVagas = new javax.swing.JLabel();
 		cmbTipoServicoVagas = new javax.swing.JComboBox();
-		btnPesquisarFiltroVagas1 = new javax.swing.JButton();
+		btnGerarRelatorio = new javax.swing.JButton();
 		scrollpaneVagas = new javax.swing.JScrollPane();
 		tableVagas = new javax.swing.JTable();
 		dateChooserDataNascimento = new JDateChooser();
@@ -488,16 +491,17 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 				try {
 
 					Voluntario vol = (Voluntario) voluntarioController.getPorIdUsuario(usuario.getId());
-					HorarioVoluntarioController horarioVolController = new HorarioVoluntarioController();
+					horarioVolController = new HorarioVoluntarioController();
+					horarioController = new HorarioController();
 
 					List<Entidade> list = horarioVolController.getListPorIdVoluntario(vol.getId());
 
 					for (Entidade ent : list) {
 
-						FuncaoVoluntario funcaoVoluntario = (FuncaoVoluntario) ent;
-						Funcao funcao = (Funcao) funcaoController.getPorId(funcaoVoluntario.getFuncao().getId());
+						HorarioVoluntario horarioVoluntario = (HorarioVoluntario) ent;
+						Horario horario = (Horario) horarioController.getPorId(horarioVoluntario.getHorario().getId());
 
-						horarios += funcao.getFuncao() + "\n";
+						horarios += horario.getHorario() + "\n";
 					}
 
 					JOptionPane.showMessageDialog(null, horarios);
@@ -650,7 +654,7 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 		panelFiltroVagas.setPreferredSize(new java.awt.Dimension(1197, 150));
 
 		lblTituloFiltroVagas.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-		lblTituloFiltroVagas.setText("Tï¿½tulo:");
+		lblTituloFiltroVagas.setText("Título:");
 
 		lblInstituicaoFiltroVagas.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
 		lblInstituicaoFiltroVagas.setText("Instituição:");
@@ -660,6 +664,15 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 
 		btnPesquisarFiltroVagas.setIcon(new ImageIcon("img/lupa_16x16.png")); // NOI18N
 		btnPesquisarFiltroVagas.setText("Pesquisar");
+		btnPesquisarFiltroVagas.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				btnPesquisarAction(txtTituloFiltroVagas.getText(), cmbInstituicaoFiltroVagas.getSelectedItem()+"", dateChooserDataPublicacaoFiltroVagas.getDate(), cmbTipoServicoVagas.getSelectedItem()+"");
+				
+			}
+		
+		});
 
 		lblTipoServicoVagas.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
 		lblTipoServicoVagas.setText("Tipo de Serviço:");
@@ -667,8 +680,8 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 		cmbTipoServicoVagas.setModel(
 				new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-		btnPesquisarFiltroVagas1.setIcon(new ImageIcon("img/agenda_16x16.png")); // NOI18N
-		btnPesquisarFiltroVagas1.setText("Gerar Relatório");
+		btnGerarRelatorio.setIcon(new ImageIcon("img/agenda_16x16.png")); // NOI18N
+		btnGerarRelatorio.setText("Gerar Relatório");
 
 		dateChooserDataPublicacaoFiltroVagas = new JDateChooser();
 
@@ -695,7 +708,7 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 						.addContainerGap(723, Short.MAX_VALUE))
 				.addGroup(Alignment.TRAILING,
 						panelFiltroVagasLayout.createSequentialGroup().addContainerGap(1070, Short.MAX_VALUE)
-								.addComponent(btnPesquisarFiltroVagas1).addContainerGap()));
+								.addComponent(btnGerarRelatorio).addContainerGap()));
 		panelFiltroVagasLayout.setVerticalGroup(panelFiltroVagasLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(panelFiltroVagasLayout.createSequentialGroup().addContainerGap()
 						.addGroup(panelFiltroVagasLayout.createParallelGroup(Alignment.BASELINE)
@@ -721,7 +734,7 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 								.addComponent(lblTipoServicoVagas))
 						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 				.addGroup(panelFiltroVagasLayout.createSequentialGroup().addContainerGap(118, Short.MAX_VALUE)
-						.addComponent(btnPesquisarFiltroVagas1, GroupLayout.PREFERRED_SIZE, 22,
+						.addComponent(btnGerarRelatorio, GroupLayout.PREFERRED_SIZE, 22,
 								GroupLayout.PREFERRED_SIZE)));
 		panelFiltroVagas.setLayout(panelFiltroVagasLayout);
 
@@ -775,12 +788,8 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 		}
 
 		/**
-		 * No caso sempre vai ser diferente de nulo pois ao criar o usuário e
-		 * escolher o perfil de instituição ele já cria um registro na tabela
-		 * instituição.
-		 * 
 		 * Verifica todos os campos, caso sejam diferentes de nulo ele preenche
-		 * os dados do voluntï¿½rio.
+		 * os dados do voluntário.
 		 */
 		if (vol != null) {
 
@@ -840,7 +849,42 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 		pack();
 	}
 
+	/**
+	 * 
+	 * @param user
+	 */
 	private void btnSalvarAction(Usuario user) {
+
+		try {
+
+			Voluntario voluntario = (Voluntario) voluntarioController.getPorIdUsuario(user.getId());
+
+			editVoluntario(user, voluntario);
+
+			saveHorarioVoluntario(voluntario, listHorarios);
+
+			saveFuncaoVoluntario(voluntario, listAreasInteresse);
+
+			JOptionPane.showMessageDialog(null, "Voluntário editado com sucesso.");
+
+		} catch (ParseException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+			e.printStackTrace();
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+			e.printStackTrace();
+		}
+
+	}
+
+	/**
+	 * @param user
+	 * @param sexo
+	 * @param estadoCivil
+	 * @param voluntario
+	 * @throws Exception
+	 */
+	private void editVoluntario(Usuario user, Voluntario voluntario) throws Exception {
 
 		String sexo = "";
 		String estadoCivil = "";
@@ -861,73 +905,75 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 			estadoCivil = "Outro";
 		}
 
-		try {
+		voluntario.setNome(txtNome.getText());
+		voluntario.setTelefone(jftxtTelefone.getText());
+		voluntario.setCpf(jftxtCpf.getText());
+		voluntario.setEndereco(txtEndereco.getText());
+		voluntario.setEmail(jftxtEmail.getText());
+		voluntario.setDataNascimento(dateChooserDataNascimento.getDate());
+		voluntario.setUsuario(user);
+		voluntario.setSexo(sexo);
+		voluntario.setEstadoCivil(estadoCivil);
+		voluntario.setComplemento(txtComplemento.getText());
+		voluntario.setCelular(jftxtCelular.getText());
+		voluntario.setInformacoesComplementares(atxtInfoComplementares.getText());
 
-			Voluntario voluntario = (Voluntario) voluntarioController.getPorIdUsuario(user.getId());
-			voluntario.setNome(txtNome.getText());
-			voluntario.setTelefone(jftxtTelefone.getText());
-			voluntario.setCpf(jftxtCpf.getText());
-			voluntario.setEndereco(txtEndereco.getText());
-			voluntario.setEmail(jftxtEmail.getText());
-			voluntario.setDataNascimento(dateChooserDataNascimento.getDate());
-			voluntario.setUsuario(user);
-			voluntario.setSexo(sexo);
-			voluntario.setEstadoCivil(estadoCivil);
-			voluntario.setComplemento(txtComplemento.getText());
-			voluntario.setCelular(jftxtCelular.getText());
-			voluntario.setInformacoesComplementares(atxtInfoComplementares.getText());
+		voluntarioController.editar(voluntario);
+	}
 
-			voluntarioController.editar(voluntario);
+	/**
+	 * @param voluntario
+	 * @throws Exception
+	 */
+	private void saveFuncaoVoluntario(Voluntario voluntario, List<String> listaFuncoes) throws Exception {
+		if (listaFuncoes != null) {
 
-			if (listHorarios != null) {
+			FuncaoVoluntarioController funcaoVolController = new FuncaoVoluntarioController();
 
-				HorarioVoluntarioController horarioVolController = new HorarioVoluntarioController();
-				HorarioController horarioController = new HorarioController();
+			for (int i = 0; i < listaFuncoes.size(); i++) {
 
-				for (int i = 0; i < listHorarios.size(); i++) {
+				Funcao funcao = (Funcao) funcaoController.getPorFuncao(listaFuncoes.get(i));
 
-					Horario horario = (Horario) horarioController.getPorHorario(listHorarios.get(i));
+				// se não existir na lista adiciona
+				if (!funcaoVolController.getPorIdFuncaoVoluntario(funcao.getId(), voluntario.getId())) {
+					FuncaoVoluntario funcaoVoluntario = new FuncaoVoluntario(funcao, voluntario);
 
-					// se não existir na lista adiciona
-					if (!horarioVolController.getPorIdHorarioVoluntario(horario.getId(), voluntario.getId())) {
-						HorarioVoluntario horarioVoluntario = new HorarioVoluntario(horario, voluntario);
-
-						horarioVolController.salvar(horarioVoluntario);
-					}
+					funcaoVolController.salvar(funcaoVoluntario);
 				}
-
 			}
 
-			if (listAreasInteresse != null) {
-
-				FuncaoVoluntarioController funcaoVolController = new FuncaoVoluntarioController();
-
-				for (int i = 0; i < listAreasInteresse.size(); i++) {
-
-					System.out.println(listAreasInteresse.get(i));
-
-					Funcao funcao = (Funcao) funcaoController.getPorFuncao(listAreasInteresse.get(i));
-
-					// se não existir na lista adiciona
-					if (!funcaoVolController.getPorIdFuncaoVoluntario(funcao.getId(), voluntario.getId())) {
-						FuncaoVoluntario funcaoVoluntario = new FuncaoVoluntario(funcao, voluntario);
-
-						funcaoVolController.salvar(funcaoVoluntario);
-					}
-				}
-
-			}
-
-			JOptionPane.showMessageDialog(null, "Voluntário editado com sucesso.");
-
-		} catch (ParseException e) {
-			JOptionPane.showMessageDialog(null, "Erro ao salvar dados.");
-			e.printStackTrace();
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, e.getMessage());
-			e.printStackTrace();
 		}
+	}
 
+	/**
+	 * @param voluntario
+	 * @throws Exception
+	 */
+	private void saveHorarioVoluntario(Voluntario voluntario, List<String> listaHorarios) throws Exception {
+
+		if (listaHorarios != null) {
+
+			horarioVolController = new HorarioVoluntarioController();
+			horarioController = new HorarioController();
+
+			for (int i = 0; i < listaHorarios.size(); i++) {
+
+				Horario horario = (Horario) horarioController.getPorHorario(listaHorarios.get(i));
+
+				// se não existir na lista adiciona
+				if (!horarioVolController.getPorIdHorarioVoluntario(horario.getId(), voluntario.getId())) {
+					HorarioVoluntario horarioVoluntario = new HorarioVoluntario(horario, voluntario);
+
+					horarioVolController.salvar(horarioVoluntario);
+				}
+			}
+
+		}
+	}
+	
+	private void btnPesquisarAction(String string, String string2, Date date, String string3) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -34,7 +34,13 @@ public class VoluntarioDAO extends GenericDAO {
 			pstmt.setString(1, voluntario.getNome());
 			pstmt.setString(2, voluntario.getSexo());
 			pstmt.setString(3, voluntario.getCpf());
-			pstmt.setDate(4, new java.sql.Date(voluntario.getDataNascimento().getTime()));
+
+			if (voluntario.getDataNascimento() != null)
+				pstmt.setDate(4, new java.sql.Date(voluntario.getDataNascimento().getTime()));
+
+			else
+				pstmt.setNull(4, java.sql.Types.DATE);
+
 			pstmt.setString(5, voluntario.getEstadoCivil());
 			pstmt.setString(6, voluntario.getEndereco());
 			pstmt.setString(7, voluntario.getComplemento());
@@ -98,7 +104,13 @@ public class VoluntarioDAO extends GenericDAO {
 			pstmt.setString(1, voluntario.getNome());
 			pstmt.setString(2, voluntario.getSexo());
 			pstmt.setString(3, voluntario.getCpf());
-			pstmt.setDate(4, new java.sql.Date(voluntario.getDataNascimento().getTime()));
+
+			if (voluntario.getDataNascimento() != null)
+				pstmt.setDate(4, new java.sql.Date(voluntario.getDataNascimento().getTime()));
+
+			else
+				pstmt.setNull(4, java.sql.Types.DATE);
+
 			pstmt.setString(5, voluntario.getEstadoCivil());
 			pstmt.setString(6, voluntario.getEndereco());
 			pstmt.setString(7, voluntario.getComplemento());
@@ -208,7 +220,7 @@ public class VoluntarioDAO extends GenericDAO {
 		con = Conexao.getConnection();
 		usuarioDAO = new UsuarioDAO();
 
-		String sql = "SELECT v.id, v.nome, v.telefone, v.cpf, v.endereco, v.email, v.dataNasc, v.idUsuario, v.sexo, v.estadoCivil, v.complemento, v.celular, v.informacoesComplementares FROM voluntario v WHERE id=?";
+		String sql = "SELECT v.id, v.nome, v.telefone, v.cpf, v.endereco, v.email, v.dataNasc, v.idUsuario, v.sexo, v.estadoCivil, v.complemento, v.celular, v.informacoesComplementares FROM voluntario v WHERE idUsuario=?";
 		try {
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, id);

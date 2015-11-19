@@ -227,7 +227,7 @@ public class FuncaoVoluntarioDAO extends GenericDAO {
 
 			while (result.next()) {
 
-				Funcao funcao = (Funcao) voluntarioDAO.getPorId(result.getInt("idFuncao"));
+				Funcao funcao = (Funcao) funcaoDAO.getPorId(result.getInt("idFuncao"));
 				Voluntario voluntario = (Voluntario) voluntarioDAO.getPorId(result.getInt("idVoluntario"));
 
 				funcaoVoluntario = new FuncaoVoluntario(result.getInt("id"), funcao, voluntario);
@@ -239,7 +239,7 @@ public class FuncaoVoluntarioDAO extends GenericDAO {
 
 		} catch (SQLException se) {
 			System.out.println(
-					"[FuncaoVoluntarioDAO] - Erro ao pegar FuncaoVoluntario por ID da função e do voluntário.\n"
+					"[FuncaoVoluntarioDAO] - Erro ao pegar lista de FuncaoVoluntario por ID do voluntário.\n"
 							+ se.getMessage());
 		} finally {
 			con.close();

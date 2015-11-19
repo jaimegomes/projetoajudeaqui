@@ -20,7 +20,6 @@ public class HorarioVoluntarioDAO extends GenericDAO {
 	private HorarioVoluntario voluntarioHorario;
 	private HorarioDAO horarioDAO;
 	private VoluntarioDAO voluntarioDAO;
-	private HorarioVoluntarioDAO horarioVolDAO;
 
 	@Override
 	public void salvar(Entidade entidade) throws Exception {
@@ -247,10 +246,10 @@ public class HorarioVoluntarioDAO extends GenericDAO {
 		con = Conexao.getConnection();
 
 		List<Entidade> list = new ArrayList<>();
-		horarioVolDAO = new HorarioVoluntarioDAO();
+		horarioDAO = new HorarioDAO();
 		voluntarioDAO = new VoluntarioDAO();
 
-		String sql = "SELECT fv.id, fv.idFuncao, fv.idVoluntario FROM funcaoVoluntario fv WHERE idVoluntario=?";
+		String sql = "SELECT hv.id, hv.idHorario, hv.idVoluntario FROM voluntarioHorario hv WHERE idVoluntario=?";
 		try {
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, idVoluntario);
@@ -270,9 +269,8 @@ public class HorarioVoluntarioDAO extends GenericDAO {
 			pstmt.close();
 
 		} catch (SQLException se) {
-			System.out.println(
-					"[FuncaoVoluntarioDAO] - Erro ao pegar FuncaoVoluntario por ID da função e do voluntário.\n"
-							+ se.getMessage());
+			System.out.println("[HorarioVoluntarioDAO] - Erro ao pegarHorarioVoluntario por ID do voluntário.\n"
+					+ se.getMessage());
 		} finally {
 			con.close();
 		}

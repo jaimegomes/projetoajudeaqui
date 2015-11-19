@@ -10,7 +10,9 @@ import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import br.senai.sc.ajudeaqui.controller.UsuarioController;
+import br.senai.sc.ajudeaqui.controller.VoluntarioController;
 import br.senai.sc.ajudeaqui.model.Usuario;
+import br.senai.sc.ajudeaqui.model.Voluntario;
 
 /**
  *
@@ -143,29 +145,29 @@ public class RegistroUI extends javax.swing.JInternalFrame {
 		});
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-		layout.setHorizontalGroup(
-			layout.createParallelGroup(Alignment.LEADING)
-				.addGroup(layout.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(layout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(panelFormCadastro, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addGroup(Alignment.LEADING, layout.createSequentialGroup()
-							.addComponent(btnCadastrar, GroupLayout.PREFERRED_SIZE, 137, GroupLayout.PREFERRED_SIZE)
-							.addGap(10)
-							.addComponent(btnCancelar, GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)))
-					.addContainerGap())
-		);
+		layout.setHorizontalGroup(layout.createParallelGroup(Alignment.LEADING)
+				.addGroup(layout.createSequentialGroup().addContainerGap()
+						.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+								.addComponent(panelFormCadastro, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+										Short.MAX_VALUE)
+						.addGroup(Alignment.LEADING,
+								layout.createSequentialGroup()
+										.addComponent(btnCadastrar, GroupLayout.PREFERRED_SIZE, 137,
+												GroupLayout.PREFERRED_SIZE)
+										.addGap(10)
+										.addComponent(btnCancelar, GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)))
+				.addContainerGap()));
 		layout.setVerticalGroup(
-			layout.createParallelGroup(Alignment.LEADING)
-				.addGroup(layout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(panelFormCadastro, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnCadastrar, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(41, Short.MAX_VALUE))
-		);
+				layout.createParallelGroup(Alignment.LEADING)
+						.addGroup(layout.createSequentialGroup().addContainerGap()
+								.addComponent(panelFormCadastro, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+										.addComponent(btnCadastrar, GroupLayout.PREFERRED_SIZE, 19,
+												GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE))
+				.addContainerGap(41, Short.MAX_VALUE)));
 		getContentPane().setLayout(layout);
 
 		pack();
@@ -196,9 +198,16 @@ public class RegistroUI extends javax.swing.JInternalFrame {
 
 			if (senha.equals(confirmacaoSenha)) {
 				user = new Usuario(txtLogin.getText(), senha, perfil);
+				Voluntario voluntario = new Voluntario();
+				VoluntarioController volController = new VoluntarioController();
 
 				try {
 					controller.salvar(user);
+
+					Usuario usu = (Usuario) controller.getPorLogin(txtLogin.getText());
+					voluntario.setUsuario(usu);
+					volController.salvar(voluntario);
+
 					dispose();
 					JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso.");
 				} catch (Exception e) {
