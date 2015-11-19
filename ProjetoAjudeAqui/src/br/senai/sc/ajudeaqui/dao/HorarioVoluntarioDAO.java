@@ -17,9 +17,9 @@ import br.senai.sc.ajudeaqui.model.Voluntario;
 public class HorarioVoluntarioDAO extends GenericDAO {
 
 	private Connection con = null;
-	private HorarioVoluntario voluntarioHorario;
-	private HorarioDAO horarioDAO;
-	private VoluntarioDAO voluntarioDAO;
+	private HorarioVoluntario voluntarioHorario = null;
+	private HorarioDAO horarioDAO = null;
+	private VoluntarioDAO voluntarioDAO = null;
 
 	@Override
 	public void salvar(Entidade entidade) throws Exception {

@@ -1,11 +1,14 @@
 package br.senai.sc.ajudeaqui.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import br.senai.sc.ajudeaqui.abstracts.Entidade;
 import br.senai.sc.ajudeaqui.dao.AnuncioDAO;
 import br.senai.sc.ajudeaqui.interfaces.IController;
 import br.senai.sc.ajudeaqui.model.Anuncio;
+import br.senai.sc.ajudeaqui.model.Funcao;
+import br.senai.sc.ajudeaqui.model.Instituicao;
 
 public class AnuncioController implements IController {
 
@@ -28,7 +31,8 @@ public class AnuncioController implements IController {
 			throw new Exception("A descrição do anuncio não pode ser nulo.");
 
 		if (anuncio.getQtdVagas() <= 0)
-			throw new Exception("A quantidade de vagas deve ser maior que zero.");
+			throw new Exception(
+					"A quantidade de vagas deve ser maior que zero.");
 
 		dao.salvar(anuncio);
 	}
@@ -57,7 +61,8 @@ public class AnuncioController implements IController {
 			throw new Exception("A descrição do anuncio não pode ser nulo.");
 
 		if (anuncio.getQtdVagas() <= 0)
-			throw new Exception("A quantidade de vagas deve ser maior que zero.");
+			throw new Exception(
+					"A quantidade de vagas deve ser maior que zero.");
 
 		dao.editar(anuncio);
 
@@ -75,6 +80,15 @@ public class AnuncioController implements IController {
 
 		dao = new AnuncioDAO();
 		return dao.getPorId(id);
+	}
+
+	public Entidade pesquisarAnuncio(String titulo, Instituicao instituicao,
+			Date dataPublicacao, Funcao tipoServico) throws Exception {
+
+		dao = new AnuncioDAO();
+		return dao.pesquisarAnuncio(titulo, instituicao, dataPublicacao,
+				tipoServico);
+
 	}
 
 }

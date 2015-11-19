@@ -18,9 +18,9 @@ import br.senai.sc.ajudeaqui.model.Voluntario;
 public class FuncaoVoluntarioDAO extends GenericDAO {
 
 	private Connection con = null;
-	private FuncaoVoluntario funcaoVoluntario;
-	private FuncaoController funcaoDAO;
-	private VoluntarioDAO voluntarioDAO;
+	private FuncaoVoluntario funcaoVoluntario = null;
+	private FuncaoController funcaoDAO = null;
+	private VoluntarioDAO voluntarioDAO = null;
 
 	@Override
 	public void salvar(Entidade entidade) throws Exception {

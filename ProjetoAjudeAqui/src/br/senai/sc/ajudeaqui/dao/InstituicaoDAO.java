@@ -195,14 +195,12 @@ public class InstituicaoDAO extends GenericDAO {
 
 				usuario = (Usuario) usuDAO.getPorId(result.getInt("idUsuario"));
 
-
 				instituicao = new Instituicao(result.getInt("id"),
 						result.getString("razaoSocial"),
 						result.getString("cnpj"), result.getString("nome"),
 						result.getString("email"),
 						result.getString("telefone"),
-						result.getString("endereco"),
-						result.getString("site"),
+						result.getString("endereco"), result.getString("site"),
 						result.getString("responsavel"),
 						result.getString("observacoes"), usuario);
 			}
@@ -211,7 +209,7 @@ public class InstituicaoDAO extends GenericDAO {
 
 		} catch (SQLException se) {
 			System.out
-					.println("[InstituicaoDAO] - Erro ao pegar instituicao por ID.\n"
+					.println("[InstituicaoDAO] - Erro ao pegar instituição por ID.\n"
 							+ se.getMessage());
 		} finally {
 			con.close();
@@ -257,7 +255,42 @@ public class InstituicaoDAO extends GenericDAO {
 
 		} catch (SQLException se) {
 			System.out
-					.println("[InstituicaoDAO] - Erro ao pegar instituicao por ID do usuario.\n"
+					.println("[InstituicaoDAO] - Erro ao pegar instituição por ID do usuario.\n"
+							+ se.getMessage());
+		} finally {
+			con.close();
+		}
+
+		return instituicao;
+	}
+
+	public Entidade getPorNome(String nome, Usuario usuario) throws Exception {
+		con = Conexao.getConnection();
+
+		String sql = "SELECT i.id, i.razaoSocial, i.nome, i.email, i.telefone, i.endereco, i.cnpj, i.site, i.responsavel, i.observacoes, i.idUsuario FROM instituicao i WHERE nome=?";
+		try {
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, nome);
+
+			ResultSet result = pstmt.executeQuery();
+
+			while (result.next()) {
+
+				instituicao = new Instituicao(result.getInt("id"),
+						result.getString("razaoSocial"),
+						result.getString("nome"), result.getString("email"),
+						result.getString("telefone"),
+						result.getString("endereco"), result.getString("cnpj"),
+						result.getString("site"),
+						result.getString("responsavel"),
+						result.getString("observacoes"), usuario);
+			}
+			result.close();
+			pstmt.close();
+
+		} catch (SQLException se) {
+			System.out
+					.println("[InstituicaoDAO] - Erro ao pegar instituição por nome.\n"
 							+ se.getMessage());
 		} finally {
 			con.close();

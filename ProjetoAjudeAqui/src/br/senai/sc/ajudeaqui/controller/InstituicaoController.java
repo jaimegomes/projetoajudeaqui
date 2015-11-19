@@ -5,6 +5,7 @@ import java.util.List;
 import br.senai.sc.ajudeaqui.abstracts.Entidade;
 import br.senai.sc.ajudeaqui.dao.InstituicaoDAO;
 import br.senai.sc.ajudeaqui.interfaces.IController;
+import br.senai.sc.ajudeaqui.model.Usuario;
 
 public class InstituicaoController implements IController {
 
@@ -48,6 +49,11 @@ public class InstituicaoController implements IController {
 	public Entidade getPorIdUsuario(int idUsuario) throws Exception {
 		dao = new InstituicaoDAO();
 		return dao.getPorIdUsuario(idUsuario);
+	}
+	
+	public Entidade getPorNome(String nome, Usuario usuario) throws Exception {
+		dao = new InstituicaoDAO();
+		return dao.getPorNome(nome, usuario);
 	}
 
 }
