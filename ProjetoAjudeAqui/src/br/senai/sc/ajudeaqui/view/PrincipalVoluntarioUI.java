@@ -1512,16 +1512,28 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 		sql.append("SELECT a.id, a.titulo, a.descricao, a.qtdVagas, a.dataPublicacao, a.idFuncao, a.status, a.idInstituicao FROM anuncio a WHERE ");
 
 		if (instituicao != null)
-			sql.append(" idInstituicao= " + instituicao.getId() + " AND");
+			sql.append(" idInstituicao= " + instituicao.getId());
 
-		if (titulo != null)
-			sql.append(" titulo= " + titulo + " AND");
+		if (titulo != null) {
+			if (instituicao != null) {
+				sql.append(" AND");
+			}
+			sql.append(" titulo= " + titulo);
+		}
 
-		if (dataPublicacao != null)
-			sql.append(" dataPublicacao= " + dataPublicacao + " AND");
+		if (dataPublicacao != null) {
+			if (titulo != null) {
+				sql.append(" AND");
+			}
+			sql.append(" dataPublicacao= " + dataPublicacao);
+		}
 
-		if (tipoServico != null)
+		if (tipoServico != null) {
+			if (dataPublicacao != null) {
+				sql.append(" AND");
+			}
 			sql.append(" idFuncao= " + tipoServico.getId());
+		}
 
 		List<Entidade> listAnuncios = anuncioController.pesquisarAnuncio(sql
 				.toString());
