@@ -20,8 +20,8 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
-
-import com.toedter.calendar.JDateChooser;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
 
 import br.senai.sc.ajudeaqui.abstracts.Entidade;
 import br.senai.sc.ajudeaqui.controller.AnuncioController;
@@ -39,6 +39,8 @@ import br.senai.sc.ajudeaqui.model.Instituicao;
 import br.senai.sc.ajudeaqui.model.Usuario;
 import br.senai.sc.ajudeaqui.model.Voluntario;
 import br.senai.sc.ajudeaqui.tablemodel.AnuncioTableModel;
+
+import com.toedter.calendar.JDateChooser;
 
 /**
  *
@@ -313,6 +315,12 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 		lblComplemento.setText("Complemento:");
 
 		jftxtCpf.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+		try {
+			jftxtCpf.setFormatterFactory(new DefaultFormatterFactory(  
+			        new MaskFormatter("###.###.###-##")));
+		} catch (ParseException e2) {
+			e2.printStackTrace();
+		} 
 
 		lblCpf.setText("CPF:");
 
@@ -320,7 +328,13 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 		lblTelefone.setText("Telefone:");
 
 		jftxtCelular.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-
+		try {
+			jftxtCelular.setFormatterFactory(new DefaultFormatterFactory(  
+			        new MaskFormatter("(##)####-####")));
+		} catch (ParseException e2) {
+			e2.printStackTrace();
+		} 
+		
 		lblEstadoCivil.setFont(new Font("Dialog", Font.PLAIN, 12)); // NOI18N
 		lblEstadoCivil.setText("Estado Civil:");
 
@@ -328,6 +342,12 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 				new String[] { "", "Casado", "Solteiro", "Outro" }));
 
 		jftxtTelefone.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+		try {
+			jftxtTelefone.setFormatterFactory(new DefaultFormatterFactory(  
+			        new MaskFormatter("(##)####-####")));
+		} catch (ParseException e2) {
+			e2.printStackTrace();
+		} 
 
 		lblEndereco.setText("Endereço:");
 
