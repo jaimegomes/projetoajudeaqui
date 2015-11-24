@@ -15,16 +15,12 @@ public class VoluntarioTableModel extends AbstractTableModel {
 	private static final long serialVersionUID = 1L;
 	private static final int COL_NOME = 0;
 	private static final int COL_TELEFONE = 1;
-	private static final int COL_CPF = 2;
-	private static final int COL_ENDERECO = 3;
-	private static final int COL_EMAIL = 4;
-	private static final int COL_DATA_NASCIMENTO = 5;
-	private static final int COL_USUARIO = 6;
-	private static final int COL_SEXO = 7;
-	private static final int COL_ESTADO_CIVIL = 8;
-	private static final int COL_COMPLEMENTO = 9;
-	private static final int COL_CELULAR = 10;
-	private static final int COL_INFORMACOES_COMPLEMENTARES = 11;
+	private static final int COL_ENDERECO = 2;
+	private static final int COL_EMAIL = 3;
+	private static final int COL_DATA_NASCIMENTO = 4;
+	private static final int COL_SEXO = 5;
+	private static final int COL_ESTADO_CIVIL = 6;
+	private static final int COL_CELULAR = 7;
 
 	private List<Entidade> valores;
 
@@ -44,16 +40,17 @@ public class VoluntarioTableModel extends AbstractTableModel {
 	/**
 	 * Retorna a quantidade de colunas, deve ser setado manualmente.
 	 * 
-	 * @return 7
+	 * @return 8
 	 */
 	public int getColumnCount() {
-		return 12;
+		return 8;
 	}
 
 	/**
 	 * Retorna o nome da coluna passada como parâmetro.
 	 * 
-	 * @param int colunm
+	 * @param int
+	 *            colunm
 	 */
 	public String getColumnName(int column) {
 		if (column == COL_NOME)
@@ -61,9 +58,6 @@ public class VoluntarioTableModel extends AbstractTableModel {
 
 		if (column == COL_TELEFONE)
 			return "Telefone";
-
-		if (column == COL_CPF)
-			return "CPF";
 
 		if (column == COL_ENDERECO)
 			return "Endereço";
@@ -74,33 +68,25 @@ public class VoluntarioTableModel extends AbstractTableModel {
 		if (column == COL_DATA_NASCIMENTO)
 			return "Data Nascimento";
 
-		// não será exibida na tabela
-		// if (column == COL_USUARIO)
-		// return "Usuário";
-
 		if (column == COL_SEXO)
 			return "Sexo";
 
 		if (column == COL_ESTADO_CIVIL)
 			return "Estado Civil";
 
-		if (column == COL_COMPLEMENTO)
-			return "Complemento";
-
 		if (column == COL_CELULAR)
 			return "Celular";
-
-		if (column == COL_INFORMACOES_COMPLEMENTARES)
-			return "Informações Complementares";
-
+		
 		return "";
 	}
 
 	/**
 	 * Retorna o objeto que está na linha e coluna indicada como parâmetros.
 	 * 
-	 * @param int row
-	 * @param int column
+	 * @param int
+	 *            row
+	 * @param int
+	 *            column
 	 */
 	public Object getValueAt(int row, int column) {
 		Voluntario voluntario = (Voluntario) valores.get(row);
@@ -111,9 +97,6 @@ public class VoluntarioTableModel extends AbstractTableModel {
 		if (column == COL_TELEFONE)
 			return voluntario.getTelefone();
 
-		if (column == COL_CPF)
-			return voluntario.getCpf();
-
 		if (column == COL_ENDERECO)
 			return voluntario.getEndereco();
 
@@ -122,16 +105,11 @@ public class VoluntarioTableModel extends AbstractTableModel {
 
 		if (column == COL_DATA_NASCIMENTO) {
 			try {
-				return StringUtils.getInstance().parseDateToString(
-						voluntario.getDataNascimento());
+				return StringUtils.getInstance().parseDateToString(voluntario.getDataNascimento());
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
 		}
-
-		// não será exibida na tabela
-		// if (column == COL_USUARIO)
-		// return "Usuário";
 
 		if (column == COL_SEXO)
 			return voluntario.getSexo();
@@ -139,14 +117,8 @@ public class VoluntarioTableModel extends AbstractTableModel {
 		if (column == COL_ESTADO_CIVIL)
 			return voluntario.getEstadoCivil();
 
-		if (column == COL_COMPLEMENTO)
-			return voluntario.getComplemento();
-
 		if (column == COL_CELULAR)
 			return voluntario.getCelular();
-
-		if (column == COL_INFORMACOES_COMPLEMENTARES)
-			return voluntario.getInformacoesComplementares();
 
 		return "";
 	}
@@ -157,8 +129,10 @@ public class VoluntarioTableModel extends AbstractTableModel {
 	 * 
 	 * @param Object
 	 *            aValue
-	 * @param int rowIndex
-	 * @param int columnIndex
+	 * @param int
+	 *            rowIndex
+	 * @param int
+	 *            columnIndex
 	 */
 	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
 		Voluntario voluntario = (Voluntario) valores.get(rowIndex);
@@ -169,9 +143,6 @@ public class VoluntarioTableModel extends AbstractTableModel {
 		if (columnIndex == COL_TELEFONE)
 			voluntario.setTelefone(aValue.toString());
 
-		if (columnIndex == COL_CPF)
-			voluntario.setCpf(aValue.toString());
-
 		if (columnIndex == COL_ENDERECO)
 			voluntario.setEndereco(aValue.toString());
 
@@ -180,8 +151,7 @@ public class VoluntarioTableModel extends AbstractTableModel {
 
 		if (columnIndex == COL_DATA_NASCIMENTO) {
 			try {
-				voluntario.setDataNascimento(StringUtils.getInstance()
-						.parseStringToDate(aValue.toString()));
+				voluntario.setDataNascimento(StringUtils.getInstance().parseStringToDate(aValue.toString()));
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
@@ -197,14 +167,8 @@ public class VoluntarioTableModel extends AbstractTableModel {
 		if (columnIndex == COL_ESTADO_CIVIL)
 			voluntario.setEstadoCivil(aValue.toString());
 
-		if (columnIndex == COL_COMPLEMENTO)
-			voluntario.setComplemento(aValue.toString());
-
 		if (columnIndex == COL_CELULAR)
 			voluntario.setCelular(aValue.toString());
-
-		if (columnIndex == COL_INFORMACOES_COMPLEMENTARES)
-			voluntario.setInformacoesComplementares(aValue.toString());
 
 	}
 
@@ -213,7 +177,8 @@ public class VoluntarioTableModel extends AbstractTableModel {
 	 * tipo de parâmetro fazer um if como em setValueAt para verificar qual a
 	 * columnIndex se trata e retornar o tipo da classe.
 	 * 
-	 * @param int columnIndex
+	 * @param int
+	 *            columnIndex
 	 * @return Class<?>
 	 */
 	public Class<?> getColumnClass(int columnIndex) {
@@ -223,8 +188,10 @@ public class VoluntarioTableModel extends AbstractTableModel {
 	/**
 	 * Verifica se a célula passada como parâmetro é editável.
 	 * 
-	 * @param int rowIndex
-	 * @param int columnIndex
+	 * @param int
+	 *            rowIndex
+	 * @param int
+	 *            columnIndex
 	 * @return boolean true
 	 */
 	public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -234,7 +201,8 @@ public class VoluntarioTableModel extends AbstractTableModel {
 	/**
 	 * Retorna o objeto que está na linha passada como parâmetro.
 	 * 
-	 * @param int row
+	 * @param int
+	 *            row
 	 * @return Anuncio valores.get(row)
 	 */
 	public Voluntario get(int row) {
