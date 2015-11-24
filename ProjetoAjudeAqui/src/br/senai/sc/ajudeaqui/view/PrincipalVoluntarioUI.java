@@ -10,6 +10,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -224,6 +226,69 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 		dateChooserDataNascimento = new JDateChooser();
 		dateChooserDataPublicacaoFiltroVagas = new JDateChooser();
 
+		/**
+		 * Cria a entidade Voluntário a partir do usuário logado
+		 */
+		Voluntario vol = null;
+		try {
+			vol = (Voluntario) voluntarioController.getPorIdUsuario(usuario
+					.getId());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		if (vol.getNome() != null)
+			txtNome.setText(vol.getNome());
+
+		if (vol.getTelefone() != null)
+			jftxtTelefone.setText(vol.getTelefone());
+
+		if (vol.getCpf() != null)
+			jftxtCpf.setText(vol.getCpf());
+
+		if (vol.getEndereco() != null)
+			txtEndereco.setText(vol.getEndereco());
+
+		if (vol.getEmail() != null)
+			jftxtEmail.setText(vol.getEmail());
+
+		if (vol.getDataNascimento() != null)
+			dateChooserDataNascimento.setDate(vol.getDataNascimento());
+
+		if (vol.getSexo() != null) {
+
+			if (vol.getSexo().equals("Masculino")) {
+				cmbSexo.setSelectedIndex(1);
+
+			} else if (vol.getSexo().equals("Feminino")) {
+				cmbSexo.setSelectedIndex(2);
+			}
+
+		}
+
+		if (vol.getEstadoCivil() != null) {
+
+			if (vol.getEstadoCivil().equals("Casado")) {
+				cmbEstadoCivil.setSelectedIndex(1);
+
+			} else if (vol.getEstadoCivil().equals("Solteiro")) {
+				cmbEstadoCivil.setSelectedIndex(2);
+
+			} else if (vol.getEstadoCivil().equals("Outro")) {
+				cmbEstadoCivil.setSelectedIndex(3);
+			}
+
+		}
+
+		if (vol.getComplemento() != null)
+			txtComplemento.setText(vol.getComplemento());
+
+		if (vol.getCelular() != null)
+			jftxtCelular.setText(vol.getCelular());
+
+		if (vol.getInformacoesComplementares() != null)
+			atxtInfoComplementares.setText(vol.getInformacoesComplementares());
+
 		desabilitarCampos();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -316,11 +381,22 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 
 		jftxtCpf.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 		try {
-			jftxtCpf.setFormatterFactory(new DefaultFormatterFactory(  
-			        new MaskFormatter("###.###.###-##")));
+			jftxtCpf.setFormatterFactory(new DefaultFormatterFactory(
+					new MaskFormatter("###.###.###-##")));
 		} catch (ParseException e2) {
 			e2.printStackTrace();
-		} 
+		}
+
+		jftxtCpf.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				String caracteres = "0987654321";
+
+				if (!caracteres.contains(e.getKeyChar() + "")) {
+					e.consume();
+				}
+			}
+		});
 
 		lblCpf.setText("CPF:");
 
@@ -329,12 +405,23 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 
 		jftxtCelular.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 		try {
-			jftxtCelular.setFormatterFactory(new DefaultFormatterFactory(  
-			        new MaskFormatter("(##)####-####")));
+			jftxtCelular.setFormatterFactory(new DefaultFormatterFactory(
+					new MaskFormatter("(##)####-####")));
 		} catch (ParseException e2) {
 			e2.printStackTrace();
-		} 
-		
+		}
+
+		jftxtCelular.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				String caracteres = "0987654321";
+
+				if (!caracteres.contains(e.getKeyChar() + "")) {
+					e.consume();
+				}
+			}
+		});
+
 		lblEstadoCivil.setFont(new Font("Dialog", Font.PLAIN, 12)); // NOI18N
 		lblEstadoCivil.setText("Estado Civil:");
 
@@ -343,11 +430,23 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 
 		jftxtTelefone.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 		try {
-			jftxtTelefone.setFormatterFactory(new DefaultFormatterFactory(  
-			        new MaskFormatter("(##)####-####")));
+			jftxtTelefone.setFormatterFactory(new DefaultFormatterFactory(
+					new MaskFormatter("(##)####-####")));
+
 		} catch (ParseException e2) {
 			e2.printStackTrace();
-		} 
+		}
+
+		jftxtTelefone.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				String caracteres = "0987654321";
+
+				if (!caracteres.contains(e.getKeyChar() + "")) {
+					e.consume();
+				}
+			}
+		});
 
 		lblEndereco.setText("Endereço:");
 
@@ -1287,77 +1386,6 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 				javax.swing.GroupLayout.DEFAULT_SIZE,
 				javax.swing.GroupLayout.PREFERRED_SIZE));
 
-		/**
-		 * Cria a entidade Voluntário a partir do usuário logado
-		 */
-		Voluntario vol = null;
-		try {
-			vol = (Voluntario) voluntarioController.getPorIdUsuario(usuario
-					.getId());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		/**
-		 * Verifica todos os campos, caso sejam diferentes de nulo ele preenche
-		 * os dados do voluntário.
-		 */
-		if (vol != null) {
-
-			if (vol.getNome() != null)
-				txtNome.setText(vol.getNome());
-
-			if (vol.getTelefone() != null)
-				jftxtTelefone.setText(vol.getTelefone());
-
-			if (vol.getCpf() != null)
-				jftxtCpf.setText(vol.getCpf());
-
-			if (vol.getEndereco() != null)
-				txtEndereco.setText(vol.getEndereco());
-
-			if (vol.getEmail() != null)
-				jftxtEmail.setText(vol.getEmail());
-
-			if (vol.getDataNascimento() != null)
-				dateChooserDataNascimento.setDate(vol.getDataNascimento());
-
-			if (vol.getSexo() != null) {
-
-				if (vol.getSexo().equals("Masculino")) {
-					cmbSexo.setSelectedIndex(1);
-
-				} else if (vol.getSexo().equals("Feminino")) {
-					cmbSexo.setSelectedIndex(2);
-				}
-
-			}
-
-			if (vol.getEstadoCivil() != null) {
-
-				if (vol.getEstadoCivil().equals("Casado")) {
-					cmbEstadoCivil.setSelectedIndex(1);
-
-				} else if (vol.getEstadoCivil().equals("Solteiro")) {
-					cmbEstadoCivil.setSelectedIndex(2);
-
-				} else if (vol.getEstadoCivil().equals("Outro")) {
-					cmbEstadoCivil.setSelectedIndex(3);
-				}
-
-			}
-
-			if (vol.getComplemento() != null)
-				txtComplemento.setText(vol.getComplemento());
-
-			if (vol.getCelular() != null)
-				jftxtCelular.setText(vol.getCelular());
-
-			if (vol.getInformacoesComplementares() != null)
-				atxtInfoComplementares.setText(vol
-						.getInformacoesComplementares());
-
-		}
 		pack();
 	}
 
