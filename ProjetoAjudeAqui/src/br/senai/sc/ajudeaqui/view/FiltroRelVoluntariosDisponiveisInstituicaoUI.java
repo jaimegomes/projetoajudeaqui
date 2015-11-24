@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package br.senai.sc.ajudeaqui.view;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.GroupLayout;
 
 /**
  *
@@ -28,80 +31,71 @@ public class FiltroRelVoluntariosDisponiveisInstituicaoUI extends javax.swing.JI
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        panelFiltroRelVoluntarios = new javax.swing.JPanel();
         lblNome = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
         lblEmail = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
-        lblEndereco = new javax.swing.JLabel();
-        txtEndereco = new javax.swing.JTextField();
         chkTodos = new javax.swing.JCheckBox();
         lblTipoServico = new javax.swing.JLabel();
         cmbTipoServico = new javax.swing.JComboBox();
         btnGerarRelatorio = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
-        setTitle(":: Sistema doVoluntário Ajude Aqui ::");
+        setTitle(":: Sistema do Voluntário Ajude Aqui ::");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Filtro Relatório Voluntários Disponíveis"));
+        panelFiltroRelVoluntarios.setBorder(javax.swing.BorderFactory.createTitledBorder("Filtro Relatório Voluntários Disponíveis"));
 
         lblNome.setText("Nome:");
 
         lblEmail.setText("Email:");
 
-        lblEndereco.setText("Endereço:");
-
         chkTodos.setText("Todos Voluntários");
 
         lblTipoServico.setText("Tipo Serviço:");
 
-        cmbTipoServico.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(3, 3, 3)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblEndereco)
-                    .addComponent(lblEmail)
-                    .addComponent(lblNome)
-                    .addComponent(lblTipoServico))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtNome)
-                    .addComponent(txtEmail)
-                    .addComponent(txtEndereco, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(chkTodos)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(cmbTipoServico, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+        javax.swing.GroupLayout gl_panelFiltroRelVoluntarios = new javax.swing.GroupLayout(panelFiltroRelVoluntarios);
+        gl_panelFiltroRelVoluntarios.setHorizontalGroup(
+        	gl_panelFiltroRelVoluntarios.createParallelGroup(Alignment.LEADING)
+        		.addGroup(gl_panelFiltroRelVoluntarios.createSequentialGroup()
+        			.addGap(3)
+        			.addGroup(gl_panelFiltroRelVoluntarios.createParallelGroup(Alignment.LEADING)
+        				.addGroup(gl_panelFiltroRelVoluntarios.createSequentialGroup()
+        					.addGroup(gl_panelFiltroRelVoluntarios.createParallelGroup(Alignment.LEADING)
+        						.addComponent(lblEmail)
+        						.addComponent(lblNome))
+        					.addGap(57)
+        					.addGroup(gl_panelFiltroRelVoluntarios.createParallelGroup(Alignment.LEADING)
+        						.addComponent(txtNome, 206, 206, 206)
+        						.addComponent(txtEmail, 206, 206, 206)))
+        				.addGroup(gl_panelFiltroRelVoluntarios.createSequentialGroup()
+        					.addComponent(lblTipoServico)
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addGroup(gl_panelFiltroRelVoluntarios.createParallelGroup(Alignment.LEADING)
+        						.addComponent(chkTodos)
+        						.addComponent(cmbTipoServico, 0, 206, Short.MAX_VALUE))))
+        			.addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNome)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblEmail)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblEndereco)
-                    .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTipoServico)
-                    .addComponent(cmbTipoServico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                .addComponent(chkTodos)
-                .addContainerGap())
+        gl_panelFiltroRelVoluntarios.setVerticalGroup(
+        	gl_panelFiltroRelVoluntarios.createParallelGroup(Alignment.LEADING)
+        		.addGroup(gl_panelFiltroRelVoluntarios.createSequentialGroup()
+        			.addContainerGap()
+        			.addGroup(gl_panelFiltroRelVoluntarios.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(lblNome)
+        				.addComponent(txtNome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addGroup(gl_panelFiltroRelVoluntarios.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(lblEmail)
+        				.addComponent(txtEmail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addGroup(gl_panelFiltroRelVoluntarios.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(lblTipoServico)
+        				.addComponent(cmbTipoServico, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        			.addPreferredGap(ComponentPlacement.UNRELATED)
+        			.addComponent(chkTodos)
+        			.addContainerGap(34, Short.MAX_VALUE))
         );
+        panelFiltroRelVoluntarios.setLayout(gl_panelFiltroRelVoluntarios);
 
         btnGerarRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/agenda_16x16.png"))); // NOI18N
         btnGerarRelatorio.setText("Gerar Relatório");
@@ -110,31 +104,30 @@ public class FiltroRelVoluntariosDisponiveisInstituicaoUI extends javax.swing.JI
         btnCancelar.setText("Cancelar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 47, Short.MAX_VALUE)
-                        .addComponent(btnGerarRelatorio)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addContainerGap()
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        				.addComponent(panelFiltroRelVoluntarios, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
+        				.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
+        					.addComponent(btnGerarRelatorio)
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 143, GroupLayout.PREFERRED_SIZE)))
+        			.addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGerarRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addContainerGap()
+        			.addComponent(panelFiltroRelVoluntarios, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
+        			.addGap(18)
+        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(btnGerarRelatorio, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE))
+        			.addContainerGap(37, Short.MAX_VALUE))
         );
+        getContentPane().setLayout(layout);
 
         pack();
     }// </editor-fold>                        
@@ -145,13 +138,11 @@ public class FiltroRelVoluntariosDisponiveisInstituicaoUI extends javax.swing.JI
     private javax.swing.JButton btnGerarRelatorio;
     private javax.swing.JCheckBox chkTodos;
     private javax.swing.JComboBox cmbTipoServico;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel panelFiltroRelVoluntarios;
     private javax.swing.JLabel lblEmail;
-    private javax.swing.JLabel lblEndereco;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblTipoServico;
     private javax.swing.JTextField txtEmail;
-    private javax.swing.JTextField txtEndereco;
     private javax.swing.JTextField txtNome;
     // End of variables declaration                   
 }
