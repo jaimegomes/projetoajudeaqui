@@ -1194,7 +1194,8 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 
 		}
 
-		System.out.println("PrincipalVoluntario\nSQL BTN PESQUISA: " + sql.toString());
+		// System.out.println("PrincipalVoluntario\nSQL BTN PESQUISA: " +
+		// sql.toString());
 
 		List<Entidade> listAnuncios = anuncioController.pesquisarAnuncio(sql.toString());
 
