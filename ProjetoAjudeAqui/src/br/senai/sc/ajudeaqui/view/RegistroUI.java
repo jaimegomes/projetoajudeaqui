@@ -17,8 +17,10 @@ import br.senai.sc.ajudeaqui.model.Usuario;
 import br.senai.sc.ajudeaqui.model.Voluntario;
 
 /**
- *
+ * Classe que contém a tela de cadastro do usuário.
+ * 
  * @author Jaime Gomes
+ *
  */
 @SuppressWarnings("rawtypes")
 public class RegistroUI extends javax.swing.JInternalFrame {

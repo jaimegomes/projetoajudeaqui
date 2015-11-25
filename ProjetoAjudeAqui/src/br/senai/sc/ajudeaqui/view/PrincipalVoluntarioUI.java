@@ -52,8 +52,10 @@ import br.senai.sc.ajudeaqui.model.VoluntarioAnuncio;
 import br.senai.sc.ajudeaqui.tablemodel.AnuncioTableModel;
 
 /**
- *
+ * Classe que contém a tela principal do perfil de voluntário
+ * 
  * @author Jaime Gomes
+ *
  */
 @SuppressWarnings("rawtypes")
 public class PrincipalVoluntarioUI extends javax.swing.JFrame {

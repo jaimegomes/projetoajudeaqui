@@ -9,8 +9,10 @@ import br.senai.sc.ajudeaqui.controller.UsuarioController;
 import br.senai.sc.ajudeaqui.model.Usuario;
 
 /**
- *
+ * Classe que contém a tela de login do sistema.
+ * 
  * @author Jaime Gomes
+ *
  */
 public class LoginUI extends javax.swing.JFrame {
 

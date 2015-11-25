@@ -43,8 +43,10 @@ import br.senai.sc.ajudeaqui.tablemodel.AnuncioTableModel;
 import br.senai.sc.ajudeaqui.tablemodel.VoluntarioTableModel;
 
 /**
- *
+ * Classe que contém a tela principal do perfil de instituição.
+ * 
  * @author Jaime Gomes
+ *
  */
 @SuppressWarnings("rawtypes")
 public class PrincipalInstituicaoUI extends javax.swing.JFrame {
@@ -1154,7 +1156,8 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
 
 		}
 
-//		System.out.println("PrincipalInstituicao\nSQL BTN PESQUISA: " + sql.toString());
+		// System.out.println("PrincipalInstituicao\nSQL BTN PESQUISA: " +
+		// sql.toString());
 
 		List<Entidade> listVoluntarios = voluntarioController.pesquisarVoluntario(sql.toString());
 

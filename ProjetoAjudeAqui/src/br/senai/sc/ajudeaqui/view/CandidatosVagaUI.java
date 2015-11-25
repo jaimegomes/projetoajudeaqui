@@ -19,6 +19,13 @@ import br.senai.sc.ajudeaqui.model.Anuncio;
 import br.senai.sc.ajudeaqui.model.Voluntario;
 import br.senai.sc.ajudeaqui.tablemodel.VoluntarioTableModel;
 
+/**
+ * Classe que contém a tela de relatório dos voluntários que se candidataram a
+ * determinada vaga.
+ * 
+ * @author Jaime Gomes
+ *
+ */
 public class CandidatosVagaUI extends javax.swing.JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -43,8 +50,7 @@ public class CandidatosVagaUI extends javax.swing.JFrame {
 	private void initComponents(List<Entidade> listVoluntarios, Anuncio anuncio) {
 
 		panelVoluntario = new javax.swing.JPanel();
-		lblTitulo = new javax.swing.JLabel("Candidatos a Vaga: "
-				+ anuncio.getTitulo());
+		lblTitulo = new javax.swing.JLabel("Candidatos a Vaga: " + anuncio.getTitulo());
 		btnFechar = new javax.swing.JButton();
 		btnFechar.setIcon(new javax.swing.ImageIcon("img/cancelar_16x16.png")); // NOI18N
 		btnFechar.setText("Fechar");
@@ -67,32 +73,19 @@ public class CandidatosVagaUI extends javax.swing.JFrame {
 		scrollPane.setMinimumSize(new Dimension(1197, 520));
 		scrollPane.setMaximumSize(new Dimension(1197, 520));
 
-		javax.swing.GroupLayout gl_panelVoluntario = new javax.swing.GroupLayout(
-				panelVoluntario);
-		gl_panelVoluntario.setHorizontalGroup(gl_panelVoluntario
-				.createParallelGroup(Alignment.LEADING)
-				.addComponent(lblTitulo, Alignment.TRAILING,
-						GroupLayout.DEFAULT_SIZE, 1221, Short.MAX_VALUE)
-				.addGroup(
-						gl_panelVoluntario
-								.createSequentialGroup()
-								.addGap(12)
-								.addComponent(scrollPane,
-										GroupLayout.DEFAULT_SIZE, 1197,
-										Short.MAX_VALUE).addContainerGap()));
-		gl_panelVoluntario.setVerticalGroup(gl_panelVoluntario
-				.createParallelGroup(Alignment.LEADING).addGroup(
-						gl_panelVoluntario
-								.createSequentialGroup()
-								.addComponent(lblTitulo,
-										GroupLayout.PREFERRED_SIZE, 73,
-										GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.RELATED,
-										28, Short.MAX_VALUE)
-								.addComponent(scrollPane,
-										GroupLayout.PREFERRED_SIZE, 520,
-										GroupLayout.PREFERRED_SIZE)
+		javax.swing.GroupLayout gl_panelVoluntario = new javax.swing.GroupLayout(panelVoluntario);
+		gl_panelVoluntario
+				.setHorizontalGroup(gl_panelVoluntario.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblTitulo, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 1221, Short.MAX_VALUE)
+						.addGroup(gl_panelVoluntario.createSequentialGroup().addGap(12)
+								.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 1197, Short.MAX_VALUE)
 								.addContainerGap()));
+		gl_panelVoluntario.setVerticalGroup(gl_panelVoluntario.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelVoluntario.createSequentialGroup()
+						.addComponent(lblTitulo, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 520, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap()));
 
 		table = new JTable();
 		table.setPreferredSize(new Dimension(1197, 520));
@@ -108,16 +101,14 @@ public class CandidatosVagaUI extends javax.swing.JFrame {
 
 					int linhaSelecionada = table.getSelectedRow();
 
-					int idVoluntario = Integer.parseInt(table.getValueAt(
-							linhaSelecionada, 0).toString());
+					int idVoluntario = Integer.parseInt(table.getValueAt(linhaSelecionada, 0).toString());
 
 					Voluntario voluntario = null;
 					try {
 
 						VoluntarioController volController = new VoluntarioController();
-						
-						voluntario = (Voluntario) volController
-								.getPorId(idVoluntario);
+
+						voluntario = (Voluntario) volController.getPorId(idVoluntario);
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
@@ -135,47 +126,24 @@ public class CandidatosVagaUI extends javax.swing.JFrame {
 
 		panelVoluntario.setLayout(gl_panelVoluntario);
 
-		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(
-				getContentPane());
-		layout.setHorizontalGroup(layout
-				.createParallelGroup(Alignment.TRAILING)
-				.addGroup(
-						layout.createSequentialGroup()
-								.addContainerGap()
-								.addGroup(
-										layout.createParallelGroup(
-												Alignment.LEADING)
-												.addGroup(
-														layout.createSequentialGroup()
-																.addComponent(
-																		panelVoluntario,
-																		GroupLayout.DEFAULT_SIZE,
-																		GroupLayout.DEFAULT_SIZE,
-																		Short.MAX_VALUE)
-																.addContainerGap())
-												.addGroup(
-														Alignment.TRAILING,
-														layout.createSequentialGroup()
-																.addComponent(
-																		btnFechar,
-																		GroupLayout.PREFERRED_SIZE,
-																		114,
-																		GroupLayout.PREFERRED_SIZE)
-																.addGap(24)))));
+		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+		layout.setHorizontalGroup(layout.createParallelGroup(Alignment.TRAILING).addGroup(layout.createSequentialGroup()
+				.addContainerGap()
+				.addGroup(layout.createParallelGroup(Alignment.LEADING)
+						.addGroup(layout.createSequentialGroup()
+								.addComponent(panelVoluntario, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+										Short.MAX_VALUE)
+								.addContainerGap())
+						.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
+								.addComponent(btnFechar, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)
+								.addGap(24)))));
 		layout.setVerticalGroup(layout.createParallelGroup(Alignment.LEADING)
-				.addGroup(
-						layout.createSequentialGroup()
-								.addContainerGap()
-								.addComponent(panelVoluntario,
-										GroupLayout.PREFERRED_SIZE,
-										GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.UNRELATED)
-								.addComponent(btnFechar,
-										GroupLayout.PREFERRED_SIZE, 19,
-										GroupLayout.PREFERRED_SIZE)
-								.addContainerGap(GroupLayout.DEFAULT_SIZE,
-										Short.MAX_VALUE)));
+				.addGroup(layout.createSequentialGroup().addContainerGap()
+						.addComponent(panelVoluntario, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+								GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.UNRELATED)
+						.addComponent(btnFechar, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 		getContentPane().setLayout(layout);
 
 		pack();
