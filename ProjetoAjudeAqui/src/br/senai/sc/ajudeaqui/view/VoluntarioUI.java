@@ -95,11 +95,11 @@ public class VoluntarioUI extends javax.swing.JInternalFrame {
 				.addGroup(gl_panelAnuncio.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_panelAnuncio.createParallelGroup(Alignment.LEADING)
-						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 696, Short.MAX_VALUE)
+						.addComponent(panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addGroup(gl_panelAnuncio.createSequentialGroup()
 							.addComponent(lblNome, GroupLayout.PREFERRED_SIZE, 145, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(lblNomeDinamico)))
+							.addComponent(lblNomeDinamico, GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE)))
 					.addContainerGap())
 		);
 		gl_panelAnuncio.setVerticalGroup(
@@ -142,7 +142,7 @@ public class VoluntarioUI extends javax.swing.JInternalFrame {
 		panel.add(lblEndereco);
 
 		lblEnderecoDinamico = new JLabel(voluntario.getEndereco());
-		lblEnderecoDinamico.setBounds(233, 111, 152, 15);
+		lblEnderecoDinamico.setBounds(233, 111, 457, 15);
 		panel.add(lblEnderecoDinamico);
 		lblComplemento = new JLabel("Complemento:");
 		lblComplemento.setBounds(12, 138, 102, 15);
@@ -154,7 +154,7 @@ public class VoluntarioUI extends javax.swing.JInternalFrame {
 		lblEmail.setBounds(12, 165, 42, 15);
 		panel.add(lblEmail);
 		lblEmailDinamico = new JLabel(voluntario.getEmail());
-		lblEmailDinamico.setBounds(233, 165, 152, 15);
+		lblEmailDinamico.setBounds(233, 165, 392, 15);
 		panel.add(lblEmailDinamico);
 		lblSexo = new JLabel("Sexo:");
 		lblSexo.setBounds(12, 219, 39, 15);
