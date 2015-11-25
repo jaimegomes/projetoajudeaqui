@@ -21,8 +21,11 @@ import java.util.List;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.SwingConstants;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 
@@ -117,6 +120,8 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 	private AnuncioController anuncioController = new AnuncioController();
 
 	private Voluntario vol = new Voluntario();
+	private JMenuBar menuBar;
+	private JMenuItem mntmDeslogar;
 
 	// End of variables declaration
 
@@ -957,6 +962,30 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 				javax.swing.GroupLayout.PREFERRED_SIZE));
 
 		pack();
+
+		menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+
+		mntmDeslogar = new JMenuItem("");
+		mntmDeslogar.setHorizontalAlignment(SwingConstants.TRAILING);
+		mntmDeslogar.setIcon(new ImageIcon("img/power_16x16.png"));
+		mntmDeslogar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				int opcao = JOptionPane.showConfirmDialog(null, "Deseja encerrar o sistema?");
+
+				if (opcao == 0) {
+					dispose();
+					LoginUI loginUI = new LoginUI();
+					loginUI.setVisible(true);
+
+				}
+
+			}
+		});
+		menuBar.add(mntmDeslogar);
 	}
 
 	/**
@@ -1134,7 +1163,7 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 
 		if ((titulo == null || titulo.trim().equals("")) && instituicao == null && tipoServico == null) {
 			sql.append(
-					"SELECT a.id, a.titulo, a.descricao, a.qtdVagas, a.dataPublicacao, a.idFuncao, a.status, a.idInstituicao FROM anuncio a");
+					"SELECT a.id, a.titulo, a.descricao, a.qtdVagas, a.dataPublicacao, a.idFuncao, a.status, a.idInstituicao FROM anuncio a WHERE status = 'Aberto'");
 
 		} else {
 			sql.append(
@@ -1157,6 +1186,11 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 
 				sql.append(" idFuncao= " + tipoServico.getId() + "");
 			}
+
+			if ((titulo != null && !titulo.trim().equals("")) || instituicao != null || tipoServico != null) {
+				sql.append(" AND");
+			}
+			sql.append(" status = 'Aberto'");
 
 		}
 

@@ -1,5 +1,6 @@
 package br.senai.sc.ajudeaqui.view;
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
@@ -9,12 +10,20 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
+import br.senai.sc.ajudeaqui.abstracts.Entidade;
+import br.senai.sc.ajudeaqui.controller.FuncaoController;
+import br.senai.sc.ajudeaqui.controller.FuncaoVoluntarioController;
+import br.senai.sc.ajudeaqui.controller.HorarioController;
+import br.senai.sc.ajudeaqui.controller.HorarioVoluntarioController;
+import br.senai.sc.ajudeaqui.model.Funcao;
+import br.senai.sc.ajudeaqui.model.FuncaoVoluntario;
+import br.senai.sc.ajudeaqui.model.Horario;
+import br.senai.sc.ajudeaqui.model.HorarioVoluntario;
 import br.senai.sc.ajudeaqui.model.Voluntario;
 import br.senai.sc.ajudeaqui.utils.StringUtils;
-import java.awt.Font;
-import javax.swing.SwingConstants;
 
 public class VoluntarioUI extends javax.swing.JInternalFrame {
 
@@ -43,6 +52,15 @@ public class VoluntarioUI extends javax.swing.JInternalFrame {
 	private JLabel lblDataNascimento;
 	private JLabel lblDataNascDinamico;
 	private JPanel panel;
+	private JLabel lblHorariosDisponiveisDinamico;
+	private JLabel lblTipoDeServico;
+	private JLabel lblTipoServicoDinamico;
+
+	private FuncaoVoluntarioController funcaoVoluntarioController = new FuncaoVoluntarioController();
+	private HorarioVoluntarioController horarioVoluntarioController = new HorarioVoluntarioController();
+
+	private FuncaoController funcaoController = new FuncaoController();
+	private HorarioController horarioController = new HorarioController();
 
 	/**
 	 * Creates new form RelatorioUI
@@ -77,42 +95,39 @@ public class VoluntarioUI extends javax.swing.JInternalFrame {
 		setResizable(false);
 
 		panel = new JPanel();
-		panel.setBorder(new TitledBorder(null, "Dados do Volunt\u00E1rio",
-				TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setBorder(
+				new TitledBorder(null, "Dados do Volunt\u00E1rio", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		lblNomeDinamico = new javax.swing.JLabel(voluntario.getNome());
 
 		lblNomeDinamico.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-		lblNomeDinamico.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-		
+		lblNomeDinamico.setHorizontalAlignment(SwingConstants.LEFT);
+
 		JLabel lblNome = new JLabel("Nome:");
 		lblNome.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNome.setFont(new Font("Dialog", Font.BOLD, 36));
 
-		javax.swing.GroupLayout gl_panelAnuncio = new javax.swing.GroupLayout(
-				panelAnuncio);
-		gl_panelAnuncio.setHorizontalGroup(
-			gl_panelAnuncio.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelAnuncio.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_panelAnuncio.createParallelGroup(Alignment.LEADING)
-						.addComponent(panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addGroup(gl_panelAnuncio.createSequentialGroup()
-							.addComponent(lblNome, GroupLayout.PREFERRED_SIZE, 145, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(lblNomeDinamico, GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE)))
-					.addContainerGap())
-		);
-		gl_panelAnuncio.setVerticalGroup(
-			gl_panelAnuncio.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelAnuncio.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_panelAnuncio.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNome, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblNomeDinamico))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)
-					.addGap(30))
-		);
+		javax.swing.GroupLayout gl_panelAnuncio = new javax.swing.GroupLayout(panelAnuncio);
+		gl_panelAnuncio
+				.setHorizontalGroup(gl_panelAnuncio.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panelAnuncio.createSequentialGroup().addContainerGap()
+								.addGroup(gl_panelAnuncio.createParallelGroup(Alignment.LEADING)
+										.addComponent(panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+												Short.MAX_VALUE)
+								.addGroup(gl_panelAnuncio.createSequentialGroup()
+										.addComponent(lblNome, GroupLayout.PREFERRED_SIZE, 145,
+												GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.UNRELATED)
+										.addComponent(lblNomeDinamico, GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE)))
+						.addContainerGap()));
+		gl_panelAnuncio
+				.setVerticalGroup(gl_panelAnuncio.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panelAnuncio.createSequentialGroup().addContainerGap()
+								.addGroup(gl_panelAnuncio.createParallelGroup(Alignment.BASELINE)
+										.addComponent(lblNome, GroupLayout.PREFERRED_SIZE, 43,
+												GroupLayout.PREFERRED_SIZE)
+										.addComponent(lblNomeDinamico))
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(panel, GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE).addGap(30)));
 		panel.setLayout(null);
 		lblCpf = new JLabel("CPF:");
 		lblCpf.setBounds(12, 30, 31, 15);
@@ -124,14 +139,14 @@ public class VoluntarioUI extends javax.swing.JInternalFrame {
 		lblTelefone.setBounds(12, 57, 67, 15);
 		panel.add(lblTelefone);
 		lblNrTelefone = new JLabel(voluntario.getTelefone());
-		lblNrTelefone.setBounds(233, 57, 78, 15);
+		lblNrTelefone.setBounds(233, 57, 176, 15);
 		panel.add(lblNrTelefone);
 		lblDataNascimento = new JLabel("Data Nascimento:");
 		lblDataNascimento.setBounds(12, 84, 126, 15);
 		panel.add(lblDataNascimento);
 		try {
-			lblDataNascDinamico = new JLabel(StringUtils.getInstance()
-					.parseDateToString(voluntario.getDataNascimento()));
+			lblDataNascDinamico = new JLabel(
+					StringUtils.getInstance().parseDateToString(voluntario.getDataNascimento()));
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		}
@@ -172,53 +187,84 @@ public class VoluntarioUI extends javax.swing.JInternalFrame {
 		lblCelular.setBounds(12, 192, 55, 15);
 		panel.add(lblCelular);
 		lblCelularDianamico = new JLabel(voluntario.getCelular());
-		lblCelularDianamico.setBounds(233, 192, 152, 15);
+		lblCelularDianamico.setBounds(233, 192, 196, 15);
 		panel.add(lblCelularDianamico);
-		lblInformaesComplementares = new JLabel(
-				"Informa\u00E7\u00F5es Complementares:");
+		lblInformaesComplementares = new JLabel("Informa\u00E7\u00F5es Complementares:");
 		lblInformaesComplementares.setBounds(12, 273, 216, 15);
 		panel.add(lblInformaesComplementares);
-		lblInfoComplementarDinamico = new JLabel(
-				voluntario.getInformacoesComplementares());
-		lblInfoComplementarDinamico.setToolTipText("");
+		lblInfoComplementarDinamico = new JLabel(voluntario.getInformacoesComplementares());
 		lblInfoComplementarDinamico.setBounds(233, 273, 451, 15);
 		panel.add(lblInfoComplementarDinamico);
+
+		JLabel lblHorariosDisponiveis = new JLabel("Hor\u00E1rios Dispon\u00EDveis:");
+		lblHorariosDisponiveis.setBounds(12, 299, 146, 14);
+		panel.add(lblHorariosDisponiveis);
+
+		lblHorariosDisponiveisDinamico = new JLabel("");
+		lblHorariosDisponiveisDinamico.setBounds(233, 299, 457, 14);
+
+		StringBuilder horarios = new StringBuilder();
+
+		try {
+			for (Entidade e : horarioVoluntarioController.getListPorIdVoluntario(voluntario.getId())) {
+				HorarioVoluntario horarioVoluntario = (HorarioVoluntario) e;
+
+				Horario horario = (Horario) horarioController.getPorId(horarioVoluntario.getHorario().getId());
+
+				horarios.append("" + horario.getHorario() + ", ");
+
+			}
+
+			lblHorariosDisponiveisDinamico.setText(horarios.substring(0, horarios.length() - 2));
+
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+
+		panel.add(lblHorariosDisponiveisDinamico);
+
+		lblTipoDeServico = new JLabel("Tipo de Servi\u00E7o:");
+		lblTipoDeServico.setBounds(12, 324, 146, 14);
+		panel.add(lblTipoDeServico);
+
+		lblTipoServicoDinamico = new JLabel("");
+		lblTipoServicoDinamico.setBounds(233, 324, 457, 14);
+
+		StringBuilder funcoes = new StringBuilder();
+
+		try {
+			for (Entidade e : funcaoVoluntarioController.getListPorIdVoluntario(voluntario.getId())) {
+				FuncaoVoluntario funcaoVoluntario = (FuncaoVoluntario) e;
+
+				Funcao funcao = (Funcao) funcaoController.getPorId(funcaoVoluntario.getFuncao().getId());
+
+				funcoes.append("" + funcao.getFuncao() + ", ");
+
+			}
+
+			lblTipoServicoDinamico.setText(funcoes.substring(0, funcoes.length() - 2));
+
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+
+		panel.add(lblTipoServicoDinamico);
 		panelAnuncio.setLayout(gl_panelAnuncio);
 
-		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(
-				getContentPane());
-		layout.setHorizontalGroup(layout
-				.createParallelGroup(Alignment.TRAILING)
-				.addGroup(
-						layout.createSequentialGroup()
-								.addContainerGap()
-								.addGroup(
-										layout.createParallelGroup(
-												Alignment.TRAILING)
-												.addComponent(
-														panelAnuncio,
-														GroupLayout.DEFAULT_SIZE,
-														720, Short.MAX_VALUE)
-												.addComponent(
-														btnFechar,
-														GroupLayout.PREFERRED_SIZE,
-														115,
-														GroupLayout.PREFERRED_SIZE))
-								.addContainerGap()));
+		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+		layout.setHorizontalGroup(layout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(layout.createSequentialGroup().addContainerGap()
+						.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+								.addComponent(panelAnuncio, GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
+								.addComponent(btnFechar, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE))
+				.addContainerGap()));
 		layout.setVerticalGroup(layout.createParallelGroup(Alignment.LEADING)
-				.addGroup(
-						layout.createSequentialGroup()
-								.addContainerGap()
-								.addComponent(panelAnuncio,
-										GroupLayout.PREFERRED_SIZE,
-										GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(btnFechar,
-										GroupLayout.PREFERRED_SIZE, 19,
-										GroupLayout.PREFERRED_SIZE)
-								.addContainerGap(GroupLayout.DEFAULT_SIZE,
-										Short.MAX_VALUE)));
+				.addGroup(layout.createSequentialGroup().addContainerGap()
+						.addComponent(panelAnuncio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+								GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(btnFechar, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 		getContentPane().setLayout(layout);
 
 		pack();
