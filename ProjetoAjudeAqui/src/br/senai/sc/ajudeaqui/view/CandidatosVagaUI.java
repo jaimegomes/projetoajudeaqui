@@ -103,45 +103,27 @@ public class CandidatosVagaUI extends javax.swing.JFrame {
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(
 				getContentPane());
-		layout.setHorizontalGroup(layout
-				.createParallelGroup(Alignment.TRAILING)
-				.addGroup(
-						layout.createSequentialGroup()
-								.addContainerGap()
-								.addGroup(
-										layout.createParallelGroup(
-												Alignment.LEADING)
-												.addGroup(
-														layout.createSequentialGroup()
-																.addComponent(
-																		panelVoluntario,
-																		GroupLayout.DEFAULT_SIZE,
-																		GroupLayout.DEFAULT_SIZE,
-																		Short.MAX_VALUE)
-																.addContainerGap())
-												.addGroup(
-														Alignment.TRAILING,
-														layout.createSequentialGroup()
-																.addComponent(
-																		btnFechar,
-																		GroupLayout.PREFERRED_SIZE,
-																		93,
-																		GroupLayout.PREFERRED_SIZE)
-																.addGap(24)))));
-		layout.setVerticalGroup(layout.createParallelGroup(Alignment.LEADING)
-				.addGroup(
-						layout.createSequentialGroup()
-								.addContainerGap()
-								.addComponent(panelVoluntario,
-										GroupLayout.PREFERRED_SIZE,
-										GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.UNRELATED)
-								.addComponent(btnFechar,
-										GroupLayout.PREFERRED_SIZE, 19,
-										GroupLayout.PREFERRED_SIZE)
-								.addContainerGap(GroupLayout.DEFAULT_SIZE,
-										Short.MAX_VALUE)));
+		layout.setHorizontalGroup(
+			layout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(layout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+						.addGroup(layout.createSequentialGroup()
+							.addComponent(panelVoluntario, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addContainerGap())
+						.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
+							.addComponent(btnFechar, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)
+							.addGap(24))))
+		);
+		layout.setVerticalGroup(
+			layout.createParallelGroup(Alignment.LEADING)
+				.addGroup(layout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(panelVoluntario, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(btnFechar, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
 		getContentPane().setLayout(layout);
 
 		pack();
