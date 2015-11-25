@@ -214,7 +214,8 @@ public class VoluntarioAnuncioDAO extends GenericDAO {
 		return list;
 	}
 
-	public List<Entidade> getPorIdVoluntario(int idVoluntario) throws SQLException {
+	public List<Entidade> getPorIdVoluntario(int idVoluntario)
+			throws SQLException {
 		con = Conexao.getConnection();
 
 		List<Entidade> list = new ArrayList<Entidade>();
@@ -248,4 +249,40 @@ public class VoluntarioAnuncioDAO extends GenericDAO {
 		return list;
 	}
 
+	public List<Entidade> getPorIdVoluntarioIdAnuncio(int idVoluntario,
+			int idAnuncio) throws SQLException {
+		con = Conexao.getConnection();
+
+		List<Entidade> list = null;
+
+		String sql = "SELECT va.id, va.idAnuncio, va.idVoluntario FROM voluntarioAnuncio va WHERE idVoluntario=? AND idAnuncio=?";
+		try {
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, idVoluntario);
+			pstmt.setInt(2, idAnuncio);
+
+			ResultSet result = pstmt.executeQuery();
+
+			while (result.next()) {
+
+				list = new ArrayList<Entidade>();
+				voluntarioAnuncio = new VoluntarioAnuncio(result.getInt("id"),
+						result.getInt("idVoluntario"),
+						result.getInt("idAnuncio"));
+
+				list.add(voluntarioAnuncio);
+			}
+			result.close();
+			pstmt.close();
+
+		} catch (SQLException se) {
+			System.out
+					.println("[VoluntarioAnuncioDAO] - Erro ao pegar VoluntarioAnuncio por ID do voluntário e ID do anuncio.\n"
+							+ se.getMessage());
+		} finally {
+			con.close();
+		}
+
+		return list;
+	}
 }

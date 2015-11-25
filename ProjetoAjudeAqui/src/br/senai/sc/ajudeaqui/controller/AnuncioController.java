@@ -96,4 +96,10 @@ public class AnuncioController implements IController {
 		return dao.getAbertos();
 	}
 
+	public List<Entidade> getPorTituloEIdInstituicao(String titulo, int idInstituicao) throws Exception{
+		
+		dao = new AnuncioDAO();
+		return dao.getPorTituloEIdInstituicao(titulo, idInstituicao);
+	}
+
 }

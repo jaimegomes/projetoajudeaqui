@@ -13,13 +13,14 @@ import br.senai.sc.ajudeaqui.utils.StringUtils;
 public class AnuncioTableModel extends AbstractTableModel {
 
 	private static final long serialVersionUID = 1L;
-	private static final int COL_TITULO = 0;
-	private static final int COL_DESCRICAO = 1;
-	private static final int COL_QTD_VAGAS = 2;
-	private static final int COL_DATA_PUBLICACAO = 3;
-	private static final int COL_FUNCAO = 4;
-	private static final int COL_STATUS = 5;
-	private static final int COL_INSTITUICAO = 6;
+	private static final int COL_ID = 0;
+	private static final int COL_TITULO = 1;
+	private static final int COL_DESCRICAO = 2;
+	private static final int COL_QTD_VAGAS = 3;
+	private static final int COL_DATA_PUBLICACAO = 4;
+	private static final int COL_FUNCAO = 5;
+	private static final int COL_STATUS = 6;
+	private static final int COL_INSTITUICAO = 7;
 
 	private List<Entidade> valores;
 
@@ -39,19 +40,22 @@ public class AnuncioTableModel extends AbstractTableModel {
 	/**
 	 * Retorna a quantidade de colunas, deve ser setado manualmente.
 	 * 
-	 * @return 7
+	 * @return 8
 	 */
 	public int getColumnCount() {
-		return 7;
+		return 8;
 	}
 
 	/**
 	 * Retorna o nome da coluna passada como parâmetro.
 	 * 
-	 * @param int
-	 *            colunm
+	 * @param int colunm
 	 */
 	public String getColumnName(int column) {
+
+		if (column == COL_ID)
+			return "Id";
+
 		if (column == COL_TITULO)
 			return "Título";
 
@@ -79,13 +83,14 @@ public class AnuncioTableModel extends AbstractTableModel {
 	/**
 	 * Retorna o objeto que está na linha e coluna indicada como parâmetros.
 	 * 
-	 * @param int
-	 *            row
-	 * @param int
-	 *            column
+	 * @param int row
+	 * @param int column
 	 */
 	public Object getValueAt(int row, int column) {
 		Anuncio anuncio = (Anuncio) valores.get(row);
+
+		if (column == COL_ID)
+			return anuncio.getId();
 
 		if (column == COL_TITULO)
 			return anuncio.getTitulo();
@@ -98,7 +103,8 @@ public class AnuncioTableModel extends AbstractTableModel {
 
 		if (column == COL_DATA_PUBLICACAO) {
 			try {
-				return StringUtils.getInstance().parseDateToString(anuncio.getDataPublicacao());
+				return StringUtils.getInstance().parseDateToString(
+						anuncio.getDataPublicacao());
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
@@ -122,13 +128,14 @@ public class AnuncioTableModel extends AbstractTableModel {
 	 * 
 	 * @param Object
 	 *            aValue
-	 * @param int
-	 *            rowIndex
-	 * @param int
-	 *            columnIndex
+	 * @param int rowIndex
+	 * @param int columnIndex
 	 */
 	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
 		Anuncio anuncio = (Anuncio) valores.get(rowIndex);
+
+		if (columnIndex == COL_ID)
+			anuncio.setId(Integer.parseInt(aValue.toString()));
 
 		if (columnIndex == COL_TITULO)
 			anuncio.setTitulo(aValue.toString());
@@ -141,7 +148,8 @@ public class AnuncioTableModel extends AbstractTableModel {
 
 		if (columnIndex == COL_DATA_PUBLICACAO) {
 			try {
-				anuncio.setDataPublicacao(StringUtils.getInstance().parseStringToDate(aValue.toString()));
+				anuncio.setDataPublicacao(StringUtils.getInstance()
+						.parseStringToDate(aValue.toString()));
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
@@ -163,8 +171,7 @@ public class AnuncioTableModel extends AbstractTableModel {
 	 * tipo de parâmetro fazer um if como em setValueAt para verificar qual a
 	 * columnIndex se trata e retornar o tipo da classe.
 	 * 
-	 * @param int
-	 *            columnIndex
+	 * @param int columnIndex
 	 * @return Class<?>
 	 */
 	public Class<?> getColumnClass(int columnIndex) {
@@ -174,10 +181,8 @@ public class AnuncioTableModel extends AbstractTableModel {
 	/**
 	 * Verifica se a célula passada como parâmetro é editável.
 	 * 
-	 * @param int
-	 *            rowIndex
-	 * @param int
-	 *            columnIndex
+	 * @param int rowIndex
+	 * @param int columnIndex
 	 * @return boolean true
 	 */
 	public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -187,8 +192,7 @@ public class AnuncioTableModel extends AbstractTableModel {
 	/**
 	 * Retorna o objeto que está na linha passada como parâmetro.
 	 * 
-	 * @param int
-	 *            row
+	 * @param int row
 	 * @return Anuncio valores.get(row)
 	 */
 	public Anuncio get(int row) {

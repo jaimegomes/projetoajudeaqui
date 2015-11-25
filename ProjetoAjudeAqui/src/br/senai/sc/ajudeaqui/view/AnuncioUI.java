@@ -10,6 +10,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import br.senai.sc.ajudeaqui.abstracts.Entidade;
@@ -72,6 +73,14 @@ public class AnuncioUI extends javax.swing.JInternalFrame {
 		}
 		btnFechar.setIcon(new javax.swing.ImageIcon("img/cancelar_16x16.png")); // NOI18N
 		btnFechar.setText("Fechar");
+		btnFechar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+
+			}
+		});
 
 		btnDinamico = new JButton();
 		btnDinamico.addActionListener(new ActionListener() {
@@ -92,7 +101,7 @@ public class AnuncioUI extends javax.swing.JInternalFrame {
 						VoluntarioController volController = new VoluntarioController();
 						List<Entidade> list = voluntarioAnuncioController
 								.getPorIdAnuncio(anuncio.getId());
-						List<Voluntario> listVoluntarios = new ArrayList<Voluntario>();
+						List<Entidade> listVoluntarios = new ArrayList<Entidade>();
 
 						for (Entidade en : list) {
 
@@ -103,10 +112,22 @@ public class AnuncioUI extends javax.swing.JInternalFrame {
 											.getIdVoluntario());
 							listVoluntarios.add(vol);
 
+						}
+
+						if (listVoluntarios.size() > 0) {
+							dispose();
 							CandidatosVagaUI volUI = new CandidatosVagaUI(
 									listVoluntarios, anuncio);
+							volUI.setFocusable(true);
+							volUI.setVisible(true);
+							
 
+						} else {
+							JOptionPane
+									.showMessageDialog(null,
+											"Não existem candidatos para este anúncio.");
 						}
+
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
@@ -125,11 +146,28 @@ public class AnuncioUI extends javax.swing.JInternalFrame {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 
-					VoluntarioAnuncio voluntarioAnuncio = new VoluntarioAnuncio(
-							vol.getId(), anuncio.getId());
-
 					try {
-						voluntarioAnuncioController.salvar(voluntarioAnuncio);
+						List<Entidade> list = voluntarioAnuncioController
+								.getPorIdVoluntarioIdAnuncio(vol.getId(),
+										anuncio.getId());
+
+						if (list != null) {
+							JOptionPane
+									.showMessageDialog(
+											null,
+											"Você já está inscrito para esta vaga, aguarde contato da instituição e mantenha seu perfil atualizado.");
+						} else {
+							VoluntarioAnuncio voluntarioAnuncio = new VoluntarioAnuncio(
+									vol.getId(), anuncio.getId());
+
+							voluntarioAnuncioController
+									.salvar(voluntarioAnuncio);
+							JOptionPane
+									.showMessageDialog(
+											null,
+											"Você se inscreveu para esta vaga, aguarde contato da instituição e mantenha seu perfil atualizado.");
+						}
+
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
@@ -140,6 +178,7 @@ public class AnuncioUI extends javax.swing.JInternalFrame {
 			btnDinamico.setVisible(false);
 		}
 
+		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		setTitle(":: Sistema do Voluntário Ajude Aqui ::");
 
 		lblTitulo.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
@@ -239,21 +278,19 @@ public class AnuncioUI extends javax.swing.JInternalFrame {
 												.addComponent(
 														panelAnuncio,
 														GroupLayout.DEFAULT_SIZE,
-														GroupLayout.DEFAULT_SIZE,
-														Short.MAX_VALUE)
+														720, Short.MAX_VALUE)
 												.addGroup(
 														layout.createSequentialGroup()
 																.addComponent(
 																		btnDinamico,
 																		GroupLayout.PREFERRED_SIZE,
-																		161,
+																		222,
 																		GroupLayout.PREFERRED_SIZE)
-																.addPreferredGap(
-																		ComponentPlacement.RELATED)
+																.addGap(18)
 																.addComponent(
 																		btnFechar,
 																		GroupLayout.PREFERRED_SIZE,
-																		93,
+																		115,
 																		GroupLayout.PREFERRED_SIZE)))
 								.addContainerGap()));
 		layout.setVerticalGroup(layout
@@ -265,10 +302,10 @@ public class AnuncioUI extends javax.swing.JInternalFrame {
 										GroupLayout.PREFERRED_SIZE,
 										GroupLayout.DEFAULT_SIZE,
 										GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.UNRELATED)
+								.addPreferredGap(ComponentPlacement.RELATED)
 								.addGroup(
 										layout.createParallelGroup(
-												Alignment.BASELINE)
+												Alignment.TRAILING)
 												.addComponent(
 														btnFechar,
 														GroupLayout.PREFERRED_SIZE,

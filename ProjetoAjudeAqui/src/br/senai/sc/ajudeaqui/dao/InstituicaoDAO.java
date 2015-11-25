@@ -239,14 +239,14 @@ public class InstituicaoDAO extends GenericDAO {
 			while (result.next()) {
 
 				usuDAO = new UsuarioDAO();
-				usuario = (Usuario) usuDAO.getPorId(result.getInt("idUsuario"));
+				usuario = (Usuario) usuDAO.getPorId(idUsuario);
 
 				instituicao = new Instituicao(result.getInt("id"),
 						result.getString("razaoSocial"),
-						result.getString("nome"), result.getString("email"),
+						result.getString("cnpj"), result.getString("nome"),
+						result.getString("email"),
 						result.getString("telefone"),
-						result.getString("endereco"), result.getString("cnpj"),
-						result.getString("site"),
+						result.getString("endereco"), result.getString("site"),
 						result.getString("responsavel"),
 						result.getString("observacoes"), usuario);
 			}
@@ -278,10 +278,10 @@ public class InstituicaoDAO extends GenericDAO {
 
 				instituicao = new Instituicao(result.getInt("id"),
 						result.getString("razaoSocial"),
-						result.getString("nome"), result.getString("email"),
+						result.getString("cnpj"), result.getString("nome"),
+						result.getString("email"),
 						result.getString("telefone"),
-						result.getString("endereco"), result.getString("cnpj"),
-						result.getString("site"),
+						result.getString("endereco"), result.getString("site"),
 						result.getString("responsavel"),
 						result.getString("observacoes"), usuario);
 			}

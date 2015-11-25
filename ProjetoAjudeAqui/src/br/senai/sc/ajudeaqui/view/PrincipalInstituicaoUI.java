@@ -34,6 +34,7 @@ import br.senai.sc.ajudeaqui.model.Anuncio;
 import br.senai.sc.ajudeaqui.model.Funcao;
 import br.senai.sc.ajudeaqui.model.Instituicao;
 import br.senai.sc.ajudeaqui.model.Usuario;
+import br.senai.sc.ajudeaqui.model.Voluntario;
 import br.senai.sc.ajudeaqui.tablemodel.AnuncioTableModel;
 import br.senai.sc.ajudeaqui.tablemodel.VoluntarioTableModel;
 
@@ -249,7 +250,7 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
 
 		try {
 			txtCnpj.setFormatterFactory(new DefaultFormatterFactory(
-					new MaskFormatter("###.###.###-##")));
+					new MaskFormatter("###.###.###/####-##")));
 		} catch (ParseException e2) {
 			e2.printStackTrace();
 		}
@@ -286,43 +287,6 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
 		});
 
 		desabilitaCampos();
-
-		/**
-		 * Cria a entidade Instituição a partir do usuário logado
-		 */
-		try {
-			instituicao = (Instituicao) controller.getPorIdUsuario(usuario
-					.getId());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		if (instituicao.getNome() != null)
-			txtNome.setText(instituicao.getNome());
-
-		if (instituicao.getCnpj() != null)
-			txtCnpj.setText(instituicao.getCnpj());
-
-		if (instituicao.getEmail() != null)
-			txtEmail.setText(instituicao.getEmail());
-
-		if (instituicao.getEndereco() != null)
-			txtEndereco.setText(instituicao.getEndereco());
-
-		if (instituicao.getRazaoSocial() != null)
-			txtRazaoSocial.setText(instituicao.getRazaoSocial());
-
-		if (instituicao.getSite() != null)
-			txtSite.setText(instituicao.getSite());
-
-		if (instituicao.getTelefone() != null)
-			txtTelefone.setText(instituicao.getTelefone());
-
-		if (instituicao.getTelefone() != null)
-			txtResponsavel.setText(instituicao.getResponsavel());
-
-		if (instituicao.getObservacoes() != null)
-			atxtObservacoes.setText(instituicao.getObservacoes());
 
 		panelInstituicao.setBorder(javax.swing.BorderFactory
 				.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -402,6 +366,43 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
 
 			}
 		});
+
+		/**
+		 * Cria a entidade Instituição a partir do usuário logado
+		 */
+		try {
+			instituicao = (Instituicao) controller.getPorIdUsuario(usuario
+					.getId());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		if (instituicao.getNome() != null)
+			txtNome.setText(instituicao.getNome());
+
+		if (instituicao.getCnpj() != null)
+			txtCnpj.setText(instituicao.getCnpj());
+
+		if (instituicao.getEmail() != null)
+			txtEmail.setText(instituicao.getEmail());
+
+		if (instituicao.getEndereco() != null)
+			txtEndereco.setText(instituicao.getEndereco());
+
+		if (instituicao.getRazaoSocial() != null)
+			txtRazaoSocial.setText(instituicao.getRazaoSocial());
+
+		if (instituicao.getSite() != null)
+			txtSite.setText(instituicao.getSite());
+
+		if (instituicao.getTelefone() != null)
+			txtTelefone.setText(instituicao.getTelefone());
+
+		if (instituicao.getTelefone() != null)
+			txtResponsavel.setText(instituicao.getResponsavel());
+
+		if (instituicao.getObservacoes() != null)
+			atxtObservacoes.setText(instituicao.getObservacoes());
 
 		javax.swing.GroupLayout panelDadosInstituicaoLayout = new javax.swing.GroupLayout(
 				panelDadosInstituicao);
@@ -767,11 +768,42 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
 		tableVoluntarios.setMaximumSize(new java.awt.Dimension(1197, 520));
 		tableVoluntarios.setMinimumSize(new java.awt.Dimension(1197, 520));
 		tableVoluntarios.setPreferredSize(new java.awt.Dimension(1197, 520));
+		tableVoluntarios.addMouseListener(new MouseAdapter() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2) {
+
+					int linhaSelecionada = tableVoluntarios.getSelectedRow();
+
+					int idVoluntario = Integer.parseInt(tableVoluntarios.getValueAt(
+							linhaSelecionada, 0).toString());
+
+					Voluntario voluntario = null;
+					try {
+						voluntario = (Voluntario) volController
+								.getPorId(idVoluntario);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+
+					VoluntarioUI volUI = new VoluntarioUI(voluntario);
+					volUI.setFocusable(true);
+					volUI.moveToFront();
+					getContentPane().add(volUI, 0);
+					volUI.setVisible(true);
+				}
+			}
+		});
+		
 		scrollpaneVoluntarios.setViewportView(tableVoluntarios);
 
 		try {
-			tableAnunciosPublicados.setModel(new AnuncioTableModel(
-					anuncioController.listar()));
+			List<Entidade> listAnuncio = anuncioController
+					.getPorIdInstituicao(instituicao.getId());
+
+			tableAnunciosPublicados
+					.setModel(new AnuncioTableModel(listAnuncio));
 		} catch (Exception e2) {
 			e2.printStackTrace();
 		}
@@ -785,7 +817,7 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
 		tableAnunciosPublicados.addMouseListener(new MouseAdapter() {
 
 			@Override
-			public void mouseExited(MouseEvent e) {
+			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) {
 
 					int linhaSelecionada = tableAnunciosPublicados
@@ -816,6 +848,32 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
 		btnPesquisarAnunciosPublicados.setIcon(new javax.swing.ImageIcon(
 				"img/lupa_16x16.png")); // NOI18N
 		btnPesquisarAnunciosPublicados.setText("Pesquisar");
+		btnPesquisarAnunciosPublicados.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				try {
+					String titulo = txtFiltroTituloAnunciosPublicados.getText();
+					
+					if (titulo.trim().equals("") || titulo == null) {
+
+						tableAnunciosPublicados.setModel(new AnuncioTableModel(
+								anuncioController
+										.getPorIdInstituicao(instituicao
+												.getId())));
+					} else {
+						
+						tableAnunciosPublicados.setModel(new AnuncioTableModel(
+								anuncioController.getPorTituloEIdInstituicao(
+										titulo, instituicao.getId())));
+					}
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+
+			}
+		});
 
 		lblFiltroTituloAnunciosPublicados.setFont(new java.awt.Font("Dialog",
 				0, 12)); // NOI18N
@@ -838,18 +896,16 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
 				Funcao funcao = null;
 
 				try {
-					funcao = (Funcao) funcaoController
-							.getPorFuncao(cmbTipoServicoAnuncio
-									.getSelectedItem() + "");
+
 					anuncio = (Anuncio) anuncioController.getPorId(idAnuncio);
 
-					anuncio.setTitulo(txtTituloCadAnuncio.getText());
-					anuncio.setDescricao(atxtDescricaoCadAnuncio.getText());
-					anuncio.setFuncao(funcao);
-					anuncio.setQtdVagas((Integer) spinnerVagasCadAnuncio
-							.getValue());
+					funcao = (Funcao) funcaoController.getPorFuncao(anuncio
+							.getFuncao().getFuncao());
 
-					btnCadastrarAnuncioAction(anuncio, true);
+					txtTituloCadAnuncio.setText(anuncio.getTitulo());
+					atxtDescricaoCadAnuncio.setText(anuncio.getDescricao());
+					cmbTipoServicoAnuncio.setSelectedItem(funcao.getFuncao());
+					spinnerVagasCadAnuncio.setValue(anuncio.getQtdVagas());
 
 				} catch (Exception e1) {
 					e1.printStackTrace();
@@ -874,6 +930,7 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
 				Anuncio anuncio = null;
 				try {
 					anuncio = (Anuncio) anuncioController.getPorId(idAnuncio);
+
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
@@ -883,7 +940,13 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
 				try {
 					anuncioController.editar(anuncio);
 					JOptionPane.showMessageDialog(null,
-							"Anúncio editado com sucesso.");
+							"Anúncio encerrado com sucesso.");
+
+					List<Entidade> listAnuncio = anuncioController
+							.getPorIdInstituicao(instituicao.getId());
+
+					tableAnunciosPublicados.setModel(new AnuncioTableModel(
+							listAnuncio));
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
@@ -914,29 +977,75 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+
 				Funcao funcao = null;
+				Anuncio anuncio = null;
+
 				try {
-					funcao = (Funcao) funcaoController
-							.getPorFuncao(cmbTipoServicoAnuncio
-									.getSelectedItem() + "");
+					int linhaSelecionada = tableAnunciosPublicados
+							.getSelectedRow();
 
-					Anuncio anuncio = new Anuncio(
-							txtTituloCadAnuncio.getText(),
-							atxtDescricaoCadAnuncio.getText(),
-							(Integer) spinnerVagasCadAnuncio.getValue(),
-							new Date(), funcao, "Aberto", instituicao);
+					if (linhaSelecionada >= 0) {
 
-					btnCadastrarAnuncioAction(anuncio, false);
+						int idAnuncio = Integer
+								.parseInt(tableAnunciosPublicados.getValueAt(
+										linhaSelecionada, 0).toString());
 
-					List<Entidade> listAnuncio = anuncioController.listar();
+						anuncio = (Anuncio) anuncioController
+								.getPorId(idAnuncio);
+					}
 
-					tableAnunciosPublicados.setModel(new AnuncioTableModel(
-							listAnuncio));
+					if (anuncio == null) {
+						funcao = (Funcao) funcaoController
+								.getPorFuncao(cmbTipoServicoAnuncio
+										.getSelectedItem() + "");
+
+						anuncio = new Anuncio(txtTituloCadAnuncio.getText(),
+								atxtDescricaoCadAnuncio.getText(),
+								(Integer) spinnerVagasCadAnuncio.getValue(),
+								new Date(), funcao, "Aberto", instituicao);
+
+						btnCadastrarAnuncioAction(anuncio, false);
+
+						List<Entidade> listAnuncio = anuncioController
+								.getPorIdInstituicao(instituicao.getId());
+
+						tableAnunciosPublicados.setModel(new AnuncioTableModel(
+								listAnuncio));
+					} else {
+
+						try {
+
+							funcao = (Funcao) funcaoController
+									.getPorFuncao(anuncio.getFuncao()
+											.getFuncao());
+
+							anuncio.setTitulo(txtTituloCadAnuncio.getText());
+							anuncio.setDescricao(atxtDescricaoCadAnuncio
+									.getText());
+							anuncio.setFuncao(funcao);
+							anuncio.setQtdVagas((Integer) spinnerVagasCadAnuncio
+									.getValue());
+
+							btnCadastrarAnuncioAction(anuncio, true);
+
+							List<Entidade> listAnuncio = anuncioController
+									.getPorIdInstituicao(instituicao.getId());
+
+							tableAnunciosPublicados
+									.setModel(new AnuncioTableModel(listAnuncio));
+
+						} catch (Exception e1) {
+							e1.printStackTrace();
+						}
+
+					}
+
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-
 			}
+
 		});
 
 		lblTipoServicoAnuncio.setText("Tipo de Serviço:");

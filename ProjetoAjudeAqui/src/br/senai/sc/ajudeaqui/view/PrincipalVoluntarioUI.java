@@ -33,6 +33,7 @@ import br.senai.sc.ajudeaqui.controller.FuncaoVoluntarioController;
 import br.senai.sc.ajudeaqui.controller.HorarioController;
 import br.senai.sc.ajudeaqui.controller.HorarioVoluntarioController;
 import br.senai.sc.ajudeaqui.controller.InstituicaoController;
+import br.senai.sc.ajudeaqui.controller.VoluntarioAnuncioController;
 import br.senai.sc.ajudeaqui.controller.VoluntarioController;
 import br.senai.sc.ajudeaqui.model.Anuncio;
 import br.senai.sc.ajudeaqui.model.Funcao;
@@ -42,6 +43,7 @@ import br.senai.sc.ajudeaqui.model.HorarioVoluntario;
 import br.senai.sc.ajudeaqui.model.Instituicao;
 import br.senai.sc.ajudeaqui.model.Usuario;
 import br.senai.sc.ajudeaqui.model.Voluntario;
+import br.senai.sc.ajudeaqui.model.VoluntarioAnuncio;
 import br.senai.sc.ajudeaqui.tablemodel.AnuncioTableModel;
 
 import com.toedter.calendar.JDateChooser;
@@ -181,6 +183,48 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 		btnGerarRelatorio = new javax.swing.JButton();
 		scrollpaneVagas = new javax.swing.JScrollPane();
 		tableVagas = new javax.swing.JTable();
+		panelPerfil = new javax.swing.JPanel();
+		btnSalvarDadosPerfil = new javax.swing.JButton();
+		btnEditarDadosPerfil = new javax.swing.JButton();
+		panelDadosPessoais = new javax.swing.JPanel();
+		txtComplemento = new javax.swing.JTextField();
+		lblCelular = new javax.swing.JLabel();
+		lblNome = new javax.swing.JLabel();
+		lblNome.setFont(new Font("Dialog", Font.PLAIN, 12));
+		lblComplemento = new javax.swing.JLabel();
+		jftxtCpf = new javax.swing.JFormattedTextField();
+		lblCpf = new javax.swing.JLabel();
+		lblCpf.setFont(new Font("Dialog", Font.PLAIN, 12));
+		lblTelefone = new javax.swing.JLabel();
+		jftxtCelular = new javax.swing.JFormattedTextField();
+		lblEstadoCivil = new javax.swing.JLabel();
+		cmbEstadoCivil = new javax.swing.JComboBox();
+		jftxtTelefone = new javax.swing.JFormattedTextField();
+		txtEndereco = new javax.swing.JTextField();
+		lblEndereco = new javax.swing.JLabel();
+		lblEndereco.setFont(new Font("Dialog", Font.PLAIN, 12));
+		jftxtEmail = new javax.swing.JFormattedTextField();
+		lblEmail = new javax.swing.JLabel();
+		lblEmail.setFont(new Font("Dialog", Font.PLAIN, 12));
+		txtNome = new javax.swing.JTextField();
+		lblDataNascimento = new javax.swing.JLabel();
+		lblDataNascimento.setFont(new Font("Dialog", Font.PLAIN, 12));
+		lblSexo = new javax.swing.JLabel();
+		cmbSexo = new javax.swing.JComboBox();
+		btnHorariosDisponiveis = new javax.swing.JButton();
+		btnAreasInteresse = new javax.swing.JButton();
+		panelInfoComplementares = new javax.swing.JPanel();
+		scrollPaneInfoComplementares = new javax.swing.JScrollPane();
+		atxtInfoComplementares = new javax.swing.JTextArea();
+		atxtInfoComplementares.setTabSize(6);
+		btnAddAreaInteresse = new javax.swing.JButton();
+		lblHorarioDisponivel = new javax.swing.JLabel();
+		btnAddHorario = new javax.swing.JButton();
+		cmbHorarioDisponivel = new javax.swing.JComboBox();
+		lblAreaInteresse = new javax.swing.JLabel();
+		lblInfoComplementares = new javax.swing.JLabel();
+		cmbAreasInteresse = new javax.swing.JComboBox();
+		dateChooserDataNascimento = new JDateChooser();
 
 		desabilitarCampos();
 
@@ -203,72 +247,9 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 		menuPrincipalVoluntario.setPreferredSize(new java.awt.Dimension(1300,
 				750));
 
-		/**
-		 * Cria a entidade Voluntário a partir do usuário logado
-		 */
 		try {
-			vol = (Voluntario) voluntarioController.getPorIdUsuario(usuario
-					.getId());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 
-		if (vol != null) {
-			if (vol.getNome() != null)
-				txtNome.setText(vol.getNome());
-
-			if (vol.getTelefone() != null)
-				jftxtTelefone.setText(vol.getTelefone());
-
-			if (vol.getCpf() != null)
-				jftxtCpf.setText(vol.getCpf());
-
-			if (vol.getEndereco() != null)
-				txtEndereco.setText(vol.getEndereco());
-
-			if (vol.getEmail() != null)
-				jftxtEmail.setText(vol.getEmail());
-
-			if (vol.getDataNascimento() != null)
-				dateChooserDataNascimento.setDate(vol.getDataNascimento());
-
-			if (vol.getSexo() != null) {
-
-				if (vol.getSexo().equals("Masculino")) {
-					cmbSexo.setSelectedIndex(1);
-
-				} else if (vol.getSexo().equals("Feminino")) {
-					cmbSexo.setSelectedIndex(2);
-				}
-
-			}
-
-			if (vol.getEstadoCivil() != null) {
-
-				if (vol.getEstadoCivil().equals("Casado")) {
-					cmbEstadoCivil.setSelectedIndex(1);
-
-				} else if (vol.getEstadoCivil().equals("Solteiro")) {
-					cmbEstadoCivil.setSelectedIndex(2);
-
-				} else if (vol.getEstadoCivil().equals("Outro")) {
-					cmbEstadoCivil.setSelectedIndex(3);
-				}
-
-			}
-
-			if (vol.getComplemento() != null)
-				txtComplemento.setText(vol.getComplemento());
-
-			if (vol.getCelular() != null)
-				jftxtCelular.setText(vol.getCelular());
-
-			if (vol.getInformacoesComplementares() != null)
-				atxtInfoComplementares.setText(vol
-						.getInformacoesComplementares());
-		}
-
-		try {
+			cmbAreasInteresse.addItem("");
 			for (Entidade ent : funcaoController.listar()) {
 				Funcao funcao = (Funcao) ent;
 
@@ -358,48 +339,6 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		panelPerfil = new javax.swing.JPanel();
-		btnSalvarDadosPerfil = new javax.swing.JButton();
-		btnEditarDadosPerfil = new javax.swing.JButton();
-		panelDadosPessoais = new javax.swing.JPanel();
-		txtComplemento = new javax.swing.JTextField();
-		lblCelular = new javax.swing.JLabel();
-		lblNome = new javax.swing.JLabel();
-		lblNome.setFont(new Font("Dialog", Font.PLAIN, 12));
-		lblComplemento = new javax.swing.JLabel();
-		jftxtCpf = new javax.swing.JFormattedTextField();
-		lblCpf = new javax.swing.JLabel();
-		lblCpf.setFont(new Font("Dialog", Font.PLAIN, 12));
-		lblTelefone = new javax.swing.JLabel();
-		jftxtCelular = new javax.swing.JFormattedTextField();
-		lblEstadoCivil = new javax.swing.JLabel();
-		cmbEstadoCivil = new javax.swing.JComboBox();
-		jftxtTelefone = new javax.swing.JFormattedTextField();
-		txtEndereco = new javax.swing.JTextField();
-		lblEndereco = new javax.swing.JLabel();
-		lblEndereco.setFont(new Font("Dialog", Font.PLAIN, 12));
-		jftxtEmail = new javax.swing.JFormattedTextField();
-		lblEmail = new javax.swing.JLabel();
-		lblEmail.setFont(new Font("Dialog", Font.PLAIN, 12));
-		txtNome = new javax.swing.JTextField();
-		lblDataNascimento = new javax.swing.JLabel();
-		lblDataNascimento.setFont(new Font("Dialog", Font.PLAIN, 12));
-		lblSexo = new javax.swing.JLabel();
-		cmbSexo = new javax.swing.JComboBox();
-		btnHorariosDisponiveis = new javax.swing.JButton();
-		btnAreasInteresse = new javax.swing.JButton();
-		panelInfoComplementares = new javax.swing.JPanel();
-		scrollPaneInfoComplementares = new javax.swing.JScrollPane();
-		atxtInfoComplementares = new javax.swing.JTextArea();
-		atxtInfoComplementares.setTabSize(6);
-		btnAddAreaInteresse = new javax.swing.JButton();
-		lblHorarioDisponivel = new javax.swing.JLabel();
-		btnAddHorario = new javax.swing.JButton();
-		cmbHorarioDisponivel = new javax.swing.JComboBox();
-		lblAreaInteresse = new javax.swing.JLabel();
-		lblInfoComplementares = new javax.swing.JLabel();
-		cmbAreasInteresse = new javax.swing.JComboBox();
-		dateChooserDataNascimento = new JDateChooser();
 
 		panelPerfil.setBorder(new javax.swing.border.LineBorder(
 				new java.awt.Color(0, 0, 0), 1, true));
@@ -548,6 +487,71 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 				"", "Masculino", "Feminino" }));
 
 		dateChooserDataNascimento.setSize(100, 19);
+
+		/**
+		 * Cria a entidade Voluntário a partir do usuário logado
+		 */
+		try {
+			vol = (Voluntario) voluntarioController.getPorIdUsuario(usuario
+					.getId());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		if (vol != null) {
+			if (vol.getNome() != null)
+				txtNome.setText(vol.getNome());
+
+			if (vol.getTelefone() != null)
+				jftxtTelefone.setText(vol.getTelefone());
+
+			if (vol.getCpf() != null)
+				jftxtCpf.setText(vol.getCpf());
+
+			if (vol.getEndereco() != null)
+				txtEndereco.setText(vol.getEndereco());
+
+			if (vol.getEmail() != null)
+				jftxtEmail.setText(vol.getEmail());
+
+			if (vol.getDataNascimento() != null)
+				dateChooserDataNascimento.setDate(vol.getDataNascimento());
+
+			if (vol.getSexo() != null) {
+
+				if (vol.getSexo().equals("Masculino")) {
+					cmbSexo.setSelectedIndex(1);
+
+				} else if (vol.getSexo().equals("Feminino")) {
+					cmbSexo.setSelectedIndex(2);
+				}
+
+			}
+
+			if (vol.getEstadoCivil() != null) {
+
+				if (vol.getEstadoCivil().equals("Casado")) {
+					cmbEstadoCivil.setSelectedIndex(1);
+
+				} else if (vol.getEstadoCivil().equals("Solteiro")) {
+					cmbEstadoCivil.setSelectedIndex(2);
+
+				} else if (vol.getEstadoCivil().equals("Outro")) {
+					cmbEstadoCivil.setSelectedIndex(3);
+				}
+
+			}
+
+			if (vol.getComplemento() != null)
+				txtComplemento.setText(vol.getComplemento());
+
+			if (vol.getCelular() != null)
+				jftxtCelular.setText(vol.getCelular());
+
+			if (vol.getInformacoesComplementares() != null)
+				atxtInfoComplementares.setText(vol
+						.getInformacoesComplementares());
+		}
 
 		javax.swing.GroupLayout panelDadosPessoaisLayout = new javax.swing.GroupLayout(
 				panelDadosPessoais);
@@ -809,6 +813,8 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 			public void actionPerformed(ActionEvent e) {
 				listAreasInteresse.add(cmbAreasInteresse.getSelectedItem() + "");
 				cmbAreasInteresse.setSelectedIndex(0);
+				JOptionPane.showMessageDialog(null,
+						"Área de interesse adicionada com sucesso.");
 
 			}
 		});
@@ -823,6 +829,8 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 			public void actionPerformed(ActionEvent e) {
 				listHorarios.add(cmbHorarioDisponivel.getSelectedItem() + "");
 				cmbHorarioDisponivel.setSelectedIndex(0);
+				JOptionPane.showMessageDialog(null,
+						"Horário adicionado com sucesso.");
 
 			}
 		});
@@ -1145,12 +1153,47 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 
 		btnGerarRelatorio.setIcon(new ImageIcon("img/agenda_16x16.png")); // NOI18N
 		btnGerarRelatorio.setText("Gerar Relatório");
+		btnGerarRelatorio.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				VoluntarioAnuncioController voluntarioAnuncioController = new VoluntarioAnuncioController();
+				List<Entidade> list;
+				List<Entidade> listAnuncios = new ArrayList<Entidade>();
+				try {
+					list = voluntarioAnuncioController.getPorIdVoluntario(vol
+							.getId());
+
+					for (Entidade en : list) {
+						VoluntarioAnuncio volAnuncio = (VoluntarioAnuncio) en;
+
+						listAnuncios.add(anuncioController.getPorId(volAnuncio
+								.getIdAnuncio()));
+					}
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+
+				CandidaturasUI candidaturasUI = new CandidaturasUI(listAnuncios);
+				candidaturasUI.setFocusable(true);
+				candidaturasUI.moveToFront();
+				getContentPane().add(candidaturasUI, 0);
+				candidaturasUI.setVisible(true);
+
+			}
+		});
 
 		javax.swing.GroupLayout panelFiltroVagasLayout = new javax.swing.GroupLayout(
 				panelFiltroVagas);
 		panelFiltroVagasLayout
 				.setHorizontalGroup(panelFiltroVagasLayout
-						.createParallelGroup(Alignment.TRAILING)
+						.createParallelGroup(Alignment.LEADING)
+						.addGroup(
+								panelFiltroVagasLayout.createSequentialGroup()
+										.addContainerGap(1032, Short.MAX_VALUE)
+										.addComponent(btnGerarRelatorio)
+										.addContainerGap())
 						.addGroup(
 								panelFiltroVagasLayout
 										.createSequentialGroup()
@@ -1162,8 +1205,10 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 														.addComponent(
 																lblTituloFiltroVagas)
 														.addComponent(
-																lblInstituicaoFiltroVagas))
-										.addGap(38)
+																lblInstituicaoFiltroVagas)
+														.addComponent(
+																lblTipoServicoVagas))
+										.addGap(8)
 										.addGroup(
 												panelFiltroVagasLayout
 														.createParallelGroup(
@@ -1175,34 +1220,19 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 																GroupLayout.DEFAULT_SIZE,
 																Short.MAX_VALUE)
 														.addComponent(
+																cmbTipoServicoVagas,
+																0, 267,
+																Short.MAX_VALUE)
+														.addComponent(
 																txtTituloFiltroVagas,
-																GroupLayout.PREFERRED_SIZE,
-																258,
-																GroupLayout.PREFERRED_SIZE))
-										.addGap(18)
+																Alignment.TRAILING))
+										.addGap(9)
 										.addComponent(btnPesquisarFiltroVagas)
-										.addContainerGap(723, Short.MAX_VALUE))
-						.addGroup(
-								panelFiltroVagasLayout.createSequentialGroup()
-										.addContainerGap(1070, Short.MAX_VALUE)
-										.addComponent(btnGerarRelatorio)
-										.addContainerGap())
-						.addGroup(
-								Alignment.LEADING,
-								panelFiltroVagasLayout
-										.createSequentialGroup()
-										.addContainerGap()
-										.addComponent(lblTipoServicoVagas)
-										.addGap(10)
-										.addComponent(cmbTipoServicoVagas,
-												GroupLayout.PREFERRED_SIZE,
-												258, GroupLayout.PREFERRED_SIZE)
-										.addContainerGap(820, Short.MAX_VALUE)));
+										.addContainerGap(687, Short.MAX_VALUE)));
 		panelFiltroVagasLayout
 				.setVerticalGroup(panelFiltroVagasLayout
-						.createParallelGroup(Alignment.TRAILING)
+						.createParallelGroup(Alignment.LEADING)
 						.addGroup(
-								Alignment.LEADING,
 								panelFiltroVagasLayout
 										.createSequentialGroup()
 										.addContainerGap()
@@ -1242,17 +1272,17 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 														.createParallelGroup(
 																Alignment.BASELINE)
 														.addComponent(
+																lblTipoServicoVagas)
+														.addComponent(
 																cmbTipoServicoVagas,
 																GroupLayout.PREFERRED_SIZE,
 																22,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(
-																lblTipoServicoVagas))
-										.addContainerGap(51, Short.MAX_VALUE))
+																GroupLayout.PREFERRED_SIZE))
+										.addContainerGap(50, Short.MAX_VALUE))
 						.addGroup(
 								panelFiltroVagasLayout
 										.createSequentialGroup()
-										.addContainerGap(118, Short.MAX_VALUE)
+										.addContainerGap(119, Short.MAX_VALUE)
 										.addComponent(btnGerarRelatorio,
 												GroupLayout.PREFERRED_SIZE, 22,
 												GroupLayout.PREFERRED_SIZE)));
@@ -1275,7 +1305,7 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 		tableVagas.addMouseListener(new MouseAdapter() {
 
 			@Override
-			public void mouseExited(MouseEvent e) {
+			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) {
 
 					int linhaSelecionada = tableVagas.getSelectedRow();
@@ -1563,7 +1593,8 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 			}
 
 			if (tipoServico != null) {
-				if (titulo != null || instituicao != null) {
+				if ((titulo != null && !titulo.trim().equals(""))
+						|| instituicao != null) {
 					sql.append(" AND");
 				}
 

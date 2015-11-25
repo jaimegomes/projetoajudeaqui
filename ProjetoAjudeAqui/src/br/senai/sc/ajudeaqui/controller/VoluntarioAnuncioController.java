@@ -60,5 +60,12 @@ public class VoluntarioAnuncioController implements IController {
 		return dao.getPorIdVoluntario(idVoluntario);
 		
 	}
+	
+public List<Entidade> getPorIdVoluntarioIdAnuncio(int idVoluntario, int idAnuncio) throws Exception {
+		
+		dao = new VoluntarioAnuncioDAO();
+		return dao.getPorIdVoluntarioIdAnuncio(idVoluntario, idAnuncio);
+		
+	}
 
 }
