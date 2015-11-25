@@ -40,7 +40,9 @@ public class HorarioVoluntarioDAO extends GenericDAO {
 			pstmt.close();
 
 		} catch (SQLException se) {
-			System.out.println("[HorarioVoluntarioDAO] - Erro ao salvar HorarioVoluntario.\n" + se.getMessage());
+			System.out
+					.println("[HorarioVoluntarioDAO] - Erro ao salvar HorarioVoluntario.\n"
+							+ se.getMessage());
 			con.rollback();
 
 		} finally {
@@ -68,7 +70,9 @@ public class HorarioVoluntarioDAO extends GenericDAO {
 
 		} catch (SQLException e) {
 			con.rollback();
-			System.out.println("[HorarioVoluntarioDAO] - Erro ao excluir HorarioVoluntario.\n" + e.getMessage());
+			System.out
+					.println("[HorarioVoluntarioDAO] - Erro ao excluir HorarioVoluntario.\n"
+							+ e.getMessage());
 		} finally {
 			con.close();
 		}
@@ -96,7 +100,9 @@ public class HorarioVoluntarioDAO extends GenericDAO {
 
 		} catch (SQLException e) {
 			con.rollback();
-			System.out.println("[HorarioVoluntarioDAO] - Erro ao editar HorarioVoluntario.\n" + e.getMessage());
+			System.out
+					.println("[HorarioVoluntarioDAO] - Erro ao editar HorarioVoluntario.\n"
+							+ e.getMessage());
 		} finally {
 			con.close();
 		}
@@ -122,9 +128,12 @@ public class HorarioVoluntarioDAO extends GenericDAO {
 
 				try {
 
-					Horario horario = (Horario) horarioDAO.getPorId(result.getInt("idHorario"));
-					Voluntario voluntario = (Voluntario) voluntarioDAO.getPorId(result.getInt("idVoluntario"));
-					voluntarioHorario = new HorarioVoluntario(result.getInt("id"), horario, voluntario);
+					Horario horario = (Horario) horarioDAO.getPorId(result
+							.getInt("idHorario"));
+					Voluntario voluntario = (Voluntario) voluntarioDAO
+							.getPorId(result.getInt("idVoluntario"));
+					voluntarioHorario = new HorarioVoluntario(
+							result.getInt("id"), horario, voluntario);
 
 					listaHorarioVoluntario.add(voluntarioHorario);
 
@@ -138,7 +147,9 @@ public class HorarioVoluntarioDAO extends GenericDAO {
 
 		} catch (SQLException e) {
 			con.rollback();
-			System.out.println("[HorarioVoluntarioDAO] - Erro ao listar HorarioVoluntario.\n" + e.getMessage());
+			System.out
+					.println("[HorarioVoluntarioDAO] - Erro ao listar HorarioVoluntario.\n"
+							+ e.getMessage());
 
 		} finally {
 			con.close();
@@ -163,15 +174,20 @@ public class HorarioVoluntarioDAO extends GenericDAO {
 
 			while (result.next()) {
 
-				Horario horario = (Horario) horarioDAO.getPorId(result.getInt("idHorario"));
-				Voluntario voluntario = (Voluntario) voluntarioDAO.getPorId(result.getInt("idVoluntario"));
-				voluntarioHorario = new HorarioVoluntario(result.getInt("id"), horario, voluntario);
+				Horario horario = (Horario) horarioDAO.getPorId(result
+						.getInt("idHorario"));
+				Voluntario voluntario = (Voluntario) voluntarioDAO
+						.getPorId(result.getInt("idVoluntario"));
+				voluntarioHorario = new HorarioVoluntario(result.getInt("id"),
+						horario, voluntario);
 			}
 			result.close();
 			pstmt.close();
 
 		} catch (SQLException se) {
-			System.out.println("[HorarioVoluntarioDAO] - Erro ao pegar HorarioVoluntario por ID.\n" + se.getMessage());
+			System.out
+					.println("[HorarioVoluntarioDAO] - Erro ao pegar HorarioVoluntario por ID.\n"
+							+ se.getMessage());
 		} finally {
 			con.close();
 		}
@@ -179,42 +195,8 @@ public class HorarioVoluntarioDAO extends GenericDAO {
 		return voluntarioHorario;
 	}
 
-	public List<Entidade> getPorIdVoluntario(int idVoluntario) throws Exception {
-		con = Conexao.getConnection();
-
-		List<Entidade> list = new ArrayList<>();
-		horarioDAO = new HorarioDAO();
-		voluntarioDAO = new VoluntarioDAO();
-
-		String sql = "SELECT hv.id, hv.idHorario, hv.idVoluntario FROM voluntarioHorario hv WHERE idVoluntario=?";
-		try {
-			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, idVoluntario);
-
-			ResultSet result = pstmt.executeQuery();
-
-			while (result.next()) {
-
-				Horario horario = (Horario) horarioDAO.getPorId(result.getInt("idHorario"));
-				Voluntario voluntario = (Voluntario) voluntarioDAO.getPorId(result.getInt("idVoluntario"));
-				voluntarioHorario = new HorarioVoluntario(result.getInt("id"), horario, voluntario);
-
-				list.add(voluntarioHorario);
-			}
-			result.close();
-			pstmt.close();
-
-		} catch (SQLException se) {
-			System.out.println("[HorarioVoluntarioDAO] - Erro ao pegar HorarioVoluntario por ID do Voluntário.\n"
-					+ se.getMessage());
-		} finally {
-			con.close();
-		}
-
-		return list;
-	}
-
-	public boolean getPorIdHorarioVoluntario(int idHorario, int idVoluntario) throws Exception {
+	public boolean getPorIdHorarioVoluntario(int idHorario, int idVoluntario)
+			throws Exception {
 		con = Conexao.getConnection();
 
 		String sql = "SELECT hv.id, hv.idHorario, hv.idVoluntario FROM voluntarioHorario hv WHERE idVoluntario=? AND idHorario=?";
@@ -233,8 +215,9 @@ public class HorarioVoluntarioDAO extends GenericDAO {
 			pstmt.close();
 
 		} catch (SQLException se) {
-			System.out.println("[HorarioVoluntarioDAO] - Erro ao pegar HorarioVoluntario por ID do Voluntário.\n"
-					+ se.getMessage());
+			System.out
+					.println("[HorarioVoluntarioDAO] - Erro ao pegar HorarioVoluntario por ID do Voluntário.\n"
+							+ se.getMessage());
 		} finally {
 			con.close();
 		}
@@ -242,7 +225,8 @@ public class HorarioVoluntarioDAO extends GenericDAO {
 		return false;
 	}
 
-	public List<Entidade> getListPorIdVoluntario(int idVoluntario) throws Exception {
+	public List<Entidade> getListPorIdVoluntario(int idVoluntario)
+			throws Exception {
 		con = Conexao.getConnection();
 
 		List<Entidade> list = new ArrayList<>();
@@ -258,10 +242,13 @@ public class HorarioVoluntarioDAO extends GenericDAO {
 
 			while (result.next()) {
 
-				Horario horario = (Horario) horarioDAO.getPorId(result.getInt("idHorario"));
-				Voluntario voluntario = (Voluntario) voluntarioDAO.getPorId(result.getInt("idVoluntario"));
+				Horario horario = (Horario) horarioDAO.getPorId(result
+						.getInt("idHorario"));
+				Voluntario voluntario = (Voluntario) voluntarioDAO
+						.getPorId(result.getInt("idVoluntario"));
 
-				voluntarioHorario = new HorarioVoluntario(result.getInt("id"), horario, voluntario);
+				voluntarioHorario = new HorarioVoluntario(result.getInt("id"),
+						horario, voluntario);
 
 				list.add(voluntarioHorario);
 			}
@@ -269,8 +256,9 @@ public class HorarioVoluntarioDAO extends GenericDAO {
 			pstmt.close();
 
 		} catch (SQLException se) {
-			System.out.println("[HorarioVoluntarioDAO] - Erro ao pegarHorarioVoluntario por ID do voluntário.\n"
-					+ se.getMessage());
+			System.out
+					.println("[HorarioVoluntarioDAO] - Erro ao pegarHorarioVoluntario por ID do voluntário.\n"
+							+ se.getMessage());
 		} finally {
 			con.close();
 		}

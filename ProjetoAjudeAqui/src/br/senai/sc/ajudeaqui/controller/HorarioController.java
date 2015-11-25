@@ -45,6 +45,14 @@ public class HorarioController implements IController {
 		return dao.getPorId(id);
 	}
 
+	/**
+	 * Método que retorna um Horario de acordo com o nome do horario passado
+	 * como parâmetro.
+	 * 
+	 * @param horario
+	 * @return
+	 * @throws Exception
+	 */
 	public Entidade getPorHorario(String horario) throws Exception {
 
 		dao = new HorarioDAO();

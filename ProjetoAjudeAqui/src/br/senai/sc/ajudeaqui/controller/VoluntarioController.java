@@ -1,6 +1,5 @@
 package br.senai.sc.ajudeaqui.controller;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import br.senai.sc.ajudeaqui.abstracts.Entidade;
@@ -47,24 +46,33 @@ public class VoluntarioController implements IController {
 		return volDAO.getPorId(id);
 	}
 
+	/**
+	 * Método que retorna um Voluntário de acordo com o id do usuário passado
+	 * como parâmetro.
+	 * 
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
 	public Entidade getPorIdUsuario(int id) throws Exception {
 
 		volDAO = new VoluntarioDAO();
 		return volDAO.getPorIdUsuario(id);
 	}
 
+	/**
+	 * Método que retorna uma lista de Voluntários de acordo com o sql passado
+	 * como parâmetro.
+	 * 
+	 * @param sql
+	 * @return
+	 * @throws Exception
+	 */
 	public List<Entidade> pesquisarVoluntario(String sql) throws Exception {
 
 		volDAO = new VoluntarioDAO();
 		return volDAO.pesquisarVoluntario(sql);
 
-	}
-
-	public List<Entidade> getPorNomeEIdFuncao(String nome, int idFuncao) throws SQLException {
-		
-		volDAO = new VoluntarioDAO();
-		return volDAO.getPorNomeEIdFuncao(nome, idFuncao);
-		
 	}
 
 }

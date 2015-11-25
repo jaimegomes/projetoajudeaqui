@@ -776,8 +776,8 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
 
 					int linhaSelecionada = tableVoluntarios.getSelectedRow();
 
-					int idVoluntario = Integer.parseInt(tableVoluntarios.getValueAt(
-							linhaSelecionada, 0).toString());
+					int idVoluntario = Integer.parseInt(tableVoluntarios
+							.getValueAt(linhaSelecionada, 0).toString());
 
 					Voluntario voluntario = null;
 					try {
@@ -795,7 +795,7 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
 				}
 			}
 		});
-		
+
 		scrollpaneVoluntarios.setViewportView(tableVoluntarios);
 
 		try {
@@ -855,7 +855,7 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
 
 				try {
 					String titulo = txtFiltroTituloAnunciosPublicados.getText();
-					
+
 					if (titulo.trim().equals("") || titulo == null) {
 
 						tableAnunciosPublicados.setModel(new AnuncioTableModel(
@@ -863,7 +863,7 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
 										.getPorIdInstituicao(instituicao
 												.getId())));
 					} else {
-						
+
 						tableAnunciosPublicados.setModel(new AnuncioTableModel(
 								anuncioController.getPorTituloEIdInstituicao(
 										titulo, instituicao.getId())));
@@ -1014,34 +1014,27 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
 								listAnuncio));
 					} else {
 
-						try {
+						funcao = (Funcao) funcaoController.getPorFuncao(anuncio
+								.getFuncao().getFuncao());
 
-							funcao = (Funcao) funcaoController
-									.getPorFuncao(anuncio.getFuncao()
-											.getFuncao());
+						anuncio.setTitulo(txtTituloCadAnuncio.getText());
+						anuncio.setDescricao(atxtDescricaoCadAnuncio.getText());
+						anuncio.setFuncao(funcao);
+						anuncio.setQtdVagas((Integer) spinnerVagasCadAnuncio
+								.getValue());
 
-							anuncio.setTitulo(txtTituloCadAnuncio.getText());
-							anuncio.setDescricao(atxtDescricaoCadAnuncio
-									.getText());
-							anuncio.setFuncao(funcao);
-							anuncio.setQtdVagas((Integer) spinnerVagasCadAnuncio
-									.getValue());
+						btnCadastrarAnuncioAction(anuncio, true);
 
-							btnCadastrarAnuncioAction(anuncio, true);
+						List<Entidade> listAnuncio = anuncioController
+								.getPorIdInstituicao(instituicao.getId());
 
-							List<Entidade> listAnuncio = anuncioController
-									.getPorIdInstituicao(instituicao.getId());
-
-							tableAnunciosPublicados
-									.setModel(new AnuncioTableModel(listAnuncio));
-
-						} catch (Exception e1) {
-							e1.printStackTrace();
-						}
+						tableAnunciosPublicados.setModel(new AnuncioTableModel(
+								listAnuncio));
 
 					}
 
 				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, e1.getMessage());
 					e1.printStackTrace();
 				}
 			}

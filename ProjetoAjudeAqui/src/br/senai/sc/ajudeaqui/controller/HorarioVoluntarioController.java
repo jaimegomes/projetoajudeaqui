@@ -48,20 +48,31 @@ public class HorarioVoluntarioController implements IController {
 		return dao.getPorId(id);
 	}
 
-	public boolean getPorIdHorarioVoluntario(int idHorario, int idVoluntario) throws Exception {
+	/**
+	 * Método que verifica a existência de registro na tabela HorarioVoluntario.
+	 * 
+	 * @param idHorario
+	 * @param idVoluntario
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean getPorIdHorarioVoluntario(int idHorario, int idVoluntario)
+			throws Exception {
 
 		dao = new HorarioVoluntarioDAO();
 		return dao.getPorIdHorarioVoluntario(idHorario, idVoluntario);
 	}
 
-	public List<Entidade> getPorIdVoluntario(int idVoluntario) throws Exception {
-		
-		dao = new HorarioVoluntarioDAO();
-		return dao.getPorIdVoluntario(idVoluntario);
-	}
+	/**
+	 * Método que retorna uma lista de HorarioVoluntario de acordo com o id do
+	 * voluntário passado como parâmetro.
+	 * @param idVoluntario
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Entidade> getListPorIdVoluntario(int idVoluntario)
+			throws Exception {
 
-	public List<Entidade> getListPorIdVoluntario(int idVoluntario) throws Exception {
-		
 		dao = new HorarioVoluntarioDAO();
 		return dao.getListPorIdVoluntario(idVoluntario);
 	}

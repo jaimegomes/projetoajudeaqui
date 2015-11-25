@@ -46,11 +46,28 @@ public class InstituicaoController implements IController {
 		return dao.getPorId(id);
 	}
 
+	/**
+	 * Método que retorna uma Instituição de acordo com o id do usuário passado
+	 * como parâmetro.
+	 * 
+	 * @param idUsuario
+	 * @return
+	 * @throws Exception
+	 */
 	public Entidade getPorIdUsuario(int idUsuario) throws Exception {
 		dao = new InstituicaoDAO();
 		return dao.getPorIdUsuario(idUsuario);
 	}
-	
+
+	/**
+	 * Método que retorna uma Instituição de acordo com o nome da instituição e
+	 * usuário passados como parâmetro
+	 * 
+	 * @param nome
+	 * @param usuario
+	 * @return
+	 * @throws Exception
+	 */
 	public Entidade getPorNome(String nome, Usuario usuario) throws Exception {
 		dao = new InstituicaoDAO();
 		return dao.getPorNome(nome, usuario);

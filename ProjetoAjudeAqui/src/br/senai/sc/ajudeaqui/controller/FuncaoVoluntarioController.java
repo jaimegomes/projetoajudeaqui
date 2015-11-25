@@ -47,15 +47,35 @@ public class FuncaoVoluntarioController implements IController {
 		dao = new FuncaoVoluntarioDAO();
 		return dao.getPorId(id);
 	}
-	
-	public boolean getPorIdFuncaoVoluntario(int idFuncao, int idVoluntario) throws Exception {
-		
+
+	/**
+	 * Método que verifica a existência de uma FuncaoVoluntario no banco de
+	 * dados de acordo com o id da função e id do voluntário passados como
+	 * parâmetros.
+	 * 
+	 * @param idFuncao
+	 * @param idVoluntario
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean getPorIdFuncaoVoluntario(int idFuncao, int idVoluntario)
+			throws Exception {
+
 		dao = new FuncaoVoluntarioDAO();
 		return dao.getPorIdFuncaoVoluntario(idFuncao, idVoluntario);
 	}
-	
-	public List<Entidade> getListPorIdVoluntario(int idVoluntario) throws Exception {
-		
+
+	/**
+	 * Método que retorna uma lista de FuncaoVoluntario de acordo com o id do
+	 * voluntário passado como parâmetro.
+	 * 
+	 * @param idVoluntario
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Entidade> getListPorIdVoluntario(int idVoluntario)
+			throws Exception {
+
 		dao = new FuncaoVoluntarioDAO();
 		return dao.getListPorIdVoluntario(idVoluntario);
 	}

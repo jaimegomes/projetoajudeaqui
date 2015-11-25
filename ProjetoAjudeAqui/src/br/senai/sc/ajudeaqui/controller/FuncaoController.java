@@ -6,6 +6,12 @@ import br.senai.sc.ajudeaqui.abstracts.Entidade;
 import br.senai.sc.ajudeaqui.dao.FuncaoDAO;
 import br.senai.sc.ajudeaqui.interfaces.IController;
 
+/**
+ * Classe de controle da entidade Funcao
+ * 
+ * @author Jaime Gomes
+ *
+ */
 public class FuncaoController implements IController {
 
 	private FuncaoDAO dao;
@@ -48,6 +54,14 @@ public class FuncaoController implements IController {
 		return dao.getPorId(id);
 	}
 
+	/**
+	 * Método que retorna uma funcao de acordo com o nome da função passado como
+	 * parâmetro.
+	 * 
+	 * @param funcao
+	 * @return
+	 * @throws Exception
+	 */
 	public Entidade getPorFuncao(String funcao) throws Exception {
 
 		dao = new FuncaoDAO();

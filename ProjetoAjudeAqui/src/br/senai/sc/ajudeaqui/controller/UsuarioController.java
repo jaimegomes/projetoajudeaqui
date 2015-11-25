@@ -63,6 +63,14 @@ public class UsuarioController implements IController {
 		return dao.getPorId(id);
 	}
 
+	/**
+	 * Método que retorna o Usuario de acordo com o login passado como
+	 * parâmetro.
+	 * 
+	 * @param login
+	 * @return
+	 * @throws Exception
+	 */
 	public Entidade getPorLogin(String login) throws Exception {
 
 		dao = new UsuarioDAO();

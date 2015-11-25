@@ -47,25 +47,51 @@ public class VoluntarioAnuncioController implements IController {
 		return dao.getPorId(id);
 	}
 
+	/**
+	 * Método que retorna uma entidade VoluntarioAnuncio de acordo com o id do
+	 * anuncio passados como parâmetro..
+	 * 
+	 * @param idAnuncio
+	 * @return
+	 * @throws Exception
+	 */
 	public List<Entidade> getPorIdAnuncio(int idAnuncio) throws Exception {
-	
+
 		dao = new VoluntarioAnuncioDAO();
 		return dao.getPorIdAnuncio(idAnuncio);
-		
+
 	}
-	
+
+	/**
+	 * Método que retorna uma entidade VoluntarioAnuncio de acordo com o id do
+	 * voluntario passados como parâmetro..
+	 * 
+	 * @param idVoluntario
+	 * @return
+	 * @throws Exception
+	 */
 	public List<Entidade> getPorIdVoluntario(int idVoluntario) throws Exception {
-		
+
 		dao = new VoluntarioAnuncioDAO();
 		return dao.getPorIdVoluntario(idVoluntario);
-		
+
 	}
-	
-public List<Entidade> getPorIdVoluntarioIdAnuncio(int idVoluntario, int idAnuncio) throws Exception {
-		
+
+	/**
+	 * Método que retorna uma entidade VoluntarioAnuncio de acordo com o id do
+	 * anuncio e o id do voluntario passados como parâmetro.
+	 * 
+	 * @param idVoluntario
+	 * @param idAnuncio
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Entidade> getPorIdVoluntarioIdAnuncio(int idVoluntario,
+			int idAnuncio) throws Exception {
+
 		dao = new VoluntarioAnuncioDAO();
 		return dao.getPorIdVoluntarioIdAnuncio(idVoluntario, idAnuncio);
-		
+
 	}
 
 }

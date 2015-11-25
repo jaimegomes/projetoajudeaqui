@@ -7,6 +7,12 @@ import br.senai.sc.ajudeaqui.dao.AnuncioDAO;
 import br.senai.sc.ajudeaqui.interfaces.IController;
 import br.senai.sc.ajudeaqui.model.Anuncio;
 
+/**
+ * Classe de controle da entidade Anuncio
+ * 
+ * @author Jaime Gomes
+ *
+ */
 public class AnuncioController implements IController {
 
 	Anuncio anuncio;
@@ -28,7 +34,11 @@ public class AnuncioController implements IController {
 			throw new Exception("A descrição do anuncio não pode ser nulo.");
 
 		if (anuncio.getQtdVagas() <= 0)
-			throw new Exception("A quantidade de vagas deve ser maior que zero.");
+			throw new Exception(
+					"A quantidade de vagas deve ser maior que zero.");
+
+		if (anuncio.getFuncao() == null)
+			throw new Exception("Você deve selecionar um tipo de serviço.");
 
 		dao.salvar(anuncio);
 	}
@@ -57,7 +67,8 @@ public class AnuncioController implements IController {
 			throw new Exception("A descrição do anuncio não pode ser nulo.");
 
 		if (anuncio.getQtdVagas() <= 0)
-			throw new Exception("A quantidade de vagas deve ser maior que zero.");
+			throw new Exception(
+					"A quantidade de vagas deve ser maior que zero.");
 
 		dao.editar(anuncio);
 
@@ -77,12 +88,29 @@ public class AnuncioController implements IController {
 		return dao.getPorId(id);
 	}
 
-	public List<Entidade> getPorIdInstituicao(int idInstituicao) throws Exception {
+	/**
+	 * Método que retorna uma lista de Anuncios de acordo com o id da
+	 * instituição passado como parâmetro
+	 * 
+	 * @param idInstituicao
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Entidade> getPorIdInstituicao(int idInstituicao)
+			throws Exception {
 
 		dao = new AnuncioDAO();
 		return dao.getPorIdInstituicao(idInstituicao);
 	}
 
+	/**
+	 * Método que retorna uma lista de anuncios de acordo com o sql passado como
+	 * parâmetro, utilizado no filtro.
+	 * 
+	 * @param sql
+	 * @return
+	 * @throws Exception
+	 */
 	public List<Entidade> pesquisarAnuncio(String sql) throws Exception {
 
 		dao = new AnuncioDAO();
@@ -90,14 +118,30 @@ public class AnuncioController implements IController {
 
 	}
 
-	public List<Entidade> getAbertos() throws Exception{
-		
+	/**
+	 * Método que retorna uma lista de anuncios com status em aberto.
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Entidade> getAbertos() throws Exception {
+
 		dao = new AnuncioDAO();
 		return dao.getAbertos();
 	}
 
-	public List<Entidade> getPorTituloEIdInstituicao(String titulo, int idInstituicao) throws Exception{
-		
+	/**
+	 * Método que retorna uma lista de anuncios de acordo com o titulo e o id da
+	 * instituição passados como parâmetro.
+	 * 
+	 * @param titulo
+	 * @param idInstituicao
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Entidade> getPorTituloEIdInstituicao(String titulo,
+			int idInstituicao) throws Exception {
+
 		dao = new AnuncioDAO();
 		return dao.getPorTituloEIdInstituicao(titulo, idInstituicao);
 	}
