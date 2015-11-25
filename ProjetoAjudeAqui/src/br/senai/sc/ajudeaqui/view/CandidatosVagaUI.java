@@ -3,6 +3,8 @@ package br.senai.sc.ajudeaqui.view;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 
 import javax.swing.GroupLayout;
@@ -12,7 +14,9 @@ import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import br.senai.sc.ajudeaqui.abstracts.Entidade;
+import br.senai.sc.ajudeaqui.controller.VoluntarioController;
 import br.senai.sc.ajudeaqui.model.Anuncio;
+import br.senai.sc.ajudeaqui.model.Voluntario;
 import br.senai.sc.ajudeaqui.tablemodel.VoluntarioTableModel;
 
 public class CandidatosVagaUI extends javax.swing.JFrame {
@@ -96,6 +100,36 @@ public class CandidatosVagaUI extends javax.swing.JFrame {
 		table.setMaximumSize(new Dimension(1197, 520));
 		table.setAutoscrolls(false);
 		table.setModel(new VoluntarioTableModel(listVoluntarios));
+		table.addMouseListener(new MouseAdapter() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2) {
+
+					int linhaSelecionada = table.getSelectedRow();
+
+					int idVoluntario = Integer.parseInt(table.getValueAt(
+							linhaSelecionada, 0).toString());
+
+					Voluntario voluntario = null;
+					try {
+
+						VoluntarioController volController = new VoluntarioController();
+						
+						voluntario = (Voluntario) volController
+								.getPorId(idVoluntario);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+
+					VoluntarioUI volUI = new VoluntarioUI(voluntario);
+					volUI.setFocusable(true);
+					volUI.moveToFront();
+					getContentPane().add(volUI, 0);
+					volUI.setVisible(true);
+				}
+			}
+		});
 
 		scrollPane.setViewportView(table);
 
@@ -103,27 +137,45 @@ public class CandidatosVagaUI extends javax.swing.JFrame {
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(
 				getContentPane());
-		layout.setHorizontalGroup(
-			layout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(layout.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(layout.createParallelGroup(Alignment.LEADING)
-						.addGroup(layout.createSequentialGroup()
-							.addComponent(panelVoluntario, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addContainerGap())
-						.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
-							.addComponent(btnFechar, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)
-							.addGap(24))))
-		);
-		layout.setVerticalGroup(
-			layout.createParallelGroup(Alignment.LEADING)
-				.addGroup(layout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(panelVoluntario, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btnFechar, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		);
+		layout.setHorizontalGroup(layout
+				.createParallelGroup(Alignment.TRAILING)
+				.addGroup(
+						layout.createSequentialGroup()
+								.addContainerGap()
+								.addGroup(
+										layout.createParallelGroup(
+												Alignment.LEADING)
+												.addGroup(
+														layout.createSequentialGroup()
+																.addComponent(
+																		panelVoluntario,
+																		GroupLayout.DEFAULT_SIZE,
+																		GroupLayout.DEFAULT_SIZE,
+																		Short.MAX_VALUE)
+																.addContainerGap())
+												.addGroup(
+														Alignment.TRAILING,
+														layout.createSequentialGroup()
+																.addComponent(
+																		btnFechar,
+																		GroupLayout.PREFERRED_SIZE,
+																		114,
+																		GroupLayout.PREFERRED_SIZE)
+																.addGap(24)))));
+		layout.setVerticalGroup(layout.createParallelGroup(Alignment.LEADING)
+				.addGroup(
+						layout.createSequentialGroup()
+								.addContainerGap()
+								.addComponent(panelVoluntario,
+										GroupLayout.PREFERRED_SIZE,
+										GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.UNRELATED)
+								.addComponent(btnFechar,
+										GroupLayout.PREFERRED_SIZE, 19,
+										GroupLayout.PREFERRED_SIZE)
+								.addContainerGap(GroupLayout.DEFAULT_SIZE,
+										Short.MAX_VALUE)));
 		getContentPane().setLayout(layout);
 
 		pack();
