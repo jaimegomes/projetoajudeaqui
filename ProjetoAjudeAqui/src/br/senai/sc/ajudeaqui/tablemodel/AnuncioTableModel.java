@@ -48,7 +48,8 @@ public class AnuncioTableModel extends AbstractTableModel {
 	/**
 	 * Retorna o nome da coluna passada como parâmetro.
 	 * 
-	 * @param int colunm
+	 * @param int
+	 *            colunm
 	 */
 	public String getColumnName(int column) {
 		if (column == COL_TITULO)
@@ -78,8 +79,10 @@ public class AnuncioTableModel extends AbstractTableModel {
 	/**
 	 * Retorna o objeto que está na linha e coluna indicada como parâmetros.
 	 * 
-	 * @param int row
-	 * @param int column
+	 * @param int
+	 *            row
+	 * @param int
+	 *            column
 	 */
 	public Object getValueAt(int row, int column) {
 		Anuncio anuncio = (Anuncio) valores.get(row);
@@ -95,8 +98,7 @@ public class AnuncioTableModel extends AbstractTableModel {
 
 		if (column == COL_DATA_PUBLICACAO) {
 			try {
-				return StringUtils.getInstance().parseDateToString(
-						anuncio.getDataPublicacao());
+				return StringUtils.getInstance().parseDateToString(anuncio.getDataPublicacao());
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
@@ -120,8 +122,10 @@ public class AnuncioTableModel extends AbstractTableModel {
 	 * 
 	 * @param Object
 	 *            aValue
-	 * @param int rowIndex
-	 * @param int columnIndex
+	 * @param int
+	 *            rowIndex
+	 * @param int
+	 *            columnIndex
 	 */
 	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
 		Anuncio anuncio = (Anuncio) valores.get(rowIndex);
@@ -137,8 +141,7 @@ public class AnuncioTableModel extends AbstractTableModel {
 
 		if (columnIndex == COL_DATA_PUBLICACAO) {
 			try {
-				anuncio.setDataPublicacao(StringUtils.getInstance()
-						.parseStringToDate(aValue.toString()));
+				anuncio.setDataPublicacao(StringUtils.getInstance().parseStringToDate(aValue.toString()));
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
@@ -160,7 +163,8 @@ public class AnuncioTableModel extends AbstractTableModel {
 	 * tipo de parâmetro fazer um if como em setValueAt para verificar qual a
 	 * columnIndex se trata e retornar o tipo da classe.
 	 * 
-	 * @param int columnIndex
+	 * @param int
+	 *            columnIndex
 	 * @return Class<?>
 	 */
 	public Class<?> getColumnClass(int columnIndex) {
@@ -170,8 +174,10 @@ public class AnuncioTableModel extends AbstractTableModel {
 	/**
 	 * Verifica se a célula passada como parâmetro é editável.
 	 * 
-	 * @param int rowIndex
-	 * @param int columnIndex
+	 * @param int
+	 *            rowIndex
+	 * @param int
+	 *            columnIndex
 	 * @return boolean true
 	 */
 	public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -181,7 +187,8 @@ public class AnuncioTableModel extends AbstractTableModel {
 	/**
 	 * Retorna o objeto que está na linha passada como parâmetro.
 	 * 
-	 * @param int row
+	 * @param int
+	 *            row
 	 * @return Anuncio valores.get(row)
 	 */
 	public Anuncio get(int row) {

@@ -49,8 +49,8 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
 	private javax.swing.JButton btnEditarAnuncio;
 	private javax.swing.JButton btnEditarDadosInstituicao;
 	private javax.swing.JButton btnExcluirAnuncio;
-	private javax.swing.JButton btnFiltroVoluntarios;
-	private javax.swing.JButton btnGerarRelatorioVoluntarios;
+	private javax.swing.JButton btnGerarRelatorioVoluntariosDisponiveis;
+	private javax.swing.JButton btnGerarRelatorioAnunciosPublicados;
 	private javax.swing.JButton btnPesquisarAnunciosPublicados;
 	private javax.swing.JButton btnPesquisarFiltroVoluntarios;
 	private javax.swing.JButton btnSalvarCadAnuncio;
@@ -167,7 +167,7 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
 		txtNomeFiltroVoluntarios = new javax.swing.JTextField();
 		txtEmailFiltroVoluntarios = new javax.swing.JTextField();
 		btnPesquisarFiltroVoluntarios = new javax.swing.JButton();
-		btnFiltroVoluntarios = new javax.swing.JButton();
+		btnGerarRelatorioVoluntariosDisponiveis = new javax.swing.JButton();
 		scrollpaneVoluntarios = new javax.swing.JScrollPane();
 		tableVoluntarios = new javax.swing.JTable();
 		panelAnuncio = new javax.swing.JPanel();
@@ -179,7 +179,7 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
 		txtFiltroTituloAnunciosPublicados = new javax.swing.JTextField();
 		btnEditarAnuncio = new javax.swing.JButton();
 		btnExcluirAnuncio = new javax.swing.JButton();
-		btnGerarRelatorioVoluntarios = new javax.swing.JButton();
+		btnGerarRelatorioAnunciosPublicados = new javax.swing.JButton();
 		panelCadAnuncio = new javax.swing.JPanel();
 		lblTituloCadAnuncio = new javax.swing.JLabel();
 		spinnerVagasCadAnuncio = new javax.swing.JSpinner();
@@ -570,8 +570,20 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
 			}
 		});
 
-		btnFiltroVoluntarios.setIcon(new javax.swing.ImageIcon("img/agenda_16x16.png")); // NOI18N
-		btnFiltroVoluntarios.setText("Gerar Relatório");
+		btnGerarRelatorioVoluntariosDisponiveis.setIcon(new javax.swing.ImageIcon("img/agenda_16x16.png")); // NOI18N
+		btnGerarRelatorioVoluntariosDisponiveis.setText("Gerar Relatório");
+		btnGerarRelatorioVoluntariosDisponiveis.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				FiltroRelVoluntariosDisponiveisInstituicaoUI filtroRel = new FiltroRelVoluntariosDisponiveisInstituicaoUI();
+				filtroRel.setFocusable(true);
+				filtroRel.moveToFront();
+				getContentPane().add(filtroRel, 0);
+				filtroRel.setVisible(true);
+
+			}
+		});
 
 		scrollpaneVoluntarios.setMaximumSize(new java.awt.Dimension(1197, 520));
 		scrollpaneVoluntarios.setMinimumSize(new java.awt.Dimension(1197, 520));
@@ -580,11 +592,7 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
 		try {
 			List<Entidade> listVol = volController.listar();
 
-			// if(listVol != null) {
 			tableVoluntarios.setModel(new VoluntarioTableModel(listVol));
-			// } else {
-			// tableVoluntarios.setModel(new Vol);
-			// }
 
 		} catch (Exception e1) {
 			e1.printStackTrace();
@@ -618,8 +626,20 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
 		btnExcluirAnuncio.setIcon(new javax.swing.ImageIcon("img/cancelar_16x16.png")); // NOI18N
 		btnExcluirAnuncio.setText("Excluir");
 
-		btnGerarRelatorioVoluntarios.setIcon(new javax.swing.ImageIcon("img/agenda_16x16.png")); // NOI18N
-		btnGerarRelatorioVoluntarios.setText("Gerar Relatório");
+		btnGerarRelatorioAnunciosPublicados.setIcon(new javax.swing.ImageIcon("img/agenda_16x16.png")); // NOI18N
+		btnGerarRelatorioAnunciosPublicados.setText("Gerar Relatório");
+		btnGerarRelatorioAnunciosPublicados.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				RelatorioUI relUi = new RelatorioUI("Anuncio", instituicao);
+				relUi.setFocusable(true);
+				relUi.moveToFront();
+				getContentPane().add(relUi, 0);
+				relUi.setVisible(true);
+
+			}
+		});
 
 		panelCadAnuncio.setBorder(javax.swing.BorderFactory.createTitledBorder("Cadastro de Anuncios"));
 		panelCadAnuncio.setMaximumSize(new java.awt.Dimension(1197, 240));
@@ -683,7 +703,7 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
 										.addPreferredGap(ComponentPlacement.UNRELATED)
 										.addComponent(btnPesquisarFiltroVoluntarios).addGap(749))
 								.addGroup(panelFiltroVoluntariosLayout.createSequentialGroup()
-										.addComponent(btnFiltroVoluntarios).addContainerGap()))));
+										.addComponent(btnGerarRelatorioVoluntariosDisponiveis).addContainerGap()))));
 		panelFiltroVoluntariosLayout.setVerticalGroup(panelFiltroVoluntariosLayout
 				.createParallelGroup(Alignment.TRAILING)
 				.addGroup(Alignment.LEADING, panelFiltroVoluntariosLayout.createSequentialGroup().addContainerGap()
@@ -701,7 +721,7 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
 								.addComponent(lblEmailFiltroVoluntarios))
 						.addContainerGap(52, Short.MAX_VALUE))
 				.addGroup(panelFiltroVoluntariosLayout.createSequentialGroup().addContainerGap(91, Short.MAX_VALUE)
-						.addComponent(btnFiltroVoluntarios, GroupLayout.PREFERRED_SIZE, 22,
+						.addComponent(btnGerarRelatorioVoluntariosDisponiveis, GroupLayout.PREFERRED_SIZE, 22,
 								GroupLayout.PREFERRED_SIZE)));
 		panelFiltroVoluntarios.setLayout(panelFiltroVoluntariosLayout);
 
@@ -742,7 +762,7 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
 										.addPreferredGap(ComponentPlacement.RELATED)
 										.addComponent(btnPesquisarAnunciosPublicados)
 										.addPreferredGap(ComponentPlacement.RELATED, 555, Short.MAX_VALUE)
-										.addComponent(btnGerarRelatorioVoluntarios).addGap(18)
+										.addComponent(btnGerarRelatorioAnunciosPublicados).addGap(18)
 										.addComponent(btnEditarAnuncio, GroupLayout.PREFERRED_SIZE, 116,
 												GroupLayout.PREFERRED_SIZE).addGap(18).addComponent(btnExcluirAnuncio,
 														GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE))
@@ -759,8 +779,8 @@ public class PrincipalInstituicaoUI extends javax.swing.JFrame {
 										.addComponent(btnPesquisarAnunciosPublicados, GroupLayout.PREFERRED_SIZE, 22,
 												GroupLayout.PREFERRED_SIZE))
 								.addGroup(panelAnunciosPublicadosLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(btnGerarRelatorioVoluntarios, GroupLayout.PREFERRED_SIZE, 22,
-												GroupLayout.PREFERRED_SIZE)
+										.addComponent(btnGerarRelatorioAnunciosPublicados, GroupLayout.PREFERRED_SIZE,
+												22, GroupLayout.PREFERRED_SIZE)
 										.addGroup(panelAnunciosPublicadosLayout.createParallelGroup(Alignment.BASELINE)
 												.addComponent(btnEditarAnuncio, GroupLayout.PREFERRED_SIZE, 22,
 														GroupLayout.PREFERRED_SIZE)

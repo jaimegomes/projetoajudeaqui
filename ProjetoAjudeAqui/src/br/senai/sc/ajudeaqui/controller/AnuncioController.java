@@ -77,6 +77,12 @@ public class AnuncioController implements IController {
 		return dao.getPorId(id);
 	}
 
+	public List<Entidade> getPorIdInstituicao(int idInstituicao) throws Exception {
+
+		dao = new AnuncioDAO();
+		return dao.getPorIdInstituicao(idInstituicao);
+	}
+
 	public List<Entidade> pesquisarAnuncio(String sql) throws Exception {
 
 		dao = new AnuncioDAO();

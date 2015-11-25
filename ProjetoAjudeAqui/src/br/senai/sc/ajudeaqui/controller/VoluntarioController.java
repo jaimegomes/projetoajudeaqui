@@ -1,5 +1,6 @@
 package br.senai.sc.ajudeaqui.controller;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import br.senai.sc.ajudeaqui.abstracts.Entidade;
@@ -57,6 +58,13 @@ public class VoluntarioController implements IController {
 		volDAO = new VoluntarioDAO();
 		return volDAO.pesquisarVoluntario(sql);
 
+	}
+
+	public List<Entidade> getPorNomeEIdFuncao(String nome, int idFuncao) throws SQLException {
+		
+		volDAO = new VoluntarioDAO();
+		return volDAO.getPorNomeEIdFuncao(nome, idFuncao);
+		
 	}
 
 }

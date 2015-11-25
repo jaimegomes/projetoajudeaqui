@@ -14,7 +14,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.swing.GroupLayout;
@@ -79,7 +78,6 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 	private javax.swing.JLabel lblComplemento;
 	private javax.swing.JLabel lblCpf;
 	private javax.swing.JLabel lblDataNascimento;
-	private javax.swing.JLabel lblDataPublicacaoFiltroVagas;
 	private javax.swing.JLabel lblEmail;
 	private javax.swing.JLabel lblEndereco;
 	private javax.swing.JLabel lblEstadoCivil;
@@ -111,6 +109,7 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 
 	private VoluntarioController voluntarioController = new VoluntarioController();
 	private FuncaoController funcaoController = new FuncaoController();
+	private InstituicaoController instituicaoController = new InstituicaoController();
 	private HorarioController horarioController;
 	private HorarioVoluntarioController horarioVolController;
 
@@ -209,7 +208,6 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 		panelFiltroVagas = new javax.swing.JPanel();
 		lblTituloFiltroVagas = new javax.swing.JLabel();
 		lblInstituicaoFiltroVagas = new javax.swing.JLabel();
-		lblDataPublicacaoFiltroVagas = new javax.swing.JLabel();
 		txtTituloFiltroVagas = new javax.swing.JTextField();
 		cmbInstituicaoFiltroVagas = new javax.swing.JComboBox();
 		btnPesquisarFiltroVagas = new javax.swing.JButton();
@@ -763,9 +761,6 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 		lblInstituicaoFiltroVagas.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
 		lblInstituicaoFiltroVagas.setText("Instituição:");
 
-		lblDataPublicacaoFiltroVagas.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-		lblDataPublicacaoFiltroVagas.setText("Data Publicação:");
-
 		btnPesquisarFiltroVagas.setIcon(new ImageIcon("img/lupa_16x16.png")); // NOI18N
 		btnPesquisarFiltroVagas.setText("Pesquisar");
 		btnPesquisarFiltroVagas.addActionListener(new ActionListener() {
@@ -784,8 +779,7 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 
 					tipoServico = (Funcao) funcaoController.getPorFuncao(cmbTipoServicoVagas.getSelectedItem() + "");
 
-					list = btnPesquisarAnuncioAction(txtTituloFiltroVagas.getText(), instituicao,
-							dateChooserDataPublicacaoFiltroVagas.getDate(), tipoServico);
+					list = btnPesquisarAnuncioAction(txtTituloFiltroVagas.getText(), instituicao, tipoServico);
 
 					if (list != null)
 						tableVagas.setModel(new AnuncioTableModel(list));
@@ -814,60 +808,66 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 			e1.printStackTrace();
 		}
 
+		cmbInstituicaoFiltroVagas.addItem("");
+		try {
+			for (Entidade ent : instituicaoController.listar()) {
+				Instituicao i = (Instituicao) ent;
+				cmbInstituicaoFiltroVagas.addItem(i.getNome());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		btnGerarRelatorio.setIcon(new ImageIcon("img/agenda_16x16.png")); // NOI18N
 		btnGerarRelatorio.setText("Gerar Relatório");
 
-		dateChooserDataPublicacaoFiltroVagas = new JDateChooser();
-
 		javax.swing.GroupLayout panelFiltroVagasLayout = new javax.swing.GroupLayout(panelFiltroVagas);
-		panelFiltroVagasLayout.setHorizontalGroup(panelFiltroVagasLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(panelFiltroVagasLayout.createSequentialGroup().addContainerGap()
-						.addGroup(panelFiltroVagasLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblTituloFiltroVagas).addComponent(lblDataPublicacaoFiltroVagas)
-								.addComponent(lblInstituicaoFiltroVagas).addComponent(lblTipoServicoVagas))
-						.addGap(4)
-						.addGroup(panelFiltroVagasLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(panelFiltroVagasLayout.createSequentialGroup()
-										.addGroup(panelFiltroVagasLayout.createParallelGroup(Alignment.TRAILING)
-												.addComponent(cmbTipoServicoVagas, GroupLayout.PREFERRED_SIZE, 258,
-														GroupLayout.PREFERRED_SIZE)
-										.addGroup(panelFiltroVagasLayout.createParallelGroup(Alignment.LEADING, false)
-												.addComponent(cmbInstituicaoFiltroVagas, 0, GroupLayout.DEFAULT_SIZE,
-														Short.MAX_VALUE)
-												.addComponent(txtTituloFiltroVagas, GroupLayout.PREFERRED_SIZE, 258,
-														GroupLayout.PREFERRED_SIZE)))
-										.addGap(18).addComponent(btnPesquisarFiltroVagas))
-								.addComponent(dateChooserDataPublicacaoFiltroVagas, GroupLayout.PREFERRED_SIZE, 136,
-										GroupLayout.PREFERRED_SIZE))
-						.addContainerGap(723, Short.MAX_VALUE))
-				.addGroup(Alignment.TRAILING, panelFiltroVagasLayout.createSequentialGroup()
-						.addContainerGap(1070, Short.MAX_VALUE).addComponent(btnGerarRelatorio).addContainerGap()));
-		panelFiltroVagasLayout.setVerticalGroup(panelFiltroVagasLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(panelFiltroVagasLayout.createSequentialGroup().addContainerGap()
-						.addGroup(panelFiltroVagasLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblTituloFiltroVagas)
-								.addComponent(txtTituloFiltroVagas, GroupLayout.PREFERRED_SIZE, 22,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnPesquisarFiltroVagas, GroupLayout.PREFERRED_SIZE, 22,
-										GroupLayout.PREFERRED_SIZE))
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(panelFiltroVagasLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(cmbInstituicaoFiltroVagas, GroupLayout.PREFERRED_SIZE, 22,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblInstituicaoFiltroVagas))
-						.addGap(8)
-						.addGroup(panelFiltroVagasLayout.createParallelGroup(Alignment.TRAILING)
-								.addComponent(lblDataPublicacaoFiltroVagas)
-								.addComponent(dateChooserDataPublicacaoFiltroVagas, GroupLayout.PREFERRED_SIZE,
-										GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(panelFiltroVagasLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(cmbTipoServicoVagas, GroupLayout.PREFERRED_SIZE, 22,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblTipoServicoVagas))
-						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-				.addGroup(panelFiltroVagasLayout.createSequentialGroup().addContainerGap(118, Short.MAX_VALUE)
-						.addComponent(btnGerarRelatorio, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)));
+		panelFiltroVagasLayout.setHorizontalGroup(
+			panelFiltroVagasLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(panelFiltroVagasLayout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(panelFiltroVagasLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblTituloFiltroVagas)
+						.addComponent(lblInstituicaoFiltroVagas))
+					.addGap(38)
+					.addGroup(panelFiltroVagasLayout.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(cmbInstituicaoFiltroVagas, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(txtTituloFiltroVagas, GroupLayout.PREFERRED_SIZE, 258, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addComponent(btnPesquisarFiltroVagas)
+					.addContainerGap(723, Short.MAX_VALUE))
+				.addGroup(panelFiltroVagasLayout.createSequentialGroup()
+					.addContainerGap(1070, Short.MAX_VALUE)
+					.addComponent(btnGerarRelatorio)
+					.addContainerGap())
+				.addGroup(Alignment.LEADING, panelFiltroVagasLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblTipoServicoVagas)
+					.addGap(10)
+					.addComponent(cmbTipoServicoVagas, GroupLayout.PREFERRED_SIZE, 258, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(820, Short.MAX_VALUE))
+		);
+		panelFiltroVagasLayout.setVerticalGroup(
+			panelFiltroVagasLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(Alignment.LEADING, panelFiltroVagasLayout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(panelFiltroVagasLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblTituloFiltroVagas)
+						.addComponent(txtTituloFiltroVagas, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnPesquisarFiltroVagas, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(panelFiltroVagasLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(cmbInstituicaoFiltroVagas, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblInstituicaoFiltroVagas))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(panelFiltroVagasLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(cmbTipoServicoVagas, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblTipoServicoVagas))
+					.addContainerGap(51, Short.MAX_VALUE))
+				.addGroup(panelFiltroVagasLayout.createSequentialGroup()
+					.addContainerGap(118, Short.MAX_VALUE)
+					.addComponent(btnGerarRelatorio, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
+		);
 		panelFiltroVagas.setLayout(panelFiltroVagasLayout);
 
 		scrollpaneVagas.setMaximumSize(new java.awt.Dimension(1197, 480));
@@ -1077,13 +1077,13 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 	 * @return listAnuncios
 	 * @throws Exception
 	 */
-	private List<Entidade> btnPesquisarAnuncioAction(String titulo, Instituicao instituicao, Date dataPublicacao,
-			Funcao tipoServico) throws Exception {
+	private List<Entidade> btnPesquisarAnuncioAction(String titulo, Instituicao instituicao, Funcao tipoServico)
+			throws Exception {
 
 		AnuncioController anuncioController = new AnuncioController();
 		StringBuilder sql = new StringBuilder();
 
-		if (titulo == null && instituicao == null && dataPublicacao == null) {
+		if ((titulo == null || titulo.trim().equals("")) && instituicao == null && tipoServico == null) {
 			sql.append(
 					"SELECT a.id, a.titulo, a.descricao, a.qtdVagas, a.dataPublicacao, a.idFuncao, a.status, a.idInstituicao FROM anuncio a");
 
@@ -1092,32 +1092,26 @@ public class PrincipalVoluntarioUI extends javax.swing.JFrame {
 					"SELECT a.id, a.titulo, a.descricao, a.qtdVagas, a.dataPublicacao, a.idFuncao, a.status, a.idInstituicao FROM anuncio a WHERE ");
 
 			if (instituicao != null)
-				sql.append(" idInstituicao= '" + instituicao.getId() + "'");
+				sql.append(" idInstituicao= " + instituicao.getId() + "");
 
-			if (titulo != null) {
+			if (titulo != null && !titulo.trim().equals("")) {
 				if (instituicao != null) {
 					sql.append(" AND");
 				}
-				sql.append(" titulo= '" + titulo + "'");
-			}
-
-			if (dataPublicacao != null) {
-				if (titulo != null) {
-					sql.append(" AND");
-				}
-				sql.append(" dataPublicacao= '" + dataPublicacao + "'");
+				sql.append(" titulo LIKE '%" + titulo + "%'");
 			}
 
 			if (tipoServico != null) {
-				if (dataPublicacao != null) {
+				if (titulo != null || instituicao != null) {
 					sql.append(" AND");
 				}
 
-				sql.append(" idFuncao= '" + tipoServico.getId() + "'");
+				sql.append(" idFuncao= " + tipoServico.getId() + "");
 			}
 
-			System.out.println("PrincipalVoluntario\nSQL BTN PESQUISA: " + sql.toString());
 		}
+
+		System.out.println("PrincipalVoluntario\nSQL BTN PESQUISA: " + sql.toString());
 
 		List<Entidade> listAnuncios = anuncioController.pesquisarAnuncio(sql.toString());
 
