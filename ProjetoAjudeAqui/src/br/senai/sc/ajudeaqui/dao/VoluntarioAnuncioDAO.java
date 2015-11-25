@@ -12,6 +12,13 @@ import br.senai.sc.ajudeaqui.abstracts.GenericDAO;
 import br.senai.sc.ajudeaqui.conexao.Conexao;
 import br.senai.sc.ajudeaqui.model.VoluntarioAnuncio;
 
+
+/**
+ * Classe DAO da entidade VoluntarioAnuncio
+ * 
+ * @author Jaime Gomes
+ *
+ */
 public class VoluntarioAnuncioDAO extends GenericDAO {
 
 	private Connection con = null;
@@ -36,9 +43,7 @@ public class VoluntarioAnuncioDAO extends GenericDAO {
 			pstmt.close();
 
 		} catch (SQLException se) {
-			System.out
-					.println("[VoluntarioAnuncioDAO] - Erro ao salvar VoluntarioAnuncio.\n"
-							+ se.getMessage());
+			System.out.println("[VoluntarioAnuncioDAO] - Erro ao salvar VoluntarioAnuncio.\n" + se.getMessage());
 			con.rollback();
 
 		} finally {
@@ -66,9 +71,7 @@ public class VoluntarioAnuncioDAO extends GenericDAO {
 
 		} catch (SQLException e) {
 			con.rollback();
-			System.out
-					.println("[VoluntarioAnuncioDAO] - Erro ao excluir VoluntarioAnuncio.\n"
-							+ e.getMessage());
+			System.out.println("[VoluntarioAnuncioDAO] - Erro ao excluir VoluntarioAnuncio.\n" + e.getMessage());
 		} finally {
 			con.close();
 		}
@@ -96,9 +99,7 @@ public class VoluntarioAnuncioDAO extends GenericDAO {
 
 		} catch (SQLException e) {
 			con.rollback();
-			System.out
-					.println("[VoluntarioAnuncioDAO] - Erro ao editar VoluntarioAnuncio.\n"
-							+ e.getMessage());
+			System.out.println("[VoluntarioAnuncioDAO] - Erro ao editar VoluntarioAnuncio.\n" + e.getMessage());
 		} finally {
 			con.close();
 		}
@@ -122,8 +123,7 @@ public class VoluntarioAnuncioDAO extends GenericDAO {
 
 				try {
 
-					voluntarioAnuncio = new VoluntarioAnuncio(
-							result.getInt("id"), result.getInt("idVoluntario"),
+					voluntarioAnuncio = new VoluntarioAnuncio(result.getInt("id"), result.getInt("idVoluntario"),
 							result.getInt("idAnuncio"));
 
 					listaVoluntarioAnuncio.add(voluntarioAnuncio);
@@ -138,9 +138,7 @@ public class VoluntarioAnuncioDAO extends GenericDAO {
 
 		} catch (SQLException e) {
 			con.rollback();
-			System.out
-					.println("[VoluntarioAnuncioDAO] - Erro ao listar VoluntarioAnuncio.\n"
-							+ e.getMessage());
+			System.out.println("[VoluntarioAnuncioDAO] - Erro ao listar VoluntarioAnuncio.\n" + e.getMessage());
 
 		} finally {
 			con.close();
@@ -162,17 +160,14 @@ public class VoluntarioAnuncioDAO extends GenericDAO {
 
 			while (result.next()) {
 
-				voluntarioAnuncio = new VoluntarioAnuncio(result.getInt("id"),
-						result.getInt("idVoluntario"),
+				voluntarioAnuncio = new VoluntarioAnuncio(result.getInt("id"), result.getInt("idVoluntario"),
 						result.getInt("idAnuncio"));
 			}
 			result.close();
 			pstmt.close();
 
 		} catch (SQLException se) {
-			System.out
-					.println("[VoluntarioAnuncioDAO] - Erro ao pegar VoluntarioAnuncio por ID.\n"
-							+ se.getMessage());
+			System.out.println("[VoluntarioAnuncioDAO] - Erro ao pegar VoluntarioAnuncio por ID.\n" + se.getMessage());
 		} finally {
 			con.close();
 		}
@@ -180,6 +175,14 @@ public class VoluntarioAnuncioDAO extends GenericDAO {
 		return voluntarioAnuncio;
 	}
 
+	/**
+	 * Método que retorna uma entidade VoluntarioAnuncio de acordo com o id do
+	 * anuncio passados como parâmetro..
+	 * 
+	 * @param idAnuncio
+	 * @return
+	 * @throws Exception
+	 */
 	public List<Entidade> getPorIdAnuncio(int idAnuncio) throws SQLException {
 		con = Conexao.getConnection();
 
@@ -194,8 +197,7 @@ public class VoluntarioAnuncioDAO extends GenericDAO {
 
 			while (result.next()) {
 
-				voluntarioAnuncio = new VoluntarioAnuncio(result.getInt("id"),
-						result.getInt("idVoluntario"),
+				voluntarioAnuncio = new VoluntarioAnuncio(result.getInt("id"), result.getInt("idVoluntario"),
 						result.getInt("idAnuncio"));
 
 				list.add(voluntarioAnuncio);
@@ -204,9 +206,8 @@ public class VoluntarioAnuncioDAO extends GenericDAO {
 			pstmt.close();
 
 		} catch (SQLException se) {
-			System.out
-					.println("[VoluntarioAnuncioDAO] - Erro ao pegar VoluntarioAnuncio por ID do voluntário.\n"
-							+ se.getMessage());
+			System.out.println("[VoluntarioAnuncioDAO] - Erro ao pegar VoluntarioAnuncio por ID do voluntário.\n"
+					+ se.getMessage());
 		} finally {
 			con.close();
 		}
@@ -214,8 +215,15 @@ public class VoluntarioAnuncioDAO extends GenericDAO {
 		return list;
 	}
 
-	public List<Entidade> getPorIdVoluntario(int idVoluntario)
-			throws SQLException {
+	/**
+	 * Método que retorna uma entidade VoluntarioAnuncio de acordo com o id do
+	 * voluntario passados como parâmetro..
+	 * 
+	 * @param idVoluntario
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Entidade> getPorIdVoluntario(int idVoluntario) throws SQLException {
 		con = Conexao.getConnection();
 
 		List<Entidade> list = new ArrayList<Entidade>();
@@ -229,8 +237,7 @@ public class VoluntarioAnuncioDAO extends GenericDAO {
 
 			while (result.next()) {
 
-				voluntarioAnuncio = new VoluntarioAnuncio(result.getInt("id"),
-						result.getInt("idVoluntario"),
+				voluntarioAnuncio = new VoluntarioAnuncio(result.getInt("id"), result.getInt("idVoluntario"),
 						result.getInt("idAnuncio"));
 
 				list.add(voluntarioAnuncio);
@@ -239,9 +246,8 @@ public class VoluntarioAnuncioDAO extends GenericDAO {
 			pstmt.close();
 
 		} catch (SQLException se) {
-			System.out
-					.println("[VoluntarioAnuncioDAO] - Erro ao pegar VoluntarioAnuncio por ID do voluntário.\n"
-							+ se.getMessage());
+			System.out.println("[VoluntarioAnuncioDAO] - Erro ao pegar VoluntarioAnuncio por ID do voluntário.\n"
+					+ se.getMessage());
 		} finally {
 			con.close();
 		}
@@ -249,8 +255,16 @@ public class VoluntarioAnuncioDAO extends GenericDAO {
 		return list;
 	}
 
-	public List<Entidade> getPorIdVoluntarioIdAnuncio(int idVoluntario,
-			int idAnuncio) throws SQLException {
+	/**
+	 * Método que retorna uma entidade VoluntarioAnuncio de acordo com o id do
+	 * anuncio e o id do voluntario passados como parâmetro.
+	 * 
+	 * @param idVoluntario
+	 * @param idAnuncio
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Entidade> getPorIdVoluntarioIdAnuncio(int idVoluntario, int idAnuncio) throws SQLException {
 		con = Conexao.getConnection();
 
 		List<Entidade> list = null;
@@ -266,8 +280,7 @@ public class VoluntarioAnuncioDAO extends GenericDAO {
 			while (result.next()) {
 
 				list = new ArrayList<Entidade>();
-				voluntarioAnuncio = new VoluntarioAnuncio(result.getInt("id"),
-						result.getInt("idVoluntario"),
+				voluntarioAnuncio = new VoluntarioAnuncio(result.getInt("id"), result.getInt("idVoluntario"),
 						result.getInt("idAnuncio"));
 
 				list.add(voluntarioAnuncio);
@@ -276,8 +289,8 @@ public class VoluntarioAnuncioDAO extends GenericDAO {
 			pstmt.close();
 
 		} catch (SQLException se) {
-			System.out
-					.println("[VoluntarioAnuncioDAO] - Erro ao pegar VoluntarioAnuncio por ID do voluntário e ID do anuncio.\n"
+			System.out.println(
+					"[VoluntarioAnuncioDAO] - Erro ao pegar VoluntarioAnuncio por ID do voluntário e ID do anuncio.\n"
 							+ se.getMessage());
 		} finally {
 			con.close();

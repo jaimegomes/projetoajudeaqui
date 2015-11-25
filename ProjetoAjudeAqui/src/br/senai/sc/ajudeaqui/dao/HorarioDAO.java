@@ -12,6 +12,12 @@ import br.senai.sc.ajudeaqui.abstracts.GenericDAO;
 import br.senai.sc.ajudeaqui.conexao.Conexao;
 import br.senai.sc.ajudeaqui.model.Horario;
 
+
+/**
+ * Classe DAO da entidade Horario
+ * @author Jaime Gomes
+ *
+ */
 public class HorarioDAO extends GenericDAO {
 
 	private Connection con = null;
@@ -164,6 +170,14 @@ public class HorarioDAO extends GenericDAO {
 		return horario;
 	}
 
+	/**
+	 * Método que retorna um Horario de acordo com o nome do horario passado
+	 * como parâmetro.
+	 * 
+	 * @param horario
+	 * @return
+	 * @throws Exception
+	 */
 	public Entidade getPoHorario(String hor) throws SQLException {
 
 		con = Conexao.getConnection();

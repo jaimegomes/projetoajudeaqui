@@ -13,6 +13,12 @@ import br.senai.sc.ajudeaqui.conexao.Conexao;
 import br.senai.sc.ajudeaqui.model.Instituicao;
 import br.senai.sc.ajudeaqui.model.Usuario;
 
+
+/**
+ * Classe DAO da entidade Instituição
+ * @author Jaime Gomes
+ *
+ */
 public class InstituicaoDAO extends GenericDAO {
 
 	private Connection con = null;
@@ -264,6 +270,15 @@ public class InstituicaoDAO extends GenericDAO {
 		return instituicao;
 	}
 
+	/**
+	 * Método que retorna uma Instituição de acordo com o nome da instituição e
+	 * usuário passados como parâmetro
+	 * 
+	 * @param nome
+	 * @param usuario
+	 * @return
+	 * @throws Exception
+	 */
 	public Entidade getPorNome(String nome, Usuario usuario) throws Exception {
 		con = Conexao.getConnection();
 

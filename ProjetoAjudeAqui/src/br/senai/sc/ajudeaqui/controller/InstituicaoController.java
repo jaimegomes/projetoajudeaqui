@@ -7,6 +7,12 @@ import br.senai.sc.ajudeaqui.dao.InstituicaoDAO;
 import br.senai.sc.ajudeaqui.interfaces.IController;
 import br.senai.sc.ajudeaqui.model.Usuario;
 
+/**
+ * Classe de controle da entidade Instituição
+ * 
+ * @author Jaime Gomes
+ *
+ */
 public class InstituicaoController implements IController {
 
 	private InstituicaoDAO dao;

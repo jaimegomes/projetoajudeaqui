@@ -6,6 +6,12 @@ import br.senai.sc.ajudeaqui.abstracts.Entidade;
 import br.senai.sc.ajudeaqui.dao.FuncaoVoluntarioDAO;
 import br.senai.sc.ajudeaqui.interfaces.IController;
 
+/**
+ * Classe de controle da entidade FuncaoVoluntario
+ * 
+ * @author Jaime Gomes
+ *
+ */
 public class FuncaoVoluntarioController implements IController {
 
 	private FuncaoVoluntarioDAO dao;

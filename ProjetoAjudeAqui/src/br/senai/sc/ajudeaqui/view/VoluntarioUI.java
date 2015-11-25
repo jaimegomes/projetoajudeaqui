@@ -25,6 +25,12 @@ import br.senai.sc.ajudeaqui.model.HorarioVoluntario;
 import br.senai.sc.ajudeaqui.model.Voluntario;
 import br.senai.sc.ajudeaqui.utils.StringUtils;
 
+/**
+ * Classe que contém a tela de visualização dos dados do voluntário.
+ * 
+ * @author Jaime Gomes
+ *
+ */
 public class VoluntarioUI extends javax.swing.JInternalFrame {
 
 	private static final long serialVersionUID = 1L;

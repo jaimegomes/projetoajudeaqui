@@ -13,6 +13,11 @@ import br.senai.sc.ajudeaqui.conexao.Conexao;
 import br.senai.sc.ajudeaqui.model.Usuario;
 import br.senai.sc.ajudeaqui.model.Voluntario;
 
+/**
+ * Classe DAO da entidade Voluntario
+ * @author Jaime Gomes
+ *
+ */
 public class VoluntarioDAO extends GenericDAO {
 
 	private Connection con = null;
@@ -215,6 +220,14 @@ public class VoluntarioDAO extends GenericDAO {
 		return voluntario;
 	}
 
+	/**
+	 * Método que retorna um Voluntário de acordo com o id do usuário passado
+	 * como parâmetro.
+	 * 
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
 	public Entidade getPorIdUsuario(int id) throws Exception {
 
 		con = Conexao.getConnection();
@@ -249,6 +262,14 @@ public class VoluntarioDAO extends GenericDAO {
 		return voluntario;
 	}
 
+	/**
+	 * Método que retorna uma lista de Voluntários de acordo com o sql passado
+	 * como parâmetro.
+	 * 
+	 * @param sql
+	 * @return
+	 * @throws Exception
+	 */
 	public List<Entidade> pesquisarVoluntario(String sql) throws Exception {
 		con = Conexao.getConnection();
 
@@ -281,90 +302,6 @@ public class VoluntarioDAO extends GenericDAO {
 		}
 
 		return listVoluntarios;
-	}
-
-	public List<Entidade> getPorNomeEIdFuncao(String nome, int idFuncao) throws SQLException {
-
-		con = Conexao.getConnection();
-		usuarioDAO = new UsuarioDAO();
-
-		List<Entidade> listaVoluntarios = new ArrayList<Entidade>();
-		StringBuilder sql = new StringBuilder();
-
-		PreparedStatement pstm = null;
-
-		if (nome == null && idFuncao == 0) {
-			sql.append(
-					"SELECT v.id, v.nome, v.telefone, v.cpf, v.endereco, v.email, v.dataNasc, v.idUsuario, v.sexo, v.estadoCivil, v.complemento, v.celular, v.informacoesComplementares FROM voluntario v ");
-
-			pstm = con.prepareStatement(sql.toString());
-
-		} else {
-
-			sql.append(
-					"SELECT v.id, v.nome, v.telefone, v.cpf, v.endereco, v.email, v.dataNasc, v.idUsuario, v.sexo, v.estadoCivil, v.complemento, v.celular, v.informacoesComplementares FROM voluntario v ");
-
-			if (nome != null) {
-				sql.append(" WHERE nome LIKE ?");
-
-				if (idFuncao > 0) {
-					sql.append(" AND idFuncao = ?");
-
-					pstm = con.prepareStatement(sql.toString());
-					pstm.setInt(2, idFuncao);
-				}
-
-				System.out.println(sql.toString());
-				pstm = con.prepareStatement(sql.toString());
-				pstm.setString(1, nome);
-
-			} else {
-				if (idFuncao > 0) {
-					sql.append(" WHERE idFuncao = ?");
-					pstm = con.prepareStatement(sql.toString());
-					pstm.setInt(1, idFuncao);
-				}
-
-				System.out.println(sql.toString());
-
-			}
-
-		}
-
-		try {
-
-			ResultSet result = pstm.executeQuery();
-
-			while (result.next()) {
-
-				try {
-					usuario = (Usuario) usuarioDAO.getPorId(result.getInt("idUsuario"));
-
-					voluntario = new Voluntario(result.getInt("id"), result.getString("nome"),
-							result.getString("telefone"), result.getString("cpf"), result.getString("endereco"),
-							result.getString("email"), result.getDate("dataNasc"), usuario, result.getString("sexo"),
-							result.getString("estadoCivil"), result.getString("complemento"),
-							result.getString("celular"), result.getString("informacoesComplementares"));
-
-					listaVoluntarios.add(voluntario);
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-
-			}
-
-			pstm.close();
-
-		} catch (SQLException e) {
-			con.rollback();
-			System.out.println("[VoluntarioDAO] - Erro ao listar voluntarios.\n" + e.getMessage());
-
-		} finally {
-			con.close();
-		}
-		return listaVoluntarios;
-
 	}
 
 }

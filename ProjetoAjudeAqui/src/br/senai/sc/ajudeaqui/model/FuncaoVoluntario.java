@@ -2,6 +2,12 @@ package br.senai.sc.ajudeaqui.model;
 
 import br.senai.sc.ajudeaqui.abstracts.Entidade;
 
+/**
+ * Classe que representa a entidade FuncaoVoluntario
+ * 
+ * @author Jaime Gomes
+ *
+ */
 public class FuncaoVoluntario extends Entidade {
 
 	private int id;

@@ -6,6 +6,12 @@ import br.senai.sc.ajudeaqui.abstracts.Entidade;
 import br.senai.sc.ajudeaqui.dao.HorarioVoluntarioDAO;
 import br.senai.sc.ajudeaqui.interfaces.IController;
 
+/**
+ * Classe de controle da entidade HorarioVoluntario
+ * 
+ * @author Jaime Gomes
+ *
+ */
 public class HorarioVoluntarioController implements IController {
 
 	private HorarioVoluntarioDAO dao;

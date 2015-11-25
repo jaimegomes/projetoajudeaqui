@@ -7,6 +7,13 @@ import br.senai.sc.ajudeaqui.dao.UsuarioDAO;
 import br.senai.sc.ajudeaqui.interfaces.IController;
 import br.senai.sc.ajudeaqui.model.Usuario;
 
+
+/**
+ * Classe de controle da entidade Usuario
+ * 
+ * @author Jaime Gomes
+ *
+ */
 public class UsuarioController implements IController {
 
 	private UsuarioDAO dao;

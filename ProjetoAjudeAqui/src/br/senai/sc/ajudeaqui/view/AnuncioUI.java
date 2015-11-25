@@ -22,6 +22,12 @@ import br.senai.sc.ajudeaqui.model.Voluntario;
 import br.senai.sc.ajudeaqui.model.VoluntarioAnuncio;
 import br.senai.sc.ajudeaqui.utils.StringUtils;
 
+/**
+ * Classe que contém a tela de visualização dos dados do anúncio.
+ * 
+ * @author Jaime Gomes
+ *
+ */
 public class AnuncioUI extends javax.swing.JInternalFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -155,7 +161,7 @@ public class AnuncioUI extends javax.swing.JInternalFrame {
 								JOptionPane.showMessageDialog(null,
 										"Você se inscreveu para esta vaga, aguarde contato da instituição e mantenha seu perfil atualizado.");
 							}
-						} 
+						}
 
 					} catch (Exception e1) {
 						e1.printStackTrace();

@@ -13,7 +13,7 @@ import br.senai.sc.ajudeaqui.conexao.Conexao;
 import br.senai.sc.ajudeaqui.model.Funcao;
 
 /**
- * 
+ * Classe DAO da entidade Função
  * @author Jaime Gomes
  *
  */
@@ -169,6 +169,14 @@ public class FuncaoDAO extends GenericDAO {
 		return funcao;
 	}
 
+	/**
+	 * Método que retorna uma funcao de acordo com o nome da função passado como
+	 * parâmetro.
+	 * 
+	 * @param funcao
+	 * @return
+	 * @throws Exception
+	 */
 	public Entidade getPorFuncao(String nomeFuncao) throws Exception {
 		con = Conexao.getConnection();
 

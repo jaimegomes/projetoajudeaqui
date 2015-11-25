@@ -15,6 +15,12 @@ import br.senai.sc.ajudeaqui.model.Funcao;
 import br.senai.sc.ajudeaqui.model.FuncaoVoluntario;
 import br.senai.sc.ajudeaqui.model.Voluntario;
 
+
+/**
+ * Classe DAO da entidade Função
+ * @author Jaime Gomes
+ *
+ */
 public class FuncaoVoluntarioDAO extends GenericDAO {
 
 	private Connection con = null;
@@ -182,6 +188,16 @@ public class FuncaoVoluntarioDAO extends GenericDAO {
 		return funcaoVoluntario;
 	}
 
+	/**
+	 * Método que verifica a existência de uma FuncaoVoluntario no banco de
+	 * dados de acordo com o id da função e id do voluntário passados como
+	 * parâmetros.
+	 * 
+	 * @param idFuncao
+	 * @param idVoluntario
+	 * @return
+	 * @throws Exception
+	 */
 	public boolean getPorIdFuncaoVoluntario(int idFuncao, int idVoluntario) throws SQLException {
 		con = Conexao.getConnection();
 
@@ -211,6 +227,14 @@ public class FuncaoVoluntarioDAO extends GenericDAO {
 		return false;
 	}
 
+	/**
+	 * Método que retorna uma lista de FuncaoVoluntario de acordo com o id do
+	 * voluntário passado como parâmetro.
+	 * 
+	 * @param idVoluntario
+	 * @return
+	 * @throws Exception
+	 */
 	public List<Entidade> getListPorIdVoluntario(int idVoluntario) throws Exception {
 		con = Conexao.getConnection();
 
@@ -238,9 +262,8 @@ public class FuncaoVoluntarioDAO extends GenericDAO {
 			pstmt.close();
 
 		} catch (SQLException se) {
-			System.out.println(
-					"[FuncaoVoluntarioDAO] - Erro ao pegar lista de FuncaoVoluntario por ID do voluntário.\n"
-							+ se.getMessage());
+			System.out.println("[FuncaoVoluntarioDAO] - Erro ao pegar lista de FuncaoVoluntario por ID do voluntário.\n"
+					+ se.getMessage());
 		} finally {
 			con.close();
 		}

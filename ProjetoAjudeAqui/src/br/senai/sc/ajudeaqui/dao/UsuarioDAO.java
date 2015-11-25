@@ -12,6 +12,12 @@ import br.senai.sc.ajudeaqui.abstracts.GenericDAO;
 import br.senai.sc.ajudeaqui.conexao.Conexao;
 import br.senai.sc.ajudeaqui.model.Usuario;
 
+
+/**
+ * Classe DAO  da entidade Usuario
+ * @author Jaime Gomes
+ *
+ */
 public class UsuarioDAO extends GenericDAO {
 
 	private Connection con = null;
@@ -168,6 +174,14 @@ public class UsuarioDAO extends GenericDAO {
 		return usuario;
 	}
 
+	/**
+	 * Método que retorna o Usuario de acordo com o login passado como
+	 * parâmetro.
+	 * 
+	 * @param login
+	 * @return
+	 * @throws Exception
+	 */
 	public Entidade getPorLogin(String login) throws Exception {
 		con = Conexao.getConnection();
 

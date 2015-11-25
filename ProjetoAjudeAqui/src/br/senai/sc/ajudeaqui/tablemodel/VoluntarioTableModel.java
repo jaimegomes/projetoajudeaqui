@@ -8,6 +8,12 @@ import javax.swing.table.AbstractTableModel;
 import br.senai.sc.ajudeaqui.abstracts.Entidade;
 import br.senai.sc.ajudeaqui.model.Voluntario;
 
+/**
+ * Classe que monta a tabela de Voluntários.
+ * 
+ * @author Jaime Gomes
+ *
+ */
 public class VoluntarioTableModel extends AbstractTableModel {
 
 	private static final long serialVersionUID = 1L;
@@ -45,7 +51,8 @@ public class VoluntarioTableModel extends AbstractTableModel {
 	/**
 	 * Retorna o nome da coluna passada como parâmetro.
 	 * 
-	 * @param int colunm
+	 * @param int
+	 *            colunm
 	 */
 	public String getColumnName(int column) {
 
@@ -73,8 +80,10 @@ public class VoluntarioTableModel extends AbstractTableModel {
 	/**
 	 * Retorna o objeto que está na linha e coluna indicada como parâmetros.
 	 * 
-	 * @param int row
-	 * @param int column
+	 * @param int
+	 *            row
+	 * @param int
+	 *            column
 	 */
 	public Object getValueAt(int row, int column) {
 		Voluntario voluntario = (Voluntario) valores.get(row);
@@ -106,8 +115,10 @@ public class VoluntarioTableModel extends AbstractTableModel {
 	 * 
 	 * @param Object
 	 *            aValue
-	 * @param int rowIndex
-	 * @param int columnIndex
+	 * @param int
+	 *            rowIndex
+	 * @param int
+	 *            columnIndex
 	 */
 	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
 		Voluntario voluntario = (Voluntario) valores.get(rowIndex);
@@ -137,7 +148,8 @@ public class VoluntarioTableModel extends AbstractTableModel {
 	 * tipo de parâmetro fazer um if como em setValueAt para verificar qual a
 	 * columnIndex se trata e retornar o tipo da classe.
 	 * 
-	 * @param int columnIndex
+	 * @param int
+	 *            columnIndex
 	 * @return Class<?>
 	 */
 	public Class<?> getColumnClass(int columnIndex) {
@@ -147,8 +159,10 @@ public class VoluntarioTableModel extends AbstractTableModel {
 	/**
 	 * Verifica se a célula passada como parâmetro é editável.
 	 * 
-	 * @param int rowIndex
-	 * @param int columnIndex
+	 * @param int
+	 *            rowIndex
+	 * @param int
+	 *            columnIndex
 	 * @return boolean true
 	 */
 	public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -158,7 +172,8 @@ public class VoluntarioTableModel extends AbstractTableModel {
 	/**
 	 * Retorna o objeto que está na linha passada como parâmetro.
 	 * 
-	 * @param int row
+	 * @param int
+	 *            row
 	 * @return Anuncio valores.get(row)
 	 */
 	public Voluntario get(int row) {
