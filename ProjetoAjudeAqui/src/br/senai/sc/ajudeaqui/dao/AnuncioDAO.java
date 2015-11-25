@@ -283,4 +283,41 @@ public class AnuncioDAO extends GenericDAO {
 		return listAnuncios;
 	}
 
+	public List<Entidade> getAbertos() throws Exception{
+		con = Conexao.getConnection();
+
+		List<Entidade> listAnuncios = new ArrayList<Entidade>();
+
+		String sql = "SELECT a.id, a.titulo, a.descricao, a.qtdVagas, a.dataPublicacao, a.idFuncao, a.status, a.idInstituicao FROM anuncio a WHERE status = 'Aberto' ORDER BY dataPublicacao";
+		try {
+			PreparedStatement pstmt = con.prepareStatement(sql);
+
+			ResultSet result = pstmt.executeQuery();
+
+			while (result.next()) {
+
+				funDAO = new FuncaoDAO();
+				funcao = (Funcao) funDAO.getPorId(result.getInt("idFuncao"));
+
+				instDAO = new InstituicaoDAO();
+				instituicao = (Instituicao) instDAO.getPorId(result.getInt("idInstituicao"));
+
+				anuncio = new Anuncio(result.getInt("id"), result.getString("titulo"), result.getString("descricao"),
+						result.getInt("qtdVagas"), result.getDate("dataPublicacao"), funcao, result.getString("status"),
+						instituicao);
+
+				listAnuncios.add(anuncio);
+			}
+			result.close();
+			pstmt.close();
+
+		} catch (SQLException se) {
+			System.out.println("[AnuncioDAO] - Erro ao pegar anuncio por anuncios com status em aberto.\n" + se.getMessage());
+		} finally {
+			con.close();
+		}
+
+		return listAnuncios;
+	}
+
 }

@@ -90,4 +90,10 @@ public class AnuncioController implements IController {
 
 	}
 
+	public List<Entidade> getAbertos() throws Exception{
+		
+		dao = new AnuncioDAO();
+		return dao.getAbertos();
+	}
+
 }

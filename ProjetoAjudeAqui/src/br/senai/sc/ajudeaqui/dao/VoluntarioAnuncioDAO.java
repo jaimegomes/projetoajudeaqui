@@ -180,4 +180,72 @@ public class VoluntarioAnuncioDAO extends GenericDAO {
 		return voluntarioAnuncio;
 	}
 
+	public List<Entidade> getPorIdAnuncio(int idAnuncio) throws SQLException {
+		con = Conexao.getConnection();
+
+		List<Entidade> list = new ArrayList<Entidade>();
+
+		String sql = "SELECT va.id, va.idAnuncio, va.idVoluntario FROM voluntarioAnuncio va WHERE idAnuncio=?";
+		try {
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, idAnuncio);
+
+			ResultSet result = pstmt.executeQuery();
+
+			while (result.next()) {
+
+				voluntarioAnuncio = new VoluntarioAnuncio(result.getInt("id"),
+						result.getInt("idVoluntario"),
+						result.getInt("idAnuncio"));
+
+				list.add(voluntarioAnuncio);
+			}
+			result.close();
+			pstmt.close();
+
+		} catch (SQLException se) {
+			System.out
+					.println("[VoluntarioAnuncioDAO] - Erro ao pegar VoluntarioAnuncio por ID do voluntário.\n"
+							+ se.getMessage());
+		} finally {
+			con.close();
+		}
+
+		return list;
+	}
+
+	public List<Entidade> getPorIdVoluntario(int idVoluntario) throws SQLException {
+		con = Conexao.getConnection();
+
+		List<Entidade> list = new ArrayList<Entidade>();
+
+		String sql = "SELECT va.id, va.idAnuncio, va.idVoluntario FROM voluntarioAnuncio va WHERE idVoluntario=?";
+		try {
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, idVoluntario);
+
+			ResultSet result = pstmt.executeQuery();
+
+			while (result.next()) {
+
+				voluntarioAnuncio = new VoluntarioAnuncio(result.getInt("id"),
+						result.getInt("idVoluntario"),
+						result.getInt("idAnuncio"));
+
+				list.add(voluntarioAnuncio);
+			}
+			result.close();
+			pstmt.close();
+
+		} catch (SQLException se) {
+			System.out
+					.println("[VoluntarioAnuncioDAO] - Erro ao pegar VoluntarioAnuncio por ID do voluntário.\n"
+							+ se.getMessage());
+		} finally {
+			con.close();
+		}
+
+		return list;
+	}
+
 }
