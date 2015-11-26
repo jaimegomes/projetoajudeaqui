@@ -10,14 +10,13 @@ import java.util.List;
 import br.senai.sc.ajudeaqui.abstracts.Entidade;
 import br.senai.sc.ajudeaqui.abstracts.GenericDAO;
 import br.senai.sc.ajudeaqui.conexao.Conexao;
-import br.senai.sc.ajudeaqui.controller.FuncaoController;
 import br.senai.sc.ajudeaqui.model.Funcao;
 import br.senai.sc.ajudeaqui.model.FuncaoVoluntario;
 import br.senai.sc.ajudeaqui.model.Voluntario;
 
-
 /**
  * Classe DAO da entidade Função
+ * 
  * @author Jaime Gomes
  *
  */
@@ -25,7 +24,7 @@ public class FuncaoVoluntarioDAO extends GenericDAO {
 
 	private Connection con = null;
 	private FuncaoVoluntario funcaoVoluntario = null;
-	private FuncaoController funcaoDAO = null;
+	private FuncaoDAO funcaoDAO = null;
 	private VoluntarioDAO voluntarioDAO = null;
 
 	@Override
@@ -47,7 +46,9 @@ public class FuncaoVoluntarioDAO extends GenericDAO {
 			pstmt.close();
 
 		} catch (SQLException se) {
-			System.out.println("[FuncaoVoluntarioDAO] - Erro ao salvar FuncaoVoluntario.\n" + se.getMessage());
+			System.out
+					.println("[FuncaoVoluntarioDAO] - Erro ao salvar FuncaoVoluntario.\n"
+							+ se.getMessage());
 			con.rollback();
 
 		} finally {
@@ -75,7 +76,9 @@ public class FuncaoVoluntarioDAO extends GenericDAO {
 
 		} catch (SQLException e) {
 			con.rollback();
-			System.out.println("[FuncaoVoluntarioDAO] - Erro ao excluir FuncaoVoluntario.\n" + e.getMessage());
+			System.out
+					.println("[FuncaoVoluntarioDAO] - Erro ao excluir FuncaoVoluntario.\n"
+							+ e.getMessage());
 		} finally {
 			con.close();
 		}
@@ -103,7 +106,9 @@ public class FuncaoVoluntarioDAO extends GenericDAO {
 
 		} catch (SQLException e) {
 			con.rollback();
-			System.out.println("[FuncaoVoluntarioDAO] - Erro ao editar FuncaoVoluntario.\n" + e.getMessage());
+			System.out
+					.println("[FuncaoVoluntarioDAO] - Erro ao editar FuncaoVoluntario.\n"
+							+ e.getMessage());
 		} finally {
 			con.close();
 		}
@@ -114,7 +119,7 @@ public class FuncaoVoluntarioDAO extends GenericDAO {
 	public List<Entidade> listar() throws Exception {
 
 		con = Conexao.getConnection();
-		funcaoDAO = new FuncaoController();
+		funcaoDAO = new FuncaoDAO();
 		voluntarioDAO = new VoluntarioDAO();
 		List<Entidade> listaFuncaoVoluntario = new ArrayList<Entidade>();
 
@@ -129,10 +134,13 @@ public class FuncaoVoluntarioDAO extends GenericDAO {
 
 				try {
 
-					Funcao funcao = (Funcao) funcaoDAO.getPorId(result.getInt("idFuncao"));
-					Voluntario voluntario = (Voluntario) voluntarioDAO.getPorId(result.getInt("idVoluntario"));
+					Funcao funcao = (Funcao) funcaoDAO.getPorId(result
+							.getInt("idFuncao"));
+					Voluntario voluntario = (Voluntario) voluntarioDAO
+							.getPorId(result.getInt("idVoluntario"));
 
-					funcaoVoluntario = new FuncaoVoluntario(result.getInt("id"), funcao, voluntario);
+					funcaoVoluntario = new FuncaoVoluntario(
+							result.getInt("id"), funcao, voluntario);
 
 					listaFuncaoVoluntario.add(funcaoVoluntario);
 
@@ -146,7 +154,9 @@ public class FuncaoVoluntarioDAO extends GenericDAO {
 
 		} catch (SQLException e) {
 			con.rollback();
-			System.out.println("[FuncaoVoluntarioDAO] - Erro ao listar FuncaoVoluntario.\n" + e.getMessage());
+			System.out
+					.println("[FuncaoVoluntarioDAO] - Erro ao listar FuncaoVoluntario.\n"
+							+ e.getMessage());
 
 		} finally {
 			con.close();
@@ -159,7 +169,7 @@ public class FuncaoVoluntarioDAO extends GenericDAO {
 	public Entidade getPorId(int id) throws Exception {
 
 		con = Conexao.getConnection();
-		funcaoDAO = new FuncaoController();
+		funcaoDAO = new FuncaoDAO();
 		voluntarioDAO = new VoluntarioDAO();
 
 		String sql = "SELECT fv.id, fv.idFuncao, fv.idVoluntario FROM funcaoVoluntario fv WHERE id=?";
@@ -171,16 +181,21 @@ public class FuncaoVoluntarioDAO extends GenericDAO {
 
 			while (result.next()) {
 
-				Funcao funcao = (Funcao) funcaoDAO.getPorId(result.getInt("idFuncao"));
-				Voluntario voluntario = (Voluntario) voluntarioDAO.getPorId(result.getInt("idVoluntario"));
+				Funcao funcao = (Funcao) funcaoDAO.getPorId(result
+						.getInt("idFuncao"));
+				Voluntario voluntario = (Voluntario) voluntarioDAO
+						.getPorId(result.getInt("idVoluntario"));
 
-				funcaoVoluntario = new FuncaoVoluntario(result.getInt("id"), funcao, voluntario);
+				funcaoVoluntario = new FuncaoVoluntario(result.getInt("id"),
+						funcao, voluntario);
 			}
 			result.close();
 			pstmt.close();
 
 		} catch (SQLException se) {
-			System.out.println("[FuncaoVoluntarioDAO] - Erro ao pegar FuncaoVoluntario por ID.\n" + se.getMessage());
+			System.out
+					.println("[FuncaoVoluntarioDAO] - Erro ao pegar FuncaoVoluntario por ID.\n"
+							+ se.getMessage());
 		} finally {
 			con.close();
 		}
@@ -189,17 +204,20 @@ public class FuncaoVoluntarioDAO extends GenericDAO {
 	}
 
 	/**
-	 * Método que verifica a existência de uma FuncaoVoluntario no banco de
-	 * dados de acordo com o id da função e id do voluntário passados como
-	 * parâmetros.
+	 * Método que retorna uma FuncaoVoluntario de acordo com o id da função e id
+	 * do voluntário passados como parâmetros.
 	 * 
 	 * @param idFuncao
 	 * @param idVoluntario
 	 * @return
 	 * @throws Exception
 	 */
-	public boolean getPorIdFuncaoVoluntario(int idFuncao, int idVoluntario) throws SQLException {
+	public FuncaoVoluntario getPorIdFuncaoVoluntario(int idFuncao,
+			int idVoluntario) throws Exception {
 		con = Conexao.getConnection();
+
+		funcaoDAO = new FuncaoDAO();
+		voluntarioDAO = new VoluntarioDAO();
 
 		String sql = "SELECT fv.id, fv.idFuncao, fv.idVoluntario FROM funcaoVoluntario fv WHERE idFuncao=? AND idVoluntario=?";
 		try {
@@ -211,20 +229,26 @@ public class FuncaoVoluntarioDAO extends GenericDAO {
 
 			while (result.next()) {
 
-				return true;
+				Funcao funcao = (Funcao) funcaoDAO.getPorId(idFuncao);
+
+				Voluntario voluntario = (Voluntario) voluntarioDAO
+						.getPorId(idVoluntario);
+
+				funcaoVoluntario = new FuncaoVoluntario(result.getInt("id"),
+						funcao, voluntario);
 			}
 			result.close();
 			pstmt.close();
 
 		} catch (SQLException se) {
-			System.out.println(
-					"[FuncaoVoluntarioDAO] - Erro ao pegar FuncaoVoluntario por ID da função e do voluntário.\n"
+			System.out
+					.println("[FuncaoVoluntarioDAO] - Erro ao pegar FuncaoVoluntario por ID da função e do voluntário.\n"
 							+ se.getMessage());
 		} finally {
 			con.close();
 		}
 
-		return false;
+		return funcaoVoluntario;
 	}
 
 	/**
@@ -235,11 +259,12 @@ public class FuncaoVoluntarioDAO extends GenericDAO {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Entidade> getListPorIdVoluntario(int idVoluntario) throws Exception {
+	public List<Entidade> getListPorIdVoluntario(int idVoluntario)
+			throws Exception {
 		con = Conexao.getConnection();
 
 		List<Entidade> list = new ArrayList<>();
-		funcaoDAO = new FuncaoController();
+		funcaoDAO = new FuncaoDAO();
 		voluntarioDAO = new VoluntarioDAO();
 
 		String sql = "SELECT fv.id, fv.idFuncao, fv.idVoluntario FROM funcaoVoluntario fv WHERE idVoluntario=?";
@@ -251,10 +276,13 @@ public class FuncaoVoluntarioDAO extends GenericDAO {
 
 			while (result.next()) {
 
-				Funcao funcao = (Funcao) funcaoDAO.getPorId(result.getInt("idFuncao"));
-				Voluntario voluntario = (Voluntario) voluntarioDAO.getPorId(result.getInt("idVoluntario"));
+				Funcao funcao = (Funcao) funcaoDAO.getPorId(result
+						.getInt("idFuncao"));
+				Voluntario voluntario = (Voluntario) voluntarioDAO
+						.getPorId(result.getInt("idVoluntario"));
 
-				funcaoVoluntario = new FuncaoVoluntario(result.getInt("id"), funcao, voluntario);
+				funcaoVoluntario = new FuncaoVoluntario(result.getInt("id"),
+						funcao, voluntario);
 
 				list.add(funcaoVoluntario);
 			}
@@ -262,8 +290,9 @@ public class FuncaoVoluntarioDAO extends GenericDAO {
 			pstmt.close();
 
 		} catch (SQLException se) {
-			System.out.println("[FuncaoVoluntarioDAO] - Erro ao pegar lista de FuncaoVoluntario por ID do voluntário.\n"
-					+ se.getMessage());
+			System.out
+					.println("[FuncaoVoluntarioDAO] - Erro ao pegar lista de FuncaoVoluntario por ID do voluntário.\n"
+							+ se.getMessage());
 		} finally {
 			con.close();
 		}

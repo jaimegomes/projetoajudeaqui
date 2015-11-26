@@ -5,6 +5,7 @@ import java.util.List;
 import br.senai.sc.ajudeaqui.abstracts.Entidade;
 import br.senai.sc.ajudeaqui.dao.HorarioVoluntarioDAO;
 import br.senai.sc.ajudeaqui.interfaces.IController;
+import br.senai.sc.ajudeaqui.model.HorarioVoluntario;
 
 /**
  * Classe de controle da entidade HorarioVoluntario
@@ -55,15 +56,16 @@ public class HorarioVoluntarioController implements IController {
 	}
 
 	/**
-	 * Método que verifica a existência de registro na tabela HorarioVoluntario.
+	 * Método que retorna um HorarioVoluntario de acordo com o id do horario e o
+	 * id do voluntário passados como parâmetro.
 	 * 
 	 * @param idHorario
 	 * @param idVoluntario
 	 * @return
 	 * @throws Exception
 	 */
-	public boolean getPorIdHorarioVoluntario(int idHorario, int idVoluntario)
-			throws Exception {
+	public HorarioVoluntario getPorIdHorarioVoluntario(int idHorario,
+			int idVoluntario) throws Exception {
 
 		dao = new HorarioVoluntarioDAO();
 		return dao.getPorIdHorarioVoluntario(idHorario, idVoluntario);
@@ -72,6 +74,7 @@ public class HorarioVoluntarioController implements IController {
 	/**
 	 * Método que retorna uma lista de HorarioVoluntario de acordo com o id do
 	 * voluntário passado como parâmetro.
+	 * 
 	 * @param idVoluntario
 	 * @return
 	 * @throws Exception

@@ -5,6 +5,7 @@ import java.util.List;
 import br.senai.sc.ajudeaqui.abstracts.Entidade;
 import br.senai.sc.ajudeaqui.dao.FuncaoVoluntarioDAO;
 import br.senai.sc.ajudeaqui.interfaces.IController;
+import br.senai.sc.ajudeaqui.model.FuncaoVoluntario;
 
 /**
  * Classe de controle da entidade FuncaoVoluntario
@@ -64,7 +65,7 @@ public class FuncaoVoluntarioController implements IController {
 	 * @return
 	 * @throws Exception
 	 */
-	public boolean getPorIdFuncaoVoluntario(int idFuncao, int idVoluntario)
+	public FuncaoVoluntario getPorIdFuncaoVoluntario(int idFuncao, int idVoluntario)
 			throws Exception {
 
 		dao = new FuncaoVoluntarioDAO();
