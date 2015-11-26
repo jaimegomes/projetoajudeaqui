@@ -24,17 +24,17 @@ public class Conexao {
 		try {
 
 			// Conexão MySQLWorkbench
-//			 Class.forName("com.mysql.jdbc.Driver");
-//			 String url = "jdbc:mysql://localhost:3306/ajudeaqui";
-//			 con = DriverManager.getConnection(url, "root","");
-//			 con.setAutoCommit(false);
+			Class.forName("com.mysql.jdbc.Driver");
+			String url = "jdbc:mysql://localhost:3306/ajudeaqui";
+			con = DriverManager.getConnection(url, "root", "");
+			con.setAutoCommit(false);
 			 
 			// Conexão Postgres
-			 Class.forName("org.postgresql.Driver");
-			 con = DriverManager.getConnection(
-			 "jdbc:postgresql://localhost:5432/ajudeaqui", "postgres",
-			 "postgres");
-			 con.setAutoCommit(false);
+//			 Class.forName("org.postgresql.Driver");
+//			 con = DriverManager.getConnection(
+//			 "jdbc:postgresql://localhost:5432/ajudeaqui", "postgres",
+//			 "postgres");
+//			 con.setAutoCommit(false);
 
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
